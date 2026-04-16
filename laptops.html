@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refurbished Laptops | Hexa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #141414; color: white; }
+        .row-container::-webkit-scrollbar { display: none; }
+        .laptop-card { transition: transform 0.4s ease; cursor: pointer; }
+        .laptop-card:hover { transform: scale(1.2); z-index: 50; }
+        .card-details { display: none; background: #181818; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .laptop-card:hover .card-details { display: block; }
+    </style>
+</head>
+<body class="pt-20">
+
+    <nav class="fixed top-0 w-full z-[100] bg-[#141414] flex justify-between px-10 py-4">
+        <div class="flex items-center space-x-4">
+            <a href="index.html" class="text-red-600 font-bold text-2xl">HEXA</a>
+            <span class="text-sm border-l pl-4 border-gray-600">Refurbished Collection</span>
+        </div>
+    </nav>
+
+    <div class="px-10 space-y-16 mt-10 pb-20">
+        
+        <div>
+            <h2 class="text-2xl font-bold mb-4">Business Series (Dell & HP)</h2>
+            <div class="flex space-x-3 overflow-x-auto row-container py-10">
+                
+                <div class="min-w-[300px] laptop-card rounded-md overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500" class="w-full h-44 object-cover rounded-t-md">
+                    <div class="card-details p-4 rounded-b-md">
+                        <h3 class="font-bold">Dell Latitude 7490</h3>
+                        <p class="text-[10px] text-green-400 mt-1">98% Condition | Warranty</p>
+                        <p class="text-xs text-gray-400 mt-2">i5 8th Gen / 16GB / 512GB SSD</p>
+                        <a href="YOUR_RAZORPAY_LINK" class="mt-4 block text-center bg-red-600 py-2 rounded text-xs font-bold uppercase">Buy Now @ ₹18,500</a>
+                    </div>
+                </div>
+
+                <div class="min-w-[300px] laptop-card rounded-md overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500" class="w-full h-44 object-cover rounded-t-md">
+                    <div class="card-details p-4 rounded-b-md">
+                        <h3 class="font-bold">HP EliteBook 840 G5</h3>
+                        <p class="text-[10px] text-yellow-400 mt-1">Trending in Kanpur</p>
+                        <p class="text-xs text-gray-400 mt-2">Slim Design | Full HD Display</p>
+                        <a href="YOUR_RAZORPAY_LINK" class="mt-4 block text-center bg-red-600 py-2 rounded text-xs font-bold uppercase">Quick Buy</a>
+                    </div>
+                </div>
+
+                <div class="min-w-[300px] laptop-card rounded-md overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500" class="w-full h-44 object-cover rounded-t-md">
+                    <div class="card-details p-4 rounded-b-md">
+                        <h3 class="font-bold">MacBook Air M1</h3>
+                        <p class="text-[10px] text-green-400 mt-1">Certified Refurbished</p>
+                        <a href="YOUR_RAZORPAY_LINK" class="mt-4 block text-center bg-red-600 py-2 rounded text-xs font-bold uppercase">Buy Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
