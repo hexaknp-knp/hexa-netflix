@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexa Store | Premium Refurbished Laptops</title>
+    <title>Hexa Store | Premium Refurbished Collection</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -46,18 +46,12 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         let allLaptops = [];
-        const emiMonths = 12; // Yahan se aap EMI months change kar sakte hain
 
-        // 1. Fetch Data from JSON & Filter for Laptops
+        // 1. Fetch Data from JSON
         async function fetchLaptops() {
             try {
                 const response = await fetch('data.json');
-                const data = await response.json();
-                
-                // FILTER: Sirf Category "Laptop" uthayega aur Low to High sort karega
-                allLaptops = data.filter(item => item.category === "Laptop")
-                                 .sort((a, b) => a.price - b.price);
-                
+                allLaptops = await response.json();
                 renderLaptops(allLaptops);
             } catch (error) {
                 console.error("Error loading JSON:", error);
@@ -69,14 +63,14 @@
         function renderLaptops(data) {
             const container = document.getElementById('product-container');
             if(data.length === 0) {
-                container.innerHTML = "<p class='text-gray-500 font-bold'>No Laptops Available Right Now.</p>";
+                container.innerHTML = "<p class='text-gray-500'>No laptops found.</p>";
                 return;
             }
 
             container.innerHTML = data.map(item => `
                 <div class="netflix-card bg-zinc-900/50 rounded-xl overflow-hidden shadow-2xl">
                     <div class="relative">
-                        <img src="${item.image}" alt="${item.model}" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Image'">
+                        <img src="${item.image}" alt="${item.model}" class="w-full h-48 object-cover">
                         <div class="absolute top-2 right-2 bg-black/60 backdrop-blur-md text-[10px] px-2 py-1 rounded text-yellow-500 font-bold uppercase">
                             EMI Available
                         </div>
@@ -91,8 +85,8 @@
                                 <span class="text-2xl font-black text-white">₹${item.price.toLocaleString()}</span>
                             </div>
                             <div class="text-right">
-                                <span class="block text-[10px] text-blue-400 font-bold uppercase">EMI (${emiMonths} Mo)</span>
-                                <span class="text-sm font-bold text-yellow-500">₹${Math.round(item.price/emiMonths)}/mo</span>
+                                <span class="block text-[10px] text-blue-400 font-bold uppercase">EMI From</span>
+                                <span class="text-sm font-bold">₹${Math.round(item.price/12)}/mo</span>
                             </div>
                         </div>
 
@@ -108,14 +102,14 @@
         // 3. Razorpay Auto-Payment Logic
         function payNow(modelName, amount) {
             const options = {
-                "key": "rzp_live_SLFCOQlEEX9giJ", 
+                "key": "rzp_live_SLFCOQlEEX9giJ", // Dashboard se Key ID yahan daalein
                 "amount": amount * 100, 
                 "currency": "INR",
                 "name": "Hexa Computronics",
                 "description": "Order for " + modelName,
                 "image": "assets/newlogo.png",
                 "handler": function (response){
-                    alert("Order Placed Successfully! Payment ID: " + response.razorpay_payment_id);
+                    alert("Payment Success! ID: " + response.razorpay_payment_id);
                 },
                 "prefill": {
                     "contact": "9935529306",
