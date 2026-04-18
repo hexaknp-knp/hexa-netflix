@@ -8,6 +8,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 11949,
+    "shipping": 250,
     "image": "assets/desktop-placeholder.jpg"
   },
   {
@@ -19,6 +20,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 13390,
+    "shipping": 500,
     "image": "assets/desktop-placeholder.jpg"
   },
   {
@@ -30,6 +32,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 15847,
+    "shipping": 0,
     "image": "assets/laptop-placeholder.jpg"
   },
   {
@@ -41,6 +44,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 16864,
+    "shipping": 0,
     "image": "assets/laptop-placeholder.jpg"
   },
   {
@@ -52,6 +56,7 @@
     "ram": "16 GB",
     "ssd": "512 GB SSD",
     "price": 31949,
+    "shipping": 0,
     "image": "assets/laptop-placeholder.jpg"
   }
 ]
