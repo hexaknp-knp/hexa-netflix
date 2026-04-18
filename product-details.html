@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details | Hexa Computronics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; }
+        .gold-text { color: #FFD700; }
+        .bg-zinc-card { background: #111; border: 1px solid #222; }
+    </style>
+</head>
+<body class="pt-20 px-6 md:px-20">
+
+    <div id="product-content" class="max-w-6xl mx-auto py-10">
+        <p class="animate-pulse">Fetching product details...</p>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        async function loadProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            const response = await fetch('data.json');
+            const data = await response.json();
+            const product = data.find(p => p.id === productId);
+
+            if (!product) {
+                document.getElementById('product-content').innerHTML = "Product not found!";
+                return;
+            }
+
+            // Calculation Logic
+            const basePrice = product.price;
+            const gst = Math.round(basePrice * 0.18);
+            const shipping = 0; // Yahan aap "500" ya koi bhi amount set kar sakte hain
+            const totalPrice = basePrice + gst + shipping;
+
+            document.getElementById('product-content').innerHTML = `
+                <div class="grid md:grid-cols-2 gap-12">
+                    <img src="${product.image}" class="rounded-2xl border border-zinc-800 shadow-2xl w-full">
+                    
+                    <div class="space-y-6">
+                        <h1 class="text-4xl font-black uppercase">${product.model}</h1>
+                        <p class="text-gray-400">${product.processor} | ${product.ram} | ${product.ssd}</p>
+                        
+                        <div class="bg-zinc-card p-6 rounded-xl space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span>Base Price:</span>
+                                <span>₹${basePrice.toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-400">
+                                <span>GST (18%):</span>
+                                <span>+ ₹${gst.toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-400 border-b border-zinc-800 pb-2">
+                                <span>Shipping / Freight:</span>
+                                <span class="${shipping === 0 ? 'text-green-500' : ''}">
+                                    ${shipping === 0 ? 'FREE' : '₹' + shipping}
+                                </span>
+                            </div>
+                            <div class="flex justify-between text-xl font-black gold-text pt-2">
+                                <span>Total Amount:</span>
+                                <span>₹${totalPrice.toLocaleString()}</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-900/20 border border-blue-500/30 rounded-lg">
+                            <p class="text-xs font-bold text-blue-400 uppercase">EMI Offer</p>
+                            <p class="text-lg font-bold">Pay only ₹${Math.round(totalPrice/12)}/month*</p>
+                        </div>
+
+                        <button onclick="payNow('${product.model}', ${totalPrice})" 
+                                class="w-full bg-yellow-500 text-black py-4 rounded-lg font-black uppercase text-lg shadow-lg hover:bg-yellow-400">
+                            Proceed to Checkout
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function payNow(model, amount) {
+            const options = {
+                "key": "rzp_live_SLFCOQlEEX9giJ",
+                "amount": amount * 100,
+                "currency": "INR",
+                "name": "Hexa Computronics",
+                "description": "Purchase: " + model,
+                "handler": function(res) { alert("Success! ID: " + res.razorpay_payment_id); },
+                "theme": { "color": "#FFD700" }
+            };
+            new Razorpay(options).open();
+        }
+
+        loadProductDetails();
+    </script>
+</body>
+</html>
