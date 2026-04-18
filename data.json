@@ -1,0 +1,52 @@
+[
+  {
+    "id": "QCNBAG05421",
+    "brand": "Dell",
+    "model": "LATITUDE 5420",
+    "processor": "CORE I5-11TH GEN",
+    "ram": "16 GB",
+    "ssd": "512 GB SSD",
+    "price": 31949,
+    "image": "assets/dell-5420.jpg"
+  },
+  {
+    "id": "QCNBAG06723",
+    "brand": "Lenovo",
+    "model": "THINKPAD L14 GEN 2",
+    "processor": "CORE I5-11TH GEN",
+    "ram": "16 GB",
+    "ssd": "512 GB SSD",
+    "price": 30424,
+    "image": "assets/lenovo-l14.jpg"
+  },
+  {
+    "id": "QCNBAG06317",
+    "brand": "Lenovo",
+    "model": "V330-14IKB",
+    "processor": "CORE I3-8TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 16864,
+    "image": "assets/v330.jpg"
+  },
+  {
+    "id": "QCNBAG05789",
+    "brand": "HP",
+    "model": "PROBOOK 640 G8",
+    "processor": "CORE I5-11TH GEN",
+    "ram": "16 GB",
+    "ssd": "512 GB SSD",
+    "price": 33051,
+    "image": "assets/hp-640-g8.jpg"
+  },
+  {
+    "id": "QCNBAG02720",
+    "brand": "HP",
+    "model": "ELITEBOOK 840 G8",
+    "processor": "CORE I5-11TH GEN",
+    "ram": "16 GB",
+    "ssd": "512 GB SSD",
+    "price": 34746,
+    "image": "assets/hp-840-g8.jpg"
+  }
+]
