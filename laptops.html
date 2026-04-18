@@ -3,65 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refurbished Laptops | Hexa</title>
+    <title>Hexa Store | Premium Refurbished Collection</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #141414; color: white; }
-        .row-container::-webkit-scrollbar { display: none; }
-        .laptop-card { transition: transform 0.4s ease; cursor: pointer; }
-        .laptop-card:hover { transform: scale(1.2); z-index: 50; }
-        .card-details { display: none; background: #181818; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .laptop-card:hover .card-details { display: block; }
+        body { background-color: #000; color: white; font-family: 'Inter', sans-serif; }
+        .netflix-card { transition: transform 0.3s ease; border: 1px solid #222; }
+        .netflix-card:hover { transform: scale(1.05); border-color: #FFD700; z-index: 10; }
+        .gold-glow { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3)); }
     </style>
 </head>
-<body class="pt-20">
+<body class="bg-black">
 
-    <nav class="fixed top-0 w-full z-[100] bg-[#141414] flex justify-between px-10 py-4">
-        <div class="flex items-center space-x-4">
-            <a href="index.html" class="text-red-600 font-bold text-2xl">HEXA</a>
-            <span class="text-sm border-l pl-4 border-gray-600">Refurbished Collection</span>
+    <nav class="fixed top-0 w-full z-[100] bg-black/90 backdrop-blur-md border-b border-zinc-800 px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center space-x-3">
+            <img src="assets/newlogo.jpg" alt="Logo" class="h-10 gold-glow">
+            <div class="leading-none">
+                <span class="block text-yellow-500 font-black text-lg tracking-tighter">HEXA</span>
+                <span class="text-[8px] text-gray-400 tracking-[0.3em] uppercase">Computronics</span>
+            </div>
+        </a>
+        <div class="flex items-center space-x-6">
+            <input type="text" id="searchInput" placeholder="Search Laptop (e.g. i5, Dell)..." 
+                   class="hidden md:block bg-zinc-900 border border-zinc-700 text-xs px-4 py-2 rounded-full outline-none focus:border-yellow-500 w-64">
+            <a href="index.html" class="text-xs font-bold hover:text-yellow-500 transition uppercase">Home</a>
         </div>
     </nav>
 
-    <div class="px-10 space-y-16 mt-10 pb-20">
-        
-        <div>
-            <h2 class="text-2xl font-bold mb-4">Business Series (Dell & HP)</h2>
-            <div class="flex space-x-3 overflow-x-auto row-container py-10">
-                
-                <div class="min-w-[300px] laptop-card rounded-md overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500" class="w-full h-44 object-cover rounded-t-md">
-                    <div class="card-details p-4 rounded-b-md">
-                        <h3 class="font-bold">Dell Latitude 7490</h3>
-                        <p class="text-[10px] text-green-400 mt-1">98% Condition | Warranty</p>
-                        <p class="text-xs text-gray-400 mt-2">i5 8th Gen / 16GB / 512GB SSD</p>
-                        <a href="YOUR_RAZORPAY_LINK" class="mt-4 block text-center bg-red-600 py-2 rounded text-xs font-bold uppercase">Buy Now @ ₹18,500</a>
-                    </div>
-                </div>
+    <header class="pt-32 pb-10 px-6 md:px-12">
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">
+            Enterprise <span class="text-yellow-500">Laptops</span>
+        </h1>
+        <p class="text-gray-500 text-sm mt-2 max-w-xl">Kanpur's biggest inventory of certified refurbished machines. Every laptop comes with a testing warranty and easy EMI options.</p>
+    </header>
 
-                <div class="min-w-[300px] laptop-card rounded-md overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500" class="w-full h-44 object-cover rounded-t-md">
-                    <div class="card-details p-4 rounded-b-md">
-                        <h3 class="font-bold">HP EliteBook 840 G5</h3>
-                        <p class="text-[10px] text-yellow-400 mt-1">Trending in Kanpur</p>
-                        <p class="text-xs text-gray-400 mt-2">Slim Design | Full HD Display</p>
-                        <a href="YOUR_RAZORPAY_LINK" class="mt-4 block text-center bg-red-600 py-2 rounded text-xs font-bold uppercase">Quick Buy</a>
-                    </div>
-                </div>
-
-                <div class="min-w-[300px] laptop-card rounded-md overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500" class="w-full h-44 object-cover rounded-t-md">
-                    <div class="card-details p-4 rounded-b-md">
-                        <h3 class="font-bold">MacBook Air M1</h3>
-                        <p class="text-[10px] text-green-400 mt-1">Certified Refurbished</p>
-                        <a href="YOUR_RAZORPAY_LINK" class="mt-4 block text-center bg-red-600 py-2 rounded text-xs font-bold uppercase">Buy Now</a>
-                    </div>
-                </div>
-
-            </div>
+    <main class="px-6 md:px-12 pb-20">
+        <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="text-gray-500 animate-pulse">Loading amazing deals...</div>
         </div>
+    </main>
 
-    </div>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        let allLaptops = [];
 
+        // 1. Fetch Data from JSON
+        async function fetchLaptops() {
+            try {
+                const response = await fetch('data.json');
+                allLaptops = await response.json();
+                renderLaptops(allLaptops);
+            } catch (error) {
+                console.error("Error loading JSON:", error);
+                document.getElementById('product-container').innerHTML = "<p class='text-red-500'>Error loading data. Check data.json file.</p>";
+            }
+        }
+
+        // 2. Display Laptops
+        function renderLaptops(data) {
+            const container = document.getElementById('product-container');
+            if(data.length === 0) {
+                container.innerHTML = "<p class='text-gray-500'>No laptops found.</p>";
+                return;
+            }
+
+            container.innerHTML = data.map(item => `
+                <div class="netflix-card bg-zinc-900/50 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="relative">
+                        <img src="${item.image}" alt="${item.model}" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-black/60 backdrop-blur-md text-[10px] px-2 py-1 rounded text-yellow-500 font-bold uppercase">
+                            EMI Available
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-black tracking-tight text-white uppercase truncate">${item.model}</h3>
+                        <p class="text-xs text-gray-400 mt-1">${item.processor} | ${item.ram} | ${item.ssd}</p>
+                        
+                        <div class="mt-6 flex justify-between items-end">
+                            <div>
+                                <span class="block text-[10px] text-gray-500 uppercase font-bold">Best Price</span>
+                                <span class="text-2xl font-black text-white">₹${item.price.toLocaleString()}</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-[10px] text-blue-400 font-bold uppercase">EMI From</span>
+                                <span class="text-sm font-bold">₹${Math.round(item.price/12)}/mo</span>
+                            </div>
+                        </div>
+
+                        <button onclick="payNow('${item.model}', ${item.price})" 
+                                class="w-full mt-6 bg-yellow-500 text-black py-3 rounded-lg font-black uppercase text-xs tracking-widest hover:bg-yellow-400 transition shadow-lg shadow-yellow-500/10">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 3. Razorpay Auto-Payment Logic
+        function payNow(modelName, amount) {
+            const options = {
+                "key": "rzp_live_SLFCOQlEEX9giJ", // Dashboard se Key ID yahan daalein
+                "amount": amount * 100, 
+                "currency": "INR",
+                "name": "Hexa Computronics",
+                "description": "Order for " + modelName,
+                "image": "assets/newlogo.png",
+                "handler": function (response){
+                    alert("Payment Success! ID: " + response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "contact": "9935529306",
+                    "email": "info@hexacomputer.in"
+                },
+                "theme": { "color": "#FFD700" }
+            };
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+
+        // 4. Search Filter
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = allLaptops.filter(l => 
+                l.model.toLowerCase().includes(val) || 
+                l.processor.toLowerCase().includes(val) ||
+                l.brand.toLowerCase().includes(val)
+            );
+            renderLaptops(filtered);
+        });
+
+        fetchLaptops();
+    </script>
 </body>
 </html>
