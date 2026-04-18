@@ -59,4 +59,89 @@
     "shipping": 0,
     "image": "assets/laptop-placeholder.jpg"
   }
+][
+  {
+    "id": "QCDTAG00883",
+    "category": "Desktop",
+    "brand": "HP",
+    "model": "ELITEDESK 705 G4 MINI",
+    "processor": "AMD-RYZEN 3",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 11949,
+    "shipping": 250,
+    "image": "assets/desktop-placeholder.jpg"
+  },
+  {
+    "id": "QCDTAG00795",
+    "category": "Desktop",
+    "brand": "Lenovo",
+    "model": "THINKCENTRE M79 MT",
+    "processor": "AMD-A8",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 13390,
+    "shipping": 500,
+    "image": "assets/desktop-placeholder.jpg"
+  },
+  {
+    "id": "QCNBHP00104",
+    "category": "Laptop",
+    "brand": "HP",
+    "model": "240 G7",
+    "processor": "CORE I3-7TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 15847,
+    "shipping": 0,
+    "image": "assets/laptop-placeholder.jpg"
+  },
+  {
+    "id": "QCDTAG00722",
+    "category": "Desktop",
+    "brand": "Lenovo",
+    "model": "Lenovo M720Q USFF",
+    "processor": "CORE I3 -8TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 16102,
+    "shipping": 250,
+    "image": "assets/desktop-placeholder.jpg"
+  },
+  {
+    "id": "QCNBAG06317",
+    "category": "Laptop",
+    "brand": "Lenovo",
+    "model": "V330-14IKB",
+    "processor": "CORE I3-8TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 16864,
+    "shipping": 0,
+    "image": "assets/laptop-placeholder.jpg"
+  },
+  {
+    "id": "QCDTAG00846",
+    "category": "Desktop",
+    "brand": "HP",
+    "model": "PRODESK 400 G4 MINI",
+    "processor": "CORE I3-8TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 16610,
+    "shipping": 250,
+    "image": "assets/desktop-placeholder.jpg"
+  },
+  {
+    "id": "QCNBAG05421",
+    "category": "Laptop",
+    "brand": "Dell",
+    "model": "LATITUDE 5420",
+    "processor": "CORE I5-11TH GEN",
+    "ram": "16 GB",
+    "ssd": "512 GB SSD",
+    "price": 31949,
+    "shipping": 0,
+    "image": "assets/laptop-placeholder.jpg"
+  }
 ]
