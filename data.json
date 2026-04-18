@@ -1,52 +1,57 @@
 [
   {
-    "id": "QCNBAG05421",
-    "brand": "Dell",
-    "model": "LATITUDE 5420",
-    "processor": "CORE I5-11TH GEN",
-    "ram": "16 GB",
-    "ssd": "512 GB SSD",
-    "price": 31949,
-    "image": "assets/dell-5420.jpg"
+    "id": "QCDTAG00883",
+    "category": "Desktop",
+    "brand": "HP",
+    "model": "ELITEDESK 705 G4 MINI",
+    "processor": "AMD-RYZEN 3",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 11949,
+    "image": "assets/desktop-placeholder.jpg"
   },
   {
-    "id": "QCNBAG06723",
+    "id": "QCDTAG00795",
+    "category": "Desktop",
     "brand": "Lenovo",
-    "model": "THINKPAD L14 GEN 2",
-    "processor": "CORE I5-11TH GEN",
-    "ram": "16 GB",
-    "ssd": "512 GB SSD",
-    "price": 30424,
-    "image": "assets/lenovo-l14.jpg"
+    "model": "THINKCENTRE M79 MT",
+    "processor": "AMD-A8",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 13390,
+    "image": "assets/desktop-placeholder.jpg"
+  },
+  {
+    "id": "QCNBHP00104",
+    "category": "Laptop",
+    "brand": "HP",
+    "model": "240 G7",
+    "processor": "CORE I3-7TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 15847,
+    "image": "assets/laptop-placeholder.jpg"
   },
   {
     "id": "QCNBAG06317",
+    "category": "Laptop",
     "brand": "Lenovo",
     "model": "V330-14IKB",
     "processor": "CORE I3-8TH GEN",
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 16864,
-    "image": "assets/v330.jpg"
+    "image": "assets/laptop-placeholder.jpg"
   },
   {
-    "id": "QCNBAG05789",
-    "brand": "HP",
-    "model": "PROBOOK 640 G8",
+    "id": "QCNBAG05421",
+    "category": "Laptop",
+    "brand": "Dell",
+    "model": "LATITUDE 5420",
     "processor": "CORE I5-11TH GEN",
     "ram": "16 GB",
     "ssd": "512 GB SSD",
-    "price": 33051,
-    "image": "assets/hp-640-g8.jpg"
-  },
-  {
-    "id": "QCNBAG02720",
-    "brand": "HP",
-    "model": "ELITEBOOK 840 G8",
-    "processor": "CORE I5-11TH GEN",
-    "ram": "16 GB",
-    "ssd": "512 GB SSD",
-    "price": 34746,
-    "image": "assets/hp-840-g8.jpg"
+    "price": 31949,
+    "image": "assets/laptop-placeholder.jpg"
   }
 ]
