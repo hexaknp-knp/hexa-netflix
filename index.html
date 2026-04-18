@@ -39,6 +39,9 @@
         /* Floating WhatsApp */
         .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: 0.3s; }
         .wa-float:hover { transform: scale(1.1); }
+
+        /* Modal Styles */
+        #quoteModal { transition: opacity 0.3s ease; }
     </style>
 </head>
 <body>
@@ -48,22 +51,20 @@
     </a>
 
     <nav id="navbar" class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-12 py-3 transition-all duration-500">
-    <div class="flex items-center space-x-10">
-        <a href="index.html" class="flex flex-col items-center group">
-            <img src="assets/newlogo.png" alt="Hexa Logo" class="h-12 logo-glow transition duration-300 group-hover:scale-105">
-            <span class="text-[12px] md:text-[14px] text-yellow-500 font-black tracking-[0.25em] mt-2 uppercase leading-none shadow-black drop-shadow-md">
-                Hexa Computronics
-            </span>
-        </a>
-        <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest">
-            <a href="index.html" class="text-white border-b-2 border-yellow-500">Home</a>
-            <a href="laptops.html" class="text-gray-400 hover:text-white transition">Laptops</a>
-            <a href="desktops.html" class="text-gray-400 hover:text-white transition">Desktops</a>
-            <a href="services.html" class="text-gray-400 hover:text-white transition">Services</a>
-            
+        <div class="flex items-center space-x-10">
+            <a href="index.html" class="flex flex-col items-center group">
+                <img src="assets/newlogo.png" alt="Hexa Logo" class="h-12 logo-glow transition duration-300 group-hover:scale-105">
+                <span class="text-[12px] md:text-[14px] text-yellow-500 font-black tracking-[0.25em] mt-2 uppercase leading-none shadow-black drop-shadow-md">
+                    Hexa Computronics
+                </span>
+            </a>
+            <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-white border-b-2 border-yellow-500">Home</a>
+                <a href="laptops.html" class="text-gray-400 hover:text-white transition">Laptops</a>
+                <a href="desktops.html" class="text-gray-400 hover:text-white transition">Desktops</a>
+                <a href="services.html" class="text-gray-400 hover:text-white transition">Services</a>
+            </div>
         </div>
-    </div>
-    </nav>
         <div class="flex items-center space-x-6">
             <i class="fas fa-search text-xl cursor-pointer hover:text-yellow-500 transition"></i>
             <div class="w-8 h-8 bg-zinc-800 border border-zinc-700 rounded-sm"></div>
@@ -83,7 +84,7 @@
                 <a href="laptops.html" class="bg-white text-black px-10 py-3 rounded hover:bg-yellow-500 transition text-lg flex items-center">
                     <span class="mr-2 text-sm">▶</span> BROWSE STORE
                 </a>
-                <a href="contact.html" class="bg-zinc-600 bg-opacity-50 text-white px-10 py-3 rounded hover:bg-opacity-30 transition text-lg">ⓘ GET QUOTE</a>
+                <button onclick="openQuoteModal()" class="bg-zinc-600 bg-opacity-50 text-white px-10 py-3 rounded hover:bg-opacity-30 transition text-lg">ⓘ GET QUOTE</button>
             </div>
         </div>
     </header>
@@ -111,6 +112,38 @@
             </div>
         </section>
     </main>
+
+    <div id="quoteModal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
+        <div class="bg-zinc-900 border border-yellow-500/30 p-8 rounded-2xl max-w-md w-full relative shadow-2xl">
+            <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+            
+            <h2 class="text-2xl font-black text-yellow-500 mb-2 uppercase tracking-tighter">Request a Quote</h2>
+            <p class="text-gray-400 text-sm mb-6">Enter details and Aamir will contact you shortly.</p>
+            
+            <form id="quoteForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Full Name</label>
+                    <input type="text" name="name" id="userName" required class="w-full bg-zinc-800 border border-zinc-700 rounded p-3 text-white focus:border-yellow-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">WhatsApp Number</label>
+                    <input type="tel" name="phone" id="userPhone" required class="w-full bg-zinc-800 border border-zinc-700 rounded p-3 text-white focus:border-yellow-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Requirement</label>
+                    <select name="requirement" id="userReq" class="w-full bg-zinc-800 border border-zinc-700 rounded p-3 text-white focus:border-yellow-500 outline-none transition">
+                        <option>Refurbished Laptops</option>
+                        <option>CCTV Installation</option>
+                        <option>Desktop / Networking</option>
+                        <option>Bulk Order (Wholesale)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-yellow-500 text-black font-black py-3 rounded uppercase tracking-widest hover:bg-yellow-400 transition mt-4">
+                    Send Request
+                </button>
+            </form>
+        </div>
+    </div>
 
     <footer class="bg-black py-20 px-6 md:px-12 border-t border-zinc-900 text-gray-500">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto">
@@ -164,6 +197,31 @@
             const nav = document.getElementById('navbar');
             if (window.scrollY > 80) nav.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
             else nav.style.backgroundColor = 'transparent';
+        });
+
+        // Modal Functions
+        function openQuoteModal() {
+            document.getElementById('quoteModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuoteModal() {
+            document.getElementById('quoteModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // WhatsApp + Email Logic
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            // Hum form ko Formspree pe submit hone denge (Email ke liye)
+            // Lekin sath hi WhatsApp bhi trigger karenge
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const req = document.getElementById('userReq').value;
+            
+            const message = `*New Quote Request*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Requirement:* ${req}`;
+            
+            // WhatsApp open in new tab
+            window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
         });
     </script>
 </body>
