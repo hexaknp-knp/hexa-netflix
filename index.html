@@ -11,6 +11,7 @@
         :root { --gold: #FFD700; --deep-bg: #0a0c10; --card-bg: #161b22; }
         body { background-color: var(--deep-bg); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
         
+        /* Marquee Announcement Bar */
         .marquee-bar {
             background: linear-gradient(90deg, #003366, #0056b3);
             color: white;
@@ -26,9 +27,11 @@
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
+        /* Netflix Row Style */
         .netflix-row::-webkit-scrollbar { display: none; }
         .netflix-row { -ms-overflow-style: none; scrollbar-width: none; display: flex; overflow-x: auto; gap: 15px; padding: 20px 0; scroll-behavior: smooth; }
 
+        /* Card Animation */
         .card { transition: transform 0.4s ease, border 0.3s ease; min-width: 280px; background: var(--card-bg); border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #222; }
         .card:hover { transform: scale(1.1); z-index: 50; border: 1px solid var(--gold); }
         .card img { transition: transform 0.5s ease; }
@@ -43,19 +46,26 @@
         .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; z-index: 1000; transition: 0.3s; }
         .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--gold); padding-left: 15px; margin-top: 40px; text-transform: uppercase; }
 
+        /* Search Overlay */
         #searchOverlay { transition: all 0.3s ease; opacity: 0; visibility: hidden; }
         #searchOverlay.active { opacity: 1; visibility: visible; }
 
+        /* Trust Bar */
         .trust-bar { background: rgba(255,255,255,0.03); border-bottom: 1px solid #1a1a1a; padding: 15px 0; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .trust-item { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 800; color: #aaa; text-transform: uppercase; }
         .trust-item i { color: var(--gold); }
+        
+        /* Payment Brand Colors */
+        .brand-visa { color: #1a1f71; }
+        .brand-mastercard { color: #eb001b; }
+        .brand-gpay { color: #ffffff; }
     </style>
 </head>
 <body>
 
     <div class="marquee-bar">
         <div class="marquee-content">
-            ⚡ Special Offer: Free Delivery in Kanpur &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 Easy EMI Options &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ Certified Grade A Refurbished
+            ⚡ Special Offer: Free Delivery in Kanpur &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 Easy EMI Options &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ Certified Grade A Refurbished Stock
         </div>
     </div>
 
@@ -109,8 +119,11 @@
         <div class="trust-item"><i class="fas fa-shipping-fast"></i> <span>Express Delivery</span></div>
         <div class="trust-item"><i class="fas fa-shield-alt"></i> <span>Testing Warranty</span></div>
         <div class="trust-item"><i class="fas fa-credit-card"></i> <span>EMI Options</span></div>
-        <div class="flex gap-4 opacity-40 ml-4 border-l border-zinc-800 pl-6">
-            <i class="fab fa-cc-visa text-xl"></i><i class="fab fa-cc-mastercard text-xl"></i><i class="fab fa-google-pay text-2xl"></i>
+        <div class="flex gap-4 ml-4 border-l border-zinc-800 pl-6 items-center">
+            <i class="fab fa-cc-visa text-2xl brand-visa"></i>
+            <i class="fab fa-cc-mastercard text-2xl brand-mastercard"></i>
+            <i class="fab fa-google-pay text-3xl brand-gpay"></i>
+            <i class="fas fa-qrcode text-xl text-white opacity-80"></i>
         </div>
     </div>
 
@@ -132,7 +145,6 @@
                 <ul class="space-y-3 text-sm">
                     <li><a href="about.html" class="hover:text-white transition">Our Story</a></li>
                     <li><a href="services.html" class="hover:text-white transition">Services</a></li>
-                    <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
                 </ul>
             </div>
             <div>
