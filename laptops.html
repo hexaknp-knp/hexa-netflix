@@ -43,23 +43,22 @@
         </div>
     </main>
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         let allLaptops = [];
 
-        // 1. Fetch Data from JSON
         async function fetchLaptops() {
             try {
                 const response = await fetch('data.json');
-                allLaptops = await response.json();
+                const data = await response.json();
+                // Laptop Filter aur Price Sort
+                allLaptops = data.filter(item => item.category === "Laptop").sort((a,b) => a.price - b.price);
                 renderLaptops(allLaptops);
             } catch (error) {
-                console.error("Error loading JSON:", error);
-                document.getElementById('product-container').innerHTML = "<p class='text-red-500'>Error loading data. Check data.json file.</p>";
+                console.error("Error:", error);
+                document.getElementById('product-container').innerHTML = "Error loading laptops.";
             }
         }
 
-        // 2. Display Laptops
         function renderLaptops(data) {
             const container = document.getElementById('product-container');
             if(data.length === 0) {
@@ -81,53 +80,28 @@
                         
                         <div class="mt-6 flex justify-between items-end">
                             <div>
-                                <span class="block text-[10px] text-gray-500 uppercase font-bold">Best Price</span>
+                                <span class="block text-[10px] text-gray-500 uppercase font-bold">Base Price</span>
                                 <span class="text-2xl font-black text-white">₹${item.price.toLocaleString()}</span>
                             </div>
                             <div class="text-right">
                                 <span class="block text-[10px] text-blue-400 font-bold uppercase">EMI From</span>
-                                <span class="text-sm font-bold">₹${Math.round(item.price/12)}/mo</span>
+                                <span class="text-sm font-bold">₹${Math.round((item.price * 1.18)/12)}/mo</span>
                             </div>
                         </div>
 
-                        <button onclick="payNow('${item.model}', ${item.price})" 
-                                class="w-full mt-6 bg-yellow-500 text-black py-3 rounded-lg font-black uppercase text-xs tracking-widest hover:bg-yellow-400 transition shadow-lg shadow-yellow-500/10">
-                            Buy Now
-                        </button>
+                        <a href="product-details.html?id=${item.id}" 
+                           class="block w-full mt-6 bg-yellow-500 text-black py-3 rounded-lg font-black uppercase text-xs text-center tracking-widest hover:bg-yellow-400 transition shadow-lg">
+                            View Details & EMI
+                        </a>
                     </div>
                 </div>
             `).join('');
         }
 
-        // 3. Razorpay Auto-Payment Logic
-        function payNow(modelName, amount) {
-            const options = {
-                "key": "rzp_live_SLFCOQlEEX9giJ", // Dashboard se Key ID yahan daalein
-                "amount": amount * 100, 
-                "currency": "INR",
-                "name": "Hexa Computronics",
-                "description": "Order for " + modelName,
-                "image": "assets/newlogo.png",
-                "handler": function (response){
-                    alert("Payment Success! ID: " + response.razorpay_payment_id);
-                },
-                "prefill": {
-                    "contact": "9935529306",
-                    "email": "info@hexacomputer.in"
-                },
-                "theme": { "color": "#FFD700" }
-            };
-            const rzp1 = new Razorpay(options);
-            rzp1.open();
-        }
-
-        // 4. Search Filter
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const val = e.target.value.toLowerCase();
             const filtered = allLaptops.filter(l => 
-                l.model.toLowerCase().includes(val) || 
-                l.processor.toLowerCase().includes(val) ||
-                l.brand.toLowerCase().includes(val)
+                l.model.toLowerCase().includes(val) || l.processor.toLowerCase().includes(val)
             );
             renderLaptops(filtered);
         });
