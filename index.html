@@ -11,7 +11,7 @@
         :root { --gold: #FFD700; --deep-bg: #0a0c10; --card-bg: #161b22; }
         body { background-color: var(--deep-bg); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* Marquee Announcement Bar */
+        /* 1. Marquee Logic */
         .marquee-bar {
             background: linear-gradient(90deg, #003366, #0056b3);
             color: white;
@@ -27,14 +27,23 @@
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Netflix Row Style */
+        /* 2. Netflix Row Style */
         .netflix-row::-webkit-scrollbar { display: none; }
         .netflix-row { -ms-overflow-style: none; scrollbar-width: none; display: flex; overflow-x: auto; gap: 15px; padding: 20px 0; scroll-behavior: smooth; }
 
-        /* Card Animation */
+        /* 3. Card & Image Fix (Sahi Size ke liye) */
         .card { transition: transform 0.4s ease, border 0.3s ease; min-width: 280px; background: var(--card-bg); border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #222; }
         .card:hover { transform: scale(1.1); z-index: 50; border: 1px solid var(--gold); }
-        .card img { transition: transform 0.5s ease; }
+        
+        /* Sabhi images ko barabar dikhane ka logic */
+        .card img { 
+            width: 100%; 
+            height: 180px; 
+            object-fit: contain; /* Isse V330 ya koi bhi laptop stretch nahi hoga */
+            background: #000; /* Card ke andar khali jagah black dikhegi */
+            padding: 10px;
+            transition: transform 0.5s ease; 
+        }
         .card:hover img { transform: scale(1.05); filter: brightness(1.1); }
 
         .logo-glow { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
@@ -50,15 +59,16 @@
         #searchOverlay { transition: all 0.3s ease; opacity: 0; visibility: hidden; }
         #searchOverlay.active { opacity: 1; visibility: visible; }
 
-        /* Trust Bar */
+        /* 4. Trust Bar Colors */
         .trust-bar { background: rgba(255,255,255,0.03); border-bottom: 1px solid #1a1a1a; padding: 15px 0; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .trust-item { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 800; color: #aaa; text-transform: uppercase; }
         .trust-item i { color: var(--gold); }
-        
-        /* Payment Brand Colors */
         .brand-visa { color: #1a1f71; }
         .brand-mastercard { color: #eb001b; }
         .brand-gpay { color: #ffffff; }
+        
+        /* Stars color */
+        .star-gold { color: var(--gold); font-size: 10px; }
     </style>
 </head>
 <body>
@@ -110,7 +120,7 @@
             <p class="text-lg md:text-xl mb-8 text-gray-300 font-bold uppercase tracking-widest italic">Kanpur's Digital Tech Mall</p>
             <div class="flex space-x-4 font-bold">
                 <a href="laptops.html" class="bg-white text-black px-10 py-3 rounded hover:bg-yellow-500 transition text-lg italic">▶ BROWSE STORE</a>
-                <button onclick="openQuoteModal()" class="bg-zinc-600 bg-opacity-50 text-white px-10 py-3 rounded hover:bg-opacity-30 transition text-lg italic">ⓘ GET QUOTE</button>
+                <button class="bg-zinc-600 bg-opacity-50 text-white px-10 py-3 rounded hover:bg-opacity-30 transition text-lg italic">ⓘ GET QUOTE</button>
             </div>
         </div>
     </header>
@@ -193,12 +203,19 @@
         }
 
         function loadRows() {
+            // Function to create card with Stars and Specs
             const createCard = (item) => `
                 <div class="card" onclick="location.href='product-details.html?id=${item.id}'">
                     <img src="${item.image}" alt="${item.model}">
                     <div class="p-5">
+                        <div class="flex gap-1 mb-2">
+                            <i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i>
+                        </div>
                         <p class="text-[10px] font-black text-yellow-500 tracking-widest uppercase mb-1">${item.brand}</p>
                         <h3 class="font-bold text-sm uppercase text-white truncate">${item.model}</h3>
+                        
+                        <p class="text-[10px] text-gray-400 mt-1 uppercase truncate">${item.processor} | ${item.ram} | ${item.ssd}</p>
+                        
                         <div class="mt-4 flex justify-between items-center">
                             <span class="text-base font-black text-white italic">₹${item.price.toLocaleString()}</span>
                             <span class="text-[9px] border border-yellow-500 text-yellow-500 px-3 py-1 rounded-full font-bold uppercase italic">VIEW</span>
