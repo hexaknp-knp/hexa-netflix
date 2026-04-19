@@ -1,50 +1,64 @@
-<script>
-    async function loadProduct() {
-        // ... (Previous fetching code)
-        const months = item.emi_months || 12;
-        const basePrice = item.price;
-        const gst = Math.round(basePrice * 0.18);
-        const shipping = item.shipping || 0;
-        const total = basePrice + gst + shipping;
-        const emiValue = Math.round(total / months);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Hexa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #0a0c10; color: white; font-family: 'Inter', sans-serif; }
+        .buy-card { background: #161b22; border: 1px solid #222; border-radius: 20px; padding: 30px; }
+        #product-img { width: 100%; height: 400px; object-fit: contain; background: #000; border-radius: 15px; }
+    </style>
+</head>
+<body class="pt-24 px-6 md:px-20">
+    <div id="product-content" class="max-w-6xl mx-auto"></div>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        async function load() {
+            const id = new URLSearchParams(window.location.search).get('id');
+            const res = await fetch('data.json');
+            const data = await res.json();
+            const item = data.find(p => p.id === id);
+            if (!item) return;
 
-        document.getElementById('product-content').innerHTML = `
-            <div class="grid md:grid-cols-2 gap-12">
-                <img id="product-img" src="${item.image}" class="shadow-2xl border border-zinc-800">
-                <div class="space-y-6">
-                    <h1 class="text-5xl font-black uppercase italic italic">${item.model}</h1>
-                    
-                    <div class="bg-zinc-card p-8 rounded-2xl border-l-4 border-yellow-500">
-                        <div class="flex justify-between items-end">
-                            <span class="text-xs font-black uppercase text-gray-500">Full Payment (Incl. GST)</span>
-                            <span class="text-4xl font-black gold-text italic">₹${total.toLocaleString()}</span>
-                        </div>
-                    </div>
+            const total = Math.round(item.price * 1.18) + (item.shipping || 0);
+            const emi = Math.round(total / (item.emi_months || 12));
 
-                    <div class="p-6 bg-blue-900/10 border border-blue-500/20 rounded-2xl">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest">EMI Starting From</p>
-                                <p class="text-3xl font-black italic">₹${emiValue.toLocaleString()}<span class="text-sm">/mo*</span></p>
+            document.getElementById('product-content').innerHTML = `
+                <div class="grid md:grid-cols-2 gap-10">
+                    <img id="product-img" src="${item.image}">
+                    <div class="buy-card">
+                        <h1 class="text-4xl font-black italic uppercase">${item.model}</h1>
+                        <p class="text-gray-400 mt-2 uppercase font-bold">${item.processor} | ${item.ram} | ${item.ssd}</p>
+                        
+                        <div class="mt-8 border-t border-zinc-800 pt-6">
+                            <div class="flex justify-between text-sm text-gray-500 uppercase"><span>Machine Total (Inc. GST)</span><span>₹${total.toLocaleString()}</span></div>
+                            <div class="flex justify-between mt-4">
+                                <div><p class="text-xs text-blue-400 font-black uppercase tracking-widest">EMI Starting From</p><p class="text-3xl font-black italic text-yellow-500">₹${emi.toLocaleString()}/mo*</p></div>
+                                <div class="text-right text-[10px] text-gray-500 font-bold uppercase">Tenure: ${item.emi_months || 12} Months</div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-[9px] font-bold text-gray-500 uppercase mt-1">Tenure: ${months} Months</p>
-                            </div>
+                            <p class="text-[9px] text-gray-600 mt-4 uppercase">*Bank interest (14-16%) extra as per bank policy.</p>
                         </div>
-                        <p class="text-[9px] text-blue-300/60 mt-4 uppercase font-bold italic">
-                            *Note: EMI interest rates (14%-16%) and processing fees are charged by your bank. Final amount may vary on the payment page.
-                        </p>
-                    </div>
 
-                    <button onclick="payNow('${item.model}', ${total})" class="w-full bg-yellow-500 text-black py-5 rounded-2xl font-black uppercase text-xl shadow-xl hover:bg-white transition-all">
-                        Buy Now & Proceed
-                    </button>
-                    
-                    <a href="https://wa.me/919935529306" class="block text-center text-green-500 font-bold uppercase text-[10px] tracking-widest mt-4">
-                        <i class="fab fa-whatsapp mr-1"></i> Chat with Expert for EMI Help
-                    </a>
-                </div>
-            </div>
-        `;
-    }
-</script>
+                        <button onclick="payNow('${item.model}', ${total})" class="w-full bg-yellow-500 text-black py-4 rounded-xl font-black uppercase text-lg mt-8 shadow-xl">Buy Now & Proceed</button>
+                        <a href="https://wa.me/919935529306" class="block text-center text-green-500 font-bold uppercase text-[10px] mt-4"><i class="fab fa-whatsapp"></i> Chat for Support</a>
+                    </div>
+                </div>`;
+        }
+        function payNow(name, amount) {
+            new Razorpay({
+                "key": "rzp_live_SLFCOQlEEX9giJ",
+                "amount": amount * 100,
+                "currency": "INR",
+                "name": "Hexa Computronics",
+                "description": name,
+                "handler": function(res) { window.location.href="success.html"; },
+                "theme": { "color": "#FFD700" }
+            }).open();
+        }
+        load();
+    </script>
+</body>
+</html>
