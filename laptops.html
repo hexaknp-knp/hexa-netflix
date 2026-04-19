@@ -3,52 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Laptops | Hexa Store</title>
+    <title>Enterprise Laptops | Hexa Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #FFD700; --deep-bg: #0a0c10; --card-bg: #161b22; }
-        body { background: var(--deep-bg); color: white; font-family: 'Inter', sans-serif; }
-        .grid-card { background: var(--card-bg); border: 1px solid #222; border-radius: 12px; overflow: hidden; transition: 0.3s; }
-        .grid-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .grid-card img { width: 100%; height: 200px; object-fit: contain; background: #000; padding: 15px; }
+        body { background: #000; color: white; font-family: 'Inter', sans-serif; }
+        .netflix-card { transition: transform 0.3s ease; border: 1px solid #222; border-radius: 4px; overflow: hidden; background: #111; }
+        .netflix-card:hover { transform: scale(1.05); border-color: #FFD700; z-index: 10; }
+        .netflix-card img { width: 100%; height: 180px; object-fit: contain; background: #000; padding: 15px; }
     </style>
 </head>
-<body class="pt-20 px-6">
-    <nav class="fixed top-0 left-0 w-full bg-black/90 p-4 border-b border-zinc-800 flex justify-between z-[100]">
-        <a href="index.html" class="text-yellow-500 font-black uppercase tracking-widest text-sm">Hexa Mall</a>
-        <input type="text" id="searchInput" placeholder="Search Laptop..." class="bg-zinc-900 text-xs px-4 py-1 rounded-full border border-zinc-700 outline-none focus:border-yellow-500">
+<body class="pt-24 px-6">
+    <nav class="fixed top-0 left-0 w-full bg-black/90 p-4 border-b border-zinc-800 flex justify-between items-center z-[100]">
+        <a href="index.html" class="flex items-center space-x-2"><img src="assets/newlogo.png" class="h-8"><span class="text-yellow-500 font-black">HEXA</span></a>
+        <input type="text" id="searchInput" placeholder="Search i5, Dell..." class="bg-zinc-900 text-xs px-4 py-1.5 rounded-full border border-zinc-700 outline-none w-64">
     </nav>
-    <h1 class="text-4xl font-black uppercase mt-10 italic">Laptops <span class="text-yellow-500">Inventory</span></h1>
-    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-10"></div>
+    <header class="py-10"><h1 class="text-4xl font-black uppercase italic">Enterprise <span class="text-yellow-500">Laptops</span></h1></header>
+    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20"></div>
 
     <script>
-        let allItems = [];
+        let allLaptops = [];
         async function fetchLaptops() {
             const res = await fetch('data.json');
-            allItems = await res.json();
-            render(allItems.filter(i => i.category === "Laptop"));
+            const data = await res.json();
+            allLaptops = data.filter(item => item.category === "Laptop").sort((a,b) => a.price - b.price);
+            render(allLaptops);
         }
         function render(data) {
-            document.getElementById('product-container').innerHTML = data.map(item => {
-                const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
-                return `<div class="grid-card">
+            document.getElementById('product-container').innerHTML = data.map(item => `
+                <div class="netflix-card">
                     <img src="${item.image}">
                     <div class="p-5">
+                        <div class="flex gap-1 mb-2"><i class="fas fa-star text-yellow-500 text-[8px]"></i><i class="fas fa-star text-yellow-500 text-[8px]"></i><i class="fas fa-star text-yellow-500 text-[8px]"></i><i class="fas fa-star text-yellow-500 text-[8px]"></i><i class="fas fa-star text-yellow-500 text-[8px]"></i></div>
                         <h3 class="font-bold text-white uppercase truncate">${item.model}</h3>
                         <p class="text-[10px] text-gray-500 mt-2 uppercase">${item.processor} | ${item.ram} | ${item.ssd}</p>
                         <div class="mt-4 flex justify-between items-center">
-                            <span class="text-xl font-black text-white">₹${item.price.toLocaleString()}</span>
-                            <span class="text-[8px] text-yellow-500 font-bold">₹${emi}/MO*</span>
+                            <span class="text-xl font-black text-white italic">₹${item.price.toLocaleString()}</span>
+                            <span class="text-[8px] text-gray-600 uppercase italic">*Bank Int. extra</span>
                         </div>
                         <a href="product-details.html?id=${item.id}" class="block w-full mt-4 bg-yellow-500 text-black py-2 rounded font-black text-center text-xs uppercase">View Details</a>
                     </div>
-                </div>`;
-            }).join('');
+                </div>`).join('');
         }
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const val = e.target.value.toLowerCase();
-            render(allItems.filter(i => i.category === "Laptop" && i.model.toLowerCase().includes(val)));
+            render(allLaptops.filter(l => l.model.toLowerCase().includes(val) || l.brand.toLowerCase().includes(val)));
         });
         fetchLaptops();
     </script>
