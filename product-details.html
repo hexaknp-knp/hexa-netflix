@@ -1,154 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | Hexa Computronics Kanpur</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --gold: #FFD700; --deep-bg: #0a0c10; --card-bg: #161b22; }
-        body { background: var(--deep-bg); color: #fff; font-family: 'Inter', sans-serif; }
-        .gold-text { color: var(--gold); }
-        .bg-zinc-card { background: var(--card-bg); border: 1px solid #222; }
-        /* Image fix to match mall style */
-        #product-img { width: 100%; height: 400px; object-fit: contain; background: #000; padding: 20px; border-radius: 20px; }
-    </style>
-</head>
-<body class="pt-24 px-6 md:px-20">
+<script>
+    async function loadProduct() {
+        // ... (Previous fetching code)
+        const months = item.emi_months || 12;
+        const basePrice = item.price;
+        const gst = Math.round(basePrice * 0.18);
+        const shipping = item.shipping || 0;
+        const total = basePrice + gst + shipping;
+        const emiValue = Math.round(total / months);
 
-    <nav class="fixed top-0 left-0 w-full z-[100] bg-black/90 backdrop-blur-md border-b border-zinc-800 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2 text-yellow-500 font-bold uppercase text-xs">
-                <i class="fas fa-arrow-left"></i> <span>Back to Mall</span>
-            </a>
-            <span class="text-[10px] font-black tracking-widest uppercase text-gray-500">Hexa Premium Collection</span>
-        </div>
-    </nav>
-
-    <div id="product-content" class="max-w-6xl mx-auto py-10">
-        <div class="flex items-center justify-center h-64">
-            <p class="animate-pulse text-yellow-500 font-black tracking-widest uppercase">Fetching Device Specs...</p>
-        </div>
-    </div>
-
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
-        async function loadProduct() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id');
-            
-            try {
-                const response = await fetch('data.json');
-                const data = await response.json();
-                const item = data.find(p => p.id === productId);
-
-                if (!item) {
-                    document.getElementById('product-content').innerHTML = `
-                        <div class="text-center py-20">
-                            <h2 class="text-3xl font-black italic">PRODUCT NOT FOUND</h2>
-                            <a href="index.html" class="text-yellow-500 mt-4 inline-block">Return to Store</a>
-                        </div>`;
-                    return;
-                }
-
-                // Calculations
-                const basePrice = item.price;
-                const gst = Math.round(basePrice * 0.18);
-                const shipping = item.shipping || 100;
-                const total = basePrice + gst + shipping;
-
-                document.getElementById('product-content').innerHTML = `
-                    <div class="grid md:grid-cols-2 gap-12">
-                        <div class="space-y-4">
-                            <img id="product-img" src="${item.image}" alt="${item.model}" class="shadow-2xl border border-zinc-800">
-                            <div class="grid grid-cols-3 gap-2">
-                                <div class="bg-zinc-card p-4 rounded-xl text-center"><i class="fas fa-shield-alt text-yellow-500 mb-2"></i><p class="text-[8px] uppercase font-bold text-gray-400">Tested</p></div>
-                                <div class="bg-zinc-card p-4 rounded-xl text-center"><i class="fas fa-truck text-yellow-500 mb-2"></i><p class="text-[8px] uppercase font-bold text-gray-400">Insured</p></div>
-                                <div class="bg-zinc-card p-4 rounded-xl text-center"><i class="fas fa-undo text-yellow-500 mb-2"></i><p class="text-[8px] uppercase font-bold text-gray-400">Easy Swap</p></div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-6">
-                            <div>
-                                <p class="text-yellow-500 font-black tracking-widest text-xs uppercase mb-1">${item.brand} Enterprise</p>
-                                <h1 class="text-5xl font-black uppercase tracking-tighter italic leading-none mb-4">${item.model}</h1>
-                                
-                                <div class="bg-zinc-card rounded-xl p-6 mb-6">
-                                    <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-4 border-b border-zinc-800 pb-2">Technical Specifications</h3>
-                                    <table class="w-full text-sm">
-                                        <tr class="border-b border-zinc-900"><td class="py-2 text-gray-500">Processor</td><td class="py-2 font-bold text-right">${item.processor}</td></tr>
-                                        <tr class="border-b border-zinc-900"><td class="py-2 text-gray-500">Memory (RAM)</td><td class="py-2 font-bold text-right">${item.ram}</td></tr>
-                                        <tr class="border-b border-zinc-900"><td class="py-2 text-gray-500">Storage (SSD)</td><td class="py-2 font-bold text-right">${item.ssd}</td></tr>
-                                        <tr><td class="py-2 text-gray-500">Category</td><td class="py-2 font-bold text-right">${item.category}</td></tr>
-                                    </table>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-zinc-card p-8 rounded-2xl space-y-4 border-l-4 border-yellow-500 shadow-2xl relative overflow-hidden">
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Base Machine Price</span>
-                                    <span class="font-bold">₹${basePrice.toLocaleString()}</span>
-                                </div>
-                                <div class="flex justify-between text-sm text-gray-500 italic">
-                                    <span>GST (18% Included)</span>
-                                    <span>+ ₹${gst.toLocaleString()}</span>
-                                </div>
-                                <div class="flex justify-between text-sm text-gray-500 border-b border-zinc-800 pb-4">
-                                    <span>Shipping / Handling</span>
-                                    <span class="text-green-500 font-bold">${shipping === 0 ? 'FREE DELIVERY' : '₹' + shipping}</span>
-                                </div>
-                                <div class="flex justify-between items-end pt-2">
-                                    <span class="text-xs font-black uppercase tracking-tighter">Total Payable</span>
-                                    <span class="text-4xl font-black gold-text italic tracking-tighter">₹${total.toLocaleString()}</span>
-                                </div>
-                            </div>
-
-                            <div class="p-5 bg-blue-900/10 border border-blue-500/20 rounded-2xl flex justify-between items-center">
-                                <div>
-                                    <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest">Available on Easy EMI</p>
-                                    <p class="text-2xl font-black italic">₹${Math.round(total/12).toLocaleString()}/mo</p>
-                                </div>
-                                <i class="fas fa-credit-card text-3xl text-blue-500 opacity-50"></i>
-                            </div>
-
-                            <div class="grid grid-cols-4 gap-2">
-                                <button onclick="payNow('${item.model}', ${total})" 
-                                        class="col-span-3 bg-yellow-500 text-black py-5 rounded-2xl font-black uppercase text-xl shadow-xl hover:bg-white transition-all transform hover:-translate-y-1">
-                                    Buy Now <i class="fas fa-shield-alt ml-2"></i>
-                                </button>
-                                <a href="https://wa.me/919935529306?text=Interested in ${item.model} (ID: ${item.id})" 
-                                   class="bg-green-600 text-white flex items-center justify-center rounded-2xl text-2xl hover:bg-green-500 transition shadow-xl">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                            <p class="text-[9px] text-center text-gray-600 uppercase tracking-[0.3em] font-bold">100% Secure Transaction via Razorpay</p>
+        document.getElementById('product-content').innerHTML = `
+            <div class="grid md:grid-cols-2 gap-12">
+                <img id="product-img" src="${item.image}" class="shadow-2xl border border-zinc-800">
+                <div class="space-y-6">
+                    <h1 class="text-5xl font-black uppercase italic italic">${item.model}</h1>
+                    
+                    <div class="bg-zinc-card p-8 rounded-2xl border-l-4 border-yellow-500">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs font-black uppercase text-gray-500">Full Payment (Incl. GST)</span>
+                            <span class="text-4xl font-black gold-text italic">₹${total.toLocaleString()}</span>
                         </div>
                     </div>
-                `;
-            } catch (err) {
-                console.error("Error:", err);
-            }
-        }
 
-        function payNow(name, amount) {
-            var options = {
-                "key": "rzp_live_SLFCOQlEEX9giJ",
-                "amount": amount * 100,
-                "currency": "INR",
-                "name": "Hexa Computronics",
-                "description": name,
-                "image": "assets/newlogo.png",
-                "handler": function(res) {
-                    window.location.href = "success.html";
-                },
-                "theme": { "color": "#FFD700" }
-            };
-            var rzp = new Razorpay(options);
-            rzp.open();
-        }
+                    <div class="p-6 bg-blue-900/10 border border-blue-500/20 rounded-2xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest">EMI Starting From</p>
+                                <p class="text-3xl font-black italic">₹${emiValue.toLocaleString()}<span class="text-sm">/mo*</span></p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[9px] font-bold text-gray-500 uppercase mt-1">Tenure: ${months} Months</p>
+                            </div>
+                        </div>
+                        <p class="text-[9px] text-blue-300/60 mt-4 uppercase font-bold italic">
+                            *Note: EMI interest rates (14%-16%) and processing fees are charged by your bank. Final amount may vary on the payment page.
+                        </p>
+                    </div>
 
-        loadProduct();
-    </script>
-</body>
-</html>
+                    <button onclick="payNow('${item.model}', ${total})" class="w-full bg-yellow-500 text-black py-5 rounded-2xl font-black uppercase text-xl shadow-xl hover:bg-white transition-all">
+                        Buy Now & Proceed
+                    </button>
+                    
+                    <a href="https://wa.me/919935529306" class="block text-center text-green-500 font-bold uppercase text-[10px] tracking-widest mt-4">
+                        <i class="fab fa-whatsapp mr-1"></i> Chat with Expert for EMI Help
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+</script>
