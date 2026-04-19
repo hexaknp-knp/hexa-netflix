@@ -8,6 +8,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 11949,
+    "emi_months": 12,
     "shipping": 250,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -20,6 +21,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 13390,
+    "emi_months": 12,
     "shipping": 500,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -32,6 +34,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 15847,
+    "emi_months": 12,
     "shipping": 0,
     "image": "assets/hp-240g7.webp"
   },
@@ -44,6 +47,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 16102,
+    "emi_months": 12,
     "shipping": 250,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -56,6 +60,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 16864,
+    "emi_months": 9,
     "shipping": 0,
     "image": "assets/lenovo-v330.webp"
   },
@@ -68,6 +73,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 16610,
+    "emi_months": 12,
     "shipping": 250,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -80,6 +86,7 @@
     "ram": "16 GB",
     "ssd": "512 GB SSD",
     "price": 31949,
+    "emi_months": 12,
     "shipping": 0,
     "image": "assets/laptop-placeholder.jpg"
   }
