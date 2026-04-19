@@ -1,27 +1,56 @@
-<script>
-    function renderLaptops(data) {
-        document.getElementById('product-container').innerHTML = data.map(item => {
-            const months = item.emi_months || 12;
-            const emi = Math.round((item.price * 1.18) / months);
-            return `
-            <div class="netflix-card shadow-2xl">
-                <div class="relative">
-                    <img src="${item.image}" alt="${item.model}">
-                    <div class="absolute top-3 right-3 bg-yellow-500 text-black text-[9px] px-3 py-1 rounded-full font-black uppercase tracking-tighter">
-                        ₹${emi}/MO*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Laptops | Hexa Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --gold: #FFD700; --deep-bg: #0a0c10; --card-bg: #161b22; }
+        body { background: var(--deep-bg); color: white; font-family: 'Inter', sans-serif; }
+        .grid-card { background: var(--card-bg); border: 1px solid #222; border-radius: 12px; overflow: hidden; transition: 0.3s; }
+        .grid-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .grid-card img { width: 100%; height: 200px; object-fit: contain; background: #000; padding: 15px; }
+    </style>
+</head>
+<body class="pt-20 px-6">
+    <nav class="fixed top-0 left-0 w-full bg-black/90 p-4 border-b border-zinc-800 flex justify-between z-[100]">
+        <a href="index.html" class="text-yellow-500 font-black uppercase tracking-widest text-sm">Hexa Mall</a>
+        <input type="text" id="searchInput" placeholder="Search Laptop..." class="bg-zinc-900 text-xs px-4 py-1 rounded-full border border-zinc-700 outline-none focus:border-yellow-500">
+    </nav>
+    <h1 class="text-4xl font-black uppercase mt-10 italic">Laptops <span class="text-yellow-500">Inventory</span></h1>
+    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-10"></div>
+
+    <script>
+        let allItems = [];
+        async function fetchLaptops() {
+            const res = await fetch('data.json');
+            allItems = await res.json();
+            render(allItems.filter(i => i.category === "Laptop"));
+        }
+        function render(data) {
+            document.getElementById('product-container').innerHTML = data.map(item => {
+                const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
+                return `<div class="grid-card">
+                    <img src="${item.image}">
+                    <div class="p-5">
+                        <h3 class="font-bold text-white uppercase truncate">${item.model}</h3>
+                        <p class="text-[10px] text-gray-500 mt-2 uppercase">${item.processor} | ${item.ram} | ${item.ssd}</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-black text-white">₹${item.price.toLocaleString()}</span>
+                            <span class="text-[8px] text-yellow-500 font-bold">₹${emi}/MO*</span>
+                        </div>
+                        <a href="product-details.html?id=${item.id}" class="block w-full mt-4 bg-yellow-500 text-black py-2 rounded font-black text-center text-xs uppercase">View Details</a>
                     </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex gap-1 mb-2"><i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i><i class="fas fa-star star-gold"></i></div>
-                    <h3 class="text-lg font-black text-white uppercase truncate">${item.model}</h3>
-                    <p class="text-[10px] text-gray-400 mt-2 uppercase border-b border-zinc-800 pb-3">${item.processor} | ${item.ram} | ${item.ssd}</p>
-                    <div class="mt-5 flex justify-between items-center">
-                        <span class="text-2xl font-black text-white italic">₹${item.price.toLocaleString()}</span>
-                        <span class="text-[8px] text-gray-600 uppercase italic">*Interest as per bank</span>
-                    </div>
-                    <a href="product-details.html?id=${item.id}" class="block w-full mt-6 bg-yellow-500 text-black py-4 rounded-xl font-black uppercase text-[10px] text-center tracking-widest">VIEW DETAILS</a>
-                </div>
-            </div>`;
-        }).join('');
-    }
-</script>
+                </div>`;
+            }).join('');
+        }
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            render(allItems.filter(i => i.category === "Laptop" && i.model.toLowerCase().includes(val)));
+        });
+        fetchLaptops();
+    </script>
+</body>
+</html>
