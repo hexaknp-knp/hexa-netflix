@@ -55,7 +55,7 @@
                 // Calculations
                 const basePrice = item.price;
                 const gst = Math.round(basePrice * 0.18);
-                const shipping = item.shipping || 0;
+                const shipping = item.shipping || 100;
                 const total = basePrice + gst + shipping;
 
                 document.getElementById('product-content').innerHTML = `
