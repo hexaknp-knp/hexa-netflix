@@ -11,7 +11,12 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 250,
-    "image": "assets/desktop-placeholder.jpg"
+    "images": [
+      "assets/desktop-placeholder.jpg",
+      "assets/desktop-side.jpg",
+      "assets/desktop-back.jpg"
+    ],
+    "video": "assets/desktop-demo.mp4"
   },
   {
     "id": "QCDTAG00795",
@@ -25,7 +30,10 @@
     "emi_months": 12,
     "warranty": "3 Months",
     "shipping": 500,
-    "image": "assets/desktop-placeholder.jpg"
+    "images": [
+      "assets/desktop-placeholder.jpg"
+    ],
+    "video": ""
   },
   {
     "id": "QCNBHP00104",
@@ -39,7 +47,12 @@
     "emi_months": 12,
     "warranty": "3 Months",
     "shipping": 0,
-    "image": "assets/hp-240g7.webp"
+    "images": [
+      "assets/hp-240g7.webp",
+      "assets/hp-240g7-side.webp",
+      "assets/hp-240g7-keyboard.webp"
+    ],
+    "video": "assets/hp-review.mp4"
   },
   {
     "id": "QCDTAG00722",
@@ -53,7 +66,10 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 250,
-    "image": "assets/desktop-placeholder.jpg"
+    "images": [
+      "assets/desktop-placeholder.jpg"
+    ],
+    "video": ""
   },
   {
     "id": "QCNBAG06317",
@@ -67,7 +83,11 @@
     "emi_months": 9,
     "warranty": "3 Months",
     "shipping": 0,
-    "image": "assets/lenovo-v330.webp"
+    "images": [
+      "assets/lenovo-v330.webp",
+      "assets/lenovo-v330-2.webp"
+    ],
+    "video": ""
   },
   {
     "id": "QCDTAG00846",
@@ -81,7 +101,10 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 250,
-    "image": "assets/desktop-placeholder.jpg"
+    "images": [
+      "assets/desktop-placeholder.jpg"
+    ],
+    "video": ""
   },
   {
     "id": "QCNBAG05421",
@@ -95,6 +118,10 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 0,
-    "image": "assets/laptop-placeholder.jpg"
+    "images": [
+      "assets/laptop-placeholder.jpg",
+      "assets/dell-5420-open.jpg"
+    ],
+    "video": ""
   }
 ]
