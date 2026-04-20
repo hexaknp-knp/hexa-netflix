@@ -7,37 +7,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* LIGHT THEME COLORS - ONLY COLORS CHANGED */
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
-        
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
         
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* STICKY NAVBAR - LIGHT MODE */
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; transition: 0.3s; }
 
         .netflix-row { display: flex; overflow-x: auto; gap: 15px; padding: 25px 0; scrollbar-width: none; }
         .netflix-row::-webkit-scrollbar { display: none; }
 
-        /* CARDS WITH SHADOWS FOR BETTER CLARITY */
         .card { transition: transform 0.4s ease, box-shadow 0.4s ease; min-width: 280px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #eee; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .card:hover { transform: scale(1.05); z-index: 50; border-color: var(--red); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .card img { width: 100%; height: 160px; object-fit: contain; background: #fff; padding: 15px; }
 
         .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--red); padding-left: 15px; margin-top: 50px; text-transform: uppercase; italic; color: var(--text-dark); }
-        
-        /* HERO SECTION - REFINED FOR LIGHT MODE */
         .hero-vignette { background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); }
         
         .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
         .footer-link { color: #666; font-size: 14px; transition: 0.3s; }
         .footer-link:hover { color: var(--red); }
 
-        /* Quote Modal Style - Stays Premium Dark */
-        #quoteModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+        #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
         .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: #000; }
     </style>
 </head>
@@ -53,35 +46,37 @@
             </a>
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
                 <a href="index.html" class="text-red-600 border-b-2 border-red-600">Home</a>
-                <a href="laptops.html" class="text-gray-500 hover:text-black">Laptops</a>
-                <a href="desktops.html" class="text-gray-500 hover:text-black">Desktops</a>
+                <a href="laptops.html" class="text-gray-500 hover:text-black transition">Laptops</a>
+                <a href="desktops.html" class="text-gray-500 hover:text-black transition">Desktops</a>
             </div>
         </div>
         <div class="flex items-center space-x-6 text-2xl">
-            <i class="fas fa-search cursor-pointer hover:text-red-600 text-gray-700"></i>
-            <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:scale-105 transition">GET QUOTE</button>
+            <i class="fas fa-search cursor-pointer hover:text-red-600 text-gray-700" onclick="openSearch()"></i>
+            <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:scale-105 transition uppercase">Get Quote</button>
         </div>
     </nav>
+
+    <div id="searchModal">
+        <div class="modal-inner">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-black italic uppercase">Quick Search</h2>
+                <button onclick="closeSearch()" class="text-gray-400 hover:text-red-600 text-2xl">&times;</button>
+            </div>
+            <input type="text" id="mainSearch" placeholder="Type Model (e.g. Dell Latitude, HP Elitebook)..." class="w-full bg-gray-50 border border-gray-200 p-4 rounded text-sm text-black outline-none focus:border-red-600 shadow-inner" onkeyup="liveSearch()">
+            <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto space-y-2"></div>
+        </div>
+    </div>
 
     <div id="quoteModal">
         <div class="modal-inner">
             <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-                <h2 class="text-xl font-black text-black italic uppercase tracking-tighter">Request Quote</h2>
+                <h2 class="text-xl font-black text-black italic uppercase">Request Quote</h2>
                 <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl">&times;</button>
             </div>
             <form class="space-y-4">
-                <div>
-                    <label class="text-[10px] uppercase font-bold text-gray-400 mb-1 block">Full Name</label>
-                    <input type="text" id="qName" placeholder="Enter Name" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
-                </div>
-                <div>
-                    <label class="text-[10px] uppercase font-bold text-gray-400 mb-1 block">WhatsApp Number</label>
-                    <input type="tel" id="qPhone" placeholder="99355XXXXX" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
-                </div>
-                <div>
-                    <label class="text-[10px] uppercase font-bold text-gray-400 mb-1 block">Requirement Details</label>
-                    <textarea id="qReq" placeholder="e.g. i5 Laptop, 16GB RAM, 5 Units" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm h-24 text-black outline-none focus:border-red-600 resize-none" required></textarea>
-                </div>
+                <input type="text" id="qName" placeholder="Enter Name" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
+                <input type="tel" id="qPhone" placeholder="WhatsApp Number" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
+                <textarea id="qReq" placeholder="e.g. i5 Laptop, 16GB RAM, 5 Units" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm h-24 text-black outline-none focus:border-red-600 resize-none" required></textarea>
                 <button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic tracking-widest hover:bg-black transition-all">Submit Request</button>
             </form>
         </div>
@@ -92,7 +87,7 @@
         <div class="relative z-10 max-w-2xl mt-10">
             <h1 class="text-6xl md:text-8xl font-black mb-4 uppercase italic leading-none text-black">Premium <span class="text-red-600">Refurbished</span></h1>
             <p class="text-lg mb-8 text-gray-600 font-bold uppercase tracking-widest italic tracking-tighter leading-none">Kanpur's Professional Tech Mall</p>
-            <a href="laptops.html" class="bg-black text-white px-12 py-3 rounded font-black italic shadow-2xl hover:bg-red-600 transition inline-block">▶ BROWSE STORE</a>
+            <a href="laptops.html" class="bg-black text-white px-12 py-3 rounded font-black italic shadow-2xl hover:bg-red-600 transition inline-block uppercase">▶ Browse Store</a>
         </div>
     </header>
 
@@ -120,15 +115,25 @@
                 </ul>
             </div>
             <div>
-                <h4 class="footer-link-head">Company</h4>
-                <ul class="space-y-3">
-                    <li><a href="about.html" class="footer-link">About Hexa</a></li>
-                    <li><a href="https://wa.me/919935529306" class="footer-link text-red-600 font-bold">+91 9935529306</a></li>
+                <h4 class="footer-link-head text-red-600">Contact Us</h4>
+                <ul class="space-y-4 text-sm font-medium">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt mt-1 text-red-600"></i>
+                        <span>119/540 New Basant Cinema Building, Gumti No.5, Kanpur, UP - 208012</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-red-600"></i>
+                        <a href="mailto:info@hexacomputer.in" class="hover:text-black transition">info@hexacomputer.in</a>
+                    </li>
+                    <li class="flex items-center gap-3 font-black text-black">
+                        <i class="fab fa-whatsapp text-green-600 text-lg"></i>
+                        <span>+91 9935529306</span>
+                    </li>
                 </ul>
             </div>
-            <div>
+            <div class="text-right md:text-left">
                 <h4 class="footer-link-head">Follow Us</h4>
-                <div class="flex space-x-6 text-3xl mb-6">
+                <div class="flex space-x-6 text-3xl mb-6 justify-end md:justify-start">
                     <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
                     <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
                     <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
@@ -145,27 +150,36 @@
     <script>
         let fullData = [];
 
-        function openQuote() { 
-            document.getElementById('quoteModal').style.display = 'flex'; 
-        }
+        // Search Logic
+        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('mainSearch').focus(); }
+        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
         
-        function closeQuote() { 
-            document.getElementById('quoteModal').style.display = 'none'; 
+        function liveSearch() {
+            const query = document.getElementById('mainSearch').value.toLowerCase();
+            const results = fullData.filter(i => i.model.toLowerCase().includes(query)).slice(0, 5);
+            const container = document.getElementById('searchResults');
+            if(query === "") { container.innerHTML = ""; return; }
+            container.innerHTML = results.map(item => `
+                <div onclick="location.href='product-details.html?id=${item.id}'" class="flex items-center gap-4 p-2 hover:bg-gray-50 rounded cursor-pointer border-b border-gray-100">
+                    <img src="${item.images[0]}" class="w-10 h-10 object-contain">
+                    <div>
+                        <p class="text-xs font-black uppercase italic">${item.model}</p>
+                        <p class="text-[10px] text-red-600 font-bold">₹${item.price.toLocaleString()}</p>
+                    </div>
+                </div>
+            `).join('');
         }
+
+        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
         
         function sendToWA() {
             const name = document.getElementById('qName').value;
             const phone = document.getElementById('qPhone').value;
             const req = document.getElementById('qReq').value;
-            
-            if(!name || !phone || !req) { 
-                alert("Please fill in all details!"); 
-                return; 
-            }
-            
+            if(!name || !phone || !req) { alert("Please fill in all details!"); return; }
             const message = `*NEW HEXA QUOTE REQUEST*%0A------------------%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Requirement:* ${req}`;
             window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
-            
             closeQuote();
         }
 
