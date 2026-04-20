@@ -9,6 +9,7 @@
     "ssd": "256 GB SSD",
     "price": 11949,
     "emi_months": 12,
+    "warranty": "1 Year",
     "shipping": 250,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -22,6 +23,7 @@
     "ssd": "256 GB SSD",
     "price": 13390,
     "emi_months": 12,
+    "warranty": "3 Months",
     "shipping": 500,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -35,6 +37,7 @@
     "ssd": "256 GB SSD",
     "price": 15847,
     "emi_months": 12,
+    "warranty": "3 Months",
     "shipping": 0,
     "image": "assets/hp-240g7.webp"
   },
@@ -48,6 +51,7 @@
     "ssd": "256 GB SSD",
     "price": 16102,
     "emi_months": 12,
+    "warranty": "1 Year",
     "shipping": 250,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -61,6 +65,7 @@
     "ssd": "256 GB SSD",
     "price": 16864,
     "emi_months": 9,
+    "warranty": "3 Months",
     "shipping": 0,
     "image": "assets/lenovo-v330.webp"
   },
@@ -74,6 +79,7 @@
     "ssd": "256 GB SSD",
     "price": 16610,
     "emi_months": 12,
+    "warranty": "1 Year",
     "shipping": 250,
     "image": "assets/desktop-placeholder.jpg"
   },
@@ -87,6 +93,7 @@
     "ssd": "512 GB SSD",
     "price": 31949,
     "emi_months": 12,
+    "warranty": "1 Year",
     "shipping": 0,
     "image": "assets/laptop-placeholder.jpg"
   }
