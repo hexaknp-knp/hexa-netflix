@@ -30,6 +30,10 @@
         .footer-link-head { color: white; font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
         .footer-link { color: #888; font-size: 14px; transition: 0.3s; }
         .footer-link:hover { color: var(--red); }
+
+        /* Quote Modal Style */
+        #quoteModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-inner { background: #111; border: 1px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 0 20px rgba(229, 9, 20, 0.3); }
     </style>
 </head>
 <body>
@@ -50,9 +54,33 @@
         </div>
         <div class="flex items-center space-x-6 text-2xl">
             <i class="fas fa-search cursor-pointer hover:text-red-600"></i>
-            <button onclick="openQuote()" class="bg-red-600 ...">GET QUOTE</button>>
+            <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:scale-105 transition">GET QUOTE</button>
         </div>
     </nav>
+
+    <div id="quoteModal">
+        <div class="modal-inner">
+            <div class="flex justify-between items-center mb-6 border-b border-zinc-800 pb-4">
+                <h2 class="text-xl font-black text-white italic uppercase tracking-tighter">Request Quote</h2>
+                <button onclick="closeQuote()" class="text-white text-2xl hover:text-red-600">&times;</button>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-zinc-500 mb-1 block">Full Name</label>
+                    <input type="text" id="qName" placeholder="Enter Name" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-sm text-white outline-none focus:border-red-600" required>
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-zinc-500 mb-1 block">WhatsApp Number</label>
+                    <input type="tel" id="qPhone" placeholder="99355XXXXX" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-sm text-white outline-none focus:border-red-600" required>
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-zinc-500 mb-1 block">Requirement Details</label>
+                    <textarea id="qReq" placeholder="e.g. i5 Laptop, 16GB RAM, 5 Units" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-sm h-24 text-white outline-none focus:border-red-600 resize-none" required></textarea>
+                </div>
+                <button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic tracking-widest hover:bg-white hover:text-black transition-all">Submit Request</button>
+            </form>
+        </div>
+    </div>
 
     <header class="relative h-[85vh] w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1600&q=80');">
         <div class="absolute inset-0 hero-vignette"></div>
@@ -111,18 +139,44 @@
 
     <script>
         let fullData = [];
+
+        function openQuote() { 
+            document.getElementById('quoteModal').style.display = 'flex'; 
+        }
+        
+        function closeQuote() { 
+            document.getElementById('quoteModal').style.display = 'none'; 
+        }
+        
+        function sendToWA() {
+            const name = document.getElementById('qName').value;
+            const phone = document.getElementById('qPhone').value;
+            const req = document.getElementById('qReq').value;
+            
+            if(!name || !phone || !req) { 
+                alert("Please fill in all details!"); 
+                return; 
+            }
+            
+            const message = `*NEW HEXA QUOTE REQUEST*%0A------------------%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Requirement:* ${req}`;
+            window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
+            
+            closeQuote();
+        }
+
         async function init() {
             const res = await fetch('data.json');
             fullData = await res.json();
             loadRows();
         }
+
         function loadRows() {
             const createCard = (item) => {
                 const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
                 return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
                     <div class="relative">
                         <img src="${item.images[0]}">
-                        <div class="absolute top-2 right-2 bg-red-600 text-white text-[8px] px-2 py-1 rounded font-black uppercase">₹${emi}/MO*</div>
+                        <div class="absolute top-2 right-2 bg-red-600 text-white text-[8px] px-2 py-1 rounded font-bold uppercase">₹${emi}/MO*</div>
                     </div>
                     <div class="p-5">
                         <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i></div>
@@ -138,6 +192,7 @@
             document.getElementById('laptop-row').innerHTML = fullData.filter(i => i.category === "Laptop").map(createCard).join('');
             document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
         }
+
         window.onload = init;
     </script>
 </body>
