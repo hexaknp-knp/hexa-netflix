@@ -7,10 +7,10 @@
     "processor": "AMD-RYZEN 3",
     "ram": "8 GB",
     "ssd": "256 GB SSD",
-    "price": 11949,
+    "price": 13200,
     "emi_months": 12,
     "warranty": "1 Year",
-    "shipping": 250,
+    "shipping": 100,
     "images": [
       "assets/desktop-placeholder.jpg",
       "assets/desktop-side.jpg",
@@ -26,10 +26,10 @@
     "processor": "AMD-A8",
     "ram": "8 GB",
     "ssd": "256 GB SSD",
-    "price": 13390,
+    "price": 15390,
     "emi_months": 12,
-    "warranty": "3 Months",
-    "shipping": 500,
+    "warranty": "1 Year",
+    "shipping": 100,
     "images": [
       "assets/desktop-placeholder.jpg"
     ],
@@ -43,10 +43,10 @@
     "processor": "CORE I3-7TH GEN",
     "ram": "8 GB",
     "ssd": "256 GB SSD",
-    "price": 15847,
+    "price": 17430,
     "emi_months": 12,
-    "warranty": "3 Months",
-    "shipping": 0,
+    "warranty": "1 Year",
+    "shipping": 100,
     "images": [
       "assets/hp-240g7.webp",
       "assets/hp-240g7-side.webp",
@@ -62,10 +62,10 @@
     "processor": "CORE I3 -8TH GEN",
     "ram": "8 GB",
     "ssd": "256 GB SSD",
-    "price": 16102,
+    "price": 17710,
     "emi_months": 12,
     "warranty": "1 Year",
-    "shipping": 250,
+    "shipping": 100,
     "images": [
       "assets/desktop-placeholder.jpg"
     ],
@@ -79,10 +79,10 @@
     "processor": "CORE I3-8TH GEN",
     "ram": "8 GB",
     "ssd": "256 GB SSD",
-    "price": 16864,
+    "price": 18550,
     "emi_months": 9,
-    "warranty": "3 Months",
-    "shipping": 0,
+    "warranty": "1 Year",
+    "shipping": 100,
     "images": [
       "assets/lenovo-v330.webp",
       "assets/lenovo-v330-2.webp"
@@ -97,10 +97,10 @@
     "processor": "CORE I3-8TH GEN",
     "ram": "8 GB",
     "ssd": "256 GB SSD",
-    "price": 16610,
+    "price": 18270,
     "emi_months": 12,
     "warranty": "1 Year",
-    "shipping": 250,
+    "shipping": 100,
     "images": [
       "assets/desktop-placeholder.jpg"
     ],
@@ -114,10 +114,10 @@
     "processor": "CORE I5-11TH GEN",
     "ram": "16 GB",
     "ssd": "512 GB SSD",
-    "price": 31949,
+    "price": 34990,
     "emi_months": 12,
     "warranty": "1 Year",
-    "shipping": 0,
+    "shipping": 100,
     "images": [
       "assets/dell-latitude-5420.webp",
       "assets/dell-latitude-5420-1.webp",
