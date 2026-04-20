@@ -3,54 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Desktops | Hexa Store</title>
+    <title>Business Desktops | Hexa Store Kanpur</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --red: #E50914; }
-        body { background: #000; color: white; font-family: 'Inter', sans-serif; }
-        .netflix-card { transition: transform 0.4s ease; border: 1px solid #222; border-radius: 4px; background: #141414; overflow: hidden; }
-        .netflix-card:hover { transform: scale(1.05); border-color: var(--red); z-index: 10; }
-        .netflix-card img { width: 100%; height: 180px; object-fit: contain; padding: 15px; }
+        :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
+        body { background: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; }
+        
+        /* Sticky Navbar */
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+
+        .netflix-card { transition: transform 0.4s ease, box-shadow 0.4s ease; border: 1px solid #eee; border-radius: 8px; background: var(--card-bg); overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .netflix-card:hover { transform: translateY(-5px); border-color: var(--red); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .netflix-card img { width: 100%; height: 200px; object-fit: contain; padding: 20px; background: white; }
+
+        /* Quote Modal Style */
+        #quoteModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+        .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="pt-32 px-6">
-    <nav class="fixed top-0 left-0 w-full bg-black/95 p-4 border-b border-zinc-800 flex justify-between items-center z-[100] px-6 md:px-12">
-        <a href="index.html" class="flex flex-col items-center">
-            <img src="assets/newlogo.png" class="h-10">
-            <span class="text-[18px] text-red-600 font-black tracking-[0.4em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
-        </a>
-        <input type="text" id="searchInput" placeholder="Search Desktops..." class="bg-zinc-900 text-xs px-4 py-2 rounded-full border border-zinc-700 outline-none w-64 focus:border-red-600">
+<body class="bg-white">
+
+    <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
+        <div class="flex items-center space-x-10">
+            <a href="index.html" class="flex flex-col items-center">
+                <img src="assets/newlogo.png" class="h-10">
+                <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none text-decoration-none">Hexa Computronics</span>
+            </a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-gray-500 hover:text-black transition">Home</a>
+                <a href="laptops.html" class="text-gray-500 hover:text-black transition">Laptops</a>
+                <a href="desktops.html" class="text-red-600 border-b-2 border-red-600">Desktops</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+             <input type="text" id="searchInput" placeholder="Search Model..." class="hidden md:block bg-gray-50 text-xs px-4 py-2 rounded-full border border-gray-200 outline-none w-48 focus:border-red-600 transition-all">
+             <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:bg-black transition-all uppercase">Get Quote</button>
+        </div>
     </nav>
-    <header class="py-10 md:px-6"><h1 class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Business <span class="text-red-600">Desktops</span></h1></header>
-    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20 md:px-6"></div>
+
+    <div id="quoteModal">
+        <div class="modal-inner">
+            <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                <h2 class="text-xl font-black text-black italic uppercase tracking-tighter">Desktop Inquiry</h2>
+                <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl">×</button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" id="qName" placeholder="Your Name" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
+                <input type="tel" id="qPhone" placeholder="WhatsApp Number" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
+                <textarea id="qReq" placeholder="Example: Need 10 CPUs for Office use..." class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm h-24 text-black outline-none focus:border-red-600 resize-none" required></textarea>
+                <button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic hover:bg-black transition-all">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <header class="py-12 px-6 md:px-12">
+        <h1 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-black">Business <span class="text-red-600">Desktops</span></h1>
+        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-2">Enterprise-Grade Performance Towers</p>
+    </header>
+
+    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-24 px-6 md:px-12"></div>
+
+    <footer class="bg-gray-50 py-10 px-6 border-t border-gray-200 text-center">
+        <p class="text-[10px] tracking-[0.5em] font-black text-gray-400 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+    </footer>
+
     <script>
         let allDesktops = [];
+
+        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
+        
+        function sendToWA() {
+            const name = document.getElementById('qName').value;
+            const phone = document.getElementById('qPhone').value;
+            const req = document.getElementById('qReq').value;
+            if(!name || !phone || !req) { alert("Please fill details!"); return; }
+            const message = `*HEXA DESKTOP INQUIRY*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Requirement:* ${req}`;
+            window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
+            closeQuote();
+        }
+
         async function fetchDesktops() {
             const res = await fetch('data.json');
             const data = await res.json();
             allDesktops = data.filter(item => item.category === "Desktop").sort((a,b) => a.price - b.price);
             render(allDesktops);
         }
+
         function render(data) {
             document.getElementById('product-container').innerHTML = data.map(item => {
                 const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
-                return `<div class="netflix-card">
-                    <div class="relative"><img src="${item.images[0]}"><div class="absolute top-2 right-2 bg-red-600 text-white text-[9px] px-2 py-1 rounded-sm font-black shadow-lg">₹${emi}/MO*</div></div>
+                return `
+                <div class="netflix-card">
+                    <div class="relative">
+                        <img src="${item.images[0]}" alt="${item.model}">
+                        <div class="absolute top-2 right-2 bg-red-600 text-white text-[9px] px-2 py-1 rounded-sm font-black shadow-lg">₹${emi}/MO*</div>
+                    </div>
                     <div class="p-6">
                         <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i></div>
-                        <h3 class="font-bold text-white uppercase truncate italic">${item.model}</h3>
-                        <p class="text-[10px] text-gray-500 mt-2 font-bold uppercase">${item.processor} | ${item.ram}</p>
-                        <div class="mt-4 flex justify-between items-center"><span class="text-xl font-black text-white italic">₹${item.price.toLocaleString()}</span><span class="text-[8px] text-zinc-600 uppercase font-black">${item.warranty || 'Certified'}</span></div>
-                        <a href="product-details.html?id=${item.id}" class="block w-full mt-6 bg-red-600 text-white py-3 rounded font-black text-center text-[10px] uppercase">View Details</a>
+                        <h3 class="font-bold text-black uppercase truncate italic tracking-tighter text-lg">${item.model}</h3>
+                        <p class="text-[10px] text-gray-400 mt-2 font-bold uppercase tracking-widest">${item.processor} | ${item.ram} | ${item.ssd}</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-2xl font-black text-black italic">₹${item.price.toLocaleString()}</span>
+                            <span class="text-[8px] text-gray-400 uppercase font-black tracking-widest">${item.warranty || 'Certified'}</span>
+                        </div>
+                        <a href="product-details.html?id=${item.id}" class="block w-full mt-6 bg-red-600 text-white py-3 rounded font-black text-center text-[10px] uppercase tracking-widest hover:bg-black transition-all">View Details</a>
                     </div>
                 </div>`;
             }).join('');
         }
+
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const val = e.target.value.toLowerCase();
             render(allDesktops.filter(d => d.model.toLowerCase().includes(val)));
         });
+
         fetchDesktops();
     </script>
 </body>
