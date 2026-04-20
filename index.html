@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexa Computronics | Kanpur's Leading Tech Hub</title>
+    <title>Hexa Computronics | Premium Tech Mall Kanpur</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #FFD700; --netflix-red: #E50914; }
-        body { background: #000; color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        :root { --gold: #FFD700; --netflix-red: #E50914; --bg: #000; }
+        body { background-color: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
         
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
@@ -17,60 +17,55 @@
         .netflix-row { display: flex; overflow-x: auto; gap: 15px; padding: 25px 0; scrollbar-width: none; }
         .netflix-row::-webkit-scrollbar { display: none; }
 
-        .card { transition: transform 0.4s ease; min-width: 280px; background: #141414; border-radius: 4px; border: 1px solid #222; cursor: pointer; }
+        .card { transition: transform 0.4s ease; min-width: 280px; background: #141414; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1px solid #222; }
         .card:hover { transform: scale(1.1); z-index: 50; border-color: var(--netflix-red); }
         .card img { width: 100%; height: 160px; object-fit: contain; background: #000; padding: 10px; }
 
         .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--netflix-red); padding-left: 15px; margin-top: 50px; text-transform: uppercase; italic; }
         
-        /* Search Overlay Style */
-        #searchOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 500; align-items: center; justify-content: center; }
+        /* Policy Toggle Style */
+        .policy-content { display: none; background: #111; padding: 15px; border-radius: 5px; margin-top: 10px; border-left: 3px solid var(--netflix-red); color: #aaa; font-size: 13px; line-height: 1.6; }
         
+        #searchOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 500; align-items: center; justify-content: center; }
         .hero-vignette { background: linear-gradient(to top, #000 10%, transparent 45%), linear-gradient(to right, #000 15%, transparent 70%); }
-        .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-    <div class="marquee-bar"><div class="marquee-content">⚡ KANPUR'S ELITE TECH STORE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
-
-    <a href="https://wa.me/919935529306" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <div class="marquee-bar"><div class="marquee-content">⚡ KANPUR'S ELITE TECH STORE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
 
     <nav id="navbar" class="fixed top-12 w-full z-[100] flex justify-between items-center px-6 md:px-12 py-4 transition-all">
         <div class="flex items-center space-x-10">
             <a href="index.html" class="flex flex-col items-center">
                 <img src="assets/newlogo.png" class="h-12" style="filter: drop-shadow(0 0 8px rgba(229,9,20,0.4))">
-                <span class="text-[18px] text-red-600 font-black tracking-[0.4em] mt-2 uppercase leading-none italic">Hexa Computronics</span>
+                <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-2 uppercase italic leading-none">Hexa Computronics</span>
             </a>
             <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                <a href="index.html" class="text-white border-b-2 border-red-600 pb-1">Home</a>
-                <a href="laptops.html" class="hover:text-white transition">Laptops</a>
-                <a href="desktops.html" class="hover:text-white transition">Desktops</a>
+                <a href="index.html" class="text-white border-b-2 border-red-600">Home</a>
+                <a href="laptops.html">Laptops</a>
+                <a href="desktops.html">Desktops</a>
             </div>
         </div>
-        <div class="flex items-center space-x-8">
-            <i class="fas fa-search text-2xl cursor-pointer hover:text-red-600 transition" onclick="document.getElementById('searchOverlay').style.display='flex'"></i>
+        <div class="flex items-center space-x-6 text-2xl">
+            <i class="fas fa-search cursor-pointer hover:text-red-600" onclick="document.getElementById('searchOverlay').style.display='flex'"></i>
             <div class="w-8 h-8 bg-zinc-800 rounded-sm"></div>
         </div>
     </nav>
 
     <div id="searchOverlay">
         <button onclick="document.getElementById('searchOverlay').style.display='none'" class="absolute top-10 right-10 text-white text-5xl">&times;</button>
-        <div class="w-full max-w-4xl px-6 text-center">
-            <input type="text" id="searchInput" placeholder="SEARCH MODELS (E.G. DELL, I5)..." 
-                   class="w-full bg-transparent border-b-2 border-red-600 text-3xl md:text-5xl font-black outline-none pb-4 text-white uppercase italic tracking-tighter">
-            <div id="searchResults" class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        <div class="w-full max-w-4xl px-6">
+            <input type="text" placeholder="SEARCH MODELS (DELL, HP, I5)..." class="w-full bg-transparent border-b-2 border-red-600 text-4xl md:text-6xl font-black outline-none text-white uppercase italic pb-4">
         </div>
     </div>
 
     <header class="relative h-[85vh] w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1600&q=80');">
         <div class="absolute inset-0 hero-vignette"></div>
         <div class="relative z-10 max-w-2xl mt-10">
-            <h1 class="text-6xl md:text-8xl font-black mb-4 uppercase tracking-tighter italic leading-none"><span class="text-white">Premium</span><br><span class="text-red-600">Refurbished</span></h1>
-            <p class="text-lg md:text-xl mb-8 text-gray-300 font-bold uppercase tracking-widest italic">Kanpur's Digital Tech Mall</p>
+            <h1 class="text-6xl md:text-8xl font-black mb-4 uppercase italic leading-none"><span class="text-white">Premium</span><br><span class="text-red-600">Refurbished</span></h1>
             <div class="flex space-x-4">
-                <a href="laptops.html" class="bg-white text-black px-10 py-3 rounded font-black italic shadow-2xl hover:bg-red-600 hover:text-white transition">▶ BROWSE STORE</a>
-                <button onclick="window.location.href='https://wa.me/919935529306'" class="bg-zinc-800 text-white px-10 py-3 rounded font-black italic border border-zinc-700">ⓘ GET QUOTE</button>
+                <a href="laptops.html" class="bg-white text-black px-10 py-3 rounded font-bold italic shadow-2xl transition">▶ BROWSE STORE</a>
+                <button onclick="window.location.href='https://wa.me/919935529306'" class="bg-zinc-800 text-white px-10 py-3 rounded font-bold italic border border-zinc-700">ⓘ GET QUOTE</button>
             </div>
         </div>
     </header>
@@ -83,42 +78,43 @@
     <footer class="bg-black py-24 px-6 md:px-12 border-t border-zinc-900 text-gray-500">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto text-left">
             <div>
-                <h4 class="text-white font-black mb-8 text-xs tracking-widest uppercase">Our Story</h4>
-                <p class="text-sm font-medium leading-relaxed">Hexa Computronics is more than a store; it's Kanpur's tech backbone for professionals. Since inception, we have redefined the refurbished market by offering high-end enterprise machines that bypass the limitations of consumer hardware. Our mission is to put world-class tech into every professional's hands without the premium price tag.</p>
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Our Story</h4>
+                <p class="text-sm font-medium leading-relaxed">Hexa Computronics is Kanpur's premier destination for high-end enterprise hardware. We empower professionals and students by providing certified refurbished laptops that deliver uncompromising performance at unbeatable prices. Every machine is Hexa-Certified for excellence.</p>
             </div>
 
             <div>
-                <h4 class="text-white font-black mb-8 text-xs tracking-widest uppercase">Legal & Policies</h4>
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Customer Service</h4>
                 <ul class="space-y-4 text-sm font-bold uppercase tracking-tighter">
-                    <li><a href="#" class="hover:text-red-600 transition">7-Day Replacement Policy</a></li>
-                    <li><a href="#" class="hover:text-red-600 transition">Privacy & Data Security</a></li>
-                    <li><a href="#" class="hover:text-red-600 transition">Shipping: Kanpur & Pan India</a></li>
-                    <li><a href="#" class="hover:text-red-600 transition">Terms of Service</a></li>
+                    <li class="cursor-pointer hover:text-red-600 transition" onclick="togglePolicy('refund')">Return & Refund Policy ↓</li>
+                    <div id="refund" class="policy-content">We offer a 7-day technical replacement or refund policy. If the hardware has any certified technical fault, we provide an immediate swap or full money back.</div>
+
+                    <li class="cursor-pointer hover:text-red-600 transition" onclick="togglePolicy('shipping')">Shipping & Delivery ↓</li>
+                    <div id="shipping" class="policy-content">Local Kanpur: Same-day delivery within 4 hours. <br>Pan India: Insured shipping via BlueDart/Delhivery (3-5 business days).</div>
+
+                    <li class="cursor-pointer hover:text-red-600 transition" onclick="togglePolicy('privacy')">Privacy & Terms ↓</li>
+                    <div id="privacy" class="policy-content">Your data is secure with us. We follow strict international standards for data wiping on all refurbished units and protect your purchase information with end-to-end encryption.</div>
                 </ul>
             </div>
 
             <div>
-                <h4 class="text-white font-black mb-8 text-xs tracking-widest uppercase">Contact Us</h4>
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Direct Contact</h4>
                 <p class="text-red-600 font-black text-2xl mb-2 italic">+91 9935529306</p>
-                <p class="text-[11px] text-zinc-600 uppercase font-black">Email: info@hexacomputer.in</p>
-                <p class="text-[11px] text-zinc-600 mt-2 uppercase font-black">Kanpur, Uttar Pradesh - 208012</p>
+                <p class="text-[11px] text-zinc-600 uppercase font-black">info@hexacomputer.in</p>
+                <p class="text-[11px] text-zinc-600 mt-2 uppercase font-black">Kanpur, Uttar Pradesh, India</p>
             </div>
 
             <div>
-                <h4 class="text-white font-black mb-8 text-xs tracking-widest uppercase">Network</h4>
-                <div class="flex space-x-6 text-3xl">
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Follow Our Network</h4>
+                <div class="flex space-x-6 text-2xl">
                     <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
                     <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
                     <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/919935529306" target="_blank" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
                 </div>
-                <div class="mt-8 text-[9px] uppercase font-black tracking-widest text-zinc-800">
-                    <p>Speed Optimized | Google Indexed | Local SEO Ready</p>
-                </div>
             </div>
         </div>
         <div class="mt-20 pt-10 border-t border-zinc-900 text-center">
-            <p class="text-[10px] tracking-[0.5em] font-black text-zinc-800 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+            <p class="text-[10px] tracking-[0.5em] font-black text-zinc-800 uppercase italic italic">© 2026 HEXA COMPUTRONICS KANPUR | POWERED BY AAMIR</p>
         </div>
     </footer>
 
@@ -130,31 +126,34 @@
                 const res = await fetch('data.json');
                 fullData = await res.json();
                 loadRows();
-            } catch (err) { console.error("Error loading JSON:", err); }
+            } catch (err) { console.error(err); }
         }
 
         function loadRows() {
             const createCard = (item) => {
-                const months = item.emi_months || 12;
-                const emi = Math.round((item.price * 1.18) / months);
+                const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
                 return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
-                    <div class="relative">
-                        <img src="${item.image}" alt="${item.model}">
-                        <div class="absolute top-2 right-2 bg-black/80 text-yellow-500 text-[8px] px-2 py-1 rounded font-bold uppercase">₹${emi}/MO*</div>
-                    </div>
+                    <div class="relative"><img src="${item.image}"><div class="absolute top-2 right-2 bg-black/80 text-yellow-500 text-[8px] px-2 py-1 rounded font-bold uppercase">₹${emi}/MO*</div></div>
                     <div class="p-5">
                         <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i></div>
                         <h3 class="font-bold text-sm text-white truncate uppercase italic tracking-tighter">${item.model}</h3>
                         <p class="text-[10px] text-gray-500 mt-1 uppercase">${item.processor} | ${item.ram}</p>
                         <div class="mt-4 flex justify-between items-center">
                             <span class="text-base font-black text-white italic">₹${item.price.toLocaleString()}</span>
-                            <span class="text-[8px] text-zinc-600 italic uppercase font-black tracking-widest">${item.warranty || 'Certified'}</span>
+                            <span class="text-[8px] text-zinc-600 italic uppercase font-black">${item.warranty || 'Certified'}</span>
                         </div>
                     </div>
                 </div>`;
             };
             document.getElementById('laptop-row').innerHTML = fullData.filter(i => i.category === "Laptop").map(createCard).join('');
             document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
+        }
+
+        function togglePolicy(id) {
+            const el = document.getElementById(id);
+            const isVisible = el.style.display === "block";
+            document.querySelectorAll('.policy-content').forEach(p => p.style.display = 'none');
+            el.style.display = isVisible ? "none" : "block";
         }
 
         window.onload = init;
