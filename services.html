@@ -2,36 +2,111 @@
 <html lang="hi-IN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Services & CCTV Installation Kanpur | Hexa Computronics</title>
     <meta name="description" content="Professional IT services in Kanpur. Laptop repair, CCTV installation, Networking, and Refurbished hardware sales by Hexa Computronics.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #000; color: white; }
-        .service-card { transition: 0.3s; border: 1px solid #27272a; }
-        .service-card:hover { border-color: #FFD700; transform: translateY(-5px); background: #111; }
-        .gold-icon { color: #FFD700; }
+        :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
+        body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; }
+        
+        /* Sticky Navbar matching Index */
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+
+        .service-card { transition: 0.4s ease, box-shadow 0.4s ease; border: 1px solid #eee; background: var(--card-bg); }
+        .service-card:hover { border-color: var(--red); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); background: #fff; }
+        
+        /* Quote Modal Style */
+        #quoteModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+        .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="pt-24 px-6 md:px-12">
-    <h1 class="text-center text-4xl font-black mb-16 uppercase tracking-widest">Our <span class="text-purple-500">Expertise</span></h1>
-    
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
-        <div class="service-card p-8 rounded-xl bg-zinc-900/50">
-            <i class="fas fa-laptop-medical text-4xl gold-icon mb-6"></i>
-            <h2 class="text-xl font-bold mb-3">Laptop & Desktop Sales</h2>
-            <p class="text-gray-400 text-sm">Wholesale prices par premium refurbished business series (Dell, HP, Lenovo) available.</p>
+<body class="bg-white">
+
+    <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
+        <div class="flex items-center space-x-10">
+            <a href="index.html" class="flex flex-col items-center">
+                <img src="assets/newlogo.png" class="h-10">
+                <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
+            </a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-gray-500 hover:text-black">Home</a>
+                <a href="laptops.html" class="text-gray-500 hover:text-black">Laptops</a>
+                <a href="desktops.html" class="text-gray-500 hover:text-black">Desktops</a>
+            </div>
         </div>
-        <div class="service-card p-8 rounded-xl bg-zinc-900/50">
-            <i class="fas fa-video text-4xl gold-icon mb-6"></i>
-            <h2 class="text-xl font-bold mb-3">CCTV Surveillance</h2>
-            <p class="text-gray-400 text-sm">Professional security camera installation & AMC services in Kanpur City.</p>
+        <div class="flex items-center space-x-6">
+            <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:bg-black transition-all uppercase">Get Service Quote</button>
         </div>
-        <div class="service-card p-8 rounded-xl bg-zinc-900/50">
-            <i class="fas fa-tools text-4xl gold-icon mb-6"></i>
-            <h2 class="text-xl font-bold mb-3">IT Consulting</h2>
-            <p class="text-gray-400 text-sm">Office networking, VPN setup aur hardware upgrade solutions.</p>
+    </nav>
+
+    <div id="quoteModal">
+        <div class="modal-inner">
+            <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                <h2 class="text-xl font-black text-black italic uppercase tracking-tighter text-decoration-none">Service Inquiry</h2>
+                <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl">×</button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" id="qName" placeholder="Business/Your Name" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
+                <input type="tel" id="qPhone" placeholder="WhatsApp Number" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
+                <select id="qType" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600">
+                    <option value="CCTV">CCTV Installation</option>
+                    <option value="Networking">Office Networking</option>
+                    <option value="Hardware">Bulk Hardware Sale</option>
+                    <option value="Repairing">Repairing Service</option>
+                </select>
+                <textarea id="qReq" placeholder="Describe your requirement..." class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm h-24 text-black outline-none focus:border-red-600 resize-none" required></textarea>
+                <button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic hover:bg-black transition-all">Request Service</button>
+            </form>
         </div>
     </div>
+
+    <main class="py-20 px-6 md:px-12">
+        <header class="text-center mb-20">
+            <h1 class="text-5xl font-black uppercase tracking-tighter text-black italic">Our <span class="text-red-600">Expertise</span></h1>
+            <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-4">Professional Tech Solutions in Kanpur</p>
+        </header>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
+            <div class="service-card p-10 rounded-2xl">
+                <i class="fas fa-laptop-medical text-5xl text-red-600 mb-8"></i>
+                <h2 class="text-2xl font-black mb-4 uppercase italic">Hardware Sales</h2>
+                <p class="text-gray-600 text-sm font-medium leading-relaxed">Wholesale prices par premium refurbished business series (Dell, HP, Lenovo) available with testing warranty.</p>
+            </div>
+            
+            <div class="service-card p-10 rounded-2xl">
+                <i class="fas fa-video text-5xl text-red-600 mb-8"></i>
+                <h2 class="text-2xl font-black mb-4 uppercase italic">CCTV Surveillance</h2>
+                <p class="text-gray-600 text-sm font-medium leading-relaxed">Professional high-definition security camera installation & AMC services for homes and offices in Kanpur City.</p>
+            </div>
+            
+            <div class="service-card p-10 rounded-2xl">
+                <i class="fas fa-network-wired text-5xl text-red-600 mb-8"></i>
+                <h2 class="text-2xl font-black mb-4 uppercase italic">IT Consulting</h2>
+                <p class="text-gray-600 text-sm font-medium leading-relaxed">Smart office networking, LAN/WAN setup, VPN configurations aur customized hardware upgrade solutions.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 py-10 px-6 border-t border-gray-200 text-center">
+        <p class="text-[10px] tracking-[0.5em] font-black text-gray-400 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+    </footer>
+
+    <script>
+        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
+        
+        function sendToWA() {
+            const name = document.getElementById('qName').value;
+            const phone = document.getElementById('qPhone').value;
+            const type = document.getElementById('qType').value;
+            const req = document.getElementById('qReq').value;
+            if(!name || !phone || !req) { alert("Please fill details!"); return; }
+            const message = `*HEXA SERVICE INQUIRY*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Service:* ${type}%0A*Details:* ${req}`;
+            window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
+            closeQuote();
+        }
+    </script>
 </body>
 </html>
