@@ -3,106 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexa Computronics | Kanpur's Premium Tech Mall</title>
+    <title>Hexa Computronics | Premium Refurbished Laptops Kanpur</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #FFD700; --netflix-red: #E50914; --bg: #000000; }
-        body { background-color: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
-        
-        /* Top Announcement */
+        :root { --gold: #FFD700; --netflix-red: #E50914; }
+        body { background: #000; color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        /* Netflix Row */
         .netflix-row { display: flex; overflow-x: auto; gap: 15px; padding: 25px 0; scrollbar-width: none; }
         .netflix-row::-webkit-scrollbar { display: none; }
-
-        /* Card Style */
         .card { transition: transform 0.4s ease; min-width: 280px; background: #141414; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1px solid #222; }
         .card:hover { transform: scale(1.1); z-index: 50; border-color: var(--netflix-red); }
         .card img { width: 100%; height: 160px; object-fit: contain; background: #000; padding: 10px; }
-
         .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--netflix-red); padding-left: 15px; margin-top: 50px; text-transform: uppercase; }
         .hero-vignette { background: linear-gradient(to top, #000 10%, transparent 40%), linear-gradient(to right, #000 15%, transparent 70%); }
         
-        /* Footer Detail Modal/Section Style */
-        .footer-detail { display: none; background: #111; padding: 20px; border-radius: 8px; margin-top: 10px; border: 1px solid #333; font-size: 13px; color: #ccc; line-height: 1.6; }
+        /* Quote Modal Style */
+        #quoteModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: #111; border: 1px solid var(--netflix-red); padding: 30px; border-radius: 12px; width: 100%; max-w-lg; }
     </style>
 </head>
 <body>
 
-    <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI OPTIONS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ CERTIFIED GRADE A STOCK</div></div>
+    <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ CERTIFIED GRADE A STOCK</div></div>
 
     <nav id="navbar" class="fixed top-12 w-full z-[100] flex justify-between items-center px-6 md:px-12 py-3 transition-all">
         <div class="flex items-center space-x-10">
             <a href="index.html" class="flex flex-col items-center">
-                <img src="assets/newlogo.png" class="h-12" style="filter: drop-shadow(0 0 8px rgba(229,9,20,0.4))">
+                <img src="assets/newlogo.png" class="h-12 logo-glow">
                 <span class="text-[10px] text-red-600 font-black tracking-widest mt-1 uppercase">Hexa Computronics</span>
             </a>
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
                 <a href="index.html" class="text-white border-b-2 border-red-600">Home</a>
-                <a href="laptops.html" class="hover:text-white transition">Laptops</a>
-                <a href="desktops.html" class="hover:text-white transition">Desktops</a>
+                <a href="laptops.html" class="text-gray-400 hover:text-white transition">Laptops</a>
+                <a href="desktops.html" class="text-gray-400 hover:text-white transition">Desktops</a>
             </div>
         </div>
-        <i class="fas fa-search text-xl cursor-pointer hover:text-red-600" onclick="alert('Search feature active!')"></i>
+        <div class="flex items-center space-x-6 text-xl">
+             <i class="fas fa-search cursor-pointer hover:text-red-600"></i>
+             <div class="w-8 h-8 bg-zinc-800 rounded-sm"></div>
+        </div>
     </nav>
 
     <header class="relative h-[85vh] w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1600&q=80');">
         <div class="absolute inset-0 hero-vignette"></div>
         <div class="relative z-10 max-w-2xl mt-10">
-            <h1 class="text-5xl md:text-7xl font-black mb-4 uppercase tracking-tighter italic"><span class="text-white">Premium</span><br><span class="text-red-600">Refurbished</span></h1>
+            <h1 class="text-5xl md:text-7xl font-black mb-4 uppercase tracking-tighter italic leading-none"><span class="text-white">Premium</span><br><span class="text-red-600">Refurbished</span></h1>
             <div class="flex space-x-4">
-                <a href="laptops.html" class="bg-red-600 text-white px-10 py-3 rounded font-bold italic shadow-2xl transition">▶ BROWSE STORE</a>
-                <button onclick="window.location.href='https://wa.me/919935529306'" class="bg-zinc-800 text-white px-10 py-3 rounded font-bold italic">ⓘ GET QUOTE</button>
+                <a href="laptops.html" class="bg-red-600 text-white px-10 py-3 rounded font-black italic shadow-2xl transition">▶ BROWSE STORE</a>
+                <button onclick="toggleModal(true)" class="bg-zinc-800 text-white px-10 py-3 rounded font-black italic border border-zinc-700">ⓘ GET QUOTE</button>
             </div>
         </div>
     </header>
 
     <main class="relative z-20 -mt-24 px-6 md:px-12 space-y-12 pb-20">
-        <section><h2 class="section-label">Enterprise Laptops</h2><div id="laptop-row" class="netflix-row"></div></section>
-        <section><h2 class="section-label">Business Desktops</h2><div id="desktop-row" class="netflix-row"></div></section>
+        <section><h2 class="section-label italic">Enterprise Laptops</h2><div id="laptop-row" class="netflix-row"></div></section>
+        <section><h2 class="section-label italic">Business Desktops</h2><div id="desktop-row" class="netflix-row"></div></section>
     </main>
 
+    <div id="quoteModal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-black text-red-600 mb-6 uppercase italic">Request a Quote</h2>
+            <form id="quoteForm" class="space-y-4">
+                <input type="text" id="qName" placeholder="Your Name" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded text-sm outline-none focus:border-red-600" required>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="tel" id="qMobile" placeholder="Mobile Number" class="bg-zinc-900 border border-zinc-700 p-3 rounded text-sm outline-none focus:border-red-600" required>
+                    <input type="email" id="qEmail" placeholder="Email ID" class="bg-zinc-900 border border-zinc-700 p-3 rounded text-sm outline-none focus:border-red-600">
+                </div>
+                <select id="qType" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded text-sm outline-none focus:border-red-600">
+                    <option value="Laptop">Laptop Requirement</option>
+                    <option value="Desktop">Desktop Requirement</option>
+                    <option value="Bulk/Office">Bulk/Office Setup</option>
+                </select>
+                <textarea id="qReq" placeholder="Configuration Details (i5, 16GB, etc.) & Quantity" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded text-sm h-24 outline-none focus:border-red-600" required></textarea>
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="sendQuote()" class="flex-1 bg-red-600 py-3 rounded font-black uppercase text-sm">Send to WhatsApp</button>
+                    <button type="button" onclick="toggleModal(false)" class="flex-1 bg-zinc-800 py-3 rounded font-black uppercase text-sm">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <footer class="bg-black py-20 px-6 md:px-12 border-t border-zinc-900">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Our Story</h4>
-                <p class="text-sm text-gray-500 mb-4 cursor-pointer hover:text-white" onclick="toggleFooter('story')">Read About Hexa Computronics ↓</p>
-                <div id="story" class="footer-detail">Hexa Computronics is Kanpur's leading hub for refurbished laptops. We specialize in enterprise-grade machines that are 100% tested and certified for performance.</div>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Legal & Policies</h4>
-                <ul class="text-sm text-gray-500 space-y-2">
-                    <li class="cursor-pointer hover:text-white" onclick="toggleFooter('return')">7-Day Return Policy</li>
-                    <div id="return" class="footer-detail">If you find any technical fault within 7 days, we offer an immediate replacement or full refund. No questions asked.</div>
-                    
-                    <li class="cursor-pointer hover:text-white" onclick="toggleFooter('shipping')">Shipping & Delivery</li>
-                    <div id="shipping" class="footer-detail">Free delivery across Kanpur within 4 hours. Pan-India shipping available via BlueDart/Delhivery (3-5 days).</div>
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Hexa Store</h4>
+                <ul class="text-sm text-zinc-500 space-y-3 font-bold">
+                    <li><a href="#" class="hover:text-red-600 transition">Best Laptops Kanpur</a></li>
+                    <li><a href="#" class="hover:text-red-600 transition">Refurbished Laptops India</a></li>
+                    <li><a href="#" class="hover:text-red-600 transition">SEO Strategy Pages</a></li>
+                    <li><a href="#" class="hover:text-red-600 transition">Google Rank History</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Connect</h4>
-                <p class="text-red-600 font-black text-lg mb-2">9935529306</p>
-                <div class="flex space-x-6 text-2xl mt-4">
-                    <a href="#" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
-                    <a href="https://wa.me/919935529306" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Our Policies</h4>
+                <ul class="text-sm text-zinc-500 space-y-3 font-bold">
+                    <li><a href="#" class="hover:text-red-600 transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-red-600 transition">7-Day Replacement</a></li>
+                    <li><a href="#" class="hover:text-red-600 transition">Shipping: Local & All India</a></li>
+                    <li><a href="#" class="hover:text-red-600 transition">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Connect Us</h4>
+                <div class="flex space-x-6 text-2xl">
+                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919935529306" target="_blank" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
                 </div>
+                <p class="mt-6 text-xs text-zinc-600 uppercase font-black tracking-widest">info@hexacomputer.in</p>
+            </div>
+            <div>
+                <h4 class="text-white font-black mb-6 text-xs tracking-widest uppercase">Performance</h4>
+                <ul class="text-[10px] text-zinc-600 space-y-2 uppercase font-black">
+                    <li><i class="fas fa-bolt text-yellow-500 mr-2"></i> Speed Optimized</li>
+                    <li><i class="fas fa-search text-blue-500 mr-2"></i> SEO Ready</li>
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Google Indexed</li>
+                </ul>
             </div>
         </div>
-        <p class="mt-20 text-center text-[10px] text-gray-700 tracking-[0.5em] font-black uppercase">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        <div class="mt-20 text-center border-t border-zinc-900 pt-10">
+            <p class="text-[10px] tracking-[0.6em] font-black text-zinc-800">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        </div>
     </footer>
 
     <script>
         let fullData = [];
+        function toggleModal(show) { document.getElementById('quoteModal').style.display = show ? 'flex' : 'none'; }
+        
         async function init() {
-            try {
-                const res = await fetch('data.json');
-                fullData = await res.json();
-                loadRows();
-            } catch (err) { console.error(err); }
+            const res = await fetch('data.json');
+            fullData = await res.json();
+            loadRows();
         }
 
         function loadRows() {
@@ -111,12 +146,12 @@
                 return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
                     <div class="relative"><img src="${item.image}"><div class="absolute top-2 right-2 bg-black/80 text-yellow-500 text-[8px] px-2 py-1 rounded font-bold uppercase">₹${emi}/MO*</div></div>
                     <div class="p-5">
-                        <div class="flex gap-1 mb-2"><i class="fas fa-star text-yellow-500 text-[9px]"></i><i class="fas fa-star text-yellow-500 text-[9px]"></i><i class="fas fa-star text-yellow-500 text-[9px]"></i><i class="fas fa-star text-yellow-500 text-[9px]"></i><i class="fas fa-star text-yellow-500 text-[9px]"></i></div>
-                        <h3 class="font-bold text-sm text-white truncate uppercase">${item.model}</h3>
-                        <p class="text-[10px] text-gray-400 mt-2 uppercase">${item.processor} | ${item.ram}</p>
+                        <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i></div>
+                        <h3 class="font-bold text-sm text-white truncate uppercase italic tracking-tighter">${item.model}</h3>
+                        <p class="text-[10px] text-gray-500 mt-1 uppercase">${item.processor} | ${item.ram}</p>
                         <div class="mt-4 flex justify-between items-center">
                             <span class="text-base font-black text-white italic">₹${item.price.toLocaleString()}</span>
-                            <span class="text-[7px] text-gray-600 italic uppercase">*T&C Apply</span>
+                            <span class="text-[7px] text-zinc-600 italic uppercase">GST INCL.</span>
                         </div>
                     </div>
                 </div>`;
@@ -125,19 +160,17 @@
             document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
         }
 
-        function toggleFooter(id) {
-            const el = document.getElementById(id);
-            const all = document.querySelectorAll('.footer-detail');
-            all.forEach(d => { if(d.id !== id) d.style.display = 'none'; }); // Ek khule toh dusra band
-            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+        function sendQuote() {
+            const name = document.getElementById('qName').value;
+            const mob = document.getElementById('qMobile').value;
+            const req = document.getElementById('qReq').value;
+            const type = document.getElementById('qType').value;
+            const msg = `Hexa Quote Request:%0AName: ${name}%0AMobile: ${mob}%0AType: ${type}%0ARequirement: ${req}`;
+            window.open(`https://wa.me/919935529306?text=${msg}`);
+            toggleModal(false);
         }
 
         window.onload = init;
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-            else nav.style.backgroundColor = 'transparent';
-        });
     </script>
 </body>
 </html>
