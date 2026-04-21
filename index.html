@@ -35,15 +35,13 @@
         .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--red); padding-left: 15px; margin-top: 50px; text-transform: uppercase; font-style: italic; color: var(--text-dark); }
         .hero-vignette { background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); }
         
-        .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
-        .footer-link { color: #666; font-size: 14px; transition: 0.3s; }
-        .footer-link:hover { color: var(--red); }
+        /* Cart Modal Styling */
+        #cartModal { display: none; position: fixed; inset: 0; z-index: 3000; }
+        .cart-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
+        .cart-inner { position: absolute; right: 0; top: 0; height: 100%; width: 100%; max-w-md; background: white; shadow: -10px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
 
         #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
         .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: #000; }
-
-        /* Added for Cart Sidebar without changing others */
-        #cartSidebar { display: none; position: fixed; right: 0; top: 0; height: 100%; width: 100%; max-width: 400px; background: #fff; z-index: 4000; box-shadow: -5px 0 15px rgba(0,0,0,0.2); padding: 25px; flex-direction: column; }
     </style>
 </head>
 <body>
@@ -72,8 +70,8 @@
             </div>
         </div>
         <div class="flex items-center space-x-6 text-2xl">
-            <div class="relative cursor-pointer" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart text-gray-700 hover:text-red-600"></i>
+            <div class="relative cursor-pointer hover:text-red-600 transition" onclick="openCart()">
+                <i class="fas fa-shopping-basket"></i>
                 <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">0</span>
             </div>
             <button onclick="openSearch()" aria-label="Search" class="hover:text-red-600 text-gray-700 transition"><i class="fas fa-search"></i></button>
@@ -81,18 +79,24 @@
         </div>
     </nav>
 
-    <div id="cartSidebar">
-        <div class="flex justify-between items-center mb-6 border-b pb-4">
-            <h2 class="text-xl font-black italic uppercase">Cart Items</h2>
-            <button onclick="toggleCart()" class="text-3xl">&times;</button>
-        </div>
-        <div id="cart-list" class="flex-1 overflow-y-auto space-y-4"></div>
-        <div class="border-t pt-6">
-            <div class="flex justify-between text-xl font-black italic mb-4">
-                <span>TOTAL:</span>
-                <span id="cart-total">₹0</span>
+    <div id="cartModal">
+        <div class="cart-overlay" onclick="closeCart()"></div>
+        <div class="cart-inner p-6">
+            <div class="flex justify-between items-center border-b pb-4 mb-6">
+                <h2 class="text-xl font-black italic uppercase">Your Shopping Cart</h2>
+                <button onclick="closeCart()" class="text-3xl hover:text-red-600">&times;</button>
             </div>
-            <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 text-white py-4 rounded font-black italic uppercase">Order via WhatsApp</button>
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-4">
+                </div>
+            <div class="border-t pt-6 mt-4">
+                <div class="flex justify-between text-xl font-black italic mb-6">
+                    <span>TOTAL:</span>
+                    <span id="cart-total" class="text-red-600">₹0</span>
+                </div>
+                <button onclick="checkoutWA()" class="w-full bg-green-600 text-white py-4 rounded font-black italic uppercase tracking-widest hover:bg-black transition flex items-center justify-center gap-3">
+                    <i class="fab fa-whatsapp text-xl"></i> ORDER VIA WHATSAPP
+                </button>
+            </div>
         </div>
     </div>
 
@@ -160,7 +164,7 @@
                 <h4 class="footer-link-head text-red-600">Contact Us</h4>
                 <ul class="space-y-4 text-sm font-medium">
                     <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt mt-1 text-red-600"></i><span>119/540 New Basant Cinema Building, Gumti No.5, Kanpur, UP - 208012</span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-envelope text-red-600"></i><a href="mailto:info@hexacomputer.in">info@hexacomputer.in</a></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-envelope text-red-600"></i><a href="mailto:info@hexacomputer.in" class="hover:text-black transition">info@hexacomputer.in</a></li>
                     <li class="flex items-center gap-3 font-black text-black"><i class="fab fa-whatsapp text-green-600 text-lg"></i><span>+91 9935529306</span></li>
                 </ul>
             </div>
@@ -181,25 +185,111 @@
 
     <script>
         let fullData = [];
-        let cart = JSON.parse(localStorage.getItem('hexa_cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('hexaCart')) || [];
 
-        function toggleCart() {
-            const side = document.getElementById('cartSidebar');
-            side.style.display = (side.style.display === 'flex') ? 'none' : 'flex';
-            renderCart();
-        }
+        // Cart Functions
+        function openCart() { document.getElementById('cartModal').style.display = 'block'; renderCart(); }
+        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
 
         function renderCart() {
-            const list = document.getElementById('cart-list');
+            const container = document.getElementById('cart-items');
             const totalEl = document.getElementById('cart-total');
-            document.getElementById('cart-count').innerText = cart.length;
-            
+            const countEl = document.getElementById('cart-count');
+            countEl.innerText = cart.length;
+
             if(cart.length === 0) {
-                list.innerHTML = `<p class="text-center py-10 text-gray-400 italic">Empty</p>`;
+                container.innerHTML = `<div class="flex flex-col items-center justify-center h-64 text-gray-400"><i class="fas fa-shopping-basket text-5xl mb-4"></i><p class="italic">Cart is empty!</p></div>`;
                 totalEl.innerText = "₹0";
                 return;
             }
+
             let total = 0;
-            list.innerHTML = cart.map((item, i) => {
+            container.innerHTML = cart.map((item, idx) => {
                 total += item.price;
-                return `<div class="flex items-
+                return `
+                <div class="flex items-center gap-4 border-b pb-4">
+                    <img src="${item.img}" class="w-16 h-16 object-contain border p-1 rounded bg-white">
+                    <div class="flex-1">
+                        <p class="text-xs font-black uppercase italic">${item.name}</p>
+                        <p class="font-bold text-red-600">₹${item.price.toLocaleString()}</p>
+                    </div>
+                    <button onclick="removeFromCart(${idx})" class="text-gray-300 hover:text-red-600 transition"><i class="fas fa-trash-alt"></i></button>
+                </div>`;
+            }).join('');
+            totalEl.innerText = `₹${total.toLocaleString()}`;
+        }
+
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            localStorage.setItem('hexaCart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function checkoutWA() {
+            if(cart.length === 0) return;
+            let msg = `*HEXA COMPUTRONICS - NEW ORDER*%0A---------------------------%0A`;
+            let total = 0;
+            cart.forEach((item, idx) => {
+                msg += `${idx+1}. *${item.name}* - ₹${item.price.toLocaleString()}%0A`;
+                total += item.price;
+            });
+            msg += `---------------------------%0A*TOTAL BILL: ₹${total.toLocaleString()}*%0A%0A_Order coming from Kanpur Store Mall_`;
+            window.open(`https://wa.me/919935529306?text=${msg}`, '_blank');
+        }
+
+        // Init and Loading
+        async function init() {
+            try {
+                const res = await fetch('data.json');
+                fullData = await res.json();
+                loadRows();
+                renderCart(); // Update count on load
+            } catch (e) { console.error("Data load failed"); }
+        }
+
+        function loadRows() {
+            const createCard = (item) => {
+                const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
+                return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
+                    <div class="relative">
+                        <img src="${item.images[0]}" alt="${item.model} Kanpur" loading="lazy">
+                        <div class="absolute top-2 right-2 bg-red-600 text-white text-[8px] px-2 py-1 rounded font-black uppercase">₹${emi}/MO*</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i></div>
+                        <h3 class="font-bold text-sm text-black truncate uppercase italic tracking-tighter">${item.model}</h3>
+                        <p class="text-[10px] text-gray-400 mt-1 uppercase font-black tracking-widest">${item.processor || ''} ${item.ram || ''}</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-base font-black text-black italic">₹${item.price.toLocaleString()}</span>
+                            <span class="text-[8px] text-gray-400 font-black uppercase">${item.warranty || 'Certified'}</span>
+                        </div>
+                    </div>
+                </div>`;
+            };
+            document.getElementById('laptop-row').innerHTML = fullData.filter(i => i.category === "Laptop").map(createCard).join('');
+            document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
+            document.getElementById('accessories-row').innerHTML = fullData.filter(i => i.category === "Accessories").map(createCard).join('');
+        }
+
+        // Existing search & quote functions
+        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('mainSearch').focus(); }
+        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
+        function liveSearch() {
+            const query = document.getElementById('mainSearch').value.toLowerCase();
+            const results = fullData.filter(i => i.model.toLowerCase().includes(query)).slice(0, 5);
+            const container = document.getElementById('searchResults');
+            if(query === "") { container.innerHTML = ""; return; }
+            container.innerHTML = results.map(item => `<div onclick="location.href='product-details.html?id=${item.id}'" class="flex items-center gap-4 p-2 hover:bg-gray-50 rounded cursor-pointer border-b border-gray-100"><img src="${item.images[0]}" class="w-10 h-10 object-contain"><div><p class="text-xs font-black uppercase italic">${item.model}</p><p class="text-[10px] text-red-600 font-bold">₹${item.price.toLocaleString()}</p></div></div>`).join('');
+        }
+        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
+        function sendToWA() {
+            const name = document.getElementById('qName').value; const phone = document.getElementById('qPhone').value; const req = document.getElementById('qReq').value;
+            if(!name || !phone || !req) { alert("Please fill details!"); return; }
+            window.open(`https://wa.me/919935529306?text=*HEXA QUOTE*%0A*Name:* ${name}%0A*Requirement:* ${req}`, '_blank');
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
