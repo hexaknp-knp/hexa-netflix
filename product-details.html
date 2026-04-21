@@ -17,7 +17,7 @@
 </head>
 <body class="pt-24 px-6 md:px-20">
     <div id="product-content" class="max-w-6xl mx-auto pb-20"></div>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <script>
         async function load() {
             const id = new URLSearchParams(window.location.search).get('id');
@@ -57,23 +57,30 @@
                                 <div class="text-right font-bold italic">${item.emi_months || 12}M</div>
                             </div>
                         </div>
-                        <button onclick="payNow('${item.model}', ${netTotal})" class="w-full bg-red-600 text-white py-5 rounded font-black uppercase text-xl mt-8 shadow-xl">Pay Securely: ₹${netTotal.toLocaleString()}</button>
+                        <button onclick="goToOrder('${item.id}')" class="w-full bg-red-600 text-white py-5 rounded font-black uppercase text-xl mt-8 shadow-xl hover:bg-red-700 transition">
+                            Buy Now & Pay
+                        </button>
                     </div>
                 </div>`;
         }
+
+        // Logic to send customer to order page
+        function goToOrder(productId) {
+            window.location.href = `order.html?id=${productId}`;
+        }
+
         window.changeMedia = (src, el) => {
             document.getElementById('main-display').innerHTML = `<img src="${src}" class="w-full h-full object-contain">`;
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
         };
+
         window.playVideo = (src, el) => {
             document.getElementById('main-display').innerHTML = `<video src="${src}" controls autoplay></video>`;
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
         };
-        function payNow(name, amount) {
-            new Razorpay({"key": "rzp_live_SLFCOQlEEX9giJ","amount": amount * 100,"currency": "INR","name": "Hexa Computronics","description": name,"handler": function(res) { window.location.href="success.html"; },"theme": {"color": "#E50914"}}).open();
-        }
+
         load();
     </script>
 </body>
