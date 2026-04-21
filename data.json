@@ -71,7 +71,9 @@
     "warranty": "1 Year",
     "shipping": 100,
     "images": [
-      "assets/desktop-placeholder.jpg"
+      "assets/lenovo-m720q-desktop2.webp",
+       "assets/lenovo-m720q-desktop1.webp",
+       "assets/lenovo-m720q-desktop3.webp"
     ],
     "video": ""
   },
