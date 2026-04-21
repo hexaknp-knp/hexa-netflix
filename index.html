@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexa Computronics | Premium Refurbished Laptops & Desktops Kanpur</title>
-    <meta name="description" content="Hexa Computronics Kanpur offers premium refurbished business laptops, desktops, and CCTV services. Certified hardware with easy EMI and 7-day warranty.">
-    <meta name="keywords" content="Refurbished Laptops Kanpur, Second Hand Laptop Kanpur, Hexa Computronics, Business Laptops, Dell Latitude, HP Elitebook">
+    <title>Hexa Computronics | Premium Refurbished Tech Mall Kanpur</title>
+    <meta name="description" content="Hexa Computronics Kanpur offers premium refurbished business laptops, desktops, and accessories. Certified hardware with easy EMI.">
     
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -17,9 +15,15 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
+        /* Increased Announcement Bar */
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; border-bottom: 2px solid rgba(255,255,255,0.1); }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* Wiggle Offer Bar */
+        .offer-bar { background: #000; color: #fff; padding: 8px 0; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: center; gap: 20px; overflow: hidden; }
+        .wiggle-text { color: #ffcc00; animation: wiggle 2s ease-in-out infinite; display: inline-block; }
+        @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
 
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; transition: 0.3s; }
 
@@ -28,7 +32,7 @@
 
         .card { transition: transform 0.4s ease, box-shadow 0.4s ease; min-width: 280px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #eee; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .card:hover { transform: scale(1.05); z-index: 50; border-color: var(--red); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 160px; object-fit: contain; background: #fff; padding: 15px; content-visibility: auto; }
+        .card img { width: 100%; height: 160px; object-fit: contain; background: #fff; padding: 15px; }
 
         .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--red); padding-left: 15px; margin-top: 50px; text-transform: uppercase; font-style: italic; color: var(--text-dark); }
         .hero-vignette { background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); }
@@ -45,6 +49,14 @@
 
     <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
 
+    <div class="offer-bar">
+        <span>🔥 <span class="wiggle-text">LIMITED TIME OFFER</span></span>
+        <span class="hidden md:inline">|</span>
+        <span>⚠️ <span class="wiggle-text">LIMITED STOCK LEFT</span></span>
+        <span class="hidden md:inline">|</span>
+        <span>💎 <span class="wiggle-text">LOWEST EMI GUARANTEED</span></span>
+    </div>
+
     <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
         <div class="flex items-center space-x-10">
             <a href="index.html" class="flex flex-col items-center">
@@ -55,6 +67,7 @@
                 <a href="index.html" class="text-red-600 border-b-2 border-red-600">Home</a>
                 <a href="laptops.html" class="text-gray-500 hover:text-black transition">Laptops</a>
                 <a href="desktops.html" class="text-gray-500 hover:text-black transition">Desktops</a>
+                <a href="accessories.html" class="text-gray-500 hover:text-black transition">Accessories</a>
             </div>
         </div>
         <div class="flex items-center space-x-6 text-2xl">
@@ -69,21 +82,21 @@
                 <h2 class="text-xl font-black italic uppercase">Quick Search</h2>
                 <button onclick="closeSearch()" class="text-gray-400 hover:text-red-600 text-2xl">&times;</button>
             </div>
-            <input type="text" id="mainSearch" placeholder="Type Model (e.g. Dell Latitude)..." class="w-full bg-gray-50 border border-gray-200 p-4 rounded text-sm text-black outline-none focus:border-red-600 shadow-inner" onkeyup="liveSearch()">
+            <input type="text" id="mainSearch" placeholder="Search product..." class="w-full bg-gray-50 border border-gray-200 p-4 rounded text-sm text-black outline-none" onkeyup="liveSearch()">
             <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto space-y-2"></div>
         </div>
     </div>
 
     <div id="quoteModal">
         <div class="modal-inner">
-            <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+            <div class="flex justify-between items-center mb-6">
                 <h2 class="text-xl font-black text-black italic uppercase">Request Quote</h2>
                 <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl">&times;</button>
             </div>
             <form class="space-y-4">
-                <input type="text" id="qName" placeholder="Enter Name" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
-                <input type="tel" id="qPhone" placeholder="WhatsApp Number" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
-                <textarea id="qReq" placeholder="e.g. i5 Laptop, 16GB RAM, 5 Units" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm h-24 text-black outline-none focus:border-red-600 resize-none" required></textarea>
+                <input type="text" id="qName" placeholder="Enter Name" class="w-full bg-gray-50 border p-3 rounded" required>
+                <input type="tel" id="qPhone" placeholder="WhatsApp Number" class="w-full bg-gray-50 border p-3 rounded" required>
+                <textarea id="qReq" placeholder="Requirement details..." class="w-full bg-gray-50 border p-3 rounded h-24 resize-none" required></textarea>
                 <button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic tracking-widest hover:bg-black transition-all">Submit Request</button>
             </form>
         </div>
@@ -101,6 +114,7 @@
     <main class="relative z-20 -mt-24 px-6 md:px-12 space-y-12 pb-20">
         <section><h2 class="section-label italic">Enterprise Laptops</h2><div id="laptop-row" class="netflix-row"></div></section>
         <section><h2 class="section-label italic">Business Desktops</h2><div id="desktop-row" class="netflix-row"></div></section>
+        <section><h2 class="section-label italic">Tech Accessories</h2><div id="accessories-row" class="netflix-row"></div></section>
     </main>
 
     <footer class="bg-gray-50 py-20 px-6 md:px-12 border-t border-gray-200 text-gray-500">
@@ -111,6 +125,7 @@
                     <li><a href="index.html" class="footer-link">Home Store</a></li>
                     <li><a href="laptops.html" class="footer-link">Laptops Inventory</a></li>
                     <li><a href="desktops.html" class="footer-link">Desktop Tower</a></li>
+                    <li><a href="accessories.html" class="footer-link">Accessories</a></li>
                 </ul>
             </div>
             <div>
@@ -130,7 +145,7 @@
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fas fa-envelope text-red-600"></i>
-                        <a href="mailto:info@hexacomputer.in" class="hover:text-black transition">info@hexacomputer.in</a>
+                        <a href="mailto:info@hexacomputer.in" class="hover:text-black">info@hexacomputer.in</a>
                     </li>
                     <li class="flex items-center gap-3 font-black text-black">
                         <i class="fab fa-whatsapp text-green-600 text-lg"></i>
@@ -141,12 +156,11 @@
             <div class="text-right md:text-left">
                 <h4 class="footer-link-head">Follow Us</h4>
                 <div class="flex space-x-6 text-3xl mb-6 justify-end md:justify-start">
-                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/919935529306" target="_blank" style="color: #25D366;" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
                 </div>
-                <p class="text-[9px] uppercase font-black tracking-widest text-gray-400">100% Secure Payments via Razorpay</p>
+                <p class="text-[9px] uppercase font-black text-gray-400">100% Secure Payments via Razorpay</p>
             </div>
         </div>
         <div class="mt-20 pt-10 border-t border-gray-200 text-center">
@@ -156,38 +170,6 @@
 
     <script>
         let fullData = [];
-
-        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('mainSearch').focus(); }
-        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
-        
-        function liveSearch() {
-            const query = document.getElementById('mainSearch').value.toLowerCase();
-            const results = fullData.filter(i => i.model.toLowerCase().includes(query)).slice(0, 5);
-            const container = document.getElementById('searchResults');
-            if(query === "") { container.innerHTML = ""; return; }
-            container.innerHTML = results.map(item => `
-                <div onclick="location.href='product-details.html?id=${item.id}'" class="flex items-center gap-4 p-2 hover:bg-gray-50 rounded cursor-pointer border-b border-gray-100">
-                    <img src="${item.images[0]}" alt="${item.model}" class="w-10 h-10 object-contain" loading="lazy">
-                    <div>
-                        <p class="text-xs font-black uppercase italic">${item.model}</p>
-                        <p class="text-[10px] text-red-600 font-bold">₹${item.price.toLocaleString()}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
-        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
-        
-        function sendToWA() {
-            const name = document.getElementById('qName').value;
-            const phone = document.getElementById('qPhone').value;
-            const req = document.getElementById('qReq').value;
-            if(!name || !phone || !req) { alert("Please fill in all details!"); return; }
-            const message = `*NEW HEXA QUOTE REQUEST*%0A------------------%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Requirement:* ${req}`;
-            window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
-            closeQuote();
-        }
 
         async function init() {
             try {
@@ -208,7 +190,7 @@
                     <div class="p-5">
                         <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i></div>
                         <h3 class="font-bold text-sm text-black truncate uppercase italic tracking-tighter">${item.model}</h3>
-                        <p class="text-[10px] text-gray-400 mt-1 uppercase font-black tracking-widest">${item.processor} | ${item.ram}</p>
+                        <p class="text-[10px] text-gray-400 mt-1 uppercase font-black tracking-widest">${item.processor || ''} ${item.ram || ''}</p>
                         <div class="mt-4 flex justify-between items-center">
                             <span class="text-base font-black text-black italic">₹${item.price.toLocaleString()}</span>
                             <span class="text-[8px] text-gray-400 font-black uppercase">${item.warranty || 'Certified'}</span>
@@ -218,6 +200,25 @@
             };
             document.getElementById('laptop-row').innerHTML = fullData.filter(i => i.category === "Laptop").map(createCard).join('');
             document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
+            document.getElementById('accessories-row').innerHTML = fullData.filter(i => i.category === "Accessories").map(createCard).join('');
+        }
+
+        // Search & WA Functions remain same
+        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('mainSearch').focus(); }
+        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
+        function liveSearch() {
+            const query = document.getElementById('mainSearch').value.toLowerCase();
+            const results = fullData.filter(i => i.model.toLowerCase().includes(query)).slice(0, 5);
+            const container = document.getElementById('searchResults');
+            if(query === "") { container.innerHTML = ""; return; }
+            container.innerHTML = results.map(item => `<div onclick="location.href='product-details.html?id=${item.id}'" class="flex items-center gap-4 p-2 hover:bg-gray-50 rounded cursor-pointer border-b border-gray-100"><img src="${item.images[0]}" class="w-10 h-10 object-contain"><div><p class="text-xs font-black uppercase italic">${item.model}</p><p class="text-[10px] text-red-600 font-bold">₹${item.price.toLocaleString()}</p></div></div>`).join('');
+        }
+        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
+        function sendToWA() {
+            const name = document.getElementById('qName').value; const phone = document.getElementById('qPhone').value; const req = document.getElementById('qReq').value;
+            if(!name || !phone || !req) { alert("Please fill details!"); return; }
+            window.open(`https://wa.me/919935529306?text=*HEXA QUOTE*%0A*Name:* ${name}%0A*Requirement:* ${req}`, '_blank');
         }
 
         window.onload = init;
