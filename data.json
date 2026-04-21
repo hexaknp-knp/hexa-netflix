@@ -140,9 +140,9 @@
     "brand": "Lenovo",
     "model": "18.5" INCH FULL HD MONITOR",
     "price": 5400,
+    "images": ["assets/lenovo-19-monitor.webp"],
     "images": ["assets/lenovo-19-1-monitor.webp"],
     "images": ["assets/lenovo-19-2-monitor.webp"],
-    "images": ["assets/lenovo-19-3-monitor.webp"],
     "images": ["assets/lenovo-19-4-monitor.webp"]
     "warranty": "1 Year"
   }
