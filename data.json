@@ -12,9 +12,10 @@
     "warranty": "1 Year",
     "shipping": 100,
     "images": [
-      "assets/desktop-placeholder.jpg",
-      "assets/desktop-side.jpg",
-      "assets/desktop-back.jpg"
+      "assets/Hp-elitedesk-705g4-desktop.webp",
+      "assets/Hp-elitedesk-705g4-desktop1.webp",
+      "assets/Hp-elitedesk-705g4-desktop2.webp",
+      "assets/Hp-elitedesk-705g4-desktop3.webp"
     ],
     "video": "assets/desktop-demo.mp4"
   },
