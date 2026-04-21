@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Accessories | Hexa Computronics Kanpur</title>
+    <meta name="description" content="Buy premium tech accessories in Kanpur. Monitors, Keyboards, Mice, and more at Hexa Computronics.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
+        body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 40px 0; }
+
+        .card { transition: transform 0.4s ease, box-shadow 0.4s ease; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #eee; cursor: pointer; }
+        .card:hover { transform: scale(1.03); border-color: var(--red); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 200px; object-fit: contain; background: #fff; padding: 20px; }
+
+        .page-header { background: #fdfdfd; padding: 60px 0; border-bottom: 1px solid #eee; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
+        <div class="flex items-center space-x-10">
+            <a href="index.html" class="flex flex-col items-center">
+                <img src="assets/newlogo.png" alt="Hexa Logo" class="h-10">
+                <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
+            </a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-gray-500 hover:text-black transition">Home</a>
+                <a href="laptops.html" class="text-gray-500 hover:text-black transition">Laptops</a>
+                <a href="desktops.html" class="text-gray-500 hover:text-black transition">Desktops</a>
+                <a href="accessories.html" class="text-red-600 border-b-2 border-red-600">Accessories</a>
+            </div>
+        </div>
+        <button onclick="location.href='index.html#quote'" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic uppercase">Get Quote</button>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">Tech <span class="text-red-600">Accessories</span></h1>
+        <p class="text-gray-400 mt-4 uppercase font-bold tracking-[0.3em] text-xs">Premium Monitors, Peripherals & More</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 md:px-12">
+        <div id="accessories-grid" class="grid-container">
+            </div>
+    </main>
+
+    <footer class="bg-gray-50 py-10 text-center border-t border-gray-200">
+        <p class="text-[10px] tracking-[0.5em] font-black text-gray-400 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR</p>
+    </footer>
+
+    <script>
+        async function loadAccessories() {
+            try {
+                const res = await fetch('data.json');
+                const data = await res.json();
+                const grid = document.getElementById('accessories-grid');
+                
+                const accessories = data.filter(item => item.category === "Accessories");
+                
+                if(accessories.length === 0) {
+                    grid.innerHTML = "<p class='col-span-full text-center text-gray-400 py-20'>No accessories found in stock.</p>";
+                    return;
+                }
+
+                grid.innerHTML = accessories.map(item => `
+                    <div class="card" onclick="location.href='product-details.html?id=${item.id}'">
+                        <img src="${item.images[0]}" alt="${item.model}" loading="lazy">
+                        <div class="p-6">
+                            <h3 class="font-black text-lg italic uppercase tracking-tighter">${item.model}</h3>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">${item.brand}</p>
+                            <div class="mt-6 flex justify-between items-center border-t pt-4">
+                                <span class="text-xl font-black italic text-red-600">₹${item.price.toLocaleString()}</span>
+                                <span class="text-[9px] bg-gray-100 px-2 py-1 rounded font-black uppercase text-gray-500">${item.warranty || 'Certified'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error("Failed to load data", e);
+            }
+        }
+        window.onload = loadAccessories;
+    </script>
+</body>
+</html>
