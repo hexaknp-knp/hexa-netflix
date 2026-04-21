@@ -35,11 +35,15 @@
         .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--red); padding-left: 15px; margin-top: 50px; text-transform: uppercase; font-style: italic; color: var(--text-dark); }
         .hero-vignette { background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); }
         
-        #cartModal { display: none; position: fixed; inset: 0; z-index: 3000; }
-        .cart-inner { position: absolute; right: 0; top: 0; height: 100%; width: 100%; max-w-md; background: #fff; box-shadow: -10px 0 30px rgba(0,0,0,0.1); padding: 30px; display: flex; flex-direction: column; }
+        .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
+        .footer-link { color: #666; font-size: 14px; transition: 0.3s; }
+        .footer-link:hover { color: var(--red); }
 
         #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
         .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: #000; }
+
+        /* Added for Cart Sidebar without changing others */
+        #cartSidebar { display: none; position: fixed; right: 0; top: 0; height: 100%; width: 100%; max-width: 400px; background: #fff; z-index: 4000; box-shadow: -5px 0 15px rgba(0,0,0,0.2); padding: 25px; flex-direction: column; }
     </style>
 </head>
 <body>
@@ -68,7 +72,7 @@
             </div>
         </div>
         <div class="flex items-center space-x-6 text-2xl">
-            <div class="relative cursor-pointer" onclick="openCart()">
+            <div class="relative cursor-pointer" onclick="toggleCart()">
                 <i class="fas fa-shopping-cart text-gray-700 hover:text-red-600"></i>
                 <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">0</span>
             </div>
@@ -77,21 +81,18 @@
         </div>
     </nav>
 
-    <div id="cartModal">
-        <div class="absolute inset-0 bg-black/40" onclick="closeCart()"></div>
-        <div class="cart-inner">
-            <div class="flex justify-between items-center border-b pb-4 mb-6">
-                <h2 class="text-xl font-black italic uppercase">Your Shopping Cart</h2>
-                <button onclick="closeCart()" class="text-3xl">&times;</button>
+    <div id="cartSidebar">
+        <div class="flex justify-between items-center mb-6 border-b pb-4">
+            <h2 class="text-xl font-black italic uppercase">Cart Items</h2>
+            <button onclick="toggleCart()" class="text-3xl">&times;</button>
+        </div>
+        <div id="cart-list" class="flex-1 overflow-y-auto space-y-4"></div>
+        <div class="border-t pt-6">
+            <div class="flex justify-between text-xl font-black italic mb-4">
+                <span>TOTAL:</span>
+                <span id="cart-total">₹0</span>
             </div>
-            <div id="cart-items" class="flex-1 overflow-y-auto space-y-4 pr-2"></div>
-            <div class="border-t pt-6 mt-4">
-                <div class="flex justify-between text-xl font-black italic mb-6">
-                    <span>TOTAL:</span>
-                    <span id="cart-total" class="text-red-600">₹0</span>
-                </div>
-                <button onclick="checkoutWA()" class="w-full bg-green-600 text-white py-4 rounded font-black italic uppercase tracking-widest hover:bg-black transition">Send Order via WhatsApp</button>
-            </div>
+            <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 text-white py-4 rounded font-black italic uppercase">Order via WhatsApp</button>
         </div>
     </div>
 
@@ -148,12 +149,29 @@
                 </ul>
             </div>
             <div>
+                <h4 class="footer-link-head">Support & Policies</h4>
+                <ul class="space-y-3">
+                    <li><a href="shipping-policy.html" class="footer-link">Shipping Policy</a></li>
+                    <li><a href="legal.html" class="footer-link">Legal & Refund</a></li>
+                    <li><a href="services.html" class="footer-link">Our Services</a></li>
+                </ul>
+            </div>
+            <div>
                 <h4 class="footer-link-head text-red-600">Contact Us</h4>
                 <ul class="space-y-4 text-sm font-medium">
-                    <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt mt-1 text-red-600"></i><span>119/540 New Basant Cinema Building, Gumti No.5, Kanpur</span></li>
+                    <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt mt-1 text-red-600"></i><span>119/540 New Basant Cinema Building, Gumti No.5, Kanpur, UP - 208012</span></li>
                     <li class="flex items-center gap-3"><i class="fas fa-envelope text-red-600"></i><a href="mailto:info@hexacomputer.in">info@hexacomputer.in</a></li>
                     <li class="flex items-center gap-3 font-black text-black"><i class="fab fa-whatsapp text-green-600 text-lg"></i><span>+91 9935529306</span></li>
                 </ul>
+            </div>
+            <div class="text-right md:text-left">
+                <h4 class="footer-link-head">Follow Us</h4>
+                <div class="flex space-x-6 text-3xl mb-6 justify-end md:justify-start">
+                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="text-[9px] uppercase font-black text-gray-400">100% Secure Payments via Razorpay</p>
             </div>
         </div>
         <div class="mt-20 pt-10 border-t border-gray-200 text-center">
@@ -163,100 +181,25 @@
 
     <script>
         let fullData = [];
-        let cart = JSON.parse(localStorage.getItem('hexaCart')) || [];
+        let cart = JSON.parse(localStorage.getItem('hexa_cart')) || [];
 
-        function openCart() { document.getElementById('cartModal').style.display = 'block'; renderCart(); }
-        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
+        function toggleCart() {
+            const side = document.getElementById('cartSidebar');
+            side.style.display = (side.style.display === 'flex') ? 'none' : 'flex';
+            renderCart();
+        }
 
         function renderCart() {
-            const container = document.getElementById('cart-items');
+            const list = document.getElementById('cart-list');
             const totalEl = document.getElementById('cart-total');
-            const countEl = document.getElementById('cart-count');
-            countEl.innerText = cart.length;
-
+            document.getElementById('cart-count').innerText = cart.length;
+            
             if(cart.length === 0) {
-                container.innerHTML = `<p class="text-center py-20 text-gray-400 italic">Your cart is empty!</p>`;
+                list.innerHTML = `<p class="text-center py-10 text-gray-400 italic">Empty</p>`;
                 totalEl.innerText = "₹0";
                 return;
             }
-
             let total = 0;
-            container.innerHTML = cart.map((item, idx) => {
+            list.innerHTML = cart.map((item, i) => {
                 total += item.price;
-                return `
-                <div class="flex items-center gap-4 border-b pb-4">
-                    <img src="${item.img}" class="w-16 h-16 object-contain border p-1 rounded">
-                    <div class="flex-1">
-                        <p class="text-xs font-black uppercase italic">${item.name}</p>
-                        <p class="font-bold text-red-600">₹${item.price.toLocaleString()}</p>
-                    </div>
-                    <button onclick="removeFromCart(${idx})" class="text-gray-300 hover:text-red-600"><i class="fas fa-trash"></i></button>
-                </div>`;
-            }).join('');
-            totalEl.innerText = `₹${total.toLocaleString()}`;
-        }
-
-        function removeFromCart(idx) { cart.splice(idx, 1); localStorage.setItem('hexaCart', JSON.stringify(cart)); renderCart(); }
-
-        function checkoutWA() {
-            if(cart.length === 0) return;
-            let msg = `*HEXA COMPUTRONICS ORDER*%0A------------------%0A`;
-            let total = 0;
-            cart.forEach((item, idx) => {
-                msg += `${idx+1}. *${item.name}* - ₹${item.price.toLocaleString()}%0A`;
-                total += item.price;
-            });
-            msg += `------------------%0A*TOTAL: ₹${total.toLocaleString()}*%0A%0APlease confirm my order!`;
-            window.open(`https://wa.me/919935529306?text=${msg}`, '_blank');
-        }
-
-        async function init() {
-            try {
-                const res = await fetch('data.json');
-                fullData = await res.json();
-                loadRows();
-                renderCart();
-            } catch (e) { console.error("Data fail"); }
-        }
-
-        function loadRows() {
-            const createCard = (item) => {
-                const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
-                return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
-                    <div class="relative">
-                        <img src="${item.images[0]}" alt="${item.model}" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-red-600 text-white text-[8px] px-2 py-1 rounded font-black uppercase">₹${emi}/MO*</div>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-sm text-black truncate uppercase italic">${item.model}</h3>
-                        <p class="text-[10px] text-gray-400 mt-1 uppercase font-black tracking-widest">${item.processor || ''} ${item.ram || ''}</p>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-base font-black text-black italic">₹${item.price.toLocaleString()}</span>
-                            <span class="text-[8px] text-gray-400 font-black uppercase">Certified</span>
-                        </div>
-                    </div>
-                </div>`;
-            };
-            document.getElementById('laptop-row').innerHTML = fullData.filter(i => i.category === "Laptop").map(createCard).join('');
-            document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
-            document.getElementById('accessories-row').innerHTML = fullData.filter(i => i.category === "Accessories").map(createCard).join('');
-        }
-
-        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; }
-        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
-        function liveSearch() {
-            const q = document.getElementById('mainSearch').value.toLowerCase();
-            const res = fullData.filter(i => i.model.toLowerCase().includes(q)).slice(0, 5);
-            document.getElementById('searchResults').innerHTML = res.map(i => `<div onclick="location.href='product-details.html?id=${i.id}'" class="flex items-center gap-4 p-2 hover:bg-gray-50 cursor-pointer"><img src="${i.images[0]}" class="w-10 h-10 object-contain"><div><p class="text-xs font-black uppercase">${i.model}</p><p class="text-xs text-red-600">₹${i.price.toLocaleString()}</p></div></div>`).join('');
-        }
-        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
-        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
-        function sendToWA() {
-            const n = document.getElementById('qName').value; const r = document.getElementById('qReq').value;
-            window.open(`https://wa.me/919935529306?text=*HEXA QUOTE*%0A*Name:* ${n}%0A*Requirement:* ${r}`, '_blank');
-        }
-
-        window.onload = init;
-    </script>
-</body>
-</html>
+                return `<div class="flex items-
