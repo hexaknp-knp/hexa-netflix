@@ -133,5 +133,14 @@
       "assets/dell-latitude-5420-3.webp"
     ],
     "video": "assets/dell-latitude-5420.mp4"
-  }
+  },
+  {
+  "id": "ACC-MON-01",
+  "category": "Accessories",
+  "brand": "Dell",
+  "model": "24 INCH FULL HD MONITOR",
+  "price": 4500,
+  "images": ["assets/monitor.webp"],
+  "warranty": "1 Year"
+}
 ]
