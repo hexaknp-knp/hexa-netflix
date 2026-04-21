@@ -72,8 +72,8 @@
     "shipping": 100,
     "images": [
       "assets/lenovo-m720q-1-desktop.webp",
-       "assets/lenovo-m720q-2-desktop",
-       "assets/lenovo-m720q-3-desktop"
+       "assets/lenovo-m720q-2-desktop.webp",
+       "assets/lenovo-m720q-3-desktop.webp"
     ],
     "video": ""
   },
