@@ -137,10 +137,10 @@
   {
     "id": "ACC-MON-01",
     "category": "Accessories",
-    "brand": "Dell",
-    "model": "24 INCH FULL HD MONITOR",
-    "price": 4500,
-    "images": ["assets/monitor.webp"],
+    "brand": "Lenovo",
+    "model": "18.5" INCH FULL HD MONITOR",
+    "price": 5400,
+    "images": ["assets/lenovo-monitor.webp"],
     "warranty": "1 Year"
   }
 ]
