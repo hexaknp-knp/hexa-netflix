@@ -147,5 +147,24 @@
       "assets/lenovo-19-4-monitor.webp"
     ],
     "warranty": "1 Year"
+  },
+  {
+    "id": "QCNBAG06331",
+    "category": "Laptop",
+    "brand": "Lenovo",
+    "model": "T14- TOUCH",
+    "processor": "CORE I5-10TH GEN",
+    "ram": "16 GB",
+    "ssd": "512 GB SSD",
+    "price": 29550,
+    "emi_months": 12,
+    "warranty": "10 DAYS",
+    "shipping": 100,
+    "images": [
+      "assets/lenovo-t14-touch-laptop.webp",
+      "assets/lenovo-t14-touch-laptop1.webp",
+      "assets/lenovo-t14-touch-laptop2.webp"
+    ],
+    "video": "assets/lenovo-t14-touch-laptop.mp4"
   }
 ]
