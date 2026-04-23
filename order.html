@@ -7,42 +7,76 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --red: #E50914; --bg: #ffffff; }
-        body { background-color: var(--bg); color: #000; font-family: 'Inter', sans-serif; margin: 0; }
+        :root { --red: #E50914; --bg: #ffffff; --text-dark: #1a1a1a; }
         
-        /* Navbar Branding - NO CHANGE */
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: #fff; border-bottom: 2px solid #000; }
+        /* FIXED BACKGROUND - HIGH CONTRAST KEYBOARD */
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-dark); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden;
+            /* Yahan humne opacity 0.5 rakhi hai taaki image "Boom" na ho aur saaf dikhe */
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%), 
+                url('https://images.pexels.com/photos/2106216/pexels-photo-2106216.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Darker Vignette for better highlight */
+        .page-vignette { 
+            position: fixed; 
+            inset: 0; 
+            background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.8) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
+        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 4px solid #000; }
         
-        /* Input & Box Style - Exact Black Border Match */
-        .input-field { border: 2px solid #000; padding: 12px; border-radius: 4px; width: 100%; outline: none; margin-top: 5px; font-weight: 700; }
+        .input-field { border: 3px solid #000; padding: 12px; border-radius: 4px; width: 100%; outline: none; margin-top: 5px; font-weight: 800; background: rgba(255,255,255,1); }
         .input-field:focus { border-color: var(--red); }
         
-        .summary-box { background: #fff; border: 2px solid #000; border-radius: 4px; padding: 25px; }
+        .summary-box { background: rgba(255, 255, 255, 1); border: 4px solid #000; border-radius: 4px; padding: 25px; box-shadow: 25px 25px 0px rgba(0,0,0,0.15); }
         
-        /* Button Style - Exact Match */
-        .btn-pay { background: #000; color: #fff; font-weight: 900; text-transform: uppercase; font-style: italic; width: 100%; padding: 20px; border: 2px solid #000; transition: 0.3s; }
-        .btn-pay:hover { background: var(--red); border-color: var(--red); }
+        .btn-pay { background: #000; color: #fff; font-weight: 900; text-transform: uppercase; font-style: italic; width: 100%; padding: 20px; border: 4px solid #000; transition: 0.3s; }
+        .btn-pay:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); }
 
-        /* EMI Box Style - Clean Grey */
-        .emi-info-box { background: #f3f4f6; border-left: 4px solid var(--red); padding: 15px; margin: 15px 0; }
+        .emi-info-box { background: #f9f9f9; border-left: 6px solid var(--red); padding: 15px; margin: 15px 0; border: 1px solid #000; }
+
+        .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
+        .footer-link { color: #000; font-size: 14px; font-weight: 700; transition: 0.3s; }
+        .footer-link:hover { color: var(--red); }
     </style>
 </head>
 <body>
+
+    <div class="page-vignette"></div>
+
+    <div class="marquee-bar">
+        <div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div>
+    </div>
 
     <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
         <div class="flex flex-col items-center">
             <img src="assets/newlogo.png" alt="Hexa Logo" class="h-10">
             <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
         </div>
-        <button onclick="clearCart()" class="text-[10px] font-black uppercase text-red-600 italic border-b border-red-600">Clear Cart</button>
+        <button onclick="clearCart()" class="text-[10px] font-black uppercase text-red-600 italic border-b-2 border-red-600">Clear Cart</button>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <h1 class="text-2xl font-black italic uppercase border-l-4 border-black pl-4 mb-10">Review Your Order</h1>
+    <main class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+        <h1 class="text-5xl font-black italic uppercase border-l-8 border-red-600 pl-4 mb-10 tracking-tighter text-black">Review Your <span class="text-red-600">Order</span></h1>
         
-        <div class="grid md:grid-cols-2 gap-12">
+        <div class="grid md:grid-cols-2 gap-16">
             <div class="space-y-6">
-                <h2 class="font-black uppercase text-sm italic tracking-widest text-gray-400">1. Delivery & Contact</h2>
+                <h2 class="font-black uppercase text-sm italic tracking-widest text-black">1. Delivery & Contact Details</h2>
                 <div class="space-y-4">
                     <input type="text" id="custName" class="input-field" placeholder="FULL NAME" required>
                     <div class="grid grid-cols-2 gap-4">
@@ -65,21 +99,57 @@
 
                 <div class="emi-info-box">
                     <p class="text-[10px] font-black uppercase text-gray-500 italic">Estimated EMI</p>
-                    <p id="emiDisplay" class="text-2xl font-black italic text-black mt-1">₹0/mo*</p>
-                    <p class="text-[9px] font-bold text-gray-400 mt-2 leading-tight">
-                        * YOU CAN OPT FOR EMI ON THE PAYMENT PAGE. INTEREST RATES WILL BE APPLICABLE AS PER YOUR BANK'S POLICY.
+                    <p id="emiDisplay" class="text-3xl font-black italic text-black mt-1">₹0/mo*</p>
+                    <p class="text-[9px] font-bold text-gray-500 mt-2 leading-tight uppercase">
+                        * OPT FOR EMI ON THE PAYMENT PAGE. AS PER BANK POLICY.
                     </p>
                 </div>
 
-                <div class="flex justify-between text-2xl font-black italic pt-2 mb-8">
+                <div class="flex justify-between text-4xl font-black italic pt-2 mb-8">
                     <span>TOTAL:</span>
                     <span id="grandTotal" class="text-red-600">₹0</span>
                 </div>
 
-                <button onclick="startRazorpay()" class="btn-pay">Pay Now & Confirm</button>
+                <button onclick="startRazorpay()" class="btn-pay shadow-2xl text-xl">Confirm & Pay Now</button>
             </div>
         </div>
     </main>
+
+    <footer class="bg-gray-100 py-20 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto text-left">
+            <div>
+                <h4 class="footer-link-head">Quick Links</h4>
+                <ul class="space-y-3">
+                    <li><a href="index.html" class="footer-link">Home Store</a></li>
+                    <li><a href="laptops.html" class="footer-link">Laptops</a></li>
+                    <li><a href="desktops.html" class="footer-link">Desktops</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-link-head">Policies</h4>
+                <ul class="space-y-3">
+                    <li><a href="shipping-policy.html" class="footer-link">Shipping Policy</a></li>
+                    <li><a href="legal.html" class="footer-link">Legal & Refund</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-link-head text-red-600">Contact Us</h4>
+                <p class="text-xs font-bold leading-relaxed mb-4 uppercase">119/540 New Basant Cinema Building, Gumti No.5, Kanpur</p>
+                <p class="text-xs font-black text-black italic underline tracking-widest">+91 9935529306</p>
+            </div>
+            <div class="text-right">
+                <h4 class="footer-link-head">Follow Us</h4>
+                <div class="flex space-x-6 text-3xl mb-6 justify-end">
+                    <a href="https://youtube.com/@hexacomptech" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-20 pt-10 border-t-2 border-black text-center">
+            <p class="text-[10px] tracking-[0.5em] font-black text-black uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        </div>
+    </footer>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
@@ -88,16 +158,16 @@
 
         function renderOrder() {
             const list = document.getElementById('cart-list');
-            if(cart.length === 0) { list.innerHTML = `<p class="font-bold italic text-gray-400 uppercase text-center py-10">Cart is empty!</p>`; return; }
+            if(cart.length === 0) { list.innerHTML = `<p class="font-bold italic text-black uppercase text-center py-10 border-2 border-dashed border-black">Cart is empty!</p>`; return; }
             
             let sub = 0;
             list.innerHTML = cart.map((item, idx) => {
                 const itemTotal = item.price * item.qty;
                 sub += itemTotal;
-                return `<div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                return `<div class="flex justify-between items-center border-b-2 border-gray-100 pb-2">
                     <div>
                         <p class="text-xs font-black uppercase italic">${item.name}</p>
-                        <p class="text-[9px] font-bold text-gray-400 uppercase">Qty: ${item.qty} x ₹${item.price.toLocaleString()}</p>
+                        <p class="text-[9px] font-bold text-gray-500 uppercase">Qty: ${item.qty} x ₹${item.price.toLocaleString()}</p>
                     </div>
                     <div class="flex items-center gap-4">
                         <span class="font-black italic">₹${itemTotal.toLocaleString()}</span>
@@ -109,8 +179,6 @@
             const gst = Math.round(sub * 0.18);
             const ship = sub > 10000 || sub === 0 ? 0 : 250;
             finalPayable = sub + gst + ship;
-            
-            // EMI Calculation for Display
             const emiValue = Math.round((finalPayable * 1.15) / 12);
 
             document.getElementById('subTotal').innerText = "₹" + sub.toLocaleString();
@@ -126,26 +194,22 @@
             const e = document.getElementById('custEmail').value;
             const a = document.getElementById('custAddress').value;
 
-            if(!n || !p || !e || !a || cart.length === 0) { 
-                alert("Bhai, sari details bhariye!"); 
-                return; 
-            }
+            if(!n || !p || !e || !a || cart.length === 0) { alert("Sari details bhariye Aamir bhai!"); return; }
 
             const options = {
                 "key": "rzp_live_SLFCOQlEEX9giJ",
                 "amount": finalPayable * 100,
                 "currency": "INR",
                 "name": "Hexa Computronics",
-                "description": "Bulk Order Payment",
+                "description": "Premium Tech Mall Order",
                 "prefill": { "name": n, "email": e, "contact": p },
                 "handler": function (res) {
-                    const itemsText = cart.map(i => `${i.name}(x${i.qty})`).join(', ');
-                    const waText = `*ORDER PLACED - HEXA*\n*Items:* ${itemsText}\n*Total:* ₹${finalPayable}\n*Cust:* ${n}\n*PayID:* ${res.razorpay_payment_id}`;
-                    window.open(`https://wa.me/919935529306?text=${encodeURIComponent(waText)}`, '_blank');
+                    const waText = `*ORDER PLACED*%0A*PayID:* ${res.razorpay_payment_id}%0A*Items:* ${cart.length}%0A*Total:* ₹${finalPayable}`;
+                    window.open(`https://wa.me/919935529306?text=${waText}`, '_blank');
                     localStorage.removeItem('hexaCart');
                     window.location.href = "success.html";
                 },
-                "theme": { "color": "#000000" }
+                "theme": { "color": "#E50914" }
             };
             new Razorpay(options).open();
         }
