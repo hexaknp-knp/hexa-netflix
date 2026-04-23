@@ -3,183 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | Hexa Computronics Kanpur</title>
+    <title>Tech Accessories | Hexa Store Kanpur</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --red: #E50914; --bg: #ffffff; --text-dark: #1a1a1a; }
-        body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* Exact Announcement Bar from Index */
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; border-bottom: 2px solid rgba(255,255,255,0.1); }
+        /* FIXED BACKGROUND - HIGHLIGHTED TECH ACCESSORIES */
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-dark); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.75) 10%, rgba(255,255,255,0.35)),
+                url('https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=1600&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-vignette { 
+            position: fixed; 
+            inset: 0; 
+            background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.95) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 4px solid #000; }
 
-        /* Background Tech Visuals (Exact Home Style) */
-        .bg-visual { position: fixed; opacity: 0.04; width: 600px; pointer-events: none; z-index: -1; }
-        .visual-desktop { bottom: -100px; left: -150px; transform: rotate(20deg); }
-        .visual-laptop { top: 20%; right: -150px; transform: rotate(-25deg); }
+        .netflix-card { transition: 0.4s ease; border: 3px solid #000; border-radius: 4px; background: #fff; overflow: hidden; box-shadow: 12px 12px 0px rgba(0,0,0,0.15); }
+        .netflix-card:hover { transform: translateY(-8px); border-color: var(--red); z-index: 10; box-shadow: 18px 18px 0px rgba(229, 9, 20, 0.1); }
+        .netflix-card img { width: 100%; height: 200px; object-fit: contain; padding: 20px; background: white; border-bottom: 2px solid #eee; }
 
-        .media-box { width: 100%; height: 450px; background: #fff; border: 2px solid #000; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .thumb { height: 80px; width: 80px; object-fit: contain; background: #fff; border: 2px solid #000; border-radius: 4px; cursor: pointer; transition: 0.3s; padding: 5px; opacity: 0.7; }
-        .thumb.active { opacity: 1; border-color: var(--red); }
-        
-        .buy-card { background: #fff; border: 2px solid #000; border-radius: 4px; padding: 40px; box-shadow: 10px 10px 0px rgba(0,0,0,0.05); }
-        .btn-cart { background: #000; color: #fff; font-weight: 900; text-transform: uppercase; font-style: italic; transition: 0.3s; width: 100%; padding: 20px; border: 2px solid #000; }
-        .btn-cart:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); }
-
-        /* Footer Matching */
         .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
-        .footer-link { color: #666; font-size: 14px; transition: 0.3s; }
+        .footer-link { color: #000; font-size: 14px; font-weight: 700; transition: 0.3s; }
         .footer-link:hover { color: var(--red); }
     </style>
 </head>
 <body>
 
-    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800" class="bg-visual visual-desktop" alt="">
-    <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800" class="bg-visual visual-laptop" alt="">
+    <div class="page-vignette"></div>
 
     <div class="marquee-bar">
         <div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div>
     </div>
 
     <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
-        <a href="index.html" class="flex flex-col items-center">
-            <img src="assets/newlogo.png" alt="Hexa Logo" class="h-10">
-            <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
-        </a>
-        <div class="flex items-center gap-6">
-            <a href="order.html" class="relative text-black">
-                <i class="fas fa-shopping-basket text-2xl"></i>
-                <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">0</span>
+        <div class="flex items-center space-x-10">
+            <a href="index.html" class="flex flex-col items-center">
+                <img src="assets/newlogo.png" class="h-10">
+                <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
             </a>
-            <a href="index.html" class="text-[11px] font-bold uppercase text-black border-b-2 border-black italic">Back to Store</a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-gray-500 hover:text-black transition">Home</a>
+                <a href="laptops.html" class="text-gray-500 hover:text-black transition">Laptops</a>
+                <a href="desktops.html" class="text-gray-500 hover:text-black transition">Desktops</a>
+                <a href="accessories.html" class="text-red-600 border-b-2 border-red-600">Accessories</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+             <input type="text" id="searchInput" placeholder="Search..." class="hidden md:block bg-white text-xs px-4 py-2 rounded border-2 border-black outline-none w-48 font-black uppercase tracking-tighter">
+             <a href="index.html#quote" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:bg-black transition-all uppercase">Get Quote</a>
         </div>
     </nav>
 
-    <main id="product-content" class="max-w-7xl mx-auto px-6 py-12 min-h-[60vh]"></main>
+    <header class="py-16 px-6 md:px-12 text-center md:text-left">
+        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter text-black leading-none">Tech <br><span class="text-red-600">Accessories</span></h1>
+        <div class="h-2 w-32 bg-red-600 mt-4 mx-auto md:mx-0"></div>
+        <p class="text-gray-600 text-sm font-black uppercase tracking-widest mt-6 italic">Premium Keyboards, Mice, Monitors & More</p>
+    </header>
 
-    <footer class="bg-gray-50 py-20 px-6 md:px-12 border-t border-gray-200 text-gray-500">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-24 px-6 md:px-12 relative z-10"></div>
+
+    <footer class="bg-gray-100 py-20 px-6 md:px-12 border-t-4 border-black text-gray-700 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto text-left">
             <div>
                 <h4 class="footer-link-head">Quick Links</h4>
                 <ul class="space-y-3">
                     <li><a href="index.html" class="footer-link">Home Store</a></li>
-                    <li><a href="laptops.html" class="footer-link">Laptops Inventory</a></li>
-                    <li><a href="desktops.html" class="footer-link">Desktop Tower</a></li>
+                    <li><a href="laptops.html" class="footer-link">Laptops</a></li>
                     <li><a href="accessories.html" class="footer-link">Accessories</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-link-head">Support & Policies</h4>
-                <ul class="space-y-3">
-                    <li><a href="shipping-policy.html" class="footer-link">Shipping Policy</a></li>
-                    <li><a href="legal.html" class="footer-link">Legal & Refund</a></li>
-                    <li><a href="services.html" class="footer-link">Our Services</a></li>
-                </ul>
-            </div>
-            <div>
                 <h4 class="footer-link-head text-red-600">Contact Us</h4>
-                <ul class="space-y-4 text-sm font-medium">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-map-marker-alt mt-1 text-red-600"></i>
-                        <span>119/540 New Basant Cinema Building, Gumti No.5, Kanpur, UP - 208012</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-envelope text-red-600"></i>
-                        <a href="mailto:info@hexacomputer.in" class="hover:text-black transition">info@hexacomputer.in</a>
-                    </li>
-                    <li class="flex items-center gap-3 font-black text-black">
-                        <i class="fab fa-whatsapp text-green-600 text-lg"></i>
-                        <span>+91 9935529306</span>
-                    </li>
-                </ul>
+                <p class="text-xs font-bold leading-relaxed mb-4 uppercase">119/540 New Basant Cinema Building, Gumti No.5, Kanpur</p>
+                <p class="text-xs font-black text-black italic underline tracking-widest">+91 9935529306</p>
             </div>
-            <div class="text-right md:text-left">
+            <div class="text-right">
                 <h4 class="footer-link-head">Follow Us</h4>
-                <div class="flex space-x-6 text-3xl mb-6 justify-end md:justify-start">
-                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
-                    <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                <div class="flex space-x-6 text-3xl mb-6 justify-end">
+                    <a href="#" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="#" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
                 </div>
-                <p class="text-[9px] uppercase font-black text-gray-400">100% Secure Payments via Razorpay</p>
             </div>
-        </div>
-        <div class="mt-20 pt-10 border-t border-gray-200 text-center">
-            <p class="text-[10px] tracking-[0.5em] font-black text-gray-400 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
         </div>
     </footer>
 
     <script>
-        let currentItem = null;
-        let cart = JSON.parse(localStorage.getItem('hexaCart')) || [];
-
-        async function load() {
-            const id = new URLSearchParams(window.location.search).get('id');
+        let allAccessories = [];
+        async function fetchProducts() {
             const res = await fetch('data.json');
             const data = await res.json();
-            currentItem = data.find(p => p.id === id);
-            if (!currentItem) return;
+            allAccessories = data.filter(item => item.category === "Accessories");
+            render(allAccessories);
+        }
 
-            updateCartBadge();
-
-            document.getElementById('product-content').innerHTML = `
-                <div class="grid lg:grid-cols-2 gap-16">
-                    <div class="space-y-6">
-                        <div id="main-display" class="media-box"><img src="${currentItem.images[0]}" class="w-full h-full object-contain p-10"></div>
-                        <div class="flex flex-wrap gap-4">${currentItem.images.map((img, idx) => `<img src="${img}" class="thumb ${idx===0?'active':''}" onclick="changeMedia('${img}', this)">`).join('')}</div>
+        function render(data) {
+            document.getElementById('product-container').innerHTML = data.map(item => `
+                <div class="netflix-card" onclick="location.href='product-details.html?id=${item.id}'">
+                    <div class="relative cursor-pointer">
+                        <img src="${item.images[0]}" alt="${item.model}">
+                        <div class="absolute top-3 right-3 bg-black text-white text-[9px] px-3 py-1 rounded-sm font-black shadow-2xl uppercase italic">Certified</div>
                     </div>
-                    <div class="buy-card">
-                        <h1 class="text-5xl font-black uppercase italic leading-none tracking-tighter">${currentItem.model}</h1>
-                        <p class="text-gray-400 mt-4 uppercase font-black text-sm">${currentItem.processor || ''} | ${currentItem.ram || ''}</p>
-                        <div class="mt-10 border-t-2 border-black pt-10">
-                            <p class="text-xs font-black text-gray-400 uppercase">Unit Price</p>
-                            <p class="text-6xl font-black italic text-red-600">₹${currentItem.price.toLocaleString()}</p>
-                            <div class="mt-12 space-y-4">
-                                <div class="flex items-center gap-4 mb-4">
-                                    <label class="font-black uppercase text-xs">Quantity:</label>
-                                    <div class="flex border-2 border-black rounded overflow-hidden">
-                                        <button onclick="changeQty(-1)" class="px-6 py-2 bg-gray-100 hover:bg-black hover:text-white transition">-</button>
-                                        <input type="number" id="item-qty" value="1" min="1" class="w-14 text-center font-black outline-none" readonly>
-                                        <button onclick="changeQty(1)" class="px-6 py-2 bg-gray-100 hover:bg-black hover:text-white transition">+</button>
-                                    </div>
-                                </div>
-                                <button onclick="addToCart()" class="btn-cart text-xl shadow-xl">Add To Cart</button>
-                                <button onclick="window.location.href='order.html'" class="w-full border-2 border-black py-4 rounded font-black uppercase text-xs hover:bg-gray-100 transition">View Cart & Checkout</button>
-                            </div>
+                    <div class="p-8">
+                        <h3 class="font-black text-black uppercase truncate italic tracking-tighter text-xl">${item.model}</h3>
+                        <p class="text-[11px] text-gray-500 mt-2 font-black uppercase tracking-widest">${item.processor || 'Tech Gear'}</p>
+                        <div class="mt-6 flex justify-between items-center border-t-2 border-black pt-4">
+                            <span class="text-2xl font-black text-black italic">₹${item.price.toLocaleString()}</span>
                         </div>
+                        <button class="block w-full mt-8 bg-black text-white py-4 rounded font-black text-center text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl italic">▶ View Product</button>
                     </div>
-                </div>`;
+                </div>`).join('');
         }
 
-        function changeQty(v) {
-            const i = document.getElementById('item-qty');
-            if (parseInt(i.value) + v >= 1) i.value = parseInt(i.value) + v;
-        }
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            render(allAccessories.filter(a => a.model.toLowerCase().includes(val)));
+        });
 
-        function addToCart() {
-            const qty = parseInt(document.getElementById('item-qty').value);
-            const idx = cart.findIndex(p => p.id === currentItem.id);
-            if(idx > -1) cart[idx].qty += qty;
-            else cart.push({ id: currentItem.id, name: currentItem.model, price: currentItem.price, img: currentItem.images[0], qty: qty });
-            localStorage.setItem('hexaCart', JSON.stringify(cart));
-            updateCartBadge();
-            alert("Bhai, item cart mein add ho gaya!");
-        }
-
-        function updateCartBadge() { 
-            const count = cart.reduce((s, i) => s + i.qty, 0);
-            document.getElementById('cart-count').innerText = count; 
-        }
-
-        window.changeMedia = (src, el) => {
-            document.getElementById('main-display').innerHTML = `<img src="${src}" class="w-full h-full object-contain p-10">`;
-            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-        };
-        load();
+        fetchProducts();
     </script>
 </body>
 </html>
