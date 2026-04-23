@@ -7,26 +7,64 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
-        body { background: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; }
+        :root { --red: #E50914; --bg: #ffffff; --text-dark: #1a1a1a; }
         
-        /* Sticky Navbar */
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+        /* Netflix Style Background Shadows - HIGHLIGHTED */
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-dark); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+            background-image: 
+                linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+                url('https://images.unsplash.com/photo-1517336712462-877a97b75d38?w=1600&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
 
-        .netflix-card { transition: transform 0.4s ease, box-shadow 0.4s ease; border: 1px solid #eee; border-radius: 8px; background: var(--card-bg); overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .netflix-card:hover { transform: translateY(-5px); border-color: var(--red); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .netflix-card img { width: 100%; height: 200px; object-fit: contain; padding: 20px; background: white; }
+        .page-vignette { 
+            position: fixed; 
+            inset: 0; 
+            background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.9) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Announcement Bar */
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; border-bottom: 2px solid rgba(255,255,255,0.1); }
+        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
+
+        /* Card Styling - Bold Black Border */
+        .netflix-card { transition: 0.4s ease; border: 3px solid #000; border-radius: 4px; background: #fff; overflow: hidden; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
+        .netflix-card:hover { transform: translateY(-8px); border-color: var(--red); box-shadow: 15px 15px 0px rgba(229, 9, 20, 0.1); }
+        .netflix-card img { width: 100%; height: 200px; object-fit: contain; padding: 20px; background: white; border-bottom: 2px solid #eee; }
 
         /* Quote Modal Style */
         #quoteModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
-        .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .modal-inner { background: #fff; border: 4px solid #000; padding: 30px; border-radius: 4px; width: 100%; max-w-md; box-shadow: 20px 20px 0px rgba(0,0,0,0.1); }
+        
+        .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
+        .footer-link { color: #333; font-size: 14px; font-weight: 600; transition: 0.3s; }
+        .footer-link:hover { color: var(--red); }
     </style>
 </head>
-<body class="bg-white">
+<body>
+
+    <div class="page-vignette"></div>
+
+    <div class="marquee-bar">
+        <div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div>
+    </div>
 
     <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
         <div class="flex items-center space-x-10">
-            <a href="index.html" class="flex flex-col items-center text-decoration-none">
+            <a href="index.html" class="flex flex-col items-center">
                 <img src="assets/newlogo.png" class="h-10">
                 <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
             </a>
@@ -37,35 +75,68 @@
             </div>
         </div>
         <div class="flex items-center space-x-4">
-             <input type="text" id="searchInput" placeholder="Search Laptop..." class="hidden md:block bg-gray-50 text-xs px-4 py-2 rounded-full border border-gray-200 outline-none w-48 focus:border-red-600 transition-all text-black">
+             <input type="text" id="searchInput" placeholder="Search Laptop..." class="hidden md:block bg-white text-xs px-4 py-2 rounded border-2 border-black outline-none w-48 focus:border-red-600 transition-all font-bold text-black uppercase tracking-tighter">
              <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:bg-black transition-all uppercase">Get Quote</button>
         </div>
     </nav>
 
     <div id="quoteModal">
         <div class="modal-inner">
-            <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+            <div class="flex justify-between items-center mb-6 border-b-2 border-black pb-4">
                 <h2 class="text-xl font-black text-black italic uppercase tracking-tighter">Laptop Inquiry</h2>
-                <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl">×</button>
+                <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl font-black">×</button>
             </div>
             <form class="space-y-4">
-                <input type="text" id="qName" placeholder="Your Name" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
-                <input type="tel" id="qPhone" placeholder="WhatsApp Number" class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm text-black outline-none focus:border-red-600" required>
-                <textarea id="qReq" placeholder="Example: Need i5 11th Gen Laptop for Graphic Design..." class="w-full bg-gray-50 border border-gray-200 p-3 rounded text-sm h-24 text-black outline-none focus:border-red-600 resize-none" required></textarea>
-                <button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic hover:bg-black transition-all">Submit Request</button>
+                <input type="text" id="qName" placeholder="YOUR NAME" class="w-full bg-gray-50 border-2 border-black p-3 rounded text-xs font-black outline-none focus:border-red-600" required>
+                <input type="tel" id="qPhone" placeholder="WHATSAPP NUMBER" class="w-full bg-gray-50 border-2 border-black p-3 rounded text-xs font-black outline-none focus:border-red-600" required>
+                <textarea id="qReq" placeholder="TELL US YOUR REQUIREMENT..." class="w-full bg-gray-50 border-2 border-black p-3 rounded text-xs font-black h-24 outline-none focus:border-red-600 resize-none" required></textarea>
+                <button type="button" onclick="sendToWA()" class="w-full bg-black text-white font-black py-4 rounded uppercase italic tracking-widest hover:bg-red-600 transition-all shadow-xl">Submit Request</button>
             </form>
         </div>
     </div>
 
-    <header class="py-12 px-6 md:px-12">
-        <h1 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-black">Enterprise <span class="text-red-600">Laptops</span></h1>
-        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-2">Certified Business Class Series</p>
+    <header class="py-16 px-6 md:px-12 text-center md:text-left">
+        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter text-black leading-none">Enterprise <br><span class="text-red-600">Laptops</span></h1>
+        <div class="h-2 w-32 bg-red-600 mt-4 mx-auto md:mx-0"></div>
+        <p class="text-gray-500 text-sm font-black uppercase tracking-widest mt-6 italic">Certified Business Class Series • 100% Verified Hardware</p>
     </header>
 
-    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-24 px-6 md:px-12"></div>
+    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-24 px-6 md:px-12 relative z-10"></div>
 
-    <footer class="bg-gray-50 py-10 px-6 border-t border-gray-200 text-center">
-        <p class="text-[10px] tracking-[0.5em] font-black text-gray-400 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+    <footer class="bg-gray-100 py-20 px-6 md:px-12 border-t-4 border-black text-gray-700 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto text-left">
+            <div>
+                <h4 class="footer-link-head">Quick Links</h4>
+                <ul class="space-y-3">
+                    <li><a href="index.html" class="footer-link">Home Store</a></li>
+                    <li><a href="laptops.html" class="footer-link">Laptops Inventory</a></li>
+                    <li><a href="desktops.html" class="footer-link">Desktops Tower</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-link-head">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="shipping-policy.html" class="footer-link">Shipping Policy</a></li>
+                    <li><a href="legal.html" class="footer-link">Legal & Refund</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-link-head text-red-600">Contact Us</h4>
+                <p class="text-xs font-bold leading-relaxed mb-4 uppercase">119/540 New Basant Cinema Building, Gumti No.5, Kanpur</p>
+                <p class="text-xs font-black text-black italic underline">+91 9935529306</p>
+            </div>
+            <div class="text-right">
+                <h4 class="footer-link-head">Follow Us</h4>
+                <div class="flex space-x-6 text-3xl mb-6 justify-end">
+                    <a href="https://youtube.com/@hexacomptech" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-20 pt-10 border-t-2 border-black text-center">
+            <p class="text-[10px] tracking-[0.5em] font-black text-black uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        </div>
     </footer>
 
     <script>
@@ -78,10 +149,9 @@
             const name = document.getElementById('qName').value;
             const phone = document.getElementById('qPhone').value;
             const req = document.getElementById('qReq').value;
-            if(!name || !phone || !req) { alert("Please fill details!"); return; }
-            const message = `*HEXA LAPTOP INQUIRY*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Requirement:* ${req}`;
+            if(!name || !phone || !req) { alert("Details bharo Aamir bhai!"); return; }
+            const message = `*HEXA LAPTOP INQUIRY*%0A*Name:* ${name}%0A*Requirement:* ${req}`;
             window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
-            closeQuote();
         }
 
         async function fetchLaptops() {
@@ -93,22 +163,22 @@
 
         function render(data) {
             document.getElementById('product-container').innerHTML = data.map(item => {
-                const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
+                const emi = Math.round((item.price * 1.15) / (item.emi_months || 12));
                 return `
                 <div class="netflix-card">
                     <div class="relative">
                         <img src="${item.images[0]}" alt="${item.model}">
-                        <div class="absolute top-2 right-2 bg-red-600 text-white text-[9px] px-2 py-1 rounded-sm font-black shadow-lg">₹${emi}/MO*</div>
+                        <div class="absolute top-3 right-3 bg-red-600 text-white text-[10px] px-3 py-1 rounded-sm font-black shadow-2xl">₹${emi}/MO*</div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i><i class="fas fa-star text-red-600 text-[8px]"></i></div>
-                        <h3 class="font-bold text-black uppercase truncate italic tracking-tighter text-lg">${item.model}</h3>
-                        <p class="text-[10px] text-gray-400 mt-2 font-bold uppercase tracking-widest">${item.processor} | ${item.ram}</p>
-                        <div class="mt-4 flex justify-between items-center">
+                    <div class="p-8">
+                        <div class="flex gap-1 mb-3"><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i></div>
+                        <h3 class="font-black text-black uppercase truncate italic tracking-tighter text-xl">${item.model}</h3>
+                        <p class="text-[11px] text-gray-500 mt-2 font-black uppercase tracking-widest">${item.processor} • ${item.ram}</p>
+                        <div class="mt-6 flex justify-between items-center border-t-2 border-black pt-4">
                             <span class="text-2xl font-black text-black italic">₹${item.price.toLocaleString()}</span>
-                            <span class="text-[8px] text-gray-400 uppercase font-black tracking-widest">${item.warranty || 'Certified'}</span>
+                            <span class="text-[9px] text-gray-400 uppercase font-black tracking-widest italic">${item.warranty || 'Certified'}</span>
                         </div>
-                        <a href="product-details.html?id=${item.id}" class="block w-full mt-6 bg-red-600 text-white py-3 rounded font-black text-center text-[10px] uppercase tracking-widest hover:bg-black transition-all">View Details</a>
+                        <a href="product-details.html?id=${item.id}" class="block w-full mt-8 bg-black text-white py-4 rounded font-black text-center text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl italic">▶ View & Buy</a>
                     </div>
                 </div>`;
             }).join('');
