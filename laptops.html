@@ -9,7 +9,7 @@
     <style>
         :root { --red: #E50914; --bg: #ffffff; --text-dark: #1a1a1a; }
         
-        /* Netflix Style Background Shadows - HIGHLIGHTED */
+        /* FIXED BACKGROUND - HIGH CONTRAST DARK LAPTOP */
         body { 
             background-color: var(--bg); 
             color: var(--text-dark); 
@@ -17,14 +17,16 @@
             margin: 0; 
             overflow-x: hidden; 
             scroll-behavior: smooth;
+            /* Yahan gradient ko thoda dark aur clear kiya hai taaki laptop visual dhang se dikhe */
             background-image: 
-                linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
-                url('https://images.unsplash.com/photo-1517336712462-877a97b75d38?w=1600&q=80');
+                linear-gradient(to right, rgba(255,255,255,0.7) 10%, rgba(255,255,255,0.3)),
+                url('https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1600');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
         }
 
+        /* Vignette Effect to increase depth and clear watermark */
         .page-vignette { 
             position: fixed; 
             inset: 0; 
@@ -33,16 +35,16 @@
             pointer-events: none;
         }
 
-        /* Announcement Bar */
+        /* Announcement Bar from Index */
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; border-bottom: 2px solid rgba(255,255,255,0.1); }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 4px solid #000; transition: 0.3s; }
 
         /* Card Styling - Bold Black Border */
         .netflix-card { transition: 0.4s ease; border: 3px solid #000; border-radius: 4px; background: #fff; overflow: hidden; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
-        .netflix-card:hover { transform: translateY(-8px); border-color: var(--red); box-shadow: 15px 15px 0px rgba(229, 9, 20, 0.1); }
+        .netflix-card:hover { transform: translateY(-8px); border-color: var(--red); z-index: 10; box-shadow: 15px 15px 0px rgba(229, 9, 20, 0.1); }
         .netflix-card img { width: 100%; height: 200px; object-fit: contain; padding: 20px; background: white; border-bottom: 2px solid #eee; }
 
         /* Quote Modal Style */
@@ -110,7 +112,7 @@
                 <ul class="space-y-3">
                     <li><a href="index.html" class="footer-link">Home Store</a></li>
                     <li><a href="laptops.html" class="footer-link">Laptops Inventory</a></li>
-                    <li><a href="desktops.html" class="footer-link">Desktops Tower</a></li>
+                    <li><a href="desktops.html" class="footer-link">Desktop Tower</a></li>
                 </ul>
             </div>
             <div>
