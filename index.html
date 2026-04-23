@@ -1,187 +1,453 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | Hexa Computronics Kanpur</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <title>Hexa Computronics | Premium Refurbished Tech Mall Kanpur</title>
+
+    <meta name="description" content="Hexa Computronics Kanpur offers premium refurbished business laptops, desktops, and accessories. Certified hardware with easy EMI.">
+
     
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+
     <style>
+
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
+
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+
         
-        /* Exact Announcement Bar from Index */
+
+        /* Increased Announcement Bar */
+
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; border-bottom: 2px solid rgba(255,255,255,0.1); }
+
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
+
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+
+
+        /* Wiggle Offer Bar */
+
+        .offer-bar { background: #000; color: #fff; padding: 8px 0; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: center; gap: 20px; overflow: hidden; }
+
+        .wiggle-text { color: #ffcc00; animation: wiggle 2s ease-in-out infinite; display: inline-block; }
+
+        @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
+
+
 
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; transition: 0.3s; }
 
-        /* Shadow Background Images (Index Style) */
-        .bg-shadow-left { position: fixed; top: 20%; left: -150px; opacity: 0.04; width: 600px; pointer-events: none; z-index: -1; transform: rotate(-15deg); }
-        .bg-shadow-right { position: fixed; bottom: 10%; right: -150px; opacity: 0.04; width: 600px; pointer-events: none; z-index: -1; transform: rotate(15deg); }
 
-        .media-box { width: 100%; height: 450px; background: #fff; border: 2px solid #000; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .thumb { height: 80px; width: 80px; object-fit: contain; background: #fff; border: 2px solid #000; border-radius: 4px; cursor: pointer; transition: 0.3s; padding: 5px; opacity: 0.7; }
-        .thumb.active { opacity: 1; border-color: var(--red); }
+
+        .netflix-row { display: flex; overflow-x: auto; gap: 15px; padding: 25px 0; scrollbar-width: none; -ms-overflow-style: none; }
+
+        .netflix-row::-webkit-scrollbar { display: none; }
+
+
+
+        .card { transition: transform 0.4s ease, box-shadow 0.4s ease; min-width: 280px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #eee; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        .card:hover { transform: scale(1.05); z-index: 50; border-color: var(--red); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        .card img { width: 100%; height: 160px; object-fit: contain; background: #fff; padding: 15px; }
+
+
+
+        .section-label { font-size: 1.5rem; font-weight: 800; border-left: 5px solid var(--red); padding-left: 15px; margin-top: 50px; text-transform: uppercase; font-style: italic; color: var(--text-dark); }
+
+        .hero-vignette { background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); }
+
         
-        .buy-card { background: #fff; border: 2px solid #000; border-radius: 4px; padding: 40px; box-shadow: 10px 10px 0px rgba(0,0,0,0.05); }
-        .btn-cart { background: #000; color: #fff; font-weight: 900; text-transform: uppercase; font-style: italic; transition: 0.3s; width: 100%; padding: 20px; border: 2px solid #000; }
-        .btn-cart:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); }
 
-        /* Footer styling match */
         .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
+
         .footer-link { color: #666; font-size: 14px; transition: 0.3s; }
+
         .footer-link:hover { color: var(--red); }
+
+
+
+        #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+
+        .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: #000; }
+
     </style>
+
 </head>
+
 <body>
 
-    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800" class="bg-shadow-left" alt="">
-    <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=800" class="bg-shadow-right" alt="">
 
-    <div class="marquee-bar">
-        <div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div>
+
+    <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
+
+
+
+    <div class="offer-bar">
+
+        <span>🔥 <span class="wiggle-text">LIMITED TIME OFFER</span></span>
+
+        <span class="hidden md:inline">|</span>
+
+        <span>⚠️ <span class="wiggle-text">LIMITED STOCK LEFT</span></span>
+
+        <span class="hidden md:inline">|</span>
+
+        <span>💎 <span class="wiggle-text">LOWEST EMI GUARANTEED</span></span>
+
     </div>
 
+
+
     <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
+
         <div class="flex items-center space-x-10">
+
             <a href="index.html" class="flex flex-col items-center">
-                <img src="assets/newlogo.png" alt="Hexa Logo" class="h-10">
+
+                <img src="assets/newlogo.png" alt="Hexa Computronics Logo" class="h-10">
+
                 <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
+
             </a>
+
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+
+                <a href="index.html" class="text-red-600 border-b-2 border-red-600">Home</a>
+
+                <a href="laptops.html" class="text-gray-500 hover:text-black transition">Laptops</a>
+
+                <a href="desktops.html" class="text-gray-500 hover:text-black transition">Desktops</a>
+
+                <a href="accessories.html" class="text-gray-500 hover:text-black transition">Accessories</a>
+
+            </div>
+
         </div>
-        <div class="flex items-center gap-6">
-            <a href="order.html" class="relative text-black">
-                <i class="fas fa-shopping-basket text-2xl"></i>
-                <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">0</span>
-            </a>
-            <a href="index.html" class="text-[11px] font-bold uppercase text-black border-b-2 border-black italic">Back to Store</a>
+
+        <div class="flex items-center space-x-6 text-2xl">
+
+            <button onclick="openSearch()" aria-label="Search" class="hover:text-red-600 text-gray-700 transition"><i class="fas fa-search"></i></button>
+
+            <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:scale-105 transition uppercase">Get Quote</button>
+
         </div>
+
     </nav>
 
-    <main id="product-content" class="max-w-7xl mx-auto px-6 py-12 min-h-[60vh]"></main>
+
+
+    <div id="searchModal">
+
+        <div class="modal-inner">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h2 class="text-xl font-black italic uppercase">Quick Search</h2>
+
+                <button onclick="closeSearch()" class="text-gray-400 hover:text-red-600 text-2xl">&times;</button>
+
+            </div>
+
+            <input type="text" id="mainSearch" placeholder="Search product..." class="w-full bg-gray-50 border border-gray-200 p-4 rounded text-sm text-black outline-none" onkeyup="liveSearch()">
+
+            <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto space-y-2"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="quoteModal">
+
+        <div class="modal-inner">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h2 class="text-xl font-black text-black italic uppercase">Request Quote</h2>
+
+                <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl">&times;</button>
+
+            </div>
+
+            <form class="space-y-4">
+
+                <input type="text" id="qName" placeholder="Enter Name" class="w-full bg-gray-50 border p-3 rounded" required>
+
+                <input type="tel" id="qPhone" placeholder="WhatsApp Number" class="w-full bg-gray-50 border p-3 rounded" required>
+
+                <textarea id="qReq" placeholder="Requirement details..." class="w-full bg-gray-50 border p-3 rounded h-24 resize-none" required></textarea>
+
+                <button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic tracking-widest hover:bg-black transition-all">Submit Request</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <header class="relative h-[85vh] w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1600&q=80');">
+
+        <div class="absolute inset-0 hero-vignette"></div>
+
+        <div class="relative z-10 max-w-2xl mt-10">
+
+            <h1 class="text-6xl md:text-8xl font-black mb-4 uppercase italic leading-none text-black">Premium <span class="text-red-600">Refurbished</span></h1>
+
+            <p class="text-lg mb-8 text-gray-600 font-bold uppercase tracking-widest italic tracking-tighter leading-none">Kanpur's Professional Tech Mall</p>
+
+            <a href="laptops.html" class="bg-black text-white px-12 py-3 rounded font-black italic shadow-2xl hover:bg-red-600 transition inline-block uppercase">▶ Browse Store</a>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="relative z-20 -mt-24 px-6 md:px-12 space-y-12 pb-20">
+
+        <section><h2 class="section-label italic">Enterprise Laptops</h2><div id="laptop-row" class="netflix-row"></div></section>
+
+        <section><h2 class="section-label italic">Business Desktops</h2><div id="desktop-row" class="netflix-row"></div></section>
+
+        <section><h2 class="section-label italic">Tech Accessories</h2><div id="accessories-row" class="netflix-row"></div></section>
+
+    </main>
+
+
 
     <footer class="bg-gray-50 py-20 px-6 md:px-12 border-t border-gray-200 text-gray-500">
+
         <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+
             <div>
+
                 <h4 class="footer-link-head">Quick Links</h4>
+
                 <ul class="space-y-3">
+
                     <li><a href="index.html" class="footer-link">Home Store</a></li>
+
                     <li><a href="laptops.html" class="footer-link">Laptops Inventory</a></li>
+
                     <li><a href="desktops.html" class="footer-link">Desktop Tower</a></li>
+
                     <li><a href="accessories.html" class="footer-link">Accessories</a></li>
+
                 </ul>
+
             </div>
+
             <div>
+
                 <h4 class="footer-link-head">Support & Policies</h4>
+
                 <ul class="space-y-3">
+
                     <li><a href="shipping-policy.html" class="footer-link">Shipping Policy</a></li>
+
                     <li><a href="legal.html" class="footer-link">Legal & Refund</a></li>
+
                     <li><a href="services.html" class="footer-link">Our Services</a></li>
+
                 </ul>
+
             </div>
+
             <div>
+
                 <h4 class="footer-link-head text-red-600">Contact Us</h4>
+
                 <ul class="space-y-4 text-sm font-medium">
+
                     <li class="flex items-start gap-3">
+
                         <i class="fas fa-map-marker-alt mt-1 text-red-600"></i>
+
                         <span>119/540 New Basant Cinema Building, Gumti No.5, Kanpur, UP - 208012</span>
+
                     </li>
+
                     <li class="flex items-center gap-3">
+
                         <i class="fas fa-envelope text-red-600"></i>
+
                         <a href="mailto:info@hexacomputer.in" class="hover:text-black">info@hexacomputer.in</a>
+
                     </li>
+
                     <li class="flex items-center gap-3 font-black text-black">
+
                         <i class="fab fa-whatsapp text-green-600 text-lg"></i>
+
                         <span>+91 9935529306</span>
+
                     </li>
+
                 </ul>
+
             </div>
+
             <div class="text-right md:text-left">
+
                 <h4 class="footer-link-head">Follow Us</h4>
+
                 <div class="flex space-x-6 text-3xl mb-6 justify-end md:justify-start">
+
                     <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+
                     <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+
                     <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+
                 </div>
+
                 <p class="text-[9px] uppercase font-black text-gray-400">100% Secure Payments via Razorpay</p>
+
             </div>
+
         </div>
+
         <div class="mt-20 pt-10 border-t border-gray-200 text-center">
+
             <p class="text-[10px] tracking-[0.5em] font-black text-gray-400 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+
         </div>
+
     </footer>
 
+
+
     <script>
-        let currentItem = null;
-        let cart = JSON.parse(localStorage.getItem('hexaCart')) || [];
 
-        async function load() {
-            const id = new URLSearchParams(window.location.search).get('id');
-            const res = await fetch('data.json');
-            const data = await res.json();
-            currentItem = data.find(p => p.id === id);
-            if (!currentItem) return;
+        let fullData = [];
 
-            updateCartBadge();
 
-            document.getElementById('product-content').innerHTML = `
-                <div class="grid lg:grid-cols-2 gap-16">
-                    <div class="space-y-6">
-                        <div id="main-display" class="media-box"><img src="${currentItem.images[0]}" class="w-full h-full object-contain p-10"></div>
-                        <div class="flex flex-wrap gap-4">${currentItem.images.map((img, idx) => `<img src="${img}" class="thumb ${idx===0?'active':''}" onclick="changeMedia('${img}', this)">`).join('')}</div>
+
+        async function init() {
+
+            try {
+
+                const res = await fetch('data.json');
+
+                fullData = await res.json();
+
+                loadRows();
+
+            } catch (e) { console.error("Data load failed"); }
+
+        }
+
+
+
+        function loadRows() {
+
+            const createCard = (item) => {
+
+                const emi = Math.round((item.price * 1.18) / (item.emi_months || 12));
+
+                return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
+
+                    <div class="relative">
+
+                        <img src="${item.images[0]}" alt="${item.model} Kanpur" loading="lazy">
+
+                        <div class="absolute top-2 right-2 bg-red-600 text-white text-[8px] px-2 py-1 rounded font-black uppercase">₹${emi}/MO*</div>
+
                     </div>
-                    <div class="buy-card">
-                        <h1 class="text-5xl font-black uppercase italic leading-none tracking-tighter">${currentItem.model}</h1>
-                        <p class="text-gray-400 mt-4 uppercase font-black text-sm">${currentItem.processor || ''} | ${currentItem.ram || ''}</p>
-                        <div class="mt-10 border-t-2 border-black pt-10">
-                            <p class="text-xs font-black text-gray-400 uppercase">Unit Price</p>
-                            <p class="text-6xl font-black italic text-red-600">₹${currentItem.price.toLocaleString()}</p>
-                            <div class="mt-12 space-y-4">
-                                <div class="flex items-center gap-4 mb-4">
-                                    <label class="font-black uppercase text-xs">Quantity:</label>
-                                    <div class="flex border-2 border-black rounded overflow-hidden">
-                                        <button onclick="changeQty(-1)" class="px-6 py-2 bg-gray-100 hover:bg-black hover:text-white transition">-</button>
-                                        <input type="number" id="item-qty" value="1" min="1" class="w-14 text-center font-black outline-none" readonly>
-                                        <button onclick="changeQty(1)" class="px-6 py-2 bg-gray-100 hover:bg-black hover:text-white transition">+</button>
-                                    </div>
-                                </div>
-                                <button onclick="addToCart()" class="btn-cart text-xl shadow-xl">Add To Cart</button>
-                                <button onclick="window.location.href='order.html'" class="w-full border-2 border-black py-4 rounded font-black uppercase text-xs hover:bg-gray-100 transition">View Cart & Checkout</button>
-                            </div>
+
+                    <div class="p-5">
+
+                        <div class="flex gap-1 mb-2"><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i><i class="fas fa-star text-red-600 text-[9px]"></i></div>
+
+                        <h3 class="font-bold text-sm text-black truncate uppercase italic tracking-tighter">${item.model}</h3>
+
+                        <p class="text-[10px] text-gray-400 mt-1 uppercase font-black tracking-widest">${item.processor || ''} ${item.ram || ''}</p>
+
+                        <div class="mt-4 flex justify-between items-center">
+
+                            <span class="text-base font-black text-black italic">₹${item.price.toLocaleString()}</span>
+
+                            <span class="text-[8px] text-gray-400 font-black uppercase">${item.warranty || 'Certified'}</span>
+
                         </div>
+
                     </div>
+
                 </div>`;
+
+            };
+
+            document.getElementById('laptop-row').innerHTML = fullData.filter(i => i.category === "Laptop").map(createCard).join('');
+
+            document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
+
+            document.getElementById('accessories-row').innerHTML = fullData.filter(i => i.category === "Accessories").map(createCard).join('');
+
         }
 
-        function changeQty(v) {
-            const i = document.getElementById('item-qty');
-            if (parseInt(i.value) + v >= 1) i.value = parseInt(i.value) + v;
+
+
+        // Search & WA Functions remain same
+
+        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('mainSearch').focus(); }
+
+        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
+
+        function liveSearch() {
+
+            const query = document.getElementById('mainSearch').value.toLowerCase();
+
+            const results = fullData.filter(i => i.model.toLowerCase().includes(query)).slice(0, 5);
+
+            const container = document.getElementById('searchResults');
+
+            if(query === "") { container.innerHTML = ""; return; }
+
+            container.innerHTML = results.map(item => `<div onclick="location.href='product-details.html?id=${item.id}'" class="flex items-center gap-4 p-2 hover:bg-gray-50 rounded cursor-pointer border-b border-gray-100"><img src="${item.images[0]}" class="w-10 h-10 object-contain"><div><p class="text-xs font-black uppercase italic">${item.model}</p><p class="text-[10px] text-red-600 font-bold">₹${item.price.toLocaleString()}</p></div></div>`).join('');
+
         }
 
-        function addToCart() {
-            const qty = parseInt(document.getElementById('item-qty').value);
-            const idx = cart.findIndex(p => p.id === currentItem.id);
-            if(idx > -1) cart[idx].qty += qty;
-            else cart.push({ id: currentItem.id, name: currentItem.model, price: currentItem.price, img: currentItem.images[0], qty: qty });
-            localStorage.setItem('hexaCart', JSON.stringify(cart));
-            updateCartBadge();
-            alert("Mubarak ho! Item cart mein add ho gaya.");
+        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
+
+        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
+
+        function sendToWA() {
+
+            const name = document.getElementById('qName').value; const phone = document.getElementById('qPhone').value; const req = document.getElementById('qReq').value;
+
+            if(!name || !phone || !req) { alert("Please fill details!"); return; }
+
+            window.open(`https://wa.me/919935529306?text=*HEXA QUOTE*%0A*Name:* ${name}%0A*Requirement:* ${req}`, '_blank');
+
         }
 
-        function updateCartBadge() { 
-            const count = cart.reduce((s, i) => s + i.qty, 0);
-            document.getElementById('cart-count').innerText = count; 
-        }
 
-        window.changeMedia = (src, el) => {
-            document.getElementById('main-display').innerHTML = `<img src="${src}" class="w-full h-full object-contain p-10">`;
-            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-        };
-        load();
+
+        window.onload = init;
+
     </script>
+
 </body>
+
 </html>
