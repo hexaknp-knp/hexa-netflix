@@ -9,7 +9,7 @@
     <style>
         :root { --red: #E50914; --bg: #ffffff; --text-dark: #1a1a1a; }
         
-        /* FIXED BACKGROUND - HIGHLIGHTED TECH ACCESSORIES */
+        /* FIXED BACKGROUND - HIGH CONTRAST DARK ACCESSORIES VISUAL */
         body { 
             background-color: var(--bg); 
             color: var(--text-dark); 
@@ -17,9 +17,10 @@
             margin: 0; 
             overflow-x: hidden; 
             scroll-behavior: smooth;
+            /* Highlighted Dark Image for Accessories */
             background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.75) 10%, rgba(255,255,255,0.35)),
-                url('https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=1600&q=80');
+                linear-gradient(to right, rgba(255,255,255,0.7) 10%, rgba(255,255,255,0.3)),
+                url('https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1600');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
@@ -28,23 +29,26 @@
         .page-vignette { 
             position: fixed; 
             inset: 0; 
-            background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.95) 100%);
+            background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.9) 100%);
             z-index: -1;
             pointer-events: none;
         }
 
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
+        /* Announcement Bar Match */
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; border-bottom: 2px solid rgba(255,255,255,0.1); }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 4px solid #000; }
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 4px solid #000; transition: 0.3s; }
 
-        .netflix-card { transition: 0.4s ease; border: 3px solid #000; border-radius: 4px; background: #fff; overflow: hidden; box-shadow: 12px 12px 0px rgba(0,0,0,0.15); }
-        .netflix-card:hover { transform: translateY(-8px); border-color: var(--red); z-index: 10; box-shadow: 18px 18px 0px rgba(229, 9, 20, 0.1); }
+        /* Card Styling - Bold Black Border (Same as Laptops) */
+        .netflix-card { transition: 0.4s ease; border: 3px solid #000; border-radius: 4px; background: #fff; overflow: hidden; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
+        .netflix-card:hover { transform: translateY(-8px); border-color: var(--red); z-index: 10; box-shadow: 15px 15px 0px rgba(229, 9, 20, 0.1); }
         .netflix-card img { width: 100%; height: 200px; object-fit: contain; padding: 20px; background: white; border-bottom: 2px solid #eee; }
 
+        /* Footer Style Match - Exact Laptops.html Copy */
         .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
-        .footer-link { color: #000; font-size: 14px; font-weight: 700; transition: 0.3s; }
+        .footer-link { color: #333; font-size: 14px; font-weight: 600; transition: 0.3s; }
         .footer-link:hover { color: var(--red); }
     </style>
 </head>
@@ -70,7 +74,7 @@
             </div>
         </div>
         <div class="flex items-center space-x-4">
-             <input type="text" id="searchInput" placeholder="Search..." class="hidden md:block bg-white text-xs px-4 py-2 rounded border-2 border-black outline-none w-48 font-black uppercase tracking-tighter">
+             <input type="text" id="searchInput" placeholder="Search Gear..." class="hidden md:block bg-white text-xs px-4 py-2 rounded border-2 border-black outline-none w-48 font-black uppercase tracking-tighter">
              <a href="index.html#quote" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:bg-black transition-all uppercase">Get Quote</a>
         </div>
     </nav>
@@ -78,7 +82,7 @@
     <header class="py-16 px-6 md:px-12 text-center md:text-left">
         <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter text-black leading-none">Tech <br><span class="text-red-600">Accessories</span></h1>
         <div class="h-2 w-32 bg-red-600 mt-4 mx-auto md:mx-0"></div>
-        <p class="text-gray-600 text-sm font-black uppercase tracking-widest mt-6 italic">Premium Keyboards, Mice, Monitors & More</p>
+        <p class="text-gray-500 text-sm font-black uppercase tracking-widest mt-6 italic">Premium Keyboards, Mice & Performance Gear</p>
     </header>
 
     <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-24 px-6 md:px-12 relative z-10"></div>
@@ -89,8 +93,15 @@
                 <h4 class="footer-link-head">Quick Links</h4>
                 <ul class="space-y-3">
                     <li><a href="index.html" class="footer-link">Home Store</a></li>
-                    <li><a href="laptops.html" class="footer-link">Laptops</a></li>
-                    <li><a href="accessories.html" class="footer-link">Accessories</a></li>
+                    <li><a href="laptops.html" class="footer-link">Laptops Inventory</a></li>
+                    <li><a href="desktops.html" class="footer-link">Desktop Tower</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-link-head">Support</h4>
+                <ul class="space-y-3">
+                    <li><a href="shipping-policy.html" class="footer-link">Shipping Policy</a></li>
+                    <li><a href="legal.html" class="footer-link">Legal & Refund</a></li>
                 </ul>
             </div>
             <div>
@@ -101,11 +112,14 @@
             <div class="text-right">
                 <h4 class="footer-link-head">Follow Us</h4>
                 <div class="flex space-x-6 text-3xl mb-6 justify-end">
-                    <a href="#" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
-                    <a href="#" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
-                    <a href="#" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
+        </div>
+        <div class="mt-20 pt-10 border-t-2 border-black text-center">
+            <p class="text-[10px] tracking-[0.5em] font-black text-black uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
         </div>
     </footer>
 
@@ -114,7 +128,7 @@
         async function fetchProducts() {
             const res = await fetch('data.json');
             const data = await res.json();
-            allAccessories = data.filter(item => item.category === "Accessories");
+            allAccessories = data.filter(item => item.category === "Accessories").sort((a,b) => a.price - b.price);
             render(allAccessories);
         }
 
@@ -123,15 +137,17 @@
                 <div class="netflix-card" onclick="location.href='product-details.html?id=${item.id}'">
                     <div class="relative cursor-pointer">
                         <img src="${item.images[0]}" alt="${item.model}">
-                        <div class="absolute top-3 right-3 bg-black text-white text-[9px] px-3 py-1 rounded-sm font-black shadow-2xl uppercase italic">Certified</div>
+                        <div class="absolute top-3 right-3 bg-red-600 text-white text-[10px] px-3 py-1 rounded-sm font-black shadow-2xl uppercase italic">Certified Gear</div>
                     </div>
                     <div class="p-8">
+                        <div class="flex gap-1 mb-3"><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i></div>
                         <h3 class="font-black text-black uppercase truncate italic tracking-tighter text-xl">${item.model}</h3>
-                        <p class="text-[11px] text-gray-500 mt-2 font-black uppercase tracking-widest">${item.processor || 'Tech Gear'}</p>
+                        <p class="text-[11px] text-gray-500 mt-2 font-black uppercase tracking-widest">Premium Accessory</p>
                         <div class="mt-6 flex justify-between items-center border-t-2 border-black pt-4">
                             <span class="text-2xl font-black text-black italic">₹${item.price.toLocaleString()}</span>
+                            <span class="text-[9px] text-gray-400 uppercase font-black tracking-widest italic">In Stock</span>
                         </div>
-                        <button class="block w-full mt-8 bg-black text-white py-4 rounded font-black text-center text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl italic">▶ View Product</button>
+                        <button class="block w-full mt-8 bg-black text-white py-4 rounded font-black text-center text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl italic">▶ View & Buy</button>
                     </div>
                 </div>`).join('');
         }
