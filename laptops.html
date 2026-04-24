@@ -24,131 +24,84 @@
             background-position: center;
         }
 
-        .page-vignette { 
-            position: fixed; 
-            inset: 0; 
-            background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.9) 100%);
-            z-index: -1;
-            pointer-events: none;
-        }
+        .page-vignette { position: fixed; inset: 0; background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.9) 100%); z-index: -1; pointer-events: none; }
 
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; border-bottom: 2px solid rgba(255,255,255,0.1); }
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; will-change: transform; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 4px solid #000; transition: 0.3s; }
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
 
-        .netflix-card { transition: 0.4s ease; border: 3px solid #000; border-radius: 4px; background: #fff; overflow: hidden; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
-        .netflix-card:hover { transform: translateY(-8px); border-color: var(--red); z-index: 10; box-shadow: 15px 15px 0px rgba(229, 9, 20, 0.1); }
-        .netflix-card img { width: 100%; height: 200px; object-fit: contain; padding: 20px; background: white; border-bottom: 2px solid #eee; }
+        /* Optimized Grid: 2 Cards on Mobile, 4 on Desktop */
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; }
+        @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 50px; } }
 
-        /* FIXED MODALS FOR MOBILE */
+        /* Card Styling - Compact for Mobile */
+        .netflix-card { transition: 0.4s ease; border: 2px solid #000; border-radius: 4px; background: #fff; overflow: hidden; box-shadow: 5px 5px 0px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+        .netflix-card:hover { transform: translateY(-5px); border-color: var(--red); box-shadow: 8px 8px 0px rgba(229, 9, 20, 0.1); }
+        .netflix-card img { width: 100%; height: 120px; object-fit: contain; padding: 10px; background: white; border-bottom: 1px solid #eee; }
+        @media (min-width: 1024px) { .netflix-card img { height: 200px; padding: 20px; } .netflix-card { border-width: 3px; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); } }
+
         #quoteModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(8px); }
-        .modal-inner { background: #fff; border: 4px solid #000; padding: 25px; border-radius: 4px; width: 100%; max-width: 400px; box-shadow: 20px 20px 0px rgba(0,0,0,0.2); position: relative; }
+        .modal-inner { background: #fff; border: 3px solid var(--red); padding: 25px; border-radius: 4px; width: 100%; max-width: 400px; box-shadow: 20px 20px 0px rgba(0,0,0,0.2); }
         
-        /* Fix auto-zoom on mobile inputs */
         input, textarea { font-size: 16px !important; }
 
-        .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
-        .footer-link { color: #333; font-size: 14px; font-weight: 600; transition: 0.3s; }
-        .footer-link:hover { color: var(--red); }
-
         @media (max-width: 768px) {
-            header.py-16 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
-            h1.text-6xl { font-size: 3rem !important; }
-            .netflix-card img { height: 160px; }
-            .modal-inner { padding: 20px; }
+            header { padding: 2rem 1rem !important; }
+            h1 { font-size: 2.5rem !important; }
+            .card-content { padding: 10px !important; }
+            .card-title { font-size: 12px !important; }
+            .card-price { font-size: 16px !important; }
+            .card-btn { padding: 8px !important; font-size: 10px !important; margin-top: 10px !important; }
         }
     </style>
 </head>
 <body>
 
     <div class="page-vignette"></div>
-
     <div class="marquee-bar">
-        <div class="marquee-content">⚡ SAME DAY/NEXT DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div>
+        <div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div>
     </div>
 
-    <nav id="navbar" class="flex justify-between items-center px-6 md:px-12 py-4">
-        <div class="flex items-center space-x-10">
-            <a href="index.html" class="flex flex-col items-center">
-                <img src="assets/newlogo.png" alt="Hexa Logo" class="h-10">
-                <span class="text-xl text-red-600 font-black tracking-[0.2em] mt-1 uppercase italic leading-none">Hexa Computronics</span>
-            </a>
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
-                <a href="index.html" class="text-gray-500 hover:text-black transition">Home</a>
-                <a href="laptops.html" class="text-red-600 border-b-2 border-red-600">Laptops</a>
-                <a href="desktops.html" class="text-gray-500 hover:text-black transition">Desktops</a>
-            </div>
-        </div>
-        <div class="flex items-center space-x-4">
-             <input type="text" id="searchInput" placeholder="Search Laptop..." class="hidden md:block bg-white text-xs px-4 py-2 rounded border-2 border-black outline-none w-48 focus:border-red-600 transition-all font-bold text-black uppercase tracking-tighter">
-             <button onclick="openQuote()" class="bg-red-600 text-white text-xs px-6 py-2 rounded font-black italic shadow-lg hover:bg-black transition-all uppercase">Get Quote</button>
+    <nav id="navbar" class="flex justify-between items-center px-4 md:px-12 py-3">
+        <a href="index.html" class="flex flex-col items-center">
+            <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
+            <span class="text-xs text-red-600 font-black tracking-widest uppercase italic">Hexa Computronics</span>
+        </a>
+        <div class="flex items-center space-x-3">
+             <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Get Quote</button>
         </div>
     </nav>
 
     <div id="quoteModal">
         <div class="modal-inner">
             <div class="flex justify-between items-center mb-6 border-b-2 border-black pb-4">
-                <h2 class="text-xl font-black text-black italic uppercase tracking-tighter">Laptop Inquiry</h2>
+                <h2 class="text-xl font-black text-black italic uppercase">Inquiry</h2>
                 <button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-2xl font-black">×</button>
             </div>
             <form class="space-y-4">
-                <input type="text" id="qName" placeholder="YOUR NAME" class="w-full bg-gray-50 border-2 border-black p-3 rounded font-black outline-none focus:border-red-600" required>
-                <input type="tel" id="qPhone" placeholder="WHATSAPP NUMBER" class="w-full bg-gray-50 border-2 border-black p-3 rounded font-black outline-none focus:border-red-600" required>
-                <textarea id="qReq" placeholder="TELL US YOUR REQUIREMENT..." class="w-full bg-gray-50 border-2 border-black p-3 rounded font-black h-24 outline-none focus:border-red-600 resize-none" required></textarea>
-                <button type="button" onclick="sendToWA()" class="w-full bg-black text-white font-black py-4 rounded uppercase italic tracking-widest hover:bg-red-600 transition-all shadow-xl">Submit Request</button>
+                <input type="text" id="qName" placeholder="NAME" class="w-full border-2 border-black p-3 font-black outline-none focus:border-red-600" required>
+                <input type="tel" id="qPhone" placeholder="WHATSAPP" class="w-full border-2 border-black p-3 font-black outline-none focus:border-red-600" required>
+                <textarea id="qReq" placeholder="REQUIREMENT..." class="w-full border-2 border-black p-3 font-black h-24 outline-none focus:border-red-600" required></textarea>
+                <button type="button" onclick="sendToWA()" class="w-full bg-black text-white font-black py-4 rounded uppercase italic hover:bg-red-600 transition-all">Submit</button>
             </form>
         </div>
     </div>
 
-    <header class="py-16 px-6 md:px-12 text-center md:text-left">
-        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter text-black leading-none">Enterprise <br><span class="text-red-600">Laptops</span></h1>
-        <div class="h-2 w-32 bg-red-600 mt-4 mx-auto md:mx-0"></div>
-        <p class="text-gray-500 text-sm font-black uppercase tracking-widest mt-6 italic">Certified Business Class Series • 100% Verified Hardware</p>
+    <header class="py-10 px-6 text-center md:text-left">
+        <h1 class="text-5xl md:text-8xl font-black uppercase italic leading-none text-black">Enterprise <br><span class="text-red-600">Laptops</span></h1>
+        <div class="h-1 w-20 bg-red-600 mt-4 mx-auto md:mx-0"></div>
     </header>
 
-    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-24 px-6 md:px-12 relative z-10"></div>
+    <div id="product-container" class="product-grid relative z-10"></div>
 
-    <footer class="bg-gray-100 py-20 px-6 md:px-12 border-t-4 border-black text-gray-700 relative z-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-7xl mx-auto text-left">
-            <div>
-                <h4 class="footer-link-head">Quick Links</h4>
-                <ul class="space-y-3">
-                    <li><a href="index.html" class="footer-link">Home Store</a></li>
-                    <li><a href="laptops.html" class="footer-link">Laptops Inventory</a></li>
-                    <li><a href="desktops.html" class="footer-link">Desktop Tower</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="footer-link-head">Support</h4>
-                <ul class="space-y-3">
-                    <li><a href="shipping-policy.html" class="footer-link">Shipping Policy</a></li>
-                    <li><a href="legal.html" class="footer-link">Legal & Refund</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="footer-link-head text-red-600">Contact Us</h4>
-                <p class="text-xs font-bold leading-relaxed mb-4 uppercase">119/540 New Basant Cinema Building, Gumti No.5, Kanpur</p>
-                <p class="text-xs font-black text-black italic underline">+91 9935529306</p>
-            </div>
-            <div class="text-right">
-                <h4 class="footer-link-head">Follow Us</h4>
-                <div class="flex space-x-6 text-3xl mb-6 justify-end">
-                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
-                    <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="mt-20 pt-10 border-t-2 border-black text-center">
-            <p class="text-[10px] tracking-[0.5em] font-black text-black uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR </p>
-        </div>
+    <footer class="bg-gray-100 py-10 px-6 border-t-4 border-black text-center">
+        <p class="text-[9px] font-black text-black uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
     </footer>
 
     <script>
         let allLaptops = [];
-
         function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
         function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
         
@@ -156,9 +109,8 @@
             const name = document.getElementById('qName').value;
             const phone = document.getElementById('qPhone').value;
             const req = document.getElementById('qReq').value;
-            if(!name || !phone || !req) { alert("Please fill the details!"); return; }
-            const message = `*HEXA LAPTOP INQUIRY*%0A*Name:* ${name}%0A*Requirement:* ${req}`;
-            window.open(`https://wa.me/919935529306?text=${message}`, '_blank');
+            if(!name || !phone || !req) { alert("Please fill details!"); return; }
+            window.open(`https://wa.me/919935529306?text=*HEXA INQUIRY*%0A*Name:* ${name}%0A*Req:* ${req}`, '_blank');
         }
 
         async function fetchLaptops() {
@@ -174,28 +126,22 @@
                 return `
                 <div class="netflix-card">
                     <div class="relative">
-                        <img src="${item.images[0]}" alt="${item.model}" loading="lazy" decoding="async">
-                        <div class="absolute top-3 right-3 bg-red-600 text-white text-[10px] px-3 py-1 rounded-sm font-black shadow-2xl">₹${emi}/MO*</div>
+                        <img src="${item.images[0]}" alt="${item.model}" loading="lazy">
+                        <div class="absolute top-1 right-1 bg-red-600 text-white text-[7px] px-1 py-0.5 rounded-sm font-black uppercase">₹${emi}/mo</div>
                     </div>
-                    <div class="p-8">
-                        <div class="flex gap-1 mb-3"><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i><i class="fas fa-star text-red-600 text-[10px]"></i></div>
-                        <h3 class="font-black text-black uppercase truncate italic tracking-tighter text-xl">${item.model}</h3>
-                        <p class="text-[11px] text-gray-500 mt-2 font-black uppercase tracking-widest">${item.processor} • ${item.ram}</p>
-                        <div class="mt-6 flex justify-between items-center border-t-2 border-black pt-4">
-                            <span class="text-2xl font-black text-black italic">₹${item.price.toLocaleString()}</span>
-                            <span class="text-[9px] text-gray-400 uppercase font-black tracking-widest italic">${item.warranty || 'Certified'}</span>
+                    <div class="card-content p-4 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="card-title font-black text-black uppercase truncate italic text-xs">${item.model}</h3>
+                            <p class="text-[8px] text-gray-500 font-black uppercase mt-1">${item.processor.split(' ')[0]} • ${item.ram}</p>
                         </div>
-                        <a href="product-details.html?id=${item.id}" class="block w-full mt-8 bg-black text-white py-4 rounded font-black text-center text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl italic">▶ View & Buy</a>
+                        <div class="mt-3">
+                            <p class="card-price text-xl font-black text-black italic leading-none">₹${item.price.toLocaleString()}</p>
+                            <a href="product-details.html?id=${item.id}" class="card-btn block w-full mt-3 bg-black text-white py-2 rounded font-black text-center text-[9px] uppercase tracking-widest hover:bg-red-600 italic">▶ View</a>
+                        </div>
                     </div>
                 </div>`;
             }).join('');
         }
-
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            render(allLaptops.filter(l => l.model.toLowerCase().includes(val)));
-        });
-
         fetchLaptops();
     </script>
 </body>
