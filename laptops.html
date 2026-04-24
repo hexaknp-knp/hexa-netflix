@@ -16,7 +16,6 @@
         
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 4px solid #000; }
 
-        /* Grid Optimization */
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 12px; }
         @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px 60px; } }
 
@@ -29,6 +28,14 @@
         input, textarea { font-size: 16px !important; }
 
         .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; margin-bottom: 12px; }
+
+        /* --- SPECIFIC SPACE & SIZE FIXES --- */
+        @media (max-width: 768px) {
+            header.py-10 { padding-top: 1rem !important; padding-bottom: 0.5rem !important; } /* Margin kam kiya */
+            h1.text-5xl { font-size: 2.2rem !important; margin-bottom: 0px !important; } /* Title chhota kiya */
+            header p.mt-4 { margin-top: 0.5rem !important; font-size: 8px !important; } /* Text gap kam kiya */
+            .h-1.5 { height: 4px !important; width: 40px !important; } /* Line choti ki */
+        }
     </style>
 </head>
 <body>
@@ -67,7 +74,7 @@
     <header class="py-10 px-6 text-center md:text-left">
         <h1 class="text-5xl md:text-8xl font-black uppercase italic leading-none text-red-600">Laptops</h1>
         <div class="h-1.5 w-24 bg-black mt-2 mx-auto md:mx-0"></div>
-        <p class="text-[10px] font-black uppercase tracking-widest mt-4 text-gray-500">Certified Business Class Series • Kanpur's #1 Store</p>
+        <p class="text-[10px] font-black uppercase tracking-widest mt-4 text-gray-500">Certified Business Series • Kanpur's #1 Store</p>
     </header>
 
     <div id="product-container" class="product-grid relative z-10"></div>
