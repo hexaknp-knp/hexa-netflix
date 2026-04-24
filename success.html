@@ -2,126 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Success | Hexa Computronics Kanpur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Order Confirmed | Hexa Computronics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --red: #E50914; --bg: #ffffff; }
-        
-        /* Full Background - Premium Highlighted Tech Visual */
         body { 
-            background-color: var(--bg); 
-            color: #000; 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            overflow: hidden;
-            background-image: 
-                linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3)), 
-                url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--bg); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden;
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80');
+            background-attachment: fixed; background-size: cover;
         }
+        #navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
+        
+        .success-card { background: rgba(255, 255, 255, 0.98); border: 3px solid #000; padding: 40px 20px; border-radius: 4px; box-shadow: 15px 15px 0px rgba(0,0,0,0.1); text-align: center; }
+        
+        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .footer-item { color: #333; font-size: 11px; font-weight: 600; text-transform: uppercase; }
 
-        .page-vignette { 
-            position: fixed; 
-            inset: 0; 
-            background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.9) 100%);
-            z-index: -1;
+        @media (max-width: 768px) {
+            .success-card { padding: 30px 15px; }
+            h1 { font-size: 2rem !important; }
         }
-
-        /* Success Card Styling */
-        .success-card { 
-            background: rgba(255, 255, 255, 0.95); 
-            border: 5px solid #000; 
-            padding: 60px 40px; 
-            text-align: center;
-            box-shadow: 30px 30px 0px rgba(0,0,0,0.15);
-            max-width: 600px;
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .success-icon {
-            font-size: 80px;
-            color: var(--red);
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .btn-home { 
-            background: #000; 
-            color: #fff; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            font-style: italic; 
-            padding: 18px 40px; 
-            border: 3px solid #000; 
-            transition: 0.3s;
-            display: inline-block;
-            margin-top: 30px;
-        }
-        .btn-home:hover { 
-            background: var(--red); 
-            border-color: var(--red); 
-            transform: scale(1.05); 
-        }
-
-        /* Announcement Bar Match */
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 14px 0; font-size: 13px; font-weight: 800; text-transform: uppercase; width: 100%; }
     </style>
 </head>
-<body class="flex items-center justify-center">
+<body>
 
-    <div class="page-vignette"></div>
-
-    <div class="marquee-bar fixed top-0">
-        <div class="text-center">⭐ THANK YOU FOR SHOPPING WITH HEXA COMPUTRONICS KANPUR ⭐</div>
-    </div>
-
-    <div class="success-card">
-        <div class="success-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        
-        <h1 class="text-6xl font-black italic uppercase text-black leading-none mb-4">
-            CONGRATS<span class="text-red-600">!</span>
-        </h1>
-        
-        <div class="h-1 w-20 bg-red-600 mx-auto mb-6"></div>
-        
-        <p class="text-2xl font-black uppercase tracking-tighter italic">
-            Your Order Has Been <span class="text-red-600">Confirmed</span>
-        </p>
-        
-        <p class="mt-6 text-sm font-bold text-gray-600 uppercase leading-relaxed tracking-widest">
-            Our team will reach out to you on <span class="text-black font-black underline">WhatsApp</span> shortly for delivery scheduling in Kanpur.
-        </p>
-
-        <a href="index.html" class="btn-home">
-            <i class="fas fa-shopping-bag mr-3"></i> Back To Store
+    <nav id="navbar" class="flex justify-between items-center px-4 py-2">
+        <a href="index.html" class="flex flex-col items-center">
+            <img src="assets/newlogo.png" alt="Logo" class="h-7">
+            <span class="text-[9px] text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
         </a>
+        <a href="index.html" class="bg-black text-white text-[9px] px-4 py-2 rounded font-black uppercase italic tracking-widest">▶ Back to Store</a>
+    </nav>
 
-        <div class="mt-10 pt-6 border-t-2 border-black flex justify-center gap-6 text-gray-400">
-            <i class="fab fa-youtube hover:text-red-600 cursor-pointer"></i>
-            <i class="fab fa-instagram hover:text-pink-600 cursor-pointer"></i>
-            <i class="fab fa-facebook hover:text-blue-600 cursor-pointer"></i>
+    <main class="max-w-2xl mx-auto px-4 py-16 relative z-10 min-h-[60vh] flex items-center">
+        <div class="success-card w-full">
+            <div class="mb-6">
+                <i class="fas fa-check-circle text-green-500 text-7xl md:text-8xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-black italic uppercase text-black mb-4 tracking-tighter">Order <span class="text-red-600">Confirmed!</span></h1>
+            <p class="text-gray-600 font-bold uppercase text-xs md:text-sm tracking-widest mb-8 leading-relaxed">
+                Thank you for choosing Hexa Computronics.<br>
+                Our team will contact you on WhatsApp shortly for delivery updates.
+            </p>
+            
+            <div class="space-y-4">
+                <a href="index.html" class="block w-full bg-black text-white py-4 rounded font-black uppercase italic tracking-widest shadow-xl hover:bg-red-600 transition-all">Continue Shopping</a>
+                <p class="text-[10px] font-black text-gray-400 uppercase italic">Verification ID: #HEXA-2026-CONFIRMED</p>
+            </div>
         </div>
-    </div>
+    </main>
 
-    <div class="fixed bottom-6 text-center w-full">
-        <p class="text-[9px] tracking-[0.5em] font-black text-black uppercase italic opacity-50">
-            © 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR
-        </p>
-    </div>
+    <footer class="bg-gray-100 py-16 px-6 md:px-12 border-t-4 border-black text-gray-700 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
+            <div>
+                <span class="footer-heading">Quick Links</span>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="footer-item">Home Store</a></li>
+                    <li><a href="laptops.html" class="footer-item">Laptops</a></li>
+                    <li><a href="desktops.html" class="footer-item">Desktops</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="footer-heading">Support</span>
+                <ul class="space-y-2">
+                    <li><a href="shipping-policy.html" class="footer-item">Shipping Policy</a></li>
+                    <li><a href="legal.html" class="footer-item">Legal & Refund</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="footer-heading">Contact Us</span>
+                <p class="footer-item leading-relaxed mb-4">119/540 New Basant Building, Gumti No.5, Kanpur</p>
+                <p class="footer-item underline text-black font-black">+91 9935529306</p>
+            </div>
+            <div class="text-right">
+                <span class="footer-heading">Follow Us</span>
+                <div class="flex space-x-6 text-2xl mb-6 justify-end">
+                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color:#FF0000"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" target="_blank" style="color:#1877F2"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color:#E4405F"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16 pt-8 border-t border-gray-300 text-center">
+            <p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        </div>
+    </footer>
 
 </body>
 </html>
