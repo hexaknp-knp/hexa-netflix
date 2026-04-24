@@ -43,12 +43,26 @@
         #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
         .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: #000; }
 
-        /* Mobile Adjustments for Scroll & Visibility */
+       /* Mobile Adjustments for Scroll & Visibility */
         @media (max-width: 768px) {
-            header.relative { height: 65vh !important; } /* Products visible on first screen */
-            .hero-title { font-size: 3.5rem !important; }
-            .offer-bar { gap: 10px; font-size: 8px; }
-            .section-label { margin-top: 30px; font-size: 1.2rem; }
+            header.relative { 
+                height: 50vh !important; /* Screen adhi kar di taaki products turant dikhein */
+                min-height: 350px; 
+            }
+            .hero-title { 
+                font-size: 2.8rem !important; /* Refurbished 'd' fix */
+                line-height: 1;
+            }
+            .offer-bar { 
+                gap: 8px; 
+                font-size: 8px; 
+                padding: 5px 0; 
+                flex-wrap: nowrap; /* Ek line mein fit rahega */
+            }
+            .section-label { 
+                margin-top: 25px; 
+                font-size: 1.1rem; 
+            }
         }
     </style>
 </head>
