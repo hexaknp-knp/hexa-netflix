@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Hexa Computronics | Premium Refurbished Tech Mall Kanpur</title>
-    <meta name="description" content="Hexa Computronics Kanpur offers premium refurbished business laptops, desktops, and accessories. Certified hardware with easy EMI.">
-    
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -24,29 +19,29 @@
         .wiggle-text { color: #ffcc00; animation: wiggle 2s ease-in-out infinite; display: inline-block; }
         @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
 
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; transition: 0.3s; }
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
 
-        .netflix-row { display: flex; overflow-x: auto; gap: 12px; padding: 15px 0; scrollbar-width: none; -ms-overflow-style: none; }
+        .netflix-row { display: flex; overflow-x: auto; gap: 15px; padding: 20px 0; scrollbar-width: none; -ms-overflow-style: none; }
         .netflix-row::-webkit-scrollbar { display: none; }
 
-        .card { transition: transform 0.4s ease; min-width: 260px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #eee; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .card { transition: 0.4s ease; min-width: 240px; background: #fff; border: 3px solid #000; border-radius: 4px; overflow: hidden; cursor: pointer; box-shadow: 8px 8px 0px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-5px); border-color: var(--red); box-shadow: 10px 10px 0px rgba(229, 9, 20, 0.1); }
         .card img { width: 100%; height: 140px; object-fit: contain; background: #fff; padding: 12px; }
 
-        .section-label { font-size: 1.2rem; font-weight: 800; border-left: 5px solid var(--red); padding-left: 12px; margin-top: 30px; text-transform: uppercase; font-style: italic; color: var(--text-dark); }
-        .hero-vignette { background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); }
+        .section-label { font-size: 1.3rem; font-weight: 900; border-left: 6px solid var(--red); padding-left: 12px; margin-top: 35px; text-transform: uppercase; font-style: italic; }
         
-        #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(8px); }
-        .modal-inner { background: #fff; border: 3px solid var(--red); padding: 25px; border-radius: 12px; width: 100%; max-width: 400px; color: #000; }
-
-        input, textarea { font-size: 16px !important; }
-
+        .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); }
+        
         @media (max-width: 768px) {
-            header.relative { height: 50vh !important; min-height: 350px; }
-            .hero-title { font-size: 2.2rem !important; line-height: 1.1; }
-            .hero-subtitle { font-size: 12px !important; margin-bottom: 15px !important; }
-            .hero-btn { padding: 10px 20px !important; font-size: 10px !important; }
+            header.relative { height: 45vh !important; min-height: 300px; }
+            .hero-title { font-size: 2.2rem !important; line-height: 1; }
+            .card { min-width: 200px; }
+            .card img { height: 110px; }
             #mobile-nav { display: flex !important; }
         }
+
+        #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(8px); }
+        .modal-inner { background: #fff; border: 3px solid #000; padding: 25px; border-radius: 4px; width: 100%; max-width: 400px; }
     </style>
 </head>
 <body>
@@ -59,91 +54,104 @@
         <span>💎 <span class="wiggle-text">LOW EMI</span></span>
     </div>
 
-    <nav id="navbar" class="px-4 md:px-12 py-3">
-        <div class="flex justify-between items-center">
-            <a href="index.html" class="flex flex-col items-center">
-                <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
-                <span class="text-sm md:text-xl text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
-            </a>
-            
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
-                <a href="index.html" class="text-red-600 border-b-2 border-red-600">Home</a>
-                <a href="laptops.html" class="text-gray-500 hover:text-black">Laptops</a>
-                <a href="desktops.html" class="text-gray-500 hover:text-black">Desktops</a>
-                <a href="accessories.html" class="text-gray-500 hover:text-black">Accessories</a>
-            </div>
-
-            <div class="flex items-center space-x-4 md:space-x-6">
-                <button onclick="openSearch()" class="text-xl md:text-2xl text-gray-700"><i class="fas fa-search"></i></button>
-                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] md:text-xs px-4 md:px-6 py-2 rounded font-black italic uppercase">Quote</button>
-            </div>
+    <nav id="navbar" class="px-4 md:px-12 py-3 flex justify-between items-center">
+        <a href="index.html" class="flex flex-col items-center">
+            <img src="assets/newlogo.png" alt="Logo" class="h-8">
+            <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic">Hexa Computronics</span>
+        </a>
+        <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+            <a href="index.html" class="text-red-600 border-b-2 border-red-600">Home</a>
+            <a href="laptops.html" class="text-gray-500 hover:text-black">Laptops</a>
+            <a href="desktops.html" class="text-gray-500 hover:text-black">Desktops</a>
+            <a href="accessories.html" class="text-gray-500 hover:text-black">Accessories</a>
         </div>
-        
-        <div id="mobile-nav" class="hidden flex justify-center space-x-6 mt-3 border-t pt-2 text-[9px] font-black uppercase tracking-tighter">
-            <a href="index.html" class="text-red-600">Home</a>
-            <a href="laptops.html" class="text-gray-500">Laptops</a>
-            <a href="desktops.html" class="text-gray-500">Desktops</a>
-            <a href="accessories.html" class="text-gray-500">Accessories</a>
+        <div class="flex items-center space-x-4">
+            <button onclick="openSearch()"><i class="fas fa-search text-xl"></i></button>
+            <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Quote</button>
+        </div>
+        <div id="mobile-nav" class="hidden absolute top-full left-0 w-full bg-white flex justify-center space-x-4 py-2 border-b text-[9px] font-black uppercase">
+            <a href="index.html">Home</a>
+            <a href="laptops.html">Laptops</a>
+            <a href="desktops.html">Desktops</a>
+            <a href="accessories.html">Accessories</a>
         </div>
     </nav>
 
-    <div id="searchModal"><div class="modal-inner"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-black italic uppercase">Search</h2><button onclick="closeSearch()" class="text-gray-400 text-2xl">&times;</button></div><input type="text" id="mainSearch" placeholder="Model name..." class="w-full bg-gray-50 border p-4 rounded text-black outline-none" onkeyup="liveSearch()"><div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div></div></div>
-
-    <div id="quoteModal"><div class="modal-inner"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-black italic uppercase">Request Quote</h2><button onclick="closeQuote()" class="text-gray-400 text-2xl">&times;</button></div><form class="space-y-4"><input type="text" id="qName" placeholder="Name" class="w-full bg-gray-50 border p-3 rounded" required><input type="tel" id="qPhone" placeholder="WhatsApp" class="w-full bg-gray-50 border p-3 rounded" required><textarea id="qReq" placeholder="Details..." class="w-full bg-gray-50 border p-3 rounded h-24 resize-none" required></textarea><button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic tracking-widest hover:bg-black transition-all">Submit</button></form></div></div>
-
     <header class="relative h-[85vh] w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80');">
-        <div class="absolute inset-0 hero-vignette"></div>
-        <div class="relative z-10 max-w-2xl mt-5">
+        <div class="hero-vignette"></div>
+        <div class="relative z-10">
             <h1 class="hero-title text-6xl md:text-8xl font-black mb-2 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Refurbished</span></h1>
-            <p class="hero-subtitle text-sm md:text-lg mb-6 text-gray-600 font-bold uppercase italic tracking-widest leading-none">Kanpur's Professional Tech Mall</p>
-            <a href="laptops.html" class="hero-btn bg-black text-white px-10 py-3 rounded font-black italic uppercase text-xs inline-block">▶ Browse Store</a>
+            <p class="text-sm md:text-lg mb-6 text-gray-600 font-bold uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
+            <a href="laptops.html" class="bg-black text-white px-10 py-3 rounded font-black italic uppercase text-xs inline-block">▶ Browse Store</a>
         </div>
     </header>
 
-    <main class="relative z-20 -mt-16 md:-mt-24 px-4 md:px-12 space-y-8 md:space-y-12 pb-20">
+    <main class="relative z-20 -mt-16 md:-mt-24 px-4 md:px-12 space-y-10 pb-20">
         <section><h2 class="section-label">Enterprise Laptops</h2><div id="laptop-row" class="netflix-row"></div></section>
         <section><h2 class="section-label">Business Desktops</h2><div id="desktop-row" class="netflix-row"></div></section>
+        <section><h2 class="section-label">Tech Accessories</h2><div id="accessories-row" class="netflix-row"></div></section>
     </main>
 
-    <footer class="bg-gray-50 py-12 px-6 border-t border-gray-200 text-center">
-        <div class="flex justify-center space-x-6 text-2xl mb-6">
-            <a href="https://youtube.com/@hexacomptech" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com/hexaknp" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com/hcomputronics" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-gray-100 py-16 px-6 md:px-12 border-t-4 border-black text-gray-700">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
+            <div>
+                <h4 class="font-black uppercase text-[11px] mb-6 text-black">Quick Links</h4>
+                <ul class="space-y-3 text-[10px] font-bold uppercase">
+                    <li><a href="index.html">Home Store</a></li>
+                    <li><a href="laptops.html">Laptops</a></li>
+                    <li><a href="desktops.html">Desktops</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-black uppercase text-[11px] mb-6 text-black">Legal</h4>
+                <ul class="space-y-3 text-[10px] font-bold uppercase">
+                    <li><a href="shipping-policy.html">Shipping</a></li>
+                    <li><a href="legal.html">Legal & Refund</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-black uppercase text-[11px] mb-6 text-red-600">Contact</h4>
+                <p class="text-[10px] font-bold uppercase mb-2">Gumti No.5, Kanpur</p>
+                <p class="text-[11px] font-black text-black italic underline">+91 9935529306</p>
+            </div>
+            <div class="text-right">
+                <h4 class="font-black uppercase text-[11px] mb-6 text-black">Follow</h4>
+                <div class="flex space-x-4 justify-end text-2xl">
+                    <a href="https://youtube.com/@hexacomptech" style="color: #FF0000;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://facebook.com/hexaknp" style="color: #1877F2;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/hcomputronics" style="color: #E4405F;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
-        <p class="text-[9px] font-black text-gray-400 uppercase italic tracking-widest">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        <div class="mt-16 pt-8 border-t border-gray-300 text-center">
+            <p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        </div>
     </footer>
 
     <script>
         let fullData = [];
         async function init() {
-            try {
-                const res = await fetch('data.json');
-                fullData = await res.json();
-                loadRows();
-            } catch (e) { console.error("Data load failed"); }
+            const res = await fetch('data.json');
+            fullData = await res.json();
+            loadRows();
         }
-
         function loadRows() {
-            const createCard = (item) => {
-                const emi = Math.round((item.price * 1.18) / 12);
-                return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
-                    <div class="relative"><img src="${item.images[0]}" alt="${item.model}" loading="lazy"><div class="absolute top-2 right-2 bg-red-600 text-white text-[7px] px-2 py-1 rounded font-black">₹${emi}/MO*</div></div>
-                    <div class="p-4"><h3 class="font-bold text-[11px] text-black truncate uppercase italic leading-tight">${item.model}</h3>
-                    <p class="text-[8px] text-gray-400 mt-1 uppercase font-black">${item.processor || ''}</p>
-                    <div class="mt-3 flex justify-between items-center"><span class="text-sm font-black text-black italic">₹${item.price.toLocaleString()}</span></div></div></div>`;
-            };
+            const createCard = (item) => `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
+                <div class="relative"><img src="${item.images[0]}" alt="${item.model}" loading="lazy"><div class="absolute top-2 right-2 bg-red-600 text-white text-[7px] px-2 py-1 rounded font-black">₹${item.price.toLocaleString()}</div></div>
+                <div class="p-3"><h3 class="font-black text-[10px] text-black truncate uppercase italic leading-tight">${item.model}</h3>
+                <p class="text-[8px] text-gray-400 mt-1 uppercase font-black">${item.processor || 'Accessory'}</p></div></div>`;
+            
             document.getElementById('laptop-row').innerHTML = fullData.filter(i => i.category === "Laptop").map(createCard).join('');
             document.getElementById('desktop-row').innerHTML = fullData.filter(i => i.category === "Desktop").map(createCard).join('');
+            document.getElementById('accessories-row').innerHTML = fullData.filter(i => i.category === "Accessories").map(createCard).join('');
         }
-        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('mainSearch').focus(); }
+        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; }
         function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
         function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
         function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
         function sendToWA() {
-            const name = document.getElementById('qName').value; const phone = document.getElementById('qPhone').value; const req = document.getElementById('qReq').value;
-            if(!name || !phone || !req) return alert("Fill details");
-            window.open(`https://wa.me/919935529306?text=*HEXA QUOTE*%0A*Name:* ${name}%0A*Req:* ${req}`, '_blank');
+            window.open(`https://wa.me/919935529306?text=HEXA INQUIRY`, '_blank');
         }
         window.onload = init;
     </script>
