@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Hexa Computronics | Premium Refurbished Tech Mall Kanpur</title>
+    <meta name="description" content="Hexa Computronics Kanpur offers premium refurbished business laptops, desktops, and accessories. Certified hardware with easy EMI.">
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -19,7 +24,7 @@
         .wiggle-text { color: #ffcc00; animation: wiggle 2s ease-in-out infinite; display: inline-block; }
         @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
 
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; transition: 0.3s; }
 
         .netflix-row { display: flex; overflow-x: auto; gap: 12px; padding: 15px 0; scrollbar-width: none; -ms-overflow-style: none; }
         .netflix-row::-webkit-scrollbar { display: none; }
@@ -29,22 +34,29 @@
 
         .section-label { font-size: 1.2rem; font-weight: 800; border-left: 5px solid var(--red); padding-left: 12px; margin-top: 25px; text-transform: uppercase; font-style: italic; color: var(--text-dark); }
         
+        /* ORIGINAL HERO DESIGN RESTORED */
+        .hero-vignette { 
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #fff 5%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.8) 10%, transparent 80%); 
+        }
+
         #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(8px); }
         .modal-inner { background: #fff; border: 3px solid var(--red); padding: 25px; border-radius: 12px; width: 100%; max-width: 400px; color: #000; }
 
         input, textarea { font-size: 16px !important; }
 
-        /* --- MOBILE HERO & SPACING OPTIMIZATION --- */
+        /* --- MOBILE RESIZE FIXES ONLY --- */
         @media (max-width: 768px) {
             header.relative { 
-                height: 40vh !important; /* Laptop image area reduced significantly */
-                min-height: 280px; 
+                height: 45vh !important; /* Resized Laptop area for faster product viewing */
+                min-height: 300px; 
             }
-            .hero-title { font-size: 1.8rem !important; line-height: 1; }
-            .hero-subtitle { font-size: 10px !important; margin-bottom: 10px !important; }
-            .hero-btn { padding: 8px 16px !important; font-size: 9px !important; }
+            .hero-title { font-size: 2.5rem !important; line-height: 1.1; } /* Titles resized for mobile */
+            .hero-subtitle { font-size: 11px !important; margin-bottom: 15px !important; }
+            .hero-btn { padding: 9px 18px !important; font-size: 10px !important; }
             #mobile-nav { display: flex !important; }
-            main { margin-top: -10px !important; } /* Products pull up closer */
+            main { margin-top: -15px !important; } /* Reducing gap below hero */
         }
 
         .footer-link-head { color: var(--text-dark); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; }
@@ -94,11 +106,11 @@
     <div id="quoteModal"><div class="modal-inner"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-black italic uppercase text-red-600">Request Quote</h2><button onclick="closeQuote()" class="text-gray-400 text-2xl">&times;</button></div><form class="space-y-4"><input type="text" id="qName" placeholder="Name" class="w-full bg-gray-50 border p-3 rounded" required><input type="tel" id="qPhone" placeholder="WhatsApp" class="w-full bg-gray-50 border p-3 rounded" required><textarea id="qReq" placeholder="Details..." class="w-full bg-gray-50 border p-3 rounded h-24 resize-none" required></textarea><button type="button" onclick="sendToWA()" class="w-full bg-red-600 text-white font-black py-4 rounded uppercase italic tracking-widest">Submit</button></form></div></div>
 
     <header class="relative h-[85vh] w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80');">
-        <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-90"></div>
-        <div class="relative z-10 max-w-2xl mt-2">
-            <h1 class="hero-title text-6xl md:text-8xl font-black mb-1 uppercase italic leading-none text-black">Premium <span class="text-red-600">Refurbished</span></h1>
+        <div class="hero-vignette"></div>
+        <div class="relative z-10 max-w-2xl mt-5">
+            <h1 class="hero-title text-6xl md:text-8xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Refurbished</span></h1>
             <p class="hero-subtitle text-sm md:text-lg mb-4 text-gray-600 font-bold uppercase italic tracking-widest leading-none">Kanpur's Professional Tech Mall</p>
-            <a href="laptops.html" class="hero-btn bg-black text-white px-8 py-3 rounded font-black italic uppercase text-[10px] inline-block">▶ Browse Store</a>
+            <a href="laptops.html" class="hero-btn bg-black text-white px-10 py-3 rounded font-black italic uppercase text-xs inline-block">▶ Browse Store</a>
         </div>
     </header>
 
@@ -139,7 +151,7 @@
             </div>
         </div>
         <div class="mt-20 pt-10 border-t border-gray-200 text-center">
-            <p class="text-[10px] tracking-[0.5em] font-black text-gray-400 uppercase italic">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+            <p class="text-[9px] font-black text-gray-400 uppercase italic tracking-widest">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
         </div>
     </footer>
 
