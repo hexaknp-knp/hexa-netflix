@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Hexa Computronics | Premium Refurbished Tech Mall Kanpur</title>
     <meta name="description" content="Hexa Computronics Kanpur offers premium refurbished business laptops, desktops, and accessories. Certified hardware with easy EMI.">
     
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -25,7 +26,6 @@
 
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; transition: 0.3s; }
 
-        /* Speed & Mobile Optimization */
         .netflix-row { display: flex; overflow-x: auto; gap: 15px; padding: 25px 0; scrollbar-width: none; -ms-overflow-style: none; }
         .netflix-row::-webkit-scrollbar { display: none; }
 
@@ -40,29 +40,19 @@
         .footer-link { color: #666; font-size: 14px; transition: 0.3s; }
         .footer-link:hover { color: var(--red); }
 
-        #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
-        .modal-inner { background: #fff; border: 2px solid var(--red); padding: 30px; border-radius: 10px; width: 100%; max-w-md; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: #000; }
+        /* FIXED MODALS FOR MOBILE */
+        #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(8px); }
+        .modal-inner { background: #fff; border: 3px solid var(--red); padding: 25px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); color: #000; position: relative; }
 
-       /* Mobile Adjustments for Scroll & Visibility */
+        /* Fix auto-zoom on mobile inputs */
+        input, textarea { font-size: 16px !important; }
+
         @media (max-width: 768px) {
-            header.relative { 
-                height: 50vh !important; /* Screen adhi kar di taaki products turant dikhein */
-                min-height: 350px; 
-            }
-            .hero-title { 
-                font-size: 2.8rem !important; /* Refurbished 'd' fix */
-                line-height: 1;
-            }
-            .offer-bar { 
-                gap: 8px; 
-                font-size: 8px; 
-                padding: 5px 0; 
-                flex-wrap: nowrap; /* Ek line mein fit rahega */
-            }
-            .section-label { 
-                margin-top: 25px; 
-                font-size: 1.1rem; 
-            }
+            header.relative { height: 50vh !important; min-height: 350px; }
+            .hero-title { font-size: 2.8rem !important; line-height: 1; }
+            .offer-bar { gap: 8px; font-size: 8px; padding: 5px 0; }
+            .section-label { margin-top: 25px; font-size: 1.1rem; }
+            .modal-inner { padding: 20px; }
         }
     </style>
 </head>
@@ -101,7 +91,7 @@
                 <h2 class="text-xl font-black italic uppercase">Quick Search</h2>
                 <button onclick="closeSearch()" class="text-gray-400 hover:text-red-600 text-2xl">&times;</button>
             </div>
-            <input type="text" id="mainSearch" placeholder="Search product..." class="w-full bg-gray-50 border border-gray-200 p-4 rounded text-sm text-black outline-none" onkeyup="liveSearch()">
+            <input type="text" id="mainSearch" placeholder="Search product..." class="w-full bg-gray-50 border border-gray-200 p-4 rounded text-black outline-none" onkeyup="liveSearch()">
             <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto space-y-2"></div>
         </div>
     </div>
