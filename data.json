@@ -11,6 +11,7 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 100,
+    "description": "Certified HP EliteDesk 705 G4 Mini Business Desktop in Kanpur. High-performance Ryzen 3 processor, ultra-compact design, best for office use in Kanpur.",
     "images": [
       "assets/Hp-elitedesk-705g4-desktop4.webp",
       "assets/Hp-elitedesk-705g4-desktop1.webp",
@@ -32,6 +33,7 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 100,
+    "description": "Lenovo ThinkCentre M79 Tower Desktop available at Hexa Computronics Kanpur. Durable business series PC, 8GB RAM, fully tested refurbished desktop Kanpur.",
     "images": [
       "assets/thinkcentre-m79mt-desktop.webp",
       "assets/thinkcentre-m79mt-desktop1.webp",
@@ -51,6 +53,7 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 100,
+    "description": "Best price HP 240 G7 Refurbished Laptop in Kanpur. 7th Gen i3 processor, lightweight business laptop, 1-year warranty by Hexa Computronics Kanpur.",
     "images": [
       "assets/hp-240g7.webp",
       "assets/hp-240g7-side.webp",
@@ -70,10 +73,11 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 100,
+    "description": "Lenovo M720Q Tiny Desktop in Kanpur. 8th Gen i3, ultra-small form factor, original hardware, buy certified refurbished desktops in Kanpur.",
     "images": [
       "assets/lenovo-m720q-1-desktop.webp",
-       "assets/lenovo-m720q-2-desktop.webp",
-       "assets/lenovo-m720q-3-desktop.webp"
+      "assets/lenovo-m720q-2-desktop.webp",
+      "assets/lenovo-m720q-3-desktop.webp"
     ],
     "video": ""
   },
@@ -89,6 +93,7 @@
     "emi_months": 9,
     "warranty": "1 Year",
     "shipping": 100,
+    "description": "Lenovo V330 Business Series Refurbished Laptop Kanpur. 8th Gen i3, 8GB RAM, fast performance, ideal for students and professionals in Kanpur.",
     "images": [
       "assets/lenovo-v330.webp",
       "assets/lenovo-v330-2.webp"
@@ -107,10 +112,10 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 100,
+    "description": "HP ProDesk 400 G4 Mini PC in Kanpur. Compact refurbished business desktop with 8th Gen i3, high-speed SSD, best price in Kanpur.",
     "images": [
       "assets/hpprodesk-400g4mini-desktop.webp",
       "assets/hpprodesk-400g4mini-1-desktop.webp"
-      
     ],
     "video": ""
   },
@@ -126,6 +131,7 @@
     "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 100,
+    "description": "Premium Dell Latitude 5420 Refurbished Laptop in Kanpur. 11th Gen i5, 16GB RAM, 512GB SSD, powerful business machine with warranty in Kanpur.",
     "images": [
       "assets/dell-latitude-5420.webp",
       "assets/dell-latitude-5420-1.webp",
@@ -140,6 +146,7 @@
     "brand": "Lenovo",
     "model": "18.5 INCH FULL HD MONITOR",
     "price": 5400,
+    "description": "Lenovo 18.5 inch HD Monitor available at Hexa Computronics Kanpur. Best for office setup, vivid display, cheap monitors in Kanpur.",
     "images": [
       "assets/lenovo-19-monitor.webp",
       "assets/lenovo-19-1-monitor.webp",
@@ -160,6 +167,7 @@
     "emi_months": 12,
     "warranty": "10 DAYS",
     "shipping": 100,
+    "description": "Lenovo ThinkPad T14 Touchscreen Refurbished Laptop Kanpur. 10th Gen i5, 16GB RAM, premium touch experience at affordable price in Kanpur.",
     "images": [
       "assets/lenovo-t14-touch2-laptop.webp",
       "assets/lenovo-t14-touch1-laptop.webp",
