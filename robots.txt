@@ -1,1 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap link Google ko rasta dikhane ke liye
 Sitemap: https://hexacomputer.in/sitemap.xml
+
+# Privacy pages ko search results se bahar rakhne ke liye (optional)
+Disallow: /legal.html
+Disallow: /shipping-policy.html
