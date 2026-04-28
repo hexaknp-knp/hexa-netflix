@@ -56,6 +56,16 @@
             </div>
     </main>
 
+    <section class="px-6 md:px-12 py-12 bg-white text-gray-800 border-t">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-black uppercase italic mb-6 border-b-4 border-red-600 inline-block">Refurbished Desktops & Workstations in Kanpur</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-sm font-medium leading-relaxed">
+                <p>Finding reliable refurbished desktops in Kanpur is now easier with Hexa Computronics. We provide high-performance towers, tiny PCs, and professional workstations from brands like HP, Dell, and Lenovo. Whether you need a machine for office work, data entry, or heavy graphic designing, our certified hardware ensures you get the stability of a new PC at a significantly lower cost. Our desktops are built for 24/7 business operations and long-term reliability.</p>
+                <p>Located at Gumti No. 5, we serve the entire Kanpur region with premium IT solutions. Each desktop system we sell comes with certified components and has been thoroughly tested for hardware efficiency. From Intel Core i5 and i7 models to high-end workstations, we have configurations to suit every budget. Visit our store to see the quality for yourself and take advantage of our same-day delivery and EMI facilities.</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-gray-100 py-16 px-6 md:px-12 border-t-4 border-black text-gray-700 mt-20">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
             <div>
@@ -110,8 +120,6 @@
             const container = document.getElementById('product-container');
             container.innerHTML = products.map(item => {
                 const seoAlt = `${item.brand} ${item.model} Refurbished Desktop Kanpur - Hexa Computronics`;
-                
-                // Complete Config (Processor + RAM + SSD)
                 const fullConfig = `${item.processor} | ${item.ram} | ${item.ssd}`;
 
                 return `
