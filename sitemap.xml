@@ -2,22 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hexacomputer.in/</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-28</lastmod>
     <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://hexacomputer.in/laptops.html</loc>
-    <lastmod>2026-04-25</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://hexacomputer.in/desktops.html</loc>
-    <lastmod>2026-04-25</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://hexacomputer.in/accessories.html</loc>
-    <lastmod>2026-04-25</lastmod>
-    <priority>0.70</priority>
   </url>
 </urlset>
