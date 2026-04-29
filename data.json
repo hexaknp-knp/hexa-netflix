@@ -190,5 +190,20 @@
       "assets/lg-24inch-hd4-monitor.webp"
     ],
     "warranty": "1 Year"
-  }
+  },
+  {
+  "id": "Keybaord-01",
+    "category": "Accessories",
+    "brand": "HP",
+    "model": "HP KM160 Wired Keyboard and Mouse Combo",
+    "price": 700,
+    "description": "HP KM160 Wired Keyboard and Mouse Combo available at Hexa Computronics Kanpur. Best for office setup.",
+    "images": [
+      "assets/hp-km160-1-keyboard.webp",
+      "assets/hp-km160-2-keyboard.webp",
+      "assets/hp-km160-3-keyboard.webp",
+      "assets/hp-km160-4-keyboard.webp"
+     
+    ],
+    "warranty": "3 Year"
 ]
