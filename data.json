@@ -175,19 +175,20 @@
     ],
     "video": "assets/lenovo-t14-touch-laptop.mp4"
   },
-   {
+  {
     "id": "ACC-MON-02",
     "category": "Accessories",
     "brand": "LG",
     "model": "LG 23.8 (60.45 cm) IPS Full HD monitor with AMD FreeSync™",
     "price": 5400,
-    "description": "LG 24" IPS Full HD Gaming Monitor available at Hexa Computronics Kanpur. Best for office setup,Gaming vivid display, cheap monitors in Kanpur.",
+    "description": "LG 24 inch IPS Full HD Gaming Monitor available at Hexa Computronics Kanpur. Best for office setup, Gaming vivid display, cheap monitors in Kanpur.",
     "images": [
       "assets/lg-24inch-hd-monitor.webp",
       "assets/lg-24inch-hd1-monitor.webp",
       "assets/lg-24inch-hd2-monitor.webp",
       "assets/lg-24inch-hd3-monitor.webp",
       "assets/lg-24inch-hd4-monitor.webp"
-   ]
-}
-     
+    ],
+    "warranty": "1 Year"
+  }
+]
