@@ -90,7 +90,7 @@
     "ram": "8 GB",
     "ssd": "256 GB SSD",
     "price": 18550,
-    "emi_months": 9,
+    "emi_months": 12,
     "warranty": "1 Year",
     "shipping": 100,
     "description": "Lenovo V330 Business Series Refurbished Laptop Kanpur. 8th Gen i3, 8GB RAM, fast performance, ideal for students and professionals in Kanpur.",
@@ -146,6 +146,7 @@
     "brand": "Lenovo",
     "model": "18.5 INCH FULL HD MONITOR",
     "price": 5400,
+    "emi_months": 12,
     "description": "Lenovo 18.5 inch HD Monitor available at Hexa Computronics Kanpur. Best for office setup, vivid display, cheap monitors in Kanpur.",
     "images": [
       "assets/lenovo-19-monitor.webp",
@@ -181,6 +182,7 @@
     "brand": "LG",
     "model": "LG 23.8 (60.45 cm) IPS Full HD monitor with AMD FreeSync™",
     "price": 6400,
+    "emi_months": 12,
     "description": "LG 24 inch IPS Full HD Gaming Monitor available at Hexa Computronics Kanpur. Best for office setup, Gaming vivid display, cheap monitors in Kanpur.",
     "images": [
       "assets/lg-24inch-hd-monitor.webp",
@@ -197,6 +199,7 @@
     "brand": "HP",
     "model": "HP KM160 Wired Keyboard and Mouse Combo",
     "price": 700,
+    "emi_months": 12,
     "description": "HP KM160 Wired Keyboard and Mouse Combo available at Hexa Computronics Kanpur. Best for office setup.",
     "images": [
       "assets/hp-km160-1-keyboard.webp",
