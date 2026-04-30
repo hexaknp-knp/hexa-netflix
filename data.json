@@ -208,6 +208,23 @@
       "assets/hp-km160-4-keyboard.webp"
     ],
     "warranty": "3 Year"
+  },
+  {
+  "id": "Router-01",
+    "category": "Accessories",
+    "brand": "TpLink",
+    "model": "Archer C24 AC750 Dual-Band Wi-Fi Router",
+    "price": 1950,
+    "emi_months": 12,
+    "description": "High Speed Wifi,far Reaching Coverage,Multi Mode 3-1,IPV6 Supported",
+    "images": [
+      "assets/archer-c24_router1.webp",
+      "assets/archer-c24_router2.webp",
+      "assets/archer-c24_router3.webp",
+      "assets/archer-c24_router4.webp",
+      "assets/archer-c24_router5.webp"
+    ],
+    "warranty": "3 Year"
   }
 ]
 
