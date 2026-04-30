@@ -225,6 +225,24 @@
       "assets/archer-c24_router5.webp"
     ],
     "warranty": "3 Year"
+  },
+   {
+    "id": "desktop-01",
+    "category": "Desktop",
+    "brand": "Lenovo",
+    "model": "THINKCENTRE M720S SFF",
+    "processor": "CORE I5-8TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 30999,
+    "emi_months": 12,
+    "warranty": "3 Year",
+    "shipping": 100,
+    "description": "Certified Lenovo RF THINKCENTRE M720S SFF Business Desktop in Kanpur. High-performance, best for office use in Kanpur.",
+    "images": [
+      "assets/thinkcentre-m720s-desktop.webp",
+      "assets/thinkcentre-m720s1-desktop.webp",
+      "assets/thinkcentre-m720s2-desktop.webp"      
   }
 ]
 
