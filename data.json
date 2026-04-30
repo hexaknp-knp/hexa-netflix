@@ -244,5 +244,24 @@
       "assets/thinkcentre-m720s1-desktop.webp",
       "assets/thinkcentre-m720s2-desktop.webp"      
     ]
+  },
+  {
+    "id": "desktop-02",
+    "category": "Desktop",
+    "brand": "HP",
+    "model": "PRODESK 400 G5 SFF",
+    "processor": "CORE I5-8TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 30990,
+    "emi_months": 12,
+    "warranty": "3 Year",
+    "shipping": 100,
+    "description": "Premium HP RF  PRODESK 400 G5 SFF CORE I5-8TH GEN 8 GB 256 GB SSD for business use in Kanpur.",
+    "images": [
+      "assets/hpprodesk-400g4mini-desktop.webp",
+      "assets/hpprodesk-400g4mini-1-desktop.webp"
+    ]
   }
 ]
+
