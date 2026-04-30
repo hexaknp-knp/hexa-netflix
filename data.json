@@ -226,7 +226,7 @@
     ],
     "warranty": "3 Year"
   },
-   {
+  {
     "id": "desktop-01",
     "category": "Desktop",
     "brand": "Lenovo",
@@ -244,5 +244,5 @@
       "assets/thinkcentre-m720s1-desktop.webp",
       "assets/thinkcentre-m720s2-desktop.webp"      
     ]
-   },
+  }
 ]
