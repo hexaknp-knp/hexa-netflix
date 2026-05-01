@@ -262,6 +262,28 @@
       "assets/hpprodesk-400g4mini-desktop.webp",
       "assets/hpprodesk-400g4mini-1-desktop.webp"
     ]
-  }
+  },
+  {
+    "id": "purana-product",
+    ...
+  }, <--- Yahan comma aayega kyunki iske baad naya product hai
+  {
+    "id": "GDP00071RF",
+    "category": "Laptop",
+    "brand": "HP",
+    "model": "PROBOOK 645 G4",
+    "processor": "AMD-RYZEN 5 PRO",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 20500,
+    "emi_months": 12,
+    "warranty": "3 Year",
+    "shipping": 100,
+    "description": "PremiumHP RF PROBOOK 645 G4AMD-RYZEN 5 PRO 8GB 256SSD 14" for business use in Kanpur.",
+    "images": [
+      "assets/HP-probook645g4-1-laptop.webp",
+      "assets/HP-probook645g4-2-laptop.webp"
+    ]
+  } 
 ]
 
