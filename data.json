@@ -280,6 +280,21 @@
       "assets/HP-probook645g4-1-laptop.webp",
       "assets/HP-probook645g4-2-laptop.webp"
     ]
-  } 
+  },
+   {
+  "id": "Router-02",
+    "category": "Accessories",
+    "brand": "TpLink",
+    "model": "Archer C54 AC1200 Dual Band Wi-Fi Router",
+    "price": 2250,
+    "emi_months": 12,
+    "description": "Faster High Speed Wifi,Parental Control ,HD Streeming Supported",
+    "images": [
+      "assets/archer-c54_router1.webp",
+      "assets/archer-c54_router2.webp",
+      "assets/archer-c54_router3.webp",
+      "assets/archer-c54_router4.webp"
+    ],
+    "warranty": "3 Year"
+  }
 ]
-
