@@ -263,11 +263,7 @@
       "assets/hpprodesk-400g4mini-1-desktop.webp"
     ]
   },
-  {
-    "id": "purana-product",
-    ...
-  }, <--- Yahan comma aayega kyunki iske baad naya product hai
-  {
+   {
     "id": "GDP00071RF",
     "category": "Laptop",
     "brand": "HP",
