@@ -209,13 +209,13 @@
             const accessories = fullData.filter(i => i.category === "Accessories");
 
             // Load Laptops (Max 8 + View All)
-            document.getElementById('laptop-row').innerHTML = laptops.slice(0, 8).map(createCard).join('') + (laptops.length > 8 ? viewAllCard('laptops.html') : '');
+            document.getElementById('laptop-row').innerHTML = laptops.slice(0, 4).map(createCard).join('') + (laptops.length > 4 ? viewAllCard('laptops.html') : '');
             
             // Load Desktops (Max 8 + View All)
-            document.getElementById('desktop-row').innerHTML = desktops.slice(0, 3).map(createCard).join('') + (desktops.length > 3 ? viewAllCard('desktops.html') : '');
+            document.getElementById('desktop-row').innerHTML = desktops.slice(0, 4).map(createCard).join('') + (desktops.length > 4 ? viewAllCard('desktops.html') : '');
             
             // Load Accessories (Max 8 + View All)
-            document.getElementById('accessories-row').innerHTML = accessories.slice(0, 8).map(createCard).join('') + (accessories.length > 8 ? viewAllCard('accessories.html') : '');
+            document.getElementById('accessories-row').innerHTML = accessories.slice(0, 4).map(createCard).join('') + (accessories.length > 4 ? viewAllCard('accessories.html') : '');
         }
 
         function openSearch() { document.getElementById('searchModal').style.display = 'flex'; }
