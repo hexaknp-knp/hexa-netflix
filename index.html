@@ -210,7 +210,6 @@
         }
 
         function loadRows() {
-            // Updated Card with Lazy Loading for Speed
             const createCard = (item) => `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
                 <div class="relative"><img src="${item.images[0]}" alt="${item.model}" loading="lazy" width="240" height="140"><div class="absolute top-2 right-2 bg-red-600 text-white text-[7px] px-2 py-1 rounded font-black uppercase">EMI Available</div></div>
                 <div class="p-3"><h3 class="font-black text-[10px] text-black truncate uppercase italic leading-tight">${item.model}</h3>
@@ -225,7 +224,6 @@
             const desktops = fullData.filter(i => i.category === "Desktop");
             const accessories = fullData.filter(i => i.category === "Accessories");
 
-            // Show 4 products on Home (Better for mobile performance)
             document.getElementById('laptop-row').innerHTML = laptops.slice(0, 4).map(createCard).join('') + (laptops.length > 4 ? viewAllCard('laptops.html') : '');
             document.getElementById('desktop-row').innerHTML = desktops.slice(0, 4).map(createCard).join('') + (desktops.length > 4 ? viewAllCard('desktops.html') : '');
             document.getElementById('accessories-row').innerHTML = accessories.slice(0, 4).map(createCard).join('') + (accessories.length > 4 ? viewAllCard('accessories.html') : '');
@@ -248,5 +246,17 @@
         }
         window.onload = init;
     </script>
-</body>
+
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69fb1e3e1ae6231c30edc8e9/1jnues9nn';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    </body>
 </html>
