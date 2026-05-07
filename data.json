@@ -194,7 +194,7 @@
     "warranty": "1 Year"
   },
   {
-  "id": "Keybaord-01",
+    "id": "Keybaord-01",
     "category": "Accessories",
     "brand": "HP",
     "model": "HP KM160 Wired Keyboard and Mouse Combo",
@@ -210,7 +210,7 @@
     "warranty": "3 Year"
   },
   {
-  "id": "Router-01",
+    "id": "Router-01",
     "category": "Accessories",
     "brand": "TpLink",
     "model": "Archer C24 AC750 Dual-Band Wi-Fi Router",
@@ -242,10 +242,10 @@
     "images": [
       "assets/thinkcentre-m720s-desktop.webp",
       "assets/thinkcentre-m720s1-desktop.webp",
-      "assets/thinkcentre-m720s2-desktop.webp"      
+      "assets/thinkcentre-m720s2-desktop.webp"
     ]
   },
-   {
+  {
     "id": "GDP00071RF",
     "category": "Laptop",
     "brand": "HP",
@@ -257,14 +257,14 @@
     "emi_months": 12,
     "warranty": "3 Year",
     "shipping": 100,
-    "description": "Premium HP RF  PROBOOK 645 G4 RYZEN 5 PRO 8 GB 256 GB SSD for business use in Kanpur.",
+    "description": "Premium HP RF PROBOOK 645 G4 RYZEN 5 PRO 8 GB 256 GB SSD for business use in Kanpur.",
     "images": [
       "assets/HP-probook645g4-1-laptop.webp",
       "assets/HP-probook645g4-2-laptop.webp"
     ]
   },
-   {
-  "id": "Router-02",
+  {
+    "id": "Router-02",
     "category": "Accessories",
     "brand": "TpLink",
     "model": "Archer C54 AC1200 Dual Band Wi-Fi Router",
@@ -297,6 +297,7 @@
       "assets/dell-3040-2.webp",
       "assets/dell-3040-3.webp"
     ]
+  },
   {
     "id": "desktop-02",
     "category": "Desktop",
@@ -309,7 +310,7 @@
     "emi_months": 12,
     "warranty": "3 Year",
     "shipping": 100,
-    "description": "Premium HP RF  PRODESK 400 G5 SFF CORE I5-8TH GEN 8 GB 256 GB SSD for business use in Kanpur.",
+    "description": "Premium HP RF PRODESK 400 G5 SFF CORE I5-8TH GEN 8 GB 256 GB SSD for business use in Kanpur.",
     "images": [
       "assets/hpprodesk-400g4mini-desktop.webp",
       "assets/hpprodesk-400g4mini-1-desktop.webp"
