@@ -10,6 +10,31 @@
     <title>Hexa Computronics | Best Refurbished Laptops & Desktops in Kanpur</title>
     <meta name="description" content="Hexa Computronics Kanpur offers premium certified refurbished business laptops and desktops. Buy Dell, HP, Lenovo at 70% off with EMI options in Kanpur.">
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Hexa Computronics",
+      "image": "https://hexacomputer.in/assets/newlogo.png",
+      "@id": "https://hexacomputer.in",
+      "url": "https://hexacomputer.in",
+      "telephone": "+919935529306",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "119/540 New Basant Cinema Building",
+        "addressLocality": "Kanpur",
+        "postalCode": "208005",
+        "addressCountry": "IN"
+      },
+      "priceRange": "₹₹",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "20:00"
+      }
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -154,6 +179,10 @@
         </div>
     </footer>
 
+    <div id="searchModal"><div class="modal-inner"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-black italic uppercase">Search</h2><button onclick="closeSearch()" class="text-gray-400 text-2xl font-black">&times;</button></div><input type="text" id="mainSearch" placeholder="Model name..." class="w-full border-2 border-black p-4 text-black outline-none" onkeyup="liveSearch()"><div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div></div></div>
+    
+    <div id="quoteModal"><div class="modal-inner"><div class="flex justify-between items-center mb-4"><h2 class="text-lg font-black uppercase italic text-red-600">Request Quote</h2><button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-3xl font-black">×</button></div><form class="space-y-3"><input type="text" id="qName" placeholder="NAME" class="w-full border-2 border-black p-2 font-black uppercase"><input type="tel" id="qPhone" placeholder="WHATSAPP" class="w-full border-2 border-black p-2 font-black"><textarea id="qReq" placeholder="REQUIREMENT..." class="w-full border-2 border-black p-2 font-black h-20 uppercase"></textarea><button type="button" onclick="sendToWA()" class="w-full bg-black text-white py-3 font-black uppercase italic">Submit Request</button></form></div></div>
+
     <script>
         let fullData = [];
         async function init() {
@@ -202,8 +231,34 @@
             document.getElementById('desktop-row').innerHTML = desks.slice(0, limit).map(createCard).join('');
             document.getElementById('accessories-row').innerHTML = accs.slice(0, limit).map(createCard).join('');
         }
+
+        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; }
+        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
+        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
+        function liveSearch() {
+            const q = document.getElementById('mainSearch').value.toLowerCase();
+            const res = fullData.filter(i => i.model.toLowerCase().includes(q)).slice(0, 5);
+            document.getElementById('searchResults').innerHTML = res.map(i => `<div onclick="location.href='product-details.html?id=${i.id}'" class="p-2 border-b cursor-pointer text-[10px] uppercase font-bold">${i.model}</div>`).join('');
+        }
+        function sendToWA() {
+            const n = document.getElementById('qName').value;
+            window.open(`https://wa.me/919935529306?text=HEXA INQUIRY - Name: ${n}`, '_blank');
+        }
         window.onload = init;
         window.onresize = loadRows;
+    </script>
+
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69fb4723b2c8791c30a7133e/1jnuorp0a';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
     </script>
 </body>
 </html>
