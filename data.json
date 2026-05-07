@@ -245,24 +245,7 @@
       "assets/thinkcentre-m720s2-desktop.webp"      
     ]
   },
-  {
-    "id": "dell-wyse-3040-tc",
-    "category": "Desktop",
-    "brand": "Dell",
-    "model": "Dell Wyse 3040 Thin Client",
-    "processor": "Intel Quad Core 1.44 GHz",
-    "ram": "2 GB",
-    "ssd": "8GB/16GB Flash",
-    "price": 5900,
-    "emi_months": 12,
-    "warranty": "1 Year",
-    "shipping": 100,
-    "description": "Premium Enterprise-Grade Thin Client for ultra-compact and secure computing.",
-    "images": [
-      "assets/dell-3040-1.webp",
-      "assets/dell-3040-2.webp",
-      "assets/dell-3040-3.webp"
-    ]
+  
   },
    {
     "id": "GDP00071RF",
@@ -298,6 +281,24 @@
     ],
     "warranty": "3 Year"
   },
+  {
+    "id": "dell-wyse-3040-tc",
+    "category": "Desktop",
+    "brand": "Dell",
+    "model": "Dell Wyse 3040 Thin Client",
+    "processor": "Intel Quad Core 1.44 GHz",
+    "ram": "2 GB",
+    "ssd": "8GB/16GB Flash",
+    "price": 5900,
+    "emi_months": 12,
+    "warranty": "1 Year",
+    "shipping": 100,
+    "description": "Premium Enterprise-Grade Thin Client for ultra-compact and secure computing.",
+    "images": [
+      "assets/dell-3040-1.webp",
+      "assets/dell-3040-2.webp",
+      "assets/dell-3040-3.webp"
+    ]
   {
     "id": "desktop-02",
     "category": "Desktop",
