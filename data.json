@@ -246,21 +246,22 @@
     ]
   },
   {
-    "id": "desktop-02",
+    "id": "dell-wyse-3040-tc",
     "category": "Desktop",
-    "brand": "HP",
-    "model": "PRODESK 400 G5 SFF",
-    "processor": "CORE I5-8TH GEN",
-    "ram": "8 GB",
-    "ssd": "256 GB SSD",
-    "price": 30990,
+    "brand": "Dell",
+    "model": "Dell Wyse 3040 Thin Client",
+    "processor": "Intel Quad Core 1.44 GHz",
+    "ram": "2 GB",
+    "ssd": "8GB/16GB Flash",
+    "price": 5900,
     "emi_months": 12,
-    "warranty": "3 Year",
+    "warranty": "1 Year",
     "shipping": 100,
-    "description": "Premium HP RF  PRODESK 400 G5 SFF CORE I5-8TH GEN 8 GB 256 GB SSD for business use in Kanpur.",
+    "description": "Premium Enterprise-Grade Thin Client for ultra-compact and secure computing.",
     "images": [
-      "assets/hpprodesk-400g4mini-desktop.webp",
-      "assets/hpprodesk-400g4mini-1-desktop.webp"
+      "assets/dell-3040-1.webp",
+      "assets/dell-3040-2.webp",
+      "assets/dell-3040-3.webp"
     ]
   },
    {
@@ -298,22 +299,21 @@
     "warranty": "3 Year"
   },
   {
-    "id": "dell-wyse-3040-tc",
+    "id": "desktop-02",
     "category": "Desktop",
-    "brand": "Dell",
-    "model": "Dell Wyse 3040 Thin Client",
-    "processor": "Intel Quad Core 1.44 GHz",
-    "ram": "2 GB",
-    "ssd": "8GB/16GB Flash",
-    "price": 5900,
+    "brand": "HP",
+    "model": "PRODESK 400 G5 SFF",
+    "processor": "CORE I5-8TH GEN",
+    "ram": "8 GB",
+    "ssd": "256 GB SSD",
+    "price": 30990,
     "emi_months": 12,
-    "warranty": "1 Year",
+    "warranty": "3 Year",
     "shipping": 100,
-    "description": "Premium Enterprise-Grade Thin Client for ultra-compact and secure computing.",
+    "description": "Premium HP RF  PRODESK 400 G5 SFF CORE I5-8TH GEN 8 GB 256 GB SSD for business use in Kanpur.",
     "images": [
-      "assets/dell-3040-1.webp",
-      "assets/dell-3040-2.webp",
-      "assets/dell-3040-3.webp"
+      "assets/hpprodesk-400g4mini-desktop.webp",
+      "assets/hpprodesk-400g4mini-1-desktop.webp"
     ]
   }
 ]
