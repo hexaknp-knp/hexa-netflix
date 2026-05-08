@@ -44,7 +44,7 @@
         * { font-display: swap; }
 
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
-        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; will-change: transform; }
+        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         .offer-bar { background: #000; color: #fff; padding: 6px 0; font-size: 9px; font-weight: 900; text-transform: uppercase; display: flex; justify-content: center; gap: 15px; overflow: hidden; white-space: nowrap; }
@@ -196,15 +196,55 @@
 
     <script>
         let fullData = [];
+        // STEP 1: Apna Google Sheet CSV Link Yahan Dalein
+        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
+
         async function init() {
             try {
-                const res = await fetch('data.json');
-                fullData = await res.json();
+                // Pehle Google Sheet se data khinchenge
+                const res = await fetch(sheetURL);
+                const csvText = await res.text();
+                fullData = csvToJSON(csvText);
                 loadRows();
-            } catch (e) { console.error("Data fail"); }
+            } catch (e) { 
+                console.error("Sheet Load Fail, falling back to local json");
+                // Agar sheet fail hui toh backup data.json try karein
+                try {
+                    const localRes = await fetch('data.json');
+                    fullData = await localRes.json();
+                    loadRows();
+                } catch(err) { console.error("All data sources failed"); }
+            }
+        }
+
+        // CSV String ko JSON Array mein badalne ka function
+        function csvToJSON(csv) {
+            const lines = csv.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.trim());
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i]) continue;
+                const obj = {};
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // Comma inside quotes handling
+
+                headers.forEach((header, index) => {
+                    let value = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
+                    // Price ko number mein badlein
+                    if(header === 'price') value = parseInt(value) || 0;
+                    // Images ko array mein badlein
+                    if(header === 'images') value = value.split(',').map(img => img.trim());
+                    obj[header] = value;
+                });
+                result.push(obj);
+            }
+            return result;
         }
 
         function loadRows() {
+            // Sirf wahi products dikhayein jo "In Stock" hain
+            const activeData = fullData.filter(i => i.stock === "In Stock");
+
             const createCard = (item) => {
                 const isNew = item.condition === "New";
                 const offerLabel = item.offer_label ? `<div class="mt-1 text-[7px] font-bold text-green-600 uppercase bg-green-50 px-1 inline-block border border-green-200">🎁 ${item.offer_label}</div>` : '';
@@ -217,7 +257,7 @@
                     </div>
                     <div class="p-3">
                         <h3 class="font-black text-[11px] text-black truncate uppercase italic leading-tight">${item.model}</h3>
-                        <p class="text-[9px] text-black mt-1 uppercase font-black tracking-tighter">${item.processor || 'Hardware Spec'}</p>
+                        <p class="text-[9px] text-black mt-1 uppercase font-black tracking-tighter">${item.processor || ''}</p>
                         ${offerLabel}
                         <div class="mt-2 flex justify-between items-center border-t pt-2 border-zinc-200">
                             <div class="flex flex-col">
@@ -236,10 +276,10 @@
             const isMobile = window.innerWidth <= 768;
             const limit = isMobile ? 2 : 5;
 
-            const newArr = fullData.filter(i => i.condition === "New");
-            const laps = fullData.filter(i => i.category === "Laptop" && i.condition !== "New");
-            const desks = fullData.filter(i => i.category === "Desktop" && i.condition !== "New");
-            const accs = fullData.filter(i => i.category === "Accessories");
+            const newArr = activeData.filter(i => i.condition === "New");
+            const laps = activeData.filter(i => i.category === "Laptop" && i.condition !== "New");
+            const desks = activeData.filter(i => i.category === "Desktop" && i.condition !== "New");
+            const accs = activeData.filter(i => i.category === "Accessories");
 
             if(newArr.length > 0) {
                 document.getElementById('new-arrivals-section').style.display = 'block';
@@ -265,6 +305,17 @@
         }
         window.onload = init;
         window.onresize = loadRows;
+    </script>
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69fb4723b2c8791c30a7133e/1jnuorp0a';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
     </script>
 </body>
 </html>
