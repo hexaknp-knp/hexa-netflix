@@ -2,77 +2,158 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Brand New Store | Hexa Computronics Kanpur</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --paytm-blue: #00BAF2; --hexa-red: #E50914; }
-        body { font-family: 'Inter', sans-serif; background: #f4f7f6; }
-        .new-card { transition: 0.3s; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
-        .new-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--paytm-blue); }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; margin: 0; }
+        #navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.98); border-bottom: 3px solid #000; }
+        .new-card { transition: 0.4s ease; background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+        .new-card:hover { transform: translateY(-8px); border-color: var(--paytm-blue); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .offer-badge { background: linear-gradient(90deg, #16a34a, #22c55e); color: white; padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; }
+        .paytm-btn { background: #000; transition: 0.3s; }
+        .paytm-btn:hover { background: var(--paytm-blue); }
     </style>
 </head>
 <body>
 
-    <header class="bg-white border-b-2 border-black py-6 px-6 text-center">
-        <h1 class="text-3xl font-black italic uppercase italic">Brand <span class="text-green-600">New</span> Store</h1>
-        <p class="text-[10px] font-bold text-gray-500 tracking-[0.3em] uppercase mt-1">Authorized Company Warranty & PayTM Cashback</p>
-    </header>
-
-    <div class="bg-[#00BAF2] text-white py-3 px-4 text-center font-black uppercase italic text-xs sticky top-0 z-50">
-        🚀 Flat Cashback & Easy EMI via <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Paytm_Logo.png" class="h-4 inline-block ml-1 brightness-0 invert"> | Back to School Deals Live!
+    <div class="bg-black text-white py-2 overflow-hidden">
+        <div class="whitespace-nowrap animate-pulse text-center text-[10px] font-black uppercase tracking-widest">
+             🚀 OFFICIAL BRAND WARRANTY • PAYTM CASHBACK DEALS • BACK TO SCHOOL OFFERS LIVE!
+        </div>
     </div>
 
-    <main class="max-w-7xl mx-auto px-4 py-10">
-        <div id="new-items-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <nav id="navbar" class="px-4 md:px-12 py-3">
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="flex flex-col items-center">
+                <img src="assets/newlogo.png" alt="Logo" class="h-8">
+                <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic">Hexa Computronics</span>
+            </a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-gray-500 hover:text-black transition">Home Store</a>
+                <a href="new-store.html" class="text-green-600 border-b-2 border-green-600">Brand New</a>
+                <a href="laptops.html" class="text-gray-500 hover:text-black">Laptops</a>
+                <a href="desktops.html" class="text-gray-500 hover:text-black">Desktops</a>
+            </div>
+            <a href="index.html" class="bg-black text-white text-[9px] px-4 py-2 rounded font-black uppercase italic tracking-widest hover:bg-blue-600 transition-all">▶ Return Home</a>
+        </div>
+    </nav>
+
+    <header class="bg-white py-12 px-6 border-b text-center relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl md:text-7xl font-black italic uppercase italic text-black leading-none">The <span class="text-green-600">New</span> Store</h1>
+            <p class="text-[10px] md:text-sm font-bold text-gray-500 tracking-[0.4em] uppercase mt-4">Certified Box-Pack Hardware with Company Warranty</p>
+            <div class="mt-6 flex justify-center items-center gap-3">
+                <span class="offer-badge italic">Lowest Price in Kanpur</span>
+                <span class="offer-badge italic bg-blue-600">PayTM Partner</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <div id="new-items-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
             </div>
     </main>
 
-    <script>
-        async function loadNewStore() {
-            const res = await fetch('data.json');
-            const data = await res.json();
-            const newProducts = data.filter(item => item.condition === "New");
-            
-            const grid = document.getElementById('new-items-grid');
-            grid.innerHTML = newProducts.map(item => `
-                <div class="new-card">
-                    <div class="relative">
-                        <img src="${item.images[0]}" class="w-full h-48 object-contain p-6">
-                        <div class="absolute top-3 left-3 bg-green-600 text-white text-[9px] px-2 py-1 rounded font-black">NEW ARRIVAL</div>
-                    </div>
-                    <div class="p-5 border-t border-gray-100">
-                        <span class="text-[10px] font-black text-blue-600 uppercase">${item.brand} Official</span>
-                        <h2 class="text-lg font-black text-black leading-tight mt-1 uppercase italic">${item.model}</h2>
-                        <p class="text-xs font-bold text-gray-600 mt-2">${item.processor}</p>
-                        
-                        <div class="mt-4 bg-blue-50 p-2 border border-blue-100 rounded">
-                            <p class="text-[9px] font-black text-blue-700 uppercase">PayTM Offer:</p>
-                            <p class="text-[11px] font-black text-black">${item.offer_label}</p>
-                        </div>
+    <footer class="bg-zinc-900 text-white py-16 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-2xl font-black uppercase italic text-yellow-500 mb-4">PayTM Cashback Offer</h2>
+                <p class="text-sm opacity-80 leading-relaxed font-bold">Avail instant discounts and cashback on all "Brand New" inventory when paying via PayTM. Special benefits for students under the "Back to School" program. Visit our store for live demo.</p>
+            </div>
+            <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
+                <h3 class="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Store Location</h3>
+                <p class="text-lg font-black italic">119/540 New Basant Building, Gumti No.5, Kanpur</p>
+                <p class="text-sm mt-2 text-green-500 font-bold tracking-widest underline">+91 9935529306</p>
+            </div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-zinc-800 text-center opacity-40">
+            <p class="text-[9px] font-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS NEW STORE | KANPUR</p>
+        </div>
+    </footer>
 
-                        <div class="mt-5 flex justify-between items-end">
+    <script>
+        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
+
+        async function init() {
+            try {
+                const res = await fetch(sheetURL);
+                const csvText = await res.text();
+                const data = csvToJSON(csvText);
+                // FILTER: Only New condition and In Stock
+                const newProducts = data.filter(i => i.condition === "New" && i.stock === "In Stock");
+                render(newProducts);
+            } catch (e) { console.error("Sheet Error"); }
+        }
+
+        function csvToJSON(csv) {
+            const lines = csv.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.trim());
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i]) continue;
+                const obj = {};
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                headers.forEach((header, index) => {
+                    let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
+                    if(header === 'images') val = val.split(',').map(img => img.trim());
+                    if(header === 'price') val = parseInt(val) || 0;
+                    obj[header] = val;
+                });
+                result.push(obj);
+            }
+            return result;
+        }
+
+        function render(data) {
+            const grid = document.getElementById('new-items-grid');
+            if(data.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-20 font-black uppercase text-gray-400 italic">No new stock available today. Check back soon!</div>`;
+                return;
+            }
+            
+            grid.innerHTML = data.map(item => `
+                <div class="new-card shadow-sm">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-white border-b" onclick="location.href='product-details.html?id=${item.id}'">
+                        <img src="${item.images[0]}" alt="${item.model}" class="w-full h-full object-contain p-6">
+                        <div class="absolute top-4 left-4 bg-green-600 text-white text-[9px] px-3 py-1 rounded-full font-black uppercase italic shadow-lg">New Arrival</div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">${item.brand} Official</span>
+                            <span class="text-[10px] font-black text-gray-400 italic">${item.warranty}</span>
+                        </div>
+                        <h2 class="text-lg font-black text-black leading-tight uppercase italic mb-2">${item.model}</h2>
+                        <p class="text-[10px] font-bold text-gray-600 mb-4 border-b pb-3 uppercase">${item.processor || ''}</p>
+                        
+                        ${item.offer_label ? `
+                        <div class="mb-4 bg-blue-50 border border-blue-100 p-2 rounded flex items-center gap-2">
+                            <i class="fas fa-gift text-blue-600 text-xs"></i>
+                            <p class="text-[9px] font-black text-blue-700 uppercase">${item.offer_label}</p>
+                        </div>` : ''}
+
+                        <div class="mt-auto flex justify-between items-end">
                             <div>
-                                <p class="text-[10px] font-bold text-gray-400 uppercase">M.R.P Price</p>
-                                <p class="text-2xl font-black text-black">₹${item.price.toLocaleString()}</p>
+                                <p class="text-[9px] font-black text-gray-400 uppercase leading-none">Net Price</p>
+                                <p class="text-2xl font-black text-black italic">₹${item.price.toLocaleString()}</p>
                             </div>
                             <div class="text-right">
-                                <p class="text-[9px] font-black text-red-600 leading-none">EMI STARTS AT</p>
-                                <p class="text-sm font-black text-black leading-none">₹${item.emi_amount}/mo*</p>
+                                <p class="text-[8px] font-black text-red-600 uppercase leading-none italic">EMI From</p>
+                                <p class="text-sm font-black text-black leading-none">₹${item.emi_amount || 'N/A'}/mo*</p>
                             </div>
                         </div>
 
-                        <button onclick="window.open('https://paytm.com', '_blank')" class="w-full mt-6 bg-black text-white py-3 font-black uppercase italic text-sm hover:bg-blue-600 transition-colors">
-                            Buy via PayTM Cashback ▶
+                        <button onclick="window.open('https://paytm.com', '_blank')" class="paytm-btn w-full mt-6 text-white py-3 font-black uppercase italic text-xs rounded-lg flex items-center justify-center gap-2">
+                            Buy via PayTM Cashback <i class="fas fa-arrow-right text-[10px]"></i>
                         </button>
-                        <p class="text-[8px] text-center text-gray-400 mt-2 font-bold uppercase">*T&C Apply | 12 Months EMI Available</p>
+                        <p class="text-[8px] text-center text-gray-400 mt-3 font-bold uppercase tracking-tighter">*T&C Apply | Offers via PayTM Vendor</p>
                     </div>
-                </div>
-            `).join('');
+                </div>`).join('');
         }
-        window.onload = loadNewStore;
-    </script>
 
+        window.onload = init;
+    </script>
 </body>
 </html>
