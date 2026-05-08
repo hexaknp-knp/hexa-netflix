@@ -101,16 +101,27 @@
                 <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
                 <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
             </a>
-            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+            <div class="hidden lg:flex space-x-6 text-[10px] font-bold uppercase tracking-tighter">
                 <a href="index.html" class="text-red-600 border-b-2 border-red-600">Home</a>
+                <a href="new-store.html" class="text-green-600 hover:text-black flex items-center">
+                    New <span class="ml-1 w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span>
+                </a>
                 <a href="laptops.html" class="text-black hover:text-red-600">Laptops</a>
                 <a href="desktops.html" class="text-black hover:text-red-600">Desktops</a>
+                <a href="printers.html" class="text-black hover:text-red-600">Printers</a>
                 <a href="accessories.html" class="text-black hover:text-red-600">Accessories</a>
             </div>
             <div class="flex items-center space-x-4">
                 <button onclick="openSearch()"><i class="fas fa-search text-xl"></i></button>
                 <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Quote</button>
             </div>
+        </div>
+        <div class="lg:hidden flex justify-center space-x-3 pb-2 border-t pt-2 overflow-x-auto px-2 scrollbar-hide">
+             <a href="new-store.html" class="text-[9px] font-black uppercase text-green-600">New arrivals</a>
+             <a href="laptops.html" class="text-[9px] font-black uppercase text-black">Laptops</a>
+             <a href="desktops.html" class="text-[9px] font-black uppercase text-black">Desktops</a>
+             <a href="printers.html" class="text-[9px] font-black uppercase text-black">Printers</a>
+             <a href="accessories.html" class="text-[9px] font-black uppercase text-black">Acc.</a>
         </div>
     </nav>
 
@@ -254,17 +265,6 @@
         }
         window.onload = init;
         window.onresize = loadRows;
-    </script>
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69fb4723b2c8791c30a7133e/1jnuorp0a';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
     </script>
 </body>
 </html>
