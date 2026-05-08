@@ -1,4 +1,27 @@
 [
+  {
+    "id": "new-hp-laptop-001",
+    "category": "Laptop",
+    "brand": "HP",
+    "model": "HP Laptop 15s (2026 Edition)",
+    "processor": "Intel Core i3-12th Gen",
+    "ram": "8 GB DDR4",
+    "ssd": "512 GB NVMe SSD",
+    "price": 38500,
+    "condition": "New",
+    "vendor": "PayTM",
+    "emi_months": 12,
+    "emi_amount": "3,208",
+    "warranty": "1 Year Brand Warranty",
+    "shipping": 0,
+    "offer_label": "BACK TO SCHOOL - ₹2000 CASHBACK",
+    "description": "Brand New HP Laptop with official company warranty. Get extra cashback and student discounts via PayTM payment.",
+    "images": [
+      "assets/new-hp-15s-1.webp",
+      "assets/new-hp-15s-2.webp"
+    ]
+  },
+[
    {
     "id": "dell-wyse-3040-tc",
     "category": "Desktop",
