@@ -2,23 +2,25 @@
   {
     "id": "new-hp-laptop-001",
     "category": "Laptop",
-    "brand": "HP",
-    "model": "HP Laptop 15s (2026 Edition)",
-    "processor": "Intel Core i3-12th Gen",
+    "brand": "Lenovo",
+    "model": "Ideapad Slim 1 (2026 Edition)",
+    "processor": "Intel Core i3-13th (1315U) Gen",
     "ram": "8 GB DDR4",
     "ssd": "512 GB NVMe SSD",
-    "price": 38500,
+    "price": 42990,
     "condition": "New",
     "vendor": "PayTM",
     "emi_months": 12,
-    "emi_amount": "3,208",
+    "emi_amount": "4225",
+    "software": "windows11/office H&S",
+    "screen": "15.6 FHD With Bag"
     "warranty": "1 Year Brand Warranty",
-    "shipping": 0,
+    "shipping": 100,
     "offer_label": "BACK TO SCHOOL - ₹2000 CASHBACK",
-    "description": "Brand New HP Laptop with official company warranty. Get extra cashback and student discounts via PayTM payment.",
+    "description": "Brand New Lenovo Laptop with official company warranty. Get extra cashback and student discounts via PayTM online payment.",
     "images": [
-      "assets/new-hp-15s-1.webp",
-      "assets/new-hp-15s-2.webp"
+      "assets/ideapad-slim1-laptp.webp",
+      "assets/ideapad-slim11-laptp.webp"
     ]
   },
   {
