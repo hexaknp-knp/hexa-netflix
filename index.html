@@ -24,6 +24,13 @@
         "addressLocality": "Kanpur",
         "postalCode": "208005",
         "addressCountry": "IN"
+      },
+      "priceRange": "₹₹",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "20:00"
       }
     }
     </script>
@@ -35,12 +42,11 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- SIDEBAR WITH DARKER IT PRODUCT SHADOW --- */
+        /* --- SIDEBAR WITH VISIBLE TECH SHADOW --- */
         #sidebar { 
             position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
             z-index: 3000; transition: 0.4s ease; 
             border-right: 3px solid #000; background: #fff;
-            /* Visible Tech Shadow Pattern */
             background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
                               url('https://www.transparenttextures.com/patterns/circuit-board.png'); 
             padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1);
@@ -56,7 +62,8 @@
         .overlay { position: fixed; inset: 0; z-index: 2500; display: none; background: transparent; }
         .overlay.active { display: block; }
         
-        .menu-btn { cursor: pointer; font-size: 24px; color: #000; }
+        .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; }
+        .menu-btn:hover { color: var(--red); }
 
         .nav-link-side { 
             color: #000; font-weight: 800; text-transform: uppercase; 
@@ -66,21 +73,28 @@
         }
         .nav-link-side:hover { color: var(--red); padding-left: 5px; }
 
-        .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
-        .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
-        .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
-        .carousel-img.active { opacity: 1; }
-
+        /* Original Navbar Logic */
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* Carousel Styles */
+        .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
+        .category-block:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0px var(--red); }
+        .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
+        .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
+        .carousel-img.active { opacity: 1; }
 
         .section-header { display: flex; justify-content: space-between; align-items: baseline; margin: 30px 0 15px 0; border-left: 6px solid var(--red); padding-left: 12px; }
         .section-label { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; font-style: italic; }
         
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
+        
+        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .footer-item:hover { color: var(--red); }
     </style>
 </head>
 <body>
@@ -118,10 +132,9 @@
                     <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
                 </a>
             </div>
-            
             <div class="flex items-center space-x-4">
                 <button onclick="openSearch()"><i class="fas fa-search text-xl"></i></button>
-                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Quote</button>
+                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase shadow-sm">Quote</button>
             </div>
         </div>
     </nav>
@@ -136,68 +149,64 @@
 
     <main class="relative z-20 px-4 md:px-12 pb-16">
         <div class="section-header"><h2 class="section-label">Browse by Category</h2></div>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
                 <div class="carousel-container" id="carousel-laptop"></div>
-                <div class="p-4 bg-white flex justify-between items-center">
-                    <div><h3 class="font-black italic uppercase text-lg">Business Laptops</h3><p class="text-[10px] font-bold text-red-600 uppercase">HP • DELL • LENOVO</p></div>
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[10px] text-red-600">HP • DELL • LENOVO</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
                 <div class="carousel-container" id="carousel-desktop"></div>
-                <div class="p-4 bg-white flex justify-between items-center">
-                    <div><h3 class="font-black italic uppercase text-lg">Office Desktops</h3><p class="text-[10px] font-bold text-red-600 uppercase">Towers • Mini PCs</p></div>
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[10px] text-red-600">Towers • Mini PCs</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
                 <div class="carousel-container" id="carousel-new"></div>
-                <div class="p-4 bg-white flex justify-between items-center">
-                    <div><h3 class="font-black italic uppercase text-lg text-green-600">Brand New Store</h3><p class="text-[10px] font-bold text-black uppercase italic">Box Pack • Warranty</p></div>
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-green-600">
+                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[10px] text-black">Box Pack • Warranty</p></div>
                     <i class="fas fa-arrow-right text-xl text-green-600"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
                 <div class="carousel-container" id="carousel-printer"></div>
-                <div class="p-4 bg-white flex justify-between items-center">
-                    <div><h3 class="font-black italic uppercase text-lg">Official Printers</h3><p class="text-[10px] font-bold text-red-600 uppercase">EPSON • CANON • HP</p></div>
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                    <div><h3 class="text-lg">Official Printers</h3><p class="text-[10px] text-red-600">EPSON • CANON • HP</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
                 <div class="carousel-container" id="carousel-accessories"></div>
-                <div class="p-4 bg-white flex justify-between items-center">
-                    <div><h3 class="font-black italic uppercase text-lg">Tech Accessories</h3><p class="text-[10px] font-bold text-red-600 uppercase">Keyboards • Routers</p></div>
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                    <div><h3 class="text-lg">Tech Accessories</h3><p class="text-[10px] text-red-600">Keyboards • Mice</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="openQuote()">
                 <div class="carousel-container" id="carousel-cctv"></div>
-                <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black">
-                    <div><h3 class="font-black italic uppercase text-lg">Security CCTV</h3><p class="text-[10px] font-bold text-red-600 uppercase">CP PLUS • HIKVISION</p></div>
-                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black">ENQUIRE</span>
+                <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black font-black uppercase italic bg-black text-white">
+                    <div><h3 class="text-lg">Security CCTV</h3><p class="text-[10px] font-bold text-red-600">CP PLUS • HIKVISION</p></div>
+                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white">ENQUIRE</span>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black">
+    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li></ul></div>
-            <div><span class="footer-heading">Contact</span><p class="footer-item leading-relaxed mb-4 text-[10px]">119/540 New Basant Building, Kanpur<br>+91 9935529306</p></div>
-            <div class="text-right flex space-x-6 justify-end items-center col-span-2">
+            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
+            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
+            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
+            <div class="text-right flex space-x-6 justify-end items-center">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
                 <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
             </div>
         </div>
+        <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
 
     <div id="searchModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:4000; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(8px);">
@@ -259,7 +268,7 @@
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
                     container.innerHTML = items.map((item, idx) => 
-                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Refurbished Kanpur" class="carousel-img ${idx === 0 ? 'active' : ''}">`
+                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Refurbished" class="carousel-img ${idx === 0 ? 'active' : ''}">`
                     ).join('');
                     
                     let current = 0;
