@@ -10,6 +10,37 @@
     <title>Hexa Computronics | Best Refurbished Laptops & Desktops in Kanpur</title>
     <meta name="description" content="Hexa Computronics Kanpur offers premium certified refurbished business laptops and desktops. Buy Dell, HP, Lenovo at 70% off with EMI options in Kanpur.">
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Hexa Computronics",
+      "image": "https://hexacomputer.in/assets/newlogo.png",
+      "@id": "https://hexacomputer.in",
+      "url": "https://hexacomputer.in",
+      "telephone": "+919935529306",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "119/540 New Basant Cinema Building, Gumti No. 5",
+        "addressLocality": "Kanpur",
+        "postalCode": "208005",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 26.4715, 
+        "longitude": 80.3210
+      },
+      "priceRange": "₹₹",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "20:00"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -17,11 +48,15 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- CLEAN HAMBURGER SIDEBAR --- */
+        /* --- PREMIUM SIDEBAR WITH TECH SHADOW --- */
         #sidebar { 
             position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
             z-index: 3000; transition: 0.4s ease; 
-            border-right: 3px solid #000; background: #fff;
+            border-right: 3px solid #000;
+            /* Light Tech Shadow Pattern */
+            background-color: #ffffff;
+            background-image: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), 
+                              url('https://www.transparenttextures.com/patterns/circuit-board.png'); 
             padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.05);
         }
         #sidebar.active { left: 0; }
@@ -29,24 +64,23 @@
         .overlay { position: fixed; inset: 0; z-index: 2500; display: none; background: transparent; }
         .overlay.active { display: block; }
         
-        .menu-btn { cursor: pointer; font-size: 24px; color: #000; }
+        .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; }
+        .menu-btn:hover { color: var(--red); }
 
-        /* Sleek Sidebar Links */
         .nav-link-side { 
             color: #000; font-weight: 800; text-transform: uppercase; 
-            font-size: 10px; letter-spacing: 1px; padding: 12px 0; 
-            border-bottom: 1px solid #eee; transition: 0.3s; 
+            font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; 
+            border-bottom: 1px solid rgba(0,0,0,0.05); transition: 0.3s; 
             display: flex; align-items: center; gap: 10px;
         }
         .nav-link-side:hover { color: var(--red); padding-left: 5px; }
 
-        /* Carousel Styles */
+        /* Carousel & Layout */
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
         .carousel-img.active { opacity: 1; }
 
-        /* Original Styles */
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
@@ -57,9 +91,6 @@
         
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
-        
-        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
     </style>
 </head>
 <body>
@@ -72,8 +103,8 @@
         </div>
 
         <div class="mb-8 text-center">
-            <img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2">
-            <p class="text-[9px] font-black text-red-600 uppercase italic">Kanpur's Tech Mall</p>
+            <img src="assets/newlogo.png" alt="Hexa Computronics Logo" class="h-16 mx-auto mb-2">
+            <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p>
         </div>
 
         <nav class="flex flex-col">
@@ -84,6 +115,10 @@
             <a href="printers.html" class="nav-link-side"><i class="fas fa-print"></i> Printers</a>
             <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard"></i> Accessories</a>
         </nav>
+        
+        <div class="mt-auto pt-6 opacity-50 text-[8px] font-black uppercase text-center italic">
+            Certified Hardware Partner
+        </div>
     </aside>
 
     <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
@@ -124,7 +159,6 @@
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
                 <div class="carousel-container" id="carousel-desktop"></div>
                 <div class="p-4 bg-white flex justify-between items-center">
@@ -132,7 +166,6 @@
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
                 <div class="carousel-container" id="carousel-new"></div>
                 <div class="p-4 bg-white flex justify-between items-center">
@@ -140,7 +173,6 @@
                     <i class="fas fa-arrow-right text-xl text-green-600"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
                 <div class="carousel-container" id="carousel-printer"></div>
                 <div class="p-4 bg-white flex justify-between items-center">
@@ -148,7 +180,6 @@
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
                 <div class="carousel-container" id="carousel-accessories"></div>
                 <div class="p-4 bg-white flex justify-between items-center">
@@ -156,7 +187,6 @@
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
-
             <div class="category-block cursor-pointer" onclick="openQuote()">
                 <div class="carousel-container" id="carousel-cctv"></div>
                 <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black">
@@ -169,9 +199,9 @@
 
     <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
+            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li></ul></div>
             <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal</a></li></ul></div>
-            <div><span class="footer-heading">Contact</span><p class="footer-item leading-relaxed mb-4 text-[10px]">119/540 New Basant Building, Kanpur<br>+91 9935529306</p></div>
+            <div><span class="footer-heading">Contact</span><p class="footer-item leading-relaxed mb-4 text-[10px]">119/540 New Basant Cinema Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
             <div class="text-right flex space-x-6 justify-end items-center">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
@@ -184,7 +214,6 @@
     <div id="searchModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:4000; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(8px);">
         <div class="modal-inner"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-black italic uppercase">Search Stock</h2><button onclick="closeSearch()" class="text-gray-400 text-2xl font-black">&times;</button></div><input type="text" id="mainSearch" placeholder="Model name..." class="w-full border-2 border-black p-4 text-black outline-none font-bold" onkeyup="liveSearch()"><div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div></div>
     </div>
-    
     <div id="quoteModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:4000; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(8px);">
         <div class="modal-inner"><div class="flex justify-between items-center mb-4"><h2 class="text-lg font-black uppercase italic text-red-600">Get Quote</h2><button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-3xl font-black">&times;</button></div><form class="space-y-3"><input type="text" id="qName" placeholder="NAME" class="w-full border-2 border-black p-3 font-bold uppercase text-sm"><input type="tel" id="qPhone" placeholder="WHATSAPP" class="w-full border-2 border-black p-3 font-bold text-sm"><textarea id="qReq" placeholder="REQUIREMENT..." class="w-full border-2 border-black p-3 font-bold h-24 uppercase text-sm resize-none"></textarea><button type="button" onclick="sendToWA()" class="w-full bg-black text-white py-3.5 font-black uppercase italic rounded text-xs shadow-lg hover:bg-red-600 transition">Submit Request</button></form></div>
     </div>
@@ -239,7 +268,6 @@
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
-                    // SEO ALT TAGS ADDED
                     container.innerHTML = items.map((item, idx) => 
                         `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Refurbished Kanpur" class="carousel-img ${idx === 0 ? 'active' : ''}">`
                     ).join('');
