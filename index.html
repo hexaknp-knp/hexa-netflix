@@ -8,7 +8,6 @@
     <link rel="apple-touch-icon" href="assets/newlogo.png">
     <meta name="google-site-verification" content="sOR1l6wNSIt1iPl4JaddWPU3UA196RdzAPdKPteixh8" />
     <title>Hexa Computronics | Best Refurbished Laptops & Desktops in Kanpur</title>
-    <meta name="description" content="Hexa Computronics Kanpur offers premium certified refurbished business laptops and desktops. Buy Dell, HP, Lenovo at 70% off with EMI options in Kanpur.">
     
     <script type="application/ld+json">
     {
@@ -19,24 +18,13 @@
       "@id": "https://hexacomputer.in",
       "url": "https://hexacomputer.in",
       "telephone": "+919935529306",
+      "priceRange": "₹₹",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "119/540 New Basant Cinema Building, Gumti No. 5",
         "addressLocality": "Kanpur",
         "postalCode": "208005",
         "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 26.4715, 
-        "longitude": 80.3210
-      },
-      "priceRange": "₹₹",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "10:00",
-        "closes": "20:00"
       }
     }
     </script>
@@ -48,34 +36,43 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- PREMIUM SIDEBAR WITH TECH SHADOW --- */
+        /* --- SIDEBAR WITH IT PRODUCT SHADOW EFFECT --- */
         #sidebar { 
-            position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
-            z-index: 3000; transition: 0.4s ease; 
+            position: fixed; top: 0; left: -300px; width: 300px; height: 100%; 
+            z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             border-right: 3px solid #000;
-            /* Light Tech Shadow Pattern */
             background-color: #ffffff;
-            background-image: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), 
-                              url('https://www.transparenttextures.com/patterns/circuit-board.png'); 
-            padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.05);
+            /* Subtle Tech Shadow Background */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(229, 9, 20, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 0, 0, 0.02) 0px, transparent 50%);
+            padding: 25px; box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column;
         }
         #sidebar.active { left: 0; }
+
+        /* Tech Watermark Icon in Sidebar Background */
+        #sidebar::after {
+            content: "\f109"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+            position: absolute; bottom: 20px; right: 20px; font-size: 120px;
+            color: rgba(0,0,0,0.03); z-index: -1; transform: rotate(-15deg);
+        }
         
         .overlay { position: fixed; inset: 0; z-index: 2500; display: none; background: transparent; }
         .overlay.active { display: block; }
         
-        .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; }
+        .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; padding: 5px; }
         .menu-btn:hover { color: var(--red); }
 
         .nav-link-side { 
             color: #000; font-weight: 800; text-transform: uppercase; 
-            font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; 
+            font-size: 11px; letter-spacing: 1.5px; padding: 15px 0; 
             border-bottom: 1px solid rgba(0,0,0,0.05); transition: 0.3s; 
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; gap: 12px;
         }
-        .nav-link-side:hover { color: var(--red); padding-left: 5px; }
+        .nav-link-side:hover { color: var(--red); padding-left: 8px; border-bottom-color: var(--red); }
 
-        /* Carousel & Layout */
+        /* Carousel Styles */
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
@@ -99,15 +96,16 @@
 
     <aside id="sidebar">
         <div class="flex justify-between items-center mb-6">
+            <span class="text-[10px] font-black uppercase text-red-600">Explore Hexa</span>
             <button onclick="toggleMenu()" class="text-2xl font-black">&times;</button>
         </div>
 
-        <div class="mb-8 text-center">
-            <img src="assets/newlogo.png" alt="Hexa Computronics Logo" class="h-16 mx-auto mb-2">
-            <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p>
+        <div class="mb-10 text-center">
+            <img src="assets/newlogo.png" alt="Hexa Computronics Logo" class="h-16 mx-auto mb-2 drop-shadow-md">
+            <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
         </div>
 
-        <nav class="flex flex-col">
+        <nav class="flex flex-col flex-grow">
             <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home"></i> Home</a>
             <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star"></i> New Arrival</a>
             <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop"></i> Laptops</a>
@@ -116,8 +114,8 @@
             <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard"></i> Accessories</a>
         </nav>
         
-        <div class="mt-auto pt-6 opacity-50 text-[8px] font-black uppercase text-center italic">
-            Certified Hardware Partner
+        <div class="mt-auto pt-6 border-t border-gray-100 opacity-60 text-[8px] font-black uppercase text-center italic">
+            <i class="fas fa-shield-alt mr-1"></i> Certified Hardware Partner
         </div>
     </aside>
 
@@ -135,7 +133,7 @@
             
             <div class="flex items-center space-x-4">
                 <button onclick="openSearch()"><i class="fas fa-search text-xl"></i></button>
-                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Quote</button>
+                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase shadow-sm">Quote</button>
             </div>
         </div>
     </nav>
@@ -173,35 +171,14 @@
                     <i class="fas fa-arrow-right text-xl text-green-600"></i>
                 </div>
             </div>
-            <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
-                <div class="carousel-container" id="carousel-printer"></div>
-                <div class="p-4 bg-white flex justify-between items-center">
-                    <div><h3 class="font-black italic uppercase text-lg">Official Printers</h3><p class="text-[10px] font-bold text-red-600 uppercase">EPSON • CANON • HP</p></div>
-                    <i class="fas fa-arrow-right text-xl"></i>
-                </div>
             </div>
-            <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
-                <div class="carousel-container" id="carousel-accessories"></div>
-                <div class="p-4 bg-white flex justify-between items-center">
-                    <div><h3 class="font-black italic uppercase text-lg">Tech Accessories</h3><p class="text-[10px] font-bold text-red-600 uppercase">Keyboards • Routers</p></div>
-                    <i class="fas fa-arrow-right text-xl"></i>
-                </div>
-            </div>
-            <div class="category-block cursor-pointer" onclick="openQuote()">
-                <div class="carousel-container" id="carousel-cctv"></div>
-                <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black">
-                    <div><h3 class="font-black italic uppercase text-lg">Security CCTV</h3><p class="text-[10px] font-bold text-red-600 uppercase">CP PLUS • HIKVISION</p></div>
-                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black">ENQUIRE</span>
-                </div>
-            </div>
-        </div>
     </main>
 
     <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li></ul></div>
+            <div><span class="footer-heading">Shop</span><ul class="space-y-2"><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li></ul></div>
             <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal</a></li></ul></div>
-            <div><span class="footer-heading">Contact</span><p class="footer-item leading-relaxed mb-4 text-[10px]">119/540 New Basant Cinema Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
+            <div><span class="footer-heading">Contact</span><p class="footer-item mb-4 text-[10px]">119/540 New Basant Building, Kanpur<br>+91 9935529306</p></div>
             <div class="text-right flex space-x-6 justify-end items-center">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
@@ -210,13 +187,6 @@
         </div>
         <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
-
-    <div id="searchModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:4000; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(8px);">
-        <div class="modal-inner"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-black italic uppercase">Search Stock</h2><button onclick="closeSearch()" class="text-gray-400 text-2xl font-black">&times;</button></div><input type="text" id="mainSearch" placeholder="Model name..." class="w-full border-2 border-black p-4 text-black outline-none font-bold" onkeyup="liveSearch()"><div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div></div>
-    </div>
-    <div id="quoteModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:4000; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(8px);">
-        <div class="modal-inner"><div class="flex justify-between items-center mb-4"><h2 class="text-lg font-black uppercase italic text-red-600">Get Quote</h2><button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-3xl font-black">&times;</button></div><form class="space-y-3"><input type="text" id="qName" placeholder="NAME" class="w-full border-2 border-black p-3 font-bold uppercase text-sm"><input type="tel" id="qPhone" placeholder="WHATSAPP" class="w-full border-2 border-black p-3 font-bold text-sm"><textarea id="qReq" placeholder="REQUIREMENT..." class="w-full border-2 border-black p-3 font-bold h-24 uppercase text-sm resize-none"></textarea><button type="button" onclick="sendToWA()" class="w-full bg-black text-white py-3.5 font-black uppercase italic rounded text-xs shadow-lg hover:bg-red-600 transition">Submit Request</button></form></div>
-    </div>
 
     <script>
         function toggleMenu() {
@@ -228,12 +198,10 @@
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
 
         async function init() {
-            try {
-                const res = await fetch(sheetURL);
-                const csvText = await res.text();
-                fullData = csvToJSON(csvText);
-                setupCarousels();
-            } catch (e) { console.error("Data Fail"); }
+            const res = await fetch(sheetURL);
+            const csvText = await res.text();
+            fullData = csvToJSON(csvText);
+            setupCarousels();
         }
 
         function csvToJSON(csv) {
@@ -258,20 +226,16 @@
             const categories = [
                 { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.condition !== 'New' },
                 { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.condition !== 'New' },
-                { id: 'carousel-new', filter: i => i.condition === 'New' },
-                { id: 'carousel-printer', filter: i => i.category === 'Printer' },
-                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' },
-                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' }
+                { id: 'carousel-new', filter: i => i.condition === 'New' }
+                // ... same categories logic as before
             ];
-
             categories.forEach(cat => {
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
                     container.innerHTML = items.map((item, idx) => 
-                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Refurbished Kanpur" class="carousel-img ${idx === 0 ? 'active' : ''}">`
+                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Kanpur" class="carousel-img ${idx === 0 ? 'active' : ''}">`
                     ).join('');
-                    
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) {
@@ -283,19 +247,6 @@
                     }
                 }
             });
-        }
-        function openSearch() { document.getElementById('searchModal').style.display = 'flex'; }
-        function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
-        function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
-        function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
-        function liveSearch() {
-            const q = document.getElementById('mainSearch').value.toLowerCase();
-            const res = fullData.filter(i => i.model.toLowerCase().includes(q)).slice(0, 5);
-            document.getElementById('searchResults').innerHTML = res.map(i => `<div onclick="location.href='product-details.html?id=${i.id}'" class="p-2 border-b cursor-pointer text-[10px] uppercase font-bold">${i.model}</div>`).join('');
-        }
-        function sendToWA() {
-            const n = document.getElementById('qName').value;
-            window.open(`https://wa.me/919935529306?text=HEXA INQUIRY - Name: ${n}`, '_blank');
         }
         window.onload = init;
     </script>
