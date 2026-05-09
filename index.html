@@ -17,7 +17,7 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- CLEAN HAMBURGER SIDEBAR (NO SHADOW/BLACK) --- */
+        /* --- CLEAN HAMBURGER SIDEBAR --- */
         #sidebar { 
             position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
             z-index: 3000; transition: 0.4s ease; 
@@ -26,18 +26,15 @@
         }
         #sidebar.active { left: 0; }
         
-        /* Overlay removed to keep page clear as requested */
         .overlay { position: fixed; inset: 0; z-index: 2500; display: none; background: transparent; }
         .overlay.active { display: block; }
         
-        .menu-btn { 
-            cursor: pointer; font-size: 24px; color: #000; transition: 0.3s;
-        }
+        .menu-btn { cursor: pointer; font-size: 24px; color: #000; }
 
-        /* Menu Links - Small & Sleek */
+        /* Sleek Sidebar Links */
         .nav-link-side { 
             color: #000; font-weight: 800; text-transform: uppercase; 
-            font-size: 11px; letter-spacing: 1px; padding: 12px 0; 
+            font-size: 10px; letter-spacing: 1px; padding: 12px 0; 
             border-bottom: 1px solid #eee; transition: 0.3s; 
             display: flex; align-items: center; gap: 10px;
         }
@@ -49,7 +46,7 @@
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
         .carousel-img.active { opacity: 1; }
 
-        /* Original Navbar Logic */
+        /* Original Styles */
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
@@ -70,11 +67,11 @@
     <div class="overlay" onclick="toggleMenu()"></div>
 
     <aside id="sidebar">
-        <div class="flex justify-between items-center mb-8">
+        <div class="flex justify-between items-center mb-6">
             <button onclick="toggleMenu()" class="text-2xl font-black">&times;</button>
         </div>
 
-        <div class="mb-10 text-center">
+        <div class="mb-8 text-center">
             <img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2">
             <p class="text-[9px] font-black text-red-600 uppercase italic">Kanpur's Tech Mall</p>
         </div>
@@ -118,6 +115,7 @@
 
     <main class="relative z-20 px-4 md:px-12 pb-16">
         <div class="section-header"><h2 class="section-label">Browse by Category</h2></div>
+        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
                 <div class="carousel-container" id="carousel-laptop"></div>
@@ -126,6 +124,7 @@
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
+
             <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
                 <div class="carousel-container" id="carousel-desktop"></div>
                 <div class="p-4 bg-white flex justify-between items-center">
@@ -133,6 +132,7 @@
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
+
             <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
                 <div class="carousel-container" id="carousel-new"></div>
                 <div class="p-4 bg-white flex justify-between items-center">
@@ -140,21 +140,45 @@
                     <i class="fas fa-arrow-right text-xl text-green-600"></i>
                 </div>
             </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
+                <div class="carousel-container" id="carousel-printer"></div>
+                <div class="p-4 bg-white flex justify-between items-center">
+                    <div><h3 class="font-black italic uppercase text-lg">Official Printers</h3><p class="text-[10px] font-bold text-red-600 uppercase">EPSON • CANON • HP</p></div>
+                    <i class="fas fa-arrow-right text-xl"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
+                <div class="carousel-container" id="carousel-accessories"></div>
+                <div class="p-4 bg-white flex justify-between items-center">
+                    <div><h3 class="font-black italic uppercase text-lg">Tech Accessories</h3><p class="text-[10px] font-bold text-red-600 uppercase">Keyboards • Routers</p></div>
+                    <i class="fas fa-arrow-right text-xl"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="openQuote()">
+                <div class="carousel-container" id="carousel-cctv"></div>
+                <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black">
+                    <div><h3 class="font-black italic uppercase text-lg">Security CCTV</h3><p class="text-[10px] font-bold text-red-600 uppercase">CP PLUS • HIKVISION</p></div>
+                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black">ENQUIRE</span>
+                </div>
+            </div>
         </div>
     </main>
 
-    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
+    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li></ul></div>
+            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
             <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal</a></li></ul></div>
-            <div><span class="footer-heading">Contact</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Building, Kanpur<br>+91 9935529306</p></div>
+            <div><span class="footer-heading">Contact</span><p class="footer-item leading-relaxed mb-4 text-[10px]">119/540 New Basant Building, Kanpur<br>+91 9935529306</p></div>
             <div class="text-right flex space-x-6 justify-end items-center">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
                 <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
             </div>
         </div>
-        <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
+        <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
 
     <div id="searchModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:4000; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(8px);">
@@ -162,7 +186,7 @@
     </div>
     
     <div id="quoteModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:4000; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(8px);">
-        <div class="modal-inner"><div class="flex justify-between items-center mb-4"><h2 class="text-lg font-black uppercase italic text-red-600">Get Quote</h2><button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-3xl font-black">&times;</button></div><form class="space-y-3"><input type="text" id="qName" placeholder="NAME" class="w-full border-2 border-black p-3 font-bold uppercase text-sm"><input type="tel" id="qPhone" placeholder="WHATSAPP" class="w-full border-2 border-black p-3 font-bold text-sm"><textarea id="qReq" placeholder="REQUIREMENT..." class="w-full border-2 border-black p-3 font-bold h-24 uppercase text-sm resize-none"></textarea><button type="button" onclick="sendToWA()" class="w-full bg-black text-white py-3 font-black uppercase italic rounded text-xs shadow-lg hover:bg-red-600 transition">Submit Request</button></form></div>
+        <div class="modal-inner"><div class="flex justify-between items-center mb-4"><h2 class="text-lg font-black uppercase italic text-red-600">Get Quote</h2><button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-3xl font-black">&times;</button></div><form class="space-y-3"><input type="text" id="qName" placeholder="NAME" class="w-full border-2 border-black p-3 font-bold uppercase text-sm"><input type="tel" id="qPhone" placeholder="WHATSAPP" class="w-full border-2 border-black p-3 font-bold text-sm"><textarea id="qReq" placeholder="REQUIREMENT..." class="w-full border-2 border-black p-3 font-bold h-24 uppercase text-sm resize-none"></textarea><button type="button" onclick="sendToWA()" class="w-full bg-black text-white py-3.5 font-black uppercase italic rounded text-xs shadow-lg hover:bg-red-600 transition">Submit Request</button></form></div>
     </div>
 
     <script>
@@ -205,15 +229,21 @@
             const categories = [
                 { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.condition !== 'New' },
                 { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.condition !== 'New' },
-                { id: 'carousel-new', filter: i => i.condition === 'New' }
+                { id: 'carousel-new', filter: i => i.condition === 'New' },
+                { id: 'carousel-printer', filter: i => i.category === 'Printer' },
+                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' },
+                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' }
             ];
+
             categories.forEach(cat => {
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
+                    // SEO ALT TAGS ADDED
                     container.innerHTML = items.map((item, idx) => 
-                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Kanpur - Hexa Computronics" class="carousel-img ${idx === 0 ? 'active' : ''}">`
+                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Refurbished Kanpur" class="carousel-img ${idx === 0 ? 'active' : ''}">`
                     ).join('');
+                    
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) {
