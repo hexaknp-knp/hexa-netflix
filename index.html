@@ -10,153 +10,157 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { --red: #E50914; --dark: #000; }
-        body { background-color: #fff; font-family: 'Inter', sans-serif; margin: 0; }
+        :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
+        body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Desktop Sidebar */
-        @media (min-width: 1024px) {
-            #main-layout { display: flex; }
-            #sidebar { width: 220px; height: 100vh; position: fixed; left: 0; top: 0; border-right: 2px solid #000; z-index: 1000; display: flex; flex-direction: column; padding: 20px; background: #fff; }
-            #content-area { margin-left: 220px; flex: 1; padding: 20px 60px 20px 40px; }
-            .social-float { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; z-index: 1000; }
-        }
+        /* Sidebar Styles */
+        #mobile-sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #fff; z-index: 3000; transition: 0.4s; border-right: 4px solid #000; box-shadow: 10px 0 30px rgba(0,0,0,0.2); }
+        #mobile-sidebar.active { left: 0; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2500; display: none; backdrop-filter: blur(4px); }
+        .overlay.active { display: block; }
 
-        /* Mobile Bottom Nav */
-        @media (max-width: 1023px) {
-            #sidebar { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: #fff; border-top: 2px solid #000; display: flex; justify-content: space-around; align-items: center; z-index: 1000; padding: 0 10px; }
-            #sidebar .logo-box, #sidebar .extra-links { display: none; }
-            #content-area { padding: 10px; padding-bottom: 80px; }
-            .social-float { display: none; }
-            .nav-link { font-size: 9px !important; flex-direction: column; }
-        }
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
+        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        .nav-link { color: #000; font-weight: 900; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .nav-link:hover { color: var(--red); transform: translateX(5px); }
+        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
 
-        /* Carousel Performance */
-        .category-block { border: 2px solid #000; border-radius: 8px; overflow: hidden; box-shadow: 4px 4px 0px #000; }
-        .carousel-container { position: relative; height: 160px; background: #f9f9f9; }
-        .carousel-img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: opacity 0.5s; padding: 10px; }
+        .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
+        .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; }
+        .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s; opacity: 0; }
         .carousel-img.active { opacity: 1; }
 
-        .marquee-top { background: var(--dark); color: #fff; padding: 8px; font-size: 10px; font-weight: 900; text-align: center; }
+        /* Social Float Right */
+        .social-float { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
+
+        @media (max-width: 768px) { .social-float { display: none; } }
     </style>
 </head>
 <body>
 
-    <div id="main-layout">
-        <aside id="sidebar">
-            <div class="logo-box mb-10">
-                <img src="assets/newlogo.png" alt="Hexa Computronics Logo" class="h-10 mb-2">
-                <p class="text-[9px] font-black text-red-600 uppercase italic">Kanpur's Tech Mall</p>
+    <div class="overlay" onclick="toggleMenu()"></div>
+
+    <aside id="mobile-sidebar" class="p-6">
+        <div class="flex justify-between items-center mb-10">
+            <img src="assets/newlogo.png" class="h-8">
+            <button onclick="toggleMenu()" class="text-2xl font-black">&times;</button>
+        </div>
+        <nav class="flex flex-col gap-6 font-black uppercase italic tracking-widest text-sm">
+            <a href="index.html" class="text-red-600">Home</a>
+            <a href="new-store.html" class="text-green-600">New Arrival</a>
+            <a href="laptops.html">Laptops</a>
+            <a href="desktops.html">Desktops</a>
+            <a href="printers.html">Printers</a>
+            <a href="accessories.html">Accessories</a>
+        </nav>
+    </aside>
+
+    <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
+
+    <nav id="navbar">
+        <div class="px-4 md:px-12 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleMenu()" class="text-xl lg:text-2xl"><i class="fas fa-bars"></i></button>
+                <a href="index.html" class="flex flex-col items-center">
+                    <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
+                    <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
+                </a>
             </div>
             
-            <nav class="flex lg:flex-col justify-around w-full gap-6">
-                <a href="index.html" class="nav-link text-red-600"><i class="fas fa-home"></i> Home</a>
-                <a href="new-store.html" class="nav-link text-green-600"><i class="fas fa-star"></i> New</a>
-                <a href="laptops.html" class="nav-link"><i class="fas fa-laptop"></i> Laptops</a>
-                <a href="desktops.html" class="nav-link"><i class="fas fa-desktop"></i> Desktops</a>
-                <a href="printers.html" class="nav-link"><i class="fas fa-print"></i> Printers</a>
-            </nav>
-
-            <div class="extra-links mt-auto space-y-4">
-                <button onclick="openSearch()" class="nav-link"><i class="fas fa-search"></i> Search</button>
-                <button onclick="openQuote()" class="bg-black text-white w-full py-3 text-[10px] font-black uppercase italic rounded">Get Quote</button>
-            </div>
-        </aside>
-
-        <main id="content-area">
-            <div class="marquee-top uppercase tracking-widest mb-6">
-                ⚡ Same Day Delivery Kanpur • Easy EMI • Certified Hardware ⚡
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-tighter">
+                <a href="index.html" class="text-red-600 border-b-2 border-red-600">Home</a>
+                <a href="new-store.html" class="text-green-600 hover:text-black">New <span class="animate-pulse">●</span></a>
+                <a href="laptops.html" class="text-black">Laptops</a>
+                <a href="desktops.html" class="text-black">Desktops</a>
+                <a href="printers.html" class="text-black">Printers</a>
             </div>
 
-            <header class="mb-10">
-                <h1 class="text-4xl lg:text-6xl font-black italic uppercase leading-none">Premium<br><span class="text-red-600">Hardware</span></h1>
-            </header>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
-                    <div class="carousel-container" id="carousel-laptop"></div>
-                    <div class="p-3 bg-white border-t-2 border-black flex justify-between items-center">
-                        <span class="font-black italic uppercase text-sm">Business Laptops</span>
-                        <i class="fas fa-chevron-right text-xs"></i>
-                    </div>
-                </div>
-
-                <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
-                    <div class="carousel-container" id="carousel-desktop"></div>
-                    <div class="p-3 bg-white border-t-2 border-black flex justify-between items-center">
-                        <span class="font-black italic uppercase text-sm">Office Desktops</span>
-                        <i class="fas fa-chevron-right text-xs"></i>
-                    </div>
-                </div>
-
-                <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
-                    <div class="carousel-container" id="carousel-new"></div>
-                    <div class="p-3 bg-white border-t-2 border-black flex justify-between items-center text-green-600">
-                        <span class="font-black italic uppercase text-sm">Brand New Store</span>
-                        <i class="fas fa-bolt text-xs"></i>
-                    </div>
-                </div>
-
-                <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
-                    <div class="carousel-container" id="carousel-printer"></div>
-                    <div class="p-3 bg-white border-t-2 border-black flex justify-between items-center">
-                        <span class="font-black italic uppercase text-sm">Official Printers</span>
-                        <i class="fas fa-chevron-right text-xs"></i>
-                    </div>
-                </div>
-
-                <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
-                    <div class="carousel-container" id="carousel-accessories"></div>
-                    <div class="p-3 bg-white border-t-2 border-black flex justify-between items-center">
-                        <span class="font-black italic uppercase text-sm">Tech Gear</span>
-                        <i class="fas fa-chevron-right text-xs"></i>
-                    </div>
-                </div>
-
-                <div class="category-block cursor-pointer" onclick="openQuote()">
-                    <div class="carousel-container" id="carousel-cctv"></div>
-                    <div class="p-3 bg-black text-white flex justify-between items-center">
-                        <span class="font-black italic uppercase text-sm">Security CCTV</span>
-                        <span class="text-[9px] border border-white px-2">ENQUIRE</span>
-                    </div>
-                </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="openSearch()"><i class="fas fa-search text-xl"></i></button>
+                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Quote</button>
             </div>
-
-            <footer class="mt-20 pt-10 border-t-2 border-black grid grid-cols-1 md:grid-cols-3 gap-10 pb-20">
-                <div>
-                    <span class="footer-heading">Address</span>
-                    <p class="text-[11px] font-bold uppercase">119/540 New Basant Building, Gumti No.5, Kanpur</p>
-                </div>
-                <div>
-                    <span class="footer-heading">Support</span>
-                    <p class="text-[11px] font-bold uppercase">info@hexacomputer.in<br>+91 9935529306</p>
-                </div>
-                <div class="text-[9px] font-black opacity-30 uppercase italic">
-                    © 2026 Hexa Computronics | BY AAMIR
-                </div>
-            </footer>
-        </main>
-
-        <div class="social-float">
-            <a href="https://youtube.com/@hexacomptech" target="_blank" class="text-red-600 text-2xl hover:scale-110 transition"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com/hexaknp" target="_blank" class="text-blue-600 text-2xl hover:scale-110 transition"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com/hcomputronics" target="_blank" class="text-pink-600 text-2xl hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
         </div>
+    </nav>
+
+    <div class="social-float">
+        <a href="https://youtube.com/@hexacomptech" target="_blank" class="text-red-600 text-2xl"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com/hexaknp" target="_blank" class="text-blue-600 text-2xl"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com/hcomputronics" target="_blank" class="text-pink-600 text-2xl"><i class="fab fa-instagram"></i></a>
     </div>
 
+    <main class="px-4 md:px-12 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
+                <div class="carousel-container" id="carousel-laptop"></div>
+                <div class="p-4 flex justify-between items-center border-t-2 border-black font-black uppercase italic">
+                    <span>Business Laptops</span><i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
+                <div class="carousel-container" id="carousel-desktop"></div>
+                <div class="p-4 flex justify-between items-center border-t-2 border-black font-black uppercase italic">
+                    <span>Office Desktops</span><i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
+                <div class="carousel-container" id="carousel-new"></div>
+                <div class="p-4 flex justify-between items-center border-t-2 border-black font-black uppercase italic text-green-600">
+                    <span>Brand New Store</span><i class="fas fa-bolt"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
+                <div class="carousel-container" id="carousel-printer"></div>
+                <div class="p-4 flex justify-between items-center border-t-2 border-black font-black uppercase italic">
+                    <span>Official Printers</span><i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
+                <div class="carousel-container" id="carousel-accessories"></div>
+                <div class="p-4 flex justify-between items-center border-t-2 border-black font-black uppercase italic">
+                    <span>Tech Accessories</span><i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="openQuote()">
+                <div class="carousel-container" id="carousel-cctv"></div>
+                <div class="p-4 flex justify-between items-center border-t-2 border-black font-black uppercase italic bg-black text-white">
+                    <span>Security CCTV</span><span class="text-[9px] border px-2">ENQUIRE</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto">
+            <div><span class="footer-heading">Shop</span><ul class="space-y-2"><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li></ul></div>
+            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="#" class="footer-item">Shipping</a></li><li><a href="#" class="footer-item">Legal</a></li></ul></div>
+            <div><span class="footer-heading">Contact</span><p class="text-[10px] font-bold">Gumti No.5, Kanpur<br>+91 9935529306</p></div>
+            <div class="flex justify-end items-center gap-4 text-xl">
+                <a href="https://youtube.com/@hexacomptech" target="_blank" class="text-red-600"><i class="fab fa-youtube"></i></a>
+                <a href="https://facebook.com/hexaknp" target="_blank" class="text-blue-600"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com/hcomputronics" target="_blank" class="text-pink-600"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        function toggleMenu() {
+            document.getElementById('mobile-sidebar').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+        }
+
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
 
         async function init() {
-            try {
-                const res = await fetch(sheetURL);
-                const csvText = await res.text();
-                fullData = csvToJSON(csvText);
-                setupCarousels();
-            } catch (e) { console.error("Load Fail"); }
+            const res = await fetch(sheetURL);
+            const csvText = await res.text();
+            fullData = csvToJSON(csvText);
+            setupCarousels();
         }
 
         function csvToJSON(csv) {
@@ -191,11 +195,9 @@
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
-                    // SEO ALT TAGS ADDED HERE DYNAMICALLY
                     container.innerHTML = items.map((item, idx) => 
-                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Kanpur - Hexa Computronics" class="carousel-img ${idx === 0 ? 'active' : ''}">`
+                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Kanpur" class="carousel-img ${idx === 0 ? 'active' : ''}">`
                     ).join('');
-                    
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) {
