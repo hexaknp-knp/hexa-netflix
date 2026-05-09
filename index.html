@@ -41,8 +41,7 @@
     <style>
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
-        * { font-display: swap; }
-
+        
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
@@ -53,30 +52,19 @@
 
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; padding: 15px 0; }
+        /* Carousel Styles */
+        .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
+        .category-block:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0px var(--red); }
+        .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
+        .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
+        .carousel-img.active { opacity: 1; }
 
-        .card { transition: 0.4s ease; background: #fff; border: 3px solid #000; border-radius: 4px; overflow: hidden; cursor: pointer; box-shadow: 6px 6px 0px rgba(0,0,0,0.1); }
-        .card:hover { transform: translateY(-5px); border-color: var(--red); box-shadow: 10px 10px 0px rgba(229, 9, 20, 0.1); }
-        .card img { width: 100%; height: 120px; object-fit: contain; background: #fff; padding: 10px; }
-
-        .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-top: 15px; border-left: 6px solid var(--red); padding-left: 12px; }
+        .section-header { display: flex; justify-content: space-between; align-items: baseline; margin: 30px 0 15px 0; border-left: 6px solid var(--red); padding-left: 12px; }
         .section-label { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; font-style: italic; }
-        .view-all-link { font-size: 0.75rem; font-weight: 900; color: var(--red); text-transform: uppercase; cursor: pointer; }
         
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
         
-        @media (max-width: 1024px) {
-            .product-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            header.relative { height: 25vh; min-height: 200px; }
-            .hero-title { font-size: 1.8rem !important; line-height: 1; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px 0; }
-            .card img { height: 90px; }
-        }
-
         #quoteModal, #searchModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(8px); }
         .modal-inner { background: #fff; border: 3px solid #000; padding: 25px; border-radius: 4px; width: 100%; max-width: 400px; box-shadow: 15px 15px 0px rgba(0,0,0,0.2); position: relative; }
         
@@ -116,63 +104,90 @@
                 <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Quote</button>
             </div>
         </div>
-        <div class="lg:hidden flex justify-center space-x-3 pb-2 border-t pt-2 overflow-x-auto px-2 scrollbar-hide">
-             <a href="new-store.html" class="text-[9px] font-black uppercase text-green-600">New arrivals</a>
-             <a href="laptops.html" class="text-[9px] font-black uppercase text-black">Laptops</a>
-             <a href="desktops.html" class="text-[9px] font-black uppercase text-black">Desktops</a>
-             <a href="printers.html" class="text-[9px] font-black uppercase text-black">Printers</a>
-             <a href="accessories.html" class="text-[9px] font-black uppercase text-black">Acc.</a>
-        </div>
     </nav>
 
     <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80');">
         <div class="hero-vignette"></div>
         <div class="relative z-10 max-w-2xl">
-            <h1 class="hero-title text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Refurbished</span></h1>
+            <h1 class="hero-title text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
             <p class="text-xs md:text-sm text-black font-black uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
         </div>
     </header>
 
-    <main class="relative z-20 px-4 md:px-12 space-y-4 pb-16">
-        <section id="new-arrivals-section" style="display:none;">
-            <div class="section-header" style="border-left-color: #16a34a;"><h2 class="section-label text-green-700">Brand New - Company Offers</h2></div>
-            <div id="new-arrivals-row" class="product-grid"></div>
-        </section>
+    <main class="relative z-20 px-4 md:px-12 pb-16">
+        
+        <div class="section-header"><h2 class="section-label">Browse by Category</h2></div>
 
-        <section>
-            <div class="section-header"><h2 class="section-label">Laptops</h2><a href="laptops.html" class="view-all-link">View All ▶</a></div>
-            <div id="laptop-row" class="product-grid"></div>
-        </section>
-
-        <section>
-            <div class="section-header"><h2 class="section-label">Desktops</h2><a href="desktops.html" class="view-all-link">View All ▶</a></div>
-            <div id="desktop-row" class="product-grid"></div>
-        </section>
-
-        <section>
-            <div class="section-header"><h2 class="section-label">Accessories</h2><a href="accessories.html" class="view-all-link">View All ▶</a></div>
-            <div id="accessories-row" class="product-grid"></div>
-        </section>
-    </main>
-
-    <section class="bg-black text-white py-10 px-6 md:px-12">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
-            <div>
-                <h2 class="text-2xl font-black uppercase italic text-yellow-500 mb-4 border-l-4 border-yellow-500 pl-4">Easy EMI & Brand Offers</h2>
-                <p class="text-[12px] font-black leading-relaxed">Upgrade to Brand New hardware with PayTM Cashback & Back to School deals. Refurbished models come with 1 Year Hexa Warranty & Easy EMI plans up to 12 months.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
+                <div class="carousel-container" id="carousel-laptop"></div>
+                <div class="p-4 bg-white flex justify-between items-center">
+                    <div>
+                        <h3 class="font-black italic uppercase text-lg">Business Laptops</h3>
+                        <p class="text-[10px] font-bold text-red-600 uppercase">HP • DELL • LENOVO • APPLE</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-xl"></i>
+                </div>
             </div>
-            <div class="bg-zinc-900 p-6 border border-zinc-700">
-                <h3 class="text-sm font-black uppercase italic mb-3 text-white">Terms & Conditions</h3>
-                <ul class="text-[10px] space-y-2 font-black uppercase text-zinc-300">
-                    <li>• PayTM Cashback/Discounts as per PayTM & Brand policy.</li>
-                    <li>• Brand New products carry OEM Company Warranty.</li>
-                    <li>• EMI available on major credit cards (3, 6, 9, 12 months).</li>
-                    <li>• Refurbished Warranty: 1 Year Hexa Certified Support.</li>
-                    <li>• GST at 18% extra if applicable.</li>
-                </ul>
+
+            <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
+                <div class="carousel-container" id="carousel-desktop"></div>
+                <div class="p-4 bg-white flex justify-between items-center">
+                    <div>
+                        <h3 class="font-black italic uppercase text-lg">Office Desktops</h3>
+                        <p class="text-[10px] font-bold text-red-600 uppercase">Towers • Mini PCs • Workstations</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-xl"></i>
+                </div>
             </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
+                <div class="carousel-container" id="carousel-new"></div>
+                <div class="p-4 bg-white flex justify-between items-center">
+                    <div>
+                        <h3 class="font-black italic uppercase text-lg text-green-600">Brand New Store</h3>
+                        <p class="text-[10px] font-bold text-black uppercase italic tracking-widest">Box Pack • Company Warranty</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-xl text-green-600"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
+                <div class="carousel-container" id="carousel-printer"></div>
+                <div class="p-4 bg-white flex justify-between items-center">
+                    <div>
+                        <h3 class="font-black italic uppercase text-lg">Official Printers</h3>
+                        <p class="text-[10px] font-bold text-red-600 uppercase">EPSON • CANON • HP</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-xl"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
+                <div class="carousel-container" id="carousel-accessories"></div>
+                <div class="p-4 bg-white flex justify-between items-center">
+                    <div>
+                        <h3 class="font-black italic uppercase text-lg">Tech Accessories</h3>
+                        <p class="text-[10px] font-bold text-red-600 uppercase">Keyboards • Mice • Routers</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-xl"></i>
+                </div>
+            </div>
+
+            <div class="category-block cursor-pointer" onclick="openQuote()">
+                <div class="carousel-container" id="carousel-cctv"></div>
+                <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black">
+                    <div>
+                        <h3 class="font-black italic uppercase text-lg">Security CCTV</h3>
+                        <p class="text-[10px] font-bold text-red-600 uppercase">CP PLUS • HIKVISION • DAHUA</p>
+                    </div>
+                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black">ENQUIRE</span>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </main>
 
     <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
@@ -180,9 +195,9 @@
             <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
             <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Cinema Building, Kanpur</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
             <div class="text-right flex space-x-6 justify-end items-center">
-                <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
+                <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
             </div>
         </div>
         <div class="mt-10 pt-6 border-t border-gray-300 text-center">
@@ -191,131 +206,88 @@
     </footer>
 
     <div id="searchModal"><div class="modal-inner"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-black italic uppercase">Search</h2><button onclick="closeSearch()" class="text-gray-400 text-2xl font-black">&times;</button></div><input type="text" id="mainSearch" placeholder="Model name..." class="w-full border-2 border-black p-4 text-black outline-none" onkeyup="liveSearch()"><div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div></div></div>
-    
     <div id="quoteModal"><div class="modal-inner"><div class="flex justify-between items-center mb-4"><h2 class="text-lg font-black uppercase italic text-red-600">Request Quote</h2><button onclick="closeQuote()" class="text-gray-400 hover:text-red-600 text-3xl font-black">×</button></div><form class="space-y-3"><input type="text" id="qName" placeholder="NAME" class="w-full border-2 border-black p-2 font-black uppercase"><input type="tel" id="qPhone" placeholder="WHATSAPP" class="w-full border-2 border-black p-2 font-black"><textarea id="qReq" placeholder="REQUIREMENT..." class="w-full border-2 border-black p-2 font-black h-20 uppercase"></textarea><button type="button" onclick="sendToWA()" class="w-full bg-black text-white py-3 font-black uppercase italic">Submit Request</button></form></div></div>
 
     <script>
         let fullData = [];
-        // STEP 1: Apna Google Sheet CSV Link Yahan Dalein
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
 
         async function init() {
             try {
-                // Pehle Google Sheet se data khinchenge
                 const res = await fetch(sheetURL);
                 const csvText = await res.text();
                 fullData = csvToJSON(csvText);
-                loadRows();
-            } catch (e) { 
-                console.error("Sheet Load Fail, falling back to local json");
-                // Agar sheet fail hui toh backup data.json try karein
-                try {
-                    const localRes = await fetch('data.json');
-                    fullData = await localRes.json();
-                    loadRows();
-                } catch(err) { console.error("All data sources failed"); }
-            }
+                setupCarousels();
+            } catch (e) { console.error("Data Load Fail"); }
         }
 
-        // CSV String ko JSON Array mein badalne ka function
         function csvToJSON(csv) {
             const lines = csv.split('\n');
             const result = [];
             const headers = lines[0].split(',').map(h => h.trim());
-
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i]) continue;
                 const obj = {};
-                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // Comma inside quotes handling
-
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 headers.forEach((header, index) => {
-                    let value = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
-                    // Price ko number mein badlein
-                    if(header === 'price') value = parseInt(value) || 0;
-                    // Images ko array mein badlein
-                    if(header === 'images') value = value.split(',').map(img => img.trim());
-                    obj[header] = value;
+                    let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
+                    if(header === 'images') val = val.split(',').map(img => img.trim());
+                    obj[header] = val;
                 });
                 result.push(obj);
             }
             return result;
         }
 
-        function loadRows() {
-            // Sirf wahi products dikhayein jo "In Stock" hain
-            const activeData = fullData.filter(i => i.stock === "In Stock");
+        function setupCarousels() {
+            const categories = [
+                { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.condition !== 'New' },
+                { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.condition !== 'New' },
+                { id: 'carousel-new', filter: i => i.condition === 'New' },
+                { id: 'carousel-printer', filter: i => i.category === 'Printer' },
+                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' },
+                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' }
+            ];
 
-            const createCard = (item) => {
-                const isNew = item.condition === "New";
-                const offerLabel = item.offer_label ? `<div class="mt-1 text-[7px] font-bold text-green-600 uppercase bg-green-50 px-1 inline-block border border-green-200">🎁 ${item.offer_label}</div>` : '';
-                const vendorLabel = item.vendor === "PayTM" ? `<span class="text-[7px] font-bold text-blue-600">via PayTM</span>` : '';
-
-                return `<div class="card" onclick="location.href='product-details.html?id=${item.id}'">
-                    <div class="relative">
-                        <img src="${item.images[0]}" alt="${item.model}" loading="lazy">
-                        <div class="absolute top-2 right-2 ${isNew ? 'bg-green-600' : 'bg-red-600'} text-white text-[7px] px-2 py-1 rounded font-black uppercase">${isNew ? 'New' : 'Refurbished'}</div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-black text-[11px] text-black truncate uppercase italic leading-tight">${item.model}</h3>
-                        <p class="text-[9px] text-black mt-1 uppercase font-black tracking-tighter">${item.processor || ''}</p>
-                        ${offerLabel}
-                        <div class="mt-2 flex justify-between items-center border-t pt-2 border-zinc-200">
-                            <div class="flex flex-col">
-                                <span class="text-[14px] font-black text-black">₹${item.price.toLocaleString()}</span>
-                                ${vendorLabel}
-                            </div>
-                            <div class="flex flex-col items-end">
-                                <span class="text-[10px] font-black text-red-600 uppercase leading-none italic">EMI ON CARDS</span>
-                                <span class="text-[8px] font-black text-black uppercase">UP TO 12 MONTHS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-            };
-
-            const isMobile = window.innerWidth <= 768;
-            const limit = isMobile ? 2 : 5;
-
-            const newArr = activeData.filter(i => i.condition === "New");
-            const laps = activeData.filter(i => i.category === "Laptop" && i.condition !== "New");
-            const desks = activeData.filter(i => i.category === "Desktop" && i.condition !== "New");
-            const accs = activeData.filter(i => i.category === "Accessories");
-
-            if(newArr.length > 0) {
-                document.getElementById('new-arrivals-section').style.display = 'block';
-                document.getElementById('new-arrivals-row').innerHTML = newArr.slice(0, limit).map(createCard).join('');
-            }
-            document.getElementById('laptop-row').innerHTML = laps.slice(0, limit).map(createCard).join('');
-            document.getElementById('desktop-row').innerHTML = desks.slice(0, limit).map(createCard).join('');
-            document.getElementById('accessories-row').innerHTML = accs.slice(0, limit).map(createCard).join('');
+            categories.forEach(cat => {
+                const items = fullData.filter(cat.filter).slice(0, 5);
+                const container = document.getElementById(cat.id);
+                if (items.length > 0) {
+                    container.innerHTML = items.map((item, idx) => 
+                        `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}">`
+                    ).join('');
+                    
+                    // Auto-slide logic
+                    let current = 0;
+                    const imgs = container.getElementsByClassName('carousel-img');
+                    setInterval(() => {
+                        imgs[current].classList.remove('active');
+                        current = (current + 1) % imgs.length;
+                        imgs[current].classList.add('active');
+                    }, 3000);
+                } else {
+                    container.innerHTML = `<div class="h-full flex items-center justify-center font-black uppercase text-gray-300">New Stock Coming Soon</div>`;
+                }
+            });
         }
 
         function openSearch() { document.getElementById('searchModal').style.display = 'flex'; }
         function closeSearch() { document.getElementById('searchModal').style.display = 'none'; }
         function openQuote() { document.getElementById('quoteModal').style.display = 'flex'; }
         function closeQuote() { document.getElementById('quoteModal').style.display = 'none'; }
+        
         function liveSearch() {
             const q = document.getElementById('mainSearch').value.toLowerCase();
             const res = fullData.filter(i => i.model.toLowerCase().includes(q)).slice(0, 5);
             document.getElementById('searchResults').innerHTML = res.map(i => `<div onclick="location.href='product-details.html?id=${i.id}'" class="p-2 border-b cursor-pointer text-[10px] uppercase font-bold">${i.model}</div>`).join('');
         }
+
         function sendToWA() {
             const n = document.getElementById('qName').value;
             window.open(`https://wa.me/919935529306?text=HEXA INQUIRY - Name: ${n}`, '_blank');
         }
+
         window.onload = init;
-        window.onresize = loadRows;
-    </script>
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69fb4723b2c8791c30a7133e/1jnuorp0a';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
     </script>
 </body>
 </html>
