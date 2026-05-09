@@ -2,32 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hexacomputer.in/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <priority>1.00</priority>
   </url>
   
   <url>
+    <loc>https://hexacomputer.in/new-store.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
     <loc>https://hexacomputer.in/laptops.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://hexacomputer.in/desktops.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <priority>0.90</priority>
   </url>
 
   <url>
+    <loc>https://hexacomputer.in/printers.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
     <loc>https://hexacomputer.in/accessories.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://hexacomputer.in/services.html</loc>
     <lastmod>2026-05-02</lastmod>
-    <priority>0.80</priority>
+    <priority>0.75</priority>
   </url>
 
   <url>
@@ -38,7 +50,13 @@
 
   <url>
     <loc>https://hexacomputer.in/contact.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://hexacomputer.in/legal.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <priority>0.50</priority>
   </url>
 </urlset>
