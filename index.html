@@ -17,6 +17,7 @@
       "@type": "LocalBusiness",
       "name": "Hexa Computronics",
       "image": "https://hexacomputer.in/assets/newlogo.png",
+      "@id": "https://hexacomputer.in",
       "url": "https://hexacomputer.in",
       "telephone": "+919935529306",
       "address": {
@@ -30,75 +31,45 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <style>
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
-        body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; content-visibility: auto; }
         
-        /* --- BIGGER FLOATING BUBBLES --- */
         .bubble-container { position: fixed; right: 25px; bottom: 120px; z-index: 5000; display: flex; flex-direction: column; gap: 15px; }
-        .hexa-bubble { 
-            width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000;
-            transition: 0.3s ease; animation: float 3s ease-in-out infinite;
-        }
-        .bubble-1 { background: #fff; animation-delay: 0s; }
-        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } 
-        .bubble-3 { background: #0ea5e9; animation-delay: 1s; } 
-        
+        .hexa-bubble { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000; transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff; will-change: transform; }
+        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } .bubble-3 { background: #0ea5e9; animation-delay: 1s; }
         .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 8px 8px 0px var(--red); }
         .hexa-bubble i { font-size: 24px; margin-bottom: 4px; }
         .hexa-bubble span { font-size: 8px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
-
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         #emi-strip { display: none; position: fixed; bottom: 0; width: 100%; background: #000; color: #fff; padding: 15px; z-index: 6000; border-top: 4px solid var(--red); text-align: center; }
-
-        /* Sidebar Logic */
-        #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+        #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; display: flex; flex-direction: column; contain: content; }
         #sidebar.active { left: 0; }
         .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
         .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: transparent; }
         .overlay.active { display: block; }
         .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; padding: 5px; }
         .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; transition: 0.3s; display: flex; align-items: center; gap: 12px; }
-        
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
-        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; }
+        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; will-change: transform; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
-        .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
+        .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; loading: lazy; }
         .carousel-img.active { opacity: 1; }
-
-        .section-header { display: flex; justify-content: space-between; align-items: baseline; margin: 30px 0 15px 0; border-left: 6px solid var(--red); padding-left: 12px; }
-        .section-label { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; font-style: italic; }
-        
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
-        .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
-        
-        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 70%); }
     </style>
 </head>
 <body>
 
     <div class="bubble-container">
-        <div onclick="location.href='services.html'" class="hexa-bubble bubble-1">
-            <i class="fas fa-tools text-red-600"></i>
-            <span>AMC &<br>Repair</span>
-        </div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2">
-            <i class="fas fa-credit-card"></i>
-            <span>Easy<br>EMI</span>
-        </div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3">
-            <i class="fas fa-wallet text-white"></i>
-            <span class="text-white">Pay<br>Modes</span>
-        </div>
+        <div onclick="location.href='services.html'" class="hexa-bubble bubble-1"><i class="fas fa-tools text-red-600"></i><span>AMC & Repair</span></div>
+        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
+        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
     </div>
 
     <div id="emi-strip">
@@ -111,11 +82,8 @@
     <div class="overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
     <aside id="sidebar">
-        <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
-        <div class="mb-12 text-center">
-            <img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2">
-            <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p>
-        </div>
+        <div class="flex justify-end mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
+        <div class="mb-12 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2" loading="lazy"><p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p></div>
         <nav class="flex flex-col flex-grow relative z-10">
             <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home w-4"></i> Home</a>
             <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star w-4"></i> New Arrival</a>
@@ -136,7 +104,7 @@
             <div class="flex items-center gap-6">
                 <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
                 <a href="index.html" class="flex flex-col items-center">
-                    <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
+                    <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8" fetchpriority="high">
                     <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
                 </a>
             </div>
@@ -147,7 +115,7 @@
         </div>
     </nav>
 
-    <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80');">
+    <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&q=80');">
         <div class="hero-vignette"></div>
         <div class="relative z-10 max-w-2xl">
             <h1 class="hero-title text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
@@ -227,18 +195,12 @@
         </section>
     </main>
 
-    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
-            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
-            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
-            <div class="text-right flex space-x-6 justify-end items-center">
-                <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
-                <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
-                <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
-            </div>
+    <footer class="bg-gray-100 py-12 px-6 border-t-4 border-black text-black">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto">
+            <div><span class="footer-heading">Shop</span><ul class="space-y-1 mt-2"><li><a href="index.html" class="footer-item">Home</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li></ul></div>
+            <div><span class="footer-heading">Support</span><ul class="space-y-1 mt-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal</a></li></ul></div>
+            <div class="col-span-2 md:col-span-1"><span class="footer-heading">Contact</span><p class="text-[10px] font-bold text-black">Gumti No. 5, Kanpur Nagar<br>+91 9935529306</p></div>
         </div>
-        <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
 
     <script>
@@ -247,8 +209,36 @@
 
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
-        async function init() { try { const res = await fetch(sheetURL); const csvText = await res.text(); fullData = csvToJSON(csvText); setupCarousels(); } catch (e) { console.error("Data Fail"); } }
-        function csvToJSON(csv) { const lines = csv.split('\n'); const result = []; const headers = lines[0].split(',').map(h => h.trim()); for (let i = 1; i < lines.length; i++) { if (!lines[i]) continue; const obj = {}; const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); headers.forEach((header, index) => { let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : ''; if(header === 'images') val = val.split(',').map(img => img.trim()); obj[header] = val; }); result.push(obj); } return result; }
+
+        // Performance: Delay sheet fetch for mobile
+        window.addEventListener('load', () => {
+            setTimeout(init, 1000); 
+        });
+
+        async function init() {
+            try {
+                const res = await fetch(sheetURL);
+                const csvText = await res.text();
+                fullData = csvToJSON(csvText);
+                setupCarousels();
+            } catch (e) { console.error("Data Fail"); }
+        }
+
+        function csvToJSON(csv) {
+            const lines = csv.split('\n'), result = [], headers = lines[0].split(',').map(h => h.trim());
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i]) continue;
+                const obj = {}, currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                headers.forEach((header, index) => {
+                    let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
+                    if(header === 'images') val = val.split(',').map(img => img.trim());
+                    obj[header] = val;
+                });
+                result.push(obj);
+            }
+            return result;
+        }
+
         function setupCarousels() {
             const categories = [
                 { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.stock === 'In Stock' },
@@ -261,15 +251,14 @@
             categories.forEach(cat => {
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
-                if (items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT Product">`).join('');
+                if (items && items.length > 0) {
+                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT" decoding="async">`).join('');
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
-                    if(imgs.length > 1) { setInterval(() => { imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; imgs[current].classList.add('active'); }, 3500); }
+                    if(imgs.length > 1) { setInterval(() => { if(imgs[current]) imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; if(imgs[current]) imgs[current].classList.add('active'); }, 4000); }
                 }
             });
         }
-        window.onload = init;
     </script>
 </body>
 </html>
