@@ -18,48 +18,58 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- FLOATING BUBBLES ANIMATION --- */
-        .bubble-container { position: fixed; right: 20px; bottom: 100px; z-index: 5000; display: flex; flex-direction: column; gap: 15px; }
+        /* --- BIGGER FLOATING BUBBLES --- */
+        .bubble-container { position: fixed; right: 25px; bottom: 120px; z-index: 5000; display: flex; flex-direction: column; gap: 20px; }
         .hexa-bubble { 
-            width: 65px; height: 64px; border-radius: 50%; border: 2px solid #000;
+            width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; cursor: pointer; box-shadow: 4px 4px 0px #000;
+            text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000;
             transition: 0.3s ease; animation: float 3s ease-in-out infinite;
         }
         .bubble-1 { background: #fff; animation-delay: 0s; }
-        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } /* EMI yellow */
-        .bubble-3 { background: #22c55e; animation-delay: 1s; } /* UPI green */
+        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; }
+        .bubble-3 { background: #22c55e; animation-delay: 1s; }
         
-        .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 6px 6px 0px var(--red); }
-        .hexa-bubble i { font-size: 18px; margin-bottom: 2px; }
-        .hexa-bubble span { font-size: 7px; font-weight: 900; text-transform: uppercase; line-height: 1; }
+        .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 8px 8px 0px var(--red); }
+        .hexa-bubble i { font-size: 24px; margin-bottom: 4px; }
+        .hexa-bubble span { font-size: 9px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
         }
 
         @media (max-width: 768px) { 
-            .bubble-container { right: 10px; bottom: 80px; scale: 0.9; } 
+            .bubble-container { right: 15px; bottom: 100px; scale: 0.85; } 
         }
 
         /* Sidebar Logic */
         #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
         #sidebar.active { left: 0; }
+        .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
         .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: transparent; }
         .overlay.active { display: block; }
         .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; padding: 5px; }
         .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; transition: 0.3s; display: flex; align-items: center; gap: 12px; }
+        
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
         .carousel-img.active { opacity: 1; }
+
+        .section-header { display: flex; justify-content: space-between; align-items: baseline; margin: 30px 0 15px 0; border-left: 6px solid var(--red); padding-left: 12px; }
+        .section-label { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; font-style: italic; }
+        
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
+        
+        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
     </style>
 </head>
 <body>
@@ -69,11 +79,11 @@
             <i class="fas fa-tools text-red-600"></i>
             <span>AMC &<br>Repair</span>
         </div>
-        <div onclick="location.href='#offers'" class="hexa-bubble bubble-2">
+        <div onclick="location.href='#services-strip'" class="hexa-bubble bubble-2">
             <i class="fas fa-credit-card"></i>
             <span>Easy<br>EMI</span>
         </div>
-        <div onclick="location.href='#offers'" class="hexa-bubble bubble-3">
+        <div onclick="location.href='#services-strip'" class="hexa-bubble bubble-3">
             <i class="fas fa-qrcode text-white"></i>
             <span class="text-white">UPI<br>OFFER</span>
         </div>
@@ -97,6 +107,10 @@
             <a href="printers.html" class="nav-link-side"><i class="fas fa-print w-4"></i> Printers</a>
             <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard w-4"></i> Accessories</a>
         </nav>
+        <div class="sidebar-shadow-icons">
+            <i class="fas fa-keyboard"></i>
+            <i class="fas fa-mouse"></i>
+        </div>
     </aside>
 
     <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
@@ -172,35 +186,36 @@
             </div>
         </div>
 
-        <section id="offers" class="mt-16 px-6 py-10 bg-zinc-50 border-2 border-black rounded-lg">
+        <section id="services-strip" class="mt-16 px-6 py-10 bg-zinc-50 border-2 border-black rounded-lg">
             <div class="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div class="text-center md:text-left">
-                    <h2 class="text-2xl md:text-3xl font-black uppercase italic leading-none">Hexa <span class="text-red-600">Expert Services</span></h2>
-                    <p class="text-[10px] font-bold uppercase tracking-widest mt-2 text-gray-500">EMI & Installation Partner</p>
+                    <h2 class="text-2xl md:text-3xl font-black uppercase italic leading-none">Our Expert <span class="text-red-600">Services</span></h2>
+                    <p class="text-[10px] font-bold uppercase tracking-widest mt-2 text-gray-500">Kanpur's Trusted AMC & Installation Partner</p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full md:w-auto">
                     <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
                         <i class="fas fa-tools text-red-600 group-hover:text-white mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">Expert<br>AMC Service</p>
+                        <p class="text-[9px] font-black uppercase leading-tight">CCTV<br>Installation</p>
                     </div>
-                    <div class="border-2 border-black p-3 bg-yellow-400 text-center">
-                        <i class="fas fa-credit-card mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">Easy<br>EMI Plans</p>
+                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
+                        <i class="fas fa-network-wired text-red-600 group-hover:text-white mb-2 block text-xl"></i>
+                        <p class="text-[9px] font-black uppercase leading-tight">IT Networking<br>& AMC</p>
                     </div>
-                    <div class="border-2 border-black p-3 bg-green-500 text-white text-center col-span-2 md:col-span-1">
-                        <i class="fas fa-qrcode mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">UPI<br>Cashback</p>
+                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center flex flex-col justify-center col-span-2 md:col-span-1">
+                        <i class="fas fa-phone-alt text-red-600 group-hover:text-white mb-2 block text-xl"></i>
+                        <p class="text-[9px] font-black uppercase leading-tight">EPABX /<br>Intercom</p>
                     </div>
                 </div>
+                <a href="services.html" class="bg-black text-white px-8 py-4 font-black uppercase italic text-xs hover:bg-red-600 transition shadow-lg">View All Services</a>
             </div>
         </section>
     </main>
 
     <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li></ul></div>
-            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal</a></li></ul></div>
-            <div><span class="footer-heading">Contact Us</span><p class="footer-item text-[10px] text-black">119/540 New Basant Building, Kanpur Nagar</p><p class="footer-item underline font-black tracking-widest">+91 9935529306</p></div>
+            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
+            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
+            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
             <div class="text-right flex space-x-6 justify-end items-center">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
