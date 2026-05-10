@@ -18,7 +18,7 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- CLEAN SIDEBAR WITH DARK TECH SHADOW --- */
+        /* --- SIDEBAR LOGIC --- */
         #sidebar { 
             position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
             z-index: 4000; transition: 0.4s ease-in-out; 
@@ -28,15 +28,12 @@
         }
         #sidebar.active { left: 0; }
         
-        /* DARKER IT Shadow Watermark (Visible in sidebar background) */
         .sidebar-shadow-icons {
             position: absolute; bottom: 30px; right: 20px; font-size: 110px;
-            /* Made Darker and More Clear as requested */
             color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg);
             pointer-events: none;
         }
         
-        /* Overlay removed to keep page clear as requested */
         .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: transparent; }
         .overlay.active { display: block; }
         
@@ -47,17 +44,15 @@
             font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; 
             border-bottom: 1px solid #f0f0f0; transition: 0.3s; 
             display: flex; align-items: center; gap: 12px;
-            background: rgba(255,255,255,0.7); /* Ensures text is clear over background */
         }
-        .nav-link-side:hover { color: var(--red); padding-left: 8px; border-bottom-color: var(--red); background: rgba(255,255,255,1); }
+        .nav-link-side:hover { color: var(--red); padding-left: 8px; border-bottom-color: var(--red); }
 
-        /* Original Navbar Logic */
+        /* Original Styles */
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Carousel Styles */
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .category-block:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0px var(--red); }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
@@ -70,10 +65,8 @@
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
         
-        /* FOOTER (REVERTED TO ORIGINAL) */
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .footer-item:hover { color: var(--red); }
     </style>
 </head>
 <body>
@@ -84,12 +77,10 @@
         <div class="flex justify-end items-center mb-6">
             <button onclick="toggleMenu()" class="text-2xl font-black">&times;</button>
         </div>
-
         <div class="mb-12 text-center">
             <img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2">
             <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p>
         </div>
-
         <nav class="flex flex-col flex-grow relative z-10">
             <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home w-4"></i> Home</a>
             <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star w-4"></i> New Arrival</a>
@@ -97,18 +88,12 @@
             <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop w-4"></i> Desktops</a>
             <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt w-4"></i> Security</a>
             <a href="services.html" class="nav-link-side"><i class="fas fa-tools w-4"></i> Services</a>
-            <a href="printers.html" class="nav-link-side"><i class="fas fa-print"></i> Printers</a>
+            <a href="printers.html" class="nav-link-side"><i class="fas fa-print w-4"></i> Printers</a>
             <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard w-4"></i> Accessories</a>
         </nav>
-
         <div class="sidebar-shadow-icons">
             <i class="fas fa-keyboard"></i>
             <i class="fas fa-mouse"></i>
-            <i class="fas fa-server"></i>
-        </div>
-        
-        <div class="mt-auto pt-4 border-t border-gray-100 text-center opacity-40">
-            <p class="text-[8px] font-black uppercase">Certified IT Partner</p>
         </div>
     </aside>
 
@@ -184,6 +169,30 @@
                 </div>
             </div>
         </div>
+
+        <section class="mt-16 px-6 py-10 bg-zinc-50 border-2 border-black rounded-lg">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl md:text-3xl font-black uppercase italic leading-none">Our Expert <span class="text-red-600">Services</span></h2>
+                    <p class="text-[10px] font-bold uppercase tracking-widest mt-2 text-gray-500">Kanpur's Trusted AMC & Installation Partner</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full md:w-auto">
+                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
+                        <i class="fas fa-tools text-red-600 group-hover:text-white mb-2 block text-xl"></i>
+                        <p class="text-[9px] font-black uppercase leading-tight">CCTV<br>Installation</p>
+                    </div>
+                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
+                        <i class="fas fa-network-wired text-red-600 group-hover:text-white mb-2 block text-xl"></i>
+                        <p class="text-[9px] font-black uppercase leading-tight">IT Networking<br>& AMC</p>
+                    </div>
+                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center flex flex-col justify-center col-span-2 md:col-span-1">
+                        <i class="fas fa-phone-alt text-red-600 group-hover:text-white mb-2 block text-xl"></i>
+                        <p class="text-[9px] font-black uppercase leading-tight">EPABX /<br>Intercom</p>
+                    </div>
+                </div>
+                <a href="services.html" class="bg-black text-white px-8 py-4 font-black uppercase italic text-xs hover:bg-red-600 transition shadow-lg">View All Services</a>
+            </div>
+        </section>
     </main>
 
     <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
@@ -202,15 +211,11 @@
 
     <script>
         function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('nav-overlay');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('nav-overlay').classList.toggle('active');
         }
-
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
-
         async function init() {
             try {
                 const res = await fetch(sheetURL);
@@ -219,7 +224,6 @@
                 setupCarousels();
             } catch (e) { console.error("Data Fail"); }
         }
-
         function csvToJSON(csv) {
             const lines = csv.split('\n');
             const result = [];
@@ -237,7 +241,6 @@
             }
             return result;
         }
-
         function setupCarousels() {
             const categories = [
                 { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.condition !== 'New' && i.stock === 'In Stock' },
@@ -247,14 +250,11 @@
                 { id: 'carousel-accessories', filter: i => i.category === 'Accessories' && i.stock === 'In Stock' },
                 { id: 'carousel-cctv', filter: i => i.category === 'CCTV' && i.stock === 'In Stock' }
             ];
-
             categories.forEach(cat => {
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => 
-                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Refurbished" class="carousel-img ${idx === 0 ? 'active' : ''}">`
-                    ).join('');
+                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" alt="${item.brand}" class="carousel-img ${idx === 0 ? 'active' : ''}">`).join('');
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) {
