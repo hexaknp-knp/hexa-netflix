@@ -11,6 +11,32 @@
     
     <meta name="description" content="Shop best refurbished laptops, desktops & printers in Kanpur at Hexa Computronics. Get premium Dell, HP & Lenovo business series with 1-Year warranty & Easy EMI.">
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Hexa Computronics",
+      "image": "https://hexacomputer.in/assets/newlogo.png",
+      "@id": "https://hexacomputer.in",
+      "url": "https://hexacomputer.in",
+      "telephone": "+919935529306",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "119/540 New Basant Cinema Building, Gumti No. 5",
+        "addressLocality": "Kanpur",
+        "postalCode": "208005",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "20:00"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -18,30 +44,16 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- BIGGER FLOATING BUBBLES --- */
         .bubble-container { position: fixed; right: 25px; bottom: 120px; z-index: 5000; display: flex; flex-direction: column; gap: 15px; }
-        .hexa-bubble { 
-            width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000;
-            transition: 0.3s ease; animation: float 3s ease-in-out infinite;
-        }
+        .hexa-bubble { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000; transition: 0.3s ease; animation: float 3s ease-in-out infinite; }
         .bubble-1 { background: #fff; animation-delay: 0s; }
-        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } /* EMI yellow */
-        .bubble-3 { background: #0ea5e9; animation-delay: 1s; } /* Payment blue */
-        
+        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; }
+        .bubble-3 { background: #0ea5e9; animation-delay: 1s; }
         .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 8px 8px 0px var(--red); }
         .hexa-bubble i { font-size: 24px; margin-bottom: 4px; }
         .hexa-bubble span { font-size: 8px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
-
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-
-        /* Payment Strip Pop-up */
         #emi-strip { display: none; position: fixed; bottom: 0; width: 100%; background: #000; color: #fff; padding: 15px; z-index: 6000; border-top: 4px solid var(--red); text-align: center; }
-
-        @media (max-width: 768px) { .bubble-container { right: 15px; bottom: 100px; scale: 0.8; } }
-
-        /* Sidebar Logic */
         #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
         #sidebar.active { left: 0; }
         .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
@@ -49,23 +61,18 @@
         .overlay.active { display: block; }
         .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; padding: 5px; }
         .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; transition: 0.3s; display: flex; align-items: center; gap: 12px; }
-        
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
         .carousel-img.active { opacity: 1; }
-
         .section-header { display: flex; justify-content: space-between; align-items: baseline; margin: 30px 0 15px 0; border-left: 6px solid var(--red); padding-left: 12px; }
         .section-label { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; font-style: italic; }
-        
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
-        
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
     </style>
@@ -89,10 +96,7 @@
 
     <div id="emi-strip">
         <div class="flex justify-between items-center max-w-4xl mx-auto px-4">
-            <p class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight">
-                💳 WE ACCEPT ALL CREDIT/DEBIT CARDS, UPI & NETBANKING. <br class="md:hidden"> 
-                <span class="text-yellow-400">EASY EMI AVAILABLE ON MAJOR BANKS</span>
-            </p>
+            <p class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight">💳 ALL CARDS, UPI & NETBANKING ACCEPTED. <span class="text-yellow-400">EMI AVAILABLE.</span></p>
             <button onclick="document.getElementById('emi-strip').style.display='none'" class="ml-4 text-xl font-black">&times;</button>
         </div>
     </div>
@@ -102,7 +106,7 @@
     <aside id="sidebar">
         <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
         <div class="mb-12 text-center">
-            <img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2">
+            <img src="assets/newlogo.png" alt="Hexa Computronics Logo Kanpur" class="h-16 mx-auto mb-2">
             <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p>
         </div>
         <nav class="flex flex-col flex-grow relative z-10">
@@ -125,7 +129,7 @@
             <div class="flex items-center gap-6">
                 <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
                 <a href="index.html" class="flex flex-col items-center">
-                    <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
+                    <img src="assets/newlogo.png" alt="Hexa Computronics Navbar Logo" class="h-8">
                     <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
                 </a>
             </div>
@@ -227,35 +231,34 @@
                 <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
             </div>
         </div>
-        <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
+        <div class="mt-10 pt-6 border-t border-gray-300 text-center">
+            <p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        </div>
     </footer>
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
-        function showEmiInfo() { 
-            const strip = document.getElementById('emi-strip');
-            strip.style.display = 'block';
-            setTimeout(() => { strip.style.display = 'none'; }, 8000); 
-        }
+        function showEmiInfo() { const strip = document.getElementById('emi-strip'); strip.style.display = 'block'; setTimeout(() => { strip.style.display = 'none'; }, 8000); }
 
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
         async function init() { try { const res = await fetch(sheetURL); const csvText = await res.text(); fullData = csvToJSON(csvText); setupCarousels(); } catch (e) { console.error("Data Fail"); } }
         function csvToJSON(csv) { const lines = csv.split('\n'); const result = []; const headers = lines[0].split(',').map(h => h.trim()); for (let i = 1; i < lines.length; i++) { if (!lines[i]) continue; const obj = {}; const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); headers.forEach((header, index) => { let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : ''; if(header === 'images') val = val.split(',').map(img => img.trim()); obj[header] = val; }); result.push(obj); } return result; }
+        
         function setupCarousels() {
             const categories = [
-                { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.stock === 'In Stock' },
-                { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.stock === 'In Stock' },
-                { id: 'carousel-new', filter: i => i.condition === 'New' && i.stock === 'In Stock' },
-                { id: 'carousel-printer', filter: i => i.category === 'Printer' && i.stock === 'In Stock' },
-                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' && i.stock === 'In Stock' },
-                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' && i.stock === 'In Stock' }
+                { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.stock === 'In Stock', alt: "Refurbished Business Laptops Kanpur" },
+                { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.stock === 'In Stock', alt: "Certified Refurbished Desktops Kanpur" },
+                { id: 'carousel-new', filter: i => i.condition === 'New' && i.stock === 'In Stock', alt: "New Laptops Desktops Kanpur Store" },
+                { id: 'carousel-printer', filter: i => i.category === 'Printer' && i.stock === 'In Stock', alt: "Printers and Scanners Kanpur Store" },
+                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' && i.stock === 'In Stock', alt: "IT Accessories Keyboard Mouse Kanpur" },
+                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' && i.stock === 'In Stock', alt: "CCTV Camera Installation Kanpur" }
             ];
             categories.forEach(cat => {
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}">`).join('');
+                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" alt="${cat.alt}" class="carousel-img ${idx === 0 ? 'active' : ''}">`).join('');
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) { setInterval(() => { imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; imgs[current].classList.add('active'); }, 3500); }
