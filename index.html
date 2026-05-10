@@ -11,32 +11,6 @@
     
     <meta name="description" content="Shop best refurbished laptops, desktops & printers in Kanpur at Hexa Computronics. Get premium Dell, HP & Lenovo business series with 1-Year warranty & Easy EMI.">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Hexa Computronics",
-      "image": "https://hexacomputer.in/assets/newlogo.png",
-      "@id": "https://hexacomputer.in",
-      "url": "https://hexacomputer.in",
-      "telephone": "+919935529306",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "119/540 New Basant Cinema Building, Gumti No. 5",
-        "addressLocality": "Kanpur",
-        "postalCode": "208005",
-        "addressCountry": "IN"
-      },
-      "priceRange": "₹₹",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "10:00",
-        "closes": "20:00"
-      }
-    }
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -44,48 +18,42 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- SIDEBAR WITH IT PRODUCT SHADOW (KEYBOARD, MOUSE, LAPTOP MIX) --- */
+        /* --- SIDEBAR FIXED LOGIC --- */
         #sidebar { 
             position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
-            z-index: 3000; transition: 0.4s ease; 
+            z-index: 4000; transition: 0.4s ease-in-out; 
             border-right: 3px solid #000; background: #fff;
-            /* IT Product Shadow Texture */
-            background-image: linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), 
-                              url('https://www.transparenttextures.com/patterns/microfab.png'); 
             padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column;
         }
         #sidebar.active { left: 0; }
         
-        /* Multi-Product Watermark Icons */
-        #sidebar::before {
-            content: "\f11c  \f007  \f108"; font-family: "Font Awesome 5 Free"; font-weight: 900;
-            position: absolute; bottom: 10%; right: 10%; font-size: 80px;
-            color: rgba(0,0,0,0.04); z-index: -1; transform: rotate(-15deg); white-space: pre;
+        /* Sidebar Tech Watermark Shadow */
+        .sidebar-shadow-icons {
+            position: absolute; bottom: 20px; right: 20px; font-size: 80px;
+            color: rgba(0,0,0,0.03); z-index: -1; transform: rotate(-15deg);
+            pointer-events: none;
         }
         
-        .overlay { position: fixed; inset: 0; z-index: 2500; display: none; background: transparent; }
+        .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: rgba(0,0,0,0.3); backdrop-filter: blur(2px); }
         .overlay.active { display: block; }
         
-        .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; }
-        .menu-btn:hover { color: var(--red); }
+        .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; padding: 5px; }
 
         .nav-link-side { 
             color: #000; font-weight: 800; text-transform: uppercase; 
-            font-size: 11px; letter-spacing: 1px; padding: 12px 0; 
-            border-bottom: 1px solid #eee; transition: 0.3s; 
-            display: flex; align-items: center; gap: 10px;
-            /* Ensuring Text Clarity over background */
-            text-shadow: 0px 0px 1px rgba(255,255,255,1);
+            font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; 
+            border-bottom: 1px solid #f0f0f0; transition: 0.3s; 
+            display: flex; align-items: center; gap: 12px;
         }
-        .nav-link-side:hover { color: var(--red); padding-left: 5px; background: rgba(255,255,255,0.5); }
+        .nav-link-side:hover { color: var(--red); padding-left: 8px; border-bottom-color: var(--red); }
 
-        /* Original Navbar Logic */
+        /* Original Styles */
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Carousel Styles */
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .category-block:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0px var(--red); }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
@@ -97,18 +65,15 @@
         
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.7) 5%, transparent 70%); }
-        
-        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .footer-item:hover { color: var(--red); }
     </style>
 </head>
 <body>
 
-    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
     <aside id="sidebar">
-        <div class="flex justify-end items-center mb-4">
+        <div class="flex justify-between items-center mb-6">
+            <span class="text-[9px] font-black uppercase text-red-600 tracking-tighter">Hexa Navigation</span>
             <button onclick="toggleMenu()" class="text-2xl font-black">&times;</button>
         </div>
 
@@ -117,16 +82,25 @@
             <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p>
         </div>
 
-        <nav class="flex flex-col">
-            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home"></i> Home</a>
-            <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star"></i> New Arrival</a>
-            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop"></i> Laptops</a>
-            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop"></i> Desktops</a>
-            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt"></i> Security</a>
-            <a href="services.html" class="nav-link-side"><i class="fas fa-tools"></i> Services</a>
-            <a href="printers.html" class="nav-link-side"><i class="fas fa-print"></i> Printers</a>
-            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard"></i> Accessories</a>
+        <nav class="flex flex-col flex-grow relative z-10">
+            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home w-4"></i> Home</a>
+            <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star w-4"></i> New Arrival</a>
+            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop w-4"></i> Laptops</a>
+            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop w-4"></i> Desktops</a>
+            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt w-4"></i> Security</a>
+            <a href="services.html" class="nav-link-side"><i class="fas fa-tools w-4"></i> Services</a>
+            <a href="printers.html" class="nav-link-side"><i class="fas fa-print w-4"></i> Printers</a>
+            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard w-4"></i> Accessories</a>
         </nav>
+
+        <div class="sidebar-shadow-icons">
+            <i class="fas fa-keyboard"></i>
+            <i class="fas fa-mouse"></i>
+        </div>
+        
+        <div class="mt-auto pt-4 border-t border-gray-100 text-center opacity-40">
+            <p class="text-[8px] font-black uppercase">Certified IT Partner</p>
+        </div>
     </aside>
 
     <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
@@ -160,14 +134,14 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
                 <div class="carousel-container" id="carousel-laptop"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
                     <div><h3 class="text-lg">Business Laptops</h3><p class="text-[10px] text-red-600">HP • DELL • LENOVO</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
                 <div class="carousel-container" id="carousel-desktop"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
                     <div><h3 class="text-lg">Office Desktops</h3><p class="text-[10px] text-red-600">Towers • Mini PCs</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
@@ -181,14 +155,14 @@
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
                 <div class="carousel-container" id="carousel-printer"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
                     <div><h3 class="text-lg">Official Printers</h3><p class="text-[10px] text-red-600">EPSON • CANON • HP</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
                 <div class="carousel-container" id="carousel-accessories"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
                     <div><h3 class="text-lg">Tech Accessories</h3><p class="text-[10px] text-red-600">Keyboards • Mice</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
@@ -197,18 +171,17 @@
                 <div class="carousel-container" id="carousel-cctv"></div>
                 <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black font-black uppercase italic bg-black text-white">
                     <div><h3 class="text-lg">Security CCTV</h3><p class="text-[10px] font-bold text-red-600">CP PLUS • HIKVISION</p></div>
-                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white">EXPLORE</span>
+                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white tracking-widest">EXPLORE</span>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
+    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
-            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
-            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Cinema Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
-            <div class="text-right flex space-x-6 justify-end items-center">
+            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li></ul></div>
+            <div><span class="footer-heading">Contact</span><p class="footer-item leading-relaxed mb-4 text-[10px]">119/540 New Basant cinema building, Kanpur Nagar<br>+91 9935529306</p></div>
+            <div class="text-right flex space-x-6 justify-end items-center col-span-2 md:col-span-1">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
                 <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
@@ -219,8 +192,10 @@
 
     <script>
         function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.querySelector('.overlay').classList.toggle('active');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('nav-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
 
         let fullData = [];
@@ -232,7 +207,7 @@
                 const csvText = await res.text();
                 fullData = csvToJSON(csvText);
                 setupCarousels();
-            } catch (e) { console.error("Data Fail"); }
+            } catch (e) { console.error("Sheet Sync Failed"); }
         }
 
         function csvToJSON(csv) {
@@ -268,8 +243,9 @@
                 const container = document.getElementById(cat.id);
                 if (items.length > 0) {
                     container.innerHTML = items.map((item, idx) => 
-                        `<img src="${item.images[0]}" alt="${item.brand} ${item.model} Refurbished" class="carousel-img ${idx === 0 ? 'active' : ''}">`
+                        `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}">`
                     ).join('');
+                    
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) {
@@ -279,5 +255,10 @@
                             imgs[current].classList.add('active');
                         }, 3500);
                     }
-                } else {
-                    container.innerHTML = `<div class="h-full flex items
+                }
+            });
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
