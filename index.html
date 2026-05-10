@@ -17,7 +17,6 @@
       "@type": "LocalBusiness",
       "name": "Hexa Computronics",
       "image": "https://hexacomputer.in/assets/newlogo.png",
-      "@id": "https://hexacomputer.in",
       "url": "https://hexacomputer.in",
       "telephone": "+919935529306",
       "address": {
@@ -37,31 +36,48 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; content-visibility: auto; }
         
-        .bubble-container { position: fixed; right: 25px; bottom: 120px; z-index: 5000; display: flex; flex-direction: column; gap: 15px; }
-        .hexa-bubble { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000; transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff; will-change: transform; }
-        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } .bubble-3 { background: #0ea5e9; animation-delay: 1s; }
+        /* --- BUBBLES FIXED POSITION (Always Visible) --- */
+        .bubble-container { position: fixed; right: 25px; bottom: 120px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; pointer-events: auto; }
+        .hexa-bubble { 
+            width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000;
+            transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff;
+            will-change: transform;
+        }
+        .bubble-1 { background: #fff; animation-delay: 0s; }
+        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } 
+        .bubble-3 { background: #0ea5e9; animation-delay: 1s; } 
         .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 8px 8px 0px var(--red); }
         .hexa-bubble i { font-size: 24px; margin-bottom: 4px; }
         .hexa-bubble span { font-size: 8px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         #emi-strip { display: none; position: fixed; bottom: 0; width: 100%; background: #000; color: #fff; padding: 15px; z-index: 6000; border-top: 4px solid var(--red); text-align: center; }
+
+        /* Sidebar */
         #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; display: flex; flex-direction: column; contain: content; }
         #sidebar.active { left: 0; }
         .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
         .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: transparent; }
         .overlay.active { display: block; }
-        .menu-btn { cursor: pointer; font-size: 24px; color: #000; transition: 0.3s; padding: 5px; }
-        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; transition: 0.3s; display: flex; align-items: center; gap: 12px; }
+        .menu-btn { cursor: pointer; font-size: 24px; color: #000; padding: 5px; }
+        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 12px; }
+
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; }
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; will-change: transform; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; loading: lazy; }
         .carousel-img.active { opacity: 1; }
-        header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; }
-        .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 70%); }
+
+        /* Hero Text Visibility Fix */
+        header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; background-color: #000; }
+        .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 80%), linear-gradient(to right, rgba(255,255,255,0.4) 0%, transparent 100%); z-index: 1; }
+        .hero-content { position: relative; z-index: 10; }
     </style>
 </head>
 <body>
@@ -75,24 +91,24 @@
     <div id="emi-strip">
         <div class="flex justify-between items-center max-w-4xl mx-auto px-4">
             <p class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight">💳 ALL CARDS, UPI & NETBANKING ACCEPTED. <span class="text-yellow-400">EMI AVAILABLE.</span></p>
-            <button onclick="document.getElementById('emi-strip').style.display='none'" class="ml-4 text-xl font-black">&times;</button>
+            <button onclick="document.getElementById('emi-strip').style.display='none'" class="text-xl font-black">&times;</button>
         </div>
     </div>
 
     <div class="overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
     <aside id="sidebar">
-        <div class="flex justify-end mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
-        <div class="mb-12 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2" loading="lazy"><p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p></div>
-        <nav class="flex flex-col flex-grow relative z-10">
-            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home w-4"></i> Home</a>
-            <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star w-4"></i> New Arrival</a>
-            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop w-4"></i> Laptops</a>
-            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop w-4"></i> Desktops</a>
-            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt w-4"></i> Security</a>
-            <a href="services.html" class="nav-link-side"><i class="fas fa-tools w-4"></i> Services</a>
-            <a href="printers.html" class="nav-link-side"><i class="fas fa-print w-4"></i> Printers</a>
-            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard w-4"></i> Accessories</a>
+        <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
+        <div class="mb-12 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2" loading="lazy"></div>
+        <nav class="flex flex-col flex-grow">
+            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home"></i> Home</a>
+            <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star"></i> New Arrival</a>
+            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop"></i> Laptops</a>
+            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop"></i> Desktops</a>
+            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt"></i> Security</a>
+            <a href="services.html" class="nav-link-side"><i class="fas fa-tools"></i> Services</a>
+            <a href="printers.html" class="nav-link-side"><i class="fas fa-print"></i> Printers</a>
+            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard"></i> Accessories</a>
         </nav>
         <div class="sidebar-shadow-icons"><i class="fas fa-keyboard"></i><i class="fas fa-mouse"></i></div>
     </aside>
@@ -115,16 +131,16 @@
         </div>
     </nav>
 
-    <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&q=80');">
+    <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=60');">
         <div class="hero-vignette"></div>
-        <div class="relative z-10 max-w-2xl">
-            <h1 class="hero-title text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
+        <div class="hero-content max-w-2xl">
+            <h1 class="text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
             <p class="text-xs md:text-sm text-black font-black uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
         </div>
     </header>
 
     <main class="relative z-20 px-4 md:px-12 pb-16">
-        <div class="section-header"><h2 class="section-label">Browse by Category</h2></div>
+        <div class="mt-8 mb-6 border-l-4 border-red-600 pl-3"><h2 class="text-xl font-black uppercase italic">Browse by Category</h2></div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
                 <div class="carousel-container" id="carousel-laptop"></div>
@@ -197,9 +213,9 @@
 
     <footer class="bg-gray-100 py-12 px-6 border-t-4 border-black text-black">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto">
-            <div><span class="footer-heading">Shop</span><ul class="space-y-1 mt-2"><li><a href="index.html" class="footer-item">Home</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li></ul></div>
-            <div><span class="footer-heading">Support</span><ul class="space-y-1 mt-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal</a></li></ul></div>
-            <div class="col-span-2 md:col-span-1"><span class="footer-heading">Contact</span><p class="text-[10px] font-bold text-black">Gumti No. 5, Kanpur Nagar<br>+91 9935529306</p></div>
+            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2 text-[10px] font-bold"><li><a href="index.html">Home Store</a></li><li><a href="laptops.html">Laptops</a></li></ul></div>
+            <div><span class="footer-heading">Support</span><ul class="space-y-2 text-[10px] font-bold"><li><a href="shipping-policy.html">Shipping</a></li><li><a href="legal.html">Legal & Refund</a></li></ul></div>
+            <div class="col-span-2 md:col-span-1"><span class="footer-heading">Contact</span><p class="text-[10px] font-bold">119/540 New Basant Building, Kanpur<br>+91 9935529306</p></div>
         </div>
     </footer>
 
@@ -210,10 +226,7 @@
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
 
-        // Performance: Delay sheet fetch for mobile
-        window.addEventListener('load', () => {
-            setTimeout(init, 1000); 
-        });
+        window.addEventListener('load', () => { setTimeout(init, 800); });
 
         async function init() {
             try {
@@ -252,7 +265,7 @@
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items && items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT" decoding="async">`).join('');
+                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT Product" decoding="async">`).join('');
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) { setInterval(() => { if(imgs[current]) imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; if(imgs[current]) imgs[current].classList.add('active'); }, 4000); }
