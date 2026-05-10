@@ -44,7 +44,6 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- SIDEBAR WITH VISIBLE TECH SHADOW --- */
         #sidebar { 
             position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
             z-index: 3000; transition: 0.4s ease; 
@@ -75,13 +74,11 @@
         }
         .nav-link-side:hover { color: var(--red); padding-left: 5px; }
 
-        /* Original Navbar Logic */
         #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; z-index: 1001; position: relative; }
         .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Carousel Styles */
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
         .category-block:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0px var(--red); }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
@@ -107,12 +104,10 @@
         <div class="flex justify-end items-center mb-4">
             <button onclick="toggleMenu()" class="text-2xl font-black">&times;</button>
         </div>
-
         <div class="mb-10 text-center">
             <img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2">
             <p class="text-[9px] font-black text-red-600 uppercase italic tracking-widest">Kanpur's Tech Mall</p>
         </div>
-
         <nav class="flex flex-col">
             <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home"></i> Home</a>
             <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star"></i> New Arrival</a>
@@ -201,7 +196,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
             <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
             <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
-            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Cinema Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
+            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
             <div class="text-right flex space-x-6 justify-end items-center">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
@@ -257,12 +252,12 @@
 
         function setupCarousels() {
             const categories = [
-                { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.condition !== 'New' },
-                { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.condition !== 'New' },
-                { id: 'carousel-new', filter: i => i.condition === 'New' },
-                { id: 'carousel-printer', filter: i => i.category === 'Printer' },
-                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' },
-                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' }
+                { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.condition !== 'New' && i.stock === 'In Stock' },
+                { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.condition !== 'New' && i.stock === 'In Stock' },
+                { id: 'carousel-new', filter: i => i.condition === 'New' && i.stock === 'In Stock' },
+                { id: 'carousel-printer', filter: i => i.category === 'Printer' && i.stock === 'In Stock' },
+                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' && i.stock === 'In Stock' },
+                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' && i.stock === 'In Stock' }
             ];
 
             categories.forEach(cat => {
@@ -282,6 +277,8 @@
                             imgs[current].classList.add('active');
                         }, 3500);
                     }
+                } else {
+                    container.innerHTML = `<div class="h-full flex items-center justify-center font-black uppercase text-gray-400 text-[10px]">New Stock Coming Soon</div>`;
                 }
             });
         }
