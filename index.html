@@ -19,7 +19,7 @@
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
         /* --- BIGGER FLOATING BUBBLES --- */
-        .bubble-container { position: fixed; right: 25px; bottom: 120px; z-index: 5000; display: flex; flex-direction: column; gap: 20px; }
+        .bubble-container { position: fixed; right: 25px; bottom: 120px; z-index: 5000; display: flex; flex-direction: column; gap: 15px; }
         .hexa-bubble { 
             width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -27,21 +27,19 @@
             transition: 0.3s ease; animation: float 3s ease-in-out infinite;
         }
         .bubble-1 { background: #fff; animation-delay: 0s; }
-        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; }
-        .bubble-3 { background: #22c55e; animation-delay: 1s; }
+        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } /* EMI yellow */
+        .bubble-3 { background: #0ea5e9; animation-delay: 1s; } /* Payment blue */
         
         .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 8px 8px 0px var(--red); }
         .hexa-bubble i { font-size: 24px; margin-bottom: 4px; }
-        .hexa-bubble span { font-size: 9px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+        .hexa-bubble span { font-size: 8px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-        @media (max-width: 768px) { 
-            .bubble-container { right: 15px; bottom: 100px; scale: 0.85; } 
-        }
+        /* Payment Strip Pop-up */
+        #emi-strip { display: none; position: fixed; bottom: 0; width: 100%; background: #000; color: #fff; padding: 15px; z-index: 6000; border-top: 4px solid var(--red); text-align: center; }
+
+        @media (max-width: 768px) { .bubble-container { right: 15px; bottom: 100px; scale: 0.8; } }
 
         /* Sidebar Logic */
         #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
@@ -79,13 +77,23 @@
             <i class="fas fa-tools text-red-600"></i>
             <span>AMC &<br>Repair</span>
         </div>
-        <div onclick="location.href='#services-strip'" class="hexa-bubble bubble-2">
+        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2">
             <i class="fas fa-credit-card"></i>
             <span>Easy<br>EMI</span>
         </div>
-        <div onclick="location.href='#services-strip'" class="hexa-bubble bubble-3">
-            <i class="fas fa-qrcode text-white"></i>
-            <span class="text-white">UPI<br>OFFER</span>
+        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3">
+            <i class="fas fa-wallet text-white"></i>
+            <span class="text-white">Pay<br>Modes</span>
+        </div>
+    </div>
+
+    <div id="emi-strip">
+        <div class="flex justify-between items-center max-w-4xl mx-auto px-4">
+            <p class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight">
+                💳 WE ACCEPT ALL CREDIT/DEBIT CARDS, UPI & NETBANKING. <br class="md:hidden"> 
+                <span class="text-yellow-400">EASY EMI AVAILABLE ON MAJOR BANKS</span>
+            </p>
+            <button onclick="document.getElementById('emi-strip').style.display='none'" class="ml-4 text-xl font-black">&times;</button>
         </div>
     </div>
 
@@ -107,10 +115,7 @@
             <a href="printers.html" class="nav-link-side"><i class="fas fa-print w-4"></i> Printers</a>
             <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard w-4"></i> Accessories</a>
         </nav>
-        <div class="sidebar-shadow-icons">
-            <i class="fas fa-keyboard"></i>
-            <i class="fas fa-mouse"></i>
-        </div>
+        <div class="sidebar-shadow-icons"><i class="fas fa-keyboard"></i><i class="fas fa-mouse"></i></div>
     </aside>
 
     <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
@@ -145,42 +150,42 @@
             <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
                 <div class="carousel-container" id="carousel-laptop"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[10px] text-red-600">HP • DELL • LENOVO</p></div>
+                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
                 <div class="carousel-container" id="carousel-desktop"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[10px] text-red-600">Towers • Mini PCs</p></div>
+                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
                 <div class="carousel-container" id="carousel-new"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-green-600">
-                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[10px] text-black">Box Pack • Warranty</p></div>
+                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[8px] text-black">EMI, Cashback & UPI Offer</p></div>
                     <i class="fas fa-arrow-right text-xl text-green-600"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
                 <div class="carousel-container" id="carousel-printer"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Official Printers</h3><p class="text-[10px] text-red-600">EPSON • CANON • HP</p></div>
+                    <div><h3 class="text-lg">Official Printers</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
                 <div class="carousel-container" id="carousel-accessories"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Tech Accessories</h3><p class="text-[10px] text-red-600">Keyboards • Mice</p></div>
+                    <div><h3 class="text-lg">Tech Accessories</h3><p class="text-[9px] text-red-600">UPI Offer Available</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='cctv.html'">
                 <div class="carousel-container" id="carousel-cctv"></div>
                 <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black font-black uppercase italic bg-black text-white">
-                    <div><h3 class="text-lg">Security CCTV</h3><p class="text-[10px] font-bold text-red-600">CP PLUS • HIKVISION</p></div>
+                    <div><h3 class="text-lg">Security CCTV</h3><p class="text-[9px] font-bold text-red-600">EMI & AMC Available</p></div>
                     <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white tracking-widest">EXPLORE</span>
                 </div>
             </div>
@@ -227,6 +232,12 @@
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
+        function showEmiInfo() { 
+            const strip = document.getElementById('emi-strip');
+            strip.style.display = 'block';
+            setTimeout(() => { strip.style.display = 'none'; }, 8000); 
+        }
+
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
         async function init() { try { const res = await fetch(sheetURL); const csvText = await res.text(); fullData = csvToJSON(csvText); setupCarousels(); } catch (e) { console.error("Data Fail"); } }
