@@ -9,7 +9,7 @@
     <meta name="google-site-verification" content="sOR1l6wNSIt1iPl4JaddWPU3UA196RdzAPdKPteixh8" />
     <title>Hexa Computronics | Best Refurbished Laptops & Desktops in Kanpur</title>
     
-    <meta name="description" content="Shop best refurbished laptops, desktops & printers in Kanpur at Hexa Computronics. Get premium Dell, HP & Lenovo business series with 1-Year warranty & Easy EMI.">
+    <meta name="description" content="Shop best refurbished laptops, desktops & printers in Kanpur at Hexa Computronics. Dell, HP & Lenovo business series with 1-Year warranty & Easy EMI.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -21,43 +21,39 @@
         /* BUBBLES FIXED CENTER */
         .bubble-container { position: fixed; right: 25px; top: 50%; transform: translateY(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
         .hexa-bubble { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000; transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff; }
-        .bubble-2 { background: #ffcc00; } .bubble-3 { background: #0ea5e9; }
+        .bubble-1 { background: #fff; } .bubble-2 { background: #ffcc00; } .bubble-3 { background: #0ea5e9; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         
-        /* MARQUEE ANIMATION */
+        /* MARQUEE */
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; overflow: hidden; position: relative; }
         .marquee-content { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Sidebar & Modals */
+        /* Sidebar */
         #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; display: flex; flex-direction: column; }
         #sidebar.active { left: 0; }
         .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
         .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
+        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
 
-        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 12px; transition: 0.3s; }
-        .nav-link-side:hover { color: var(--red); padding-left: 8px; }
-
-        /* Carousel */
-        .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px #000; transition: 0.3s; cursor: pointer; }
+        /* Carousel Images Sync Style */
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
         .carousel-img.active { opacity: 1; }
 
-        #searchModal, #quoteModal { display: none; position: fixed; inset: 0; z-index: 5001; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 20px; }
-        .modal-inner { background: #fff; width: 100%; max-width: 500px; border: 4px solid #000; padding: 30px; position: relative; }
-        
-        header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; background-color: #000; }
-        .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 90%), linear-gradient(to right, rgba(255,255,255,0.6) 0%, transparent 100%); z-index: 1; }
+        /* Footer Styling Reverted to Original */
+        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; text-decoration: none; }
+        .footer-item:hover { color: var(--red); }
     </style>
 </head>
 <body>
 
     <div class="bubble-container">
         <div onclick="location.href='services.html'" class="hexa-bubble bubble-1"><i class="fas fa-tools text-red-600"></i><span>AMC & Repair</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
+        <div onclick="openQuote()" class="hexa-bubble bubble-2"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
+        <div onclick="openQuote()" class="hexa-bubble bubble-3"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
     </div>
 
     <div class="overlay" id="nav-overlay" onclick="toggleMenu()"></div>
@@ -65,15 +61,15 @@
     <aside id="sidebar">
         <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
         <div class="mb-10 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2"></div>
-        <nav class="flex flex-col flex-grow overflow-y-auto">
-            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home w-5"></i> Home</a>
-            <a href="new-store.html" class="nav-link-side" style="color: green;"><i class="fas fa-star w-5"></i> New Arrival</a>
-            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop w-5"></i> Laptops</a>
-            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop w-5"></i> Desktops</a>
-            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt w-5"></i> Security</a>
-            <a href="services.html" class="nav-link-side"><i class="fas fa-tools w-5"></i> Services</a>
-            <a href="printers.html" class="nav-link-side"><i class="fas fa-print w-5"></i> Printers</a>
-            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard w-5"></i> Accessories</a>
+        <nav class="flex flex-col flex-grow">
+            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home"></i> Home</a>
+            <a href="new-store.html" class="nav-link-side" style="color: green;"><i class="fas fa-star"></i> New Arrival</a>
+            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop"></i> Laptops</a>
+            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop"></i> Desktops</a>
+            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt"></i> Security</a>
+            <a href="services.html" class="nav-link-side"><i class="fas fa-tools"></i> Services</a>
+            <a href="printers.html" class="nav-link-side"><i class="fas fa-print"></i> Printers</a>
+            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard"></i> Accessories</a>
         </nav>
         <div class="sidebar-shadow-icons"><i class="fas fa-keyboard"></i><i class="fas fa-mouse"></i></div>
     </aside>
@@ -86,7 +82,7 @@
                 <button onclick="toggleMenu()" class="text-xl p-2"><i class="fas fa-bars"></i></button>
                 <a href="index.html" class="flex flex-col items-center">
                     <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
-                    <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
+                    <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic">Hexa Computronics</span>
                 </a>
             </div>
             <div class="flex items-center space-x-4">
@@ -98,7 +94,7 @@
 
     <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200');">
         <div class="hero-vignette"></div>
-        <div class="relative z-10 max-w-2xl hero-content">
+        <div class="relative z-10 max-w-2xl">
             <h1 class="text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
             <p class="text-xs md:text-sm text-black font-black uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
         </div>
@@ -111,43 +107,43 @@
             <div class="category-block" onclick="location.href='laptops.html'">
                 <div class="carousel-container" id="carousel-laptop"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
-                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
+                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[9px] text-red-600">HP • DELL • LENOVO</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block" onclick="location.href='desktops.html'">
                 <div class="carousel-container" id="carousel-desktop"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
-                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
+                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[9px] text-red-600">Towers • Mini PCs</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block" onclick="location.href='new-store.html'">
                 <div class="carousel-container" id="carousel-new"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-green-600">
-                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[8px] text-black">EMI, Cashback & UPI Offer</p></div>
-                    <i class="fas fa-arrow-right text-xl"></i>
+                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[8px] text-black">Box Pack • Warranty</p></div>
+                    <i class="fas fa-arrow-right text-xl text-green-600"></i>
                 </div>
             </div>
             <div class="category-block" onclick="location.href='printers.html'">
                 <div class="carousel-container" id="carousel-printer"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
-                    <div><h3 class="text-lg">Official Printers</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
+                    <div><h3 class="text-lg">Official Printers</h3><p class="text-[10px] text-red-600">EPSON • HP • CANON</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block" onclick="location.href='accessories.html'">
                 <div class="carousel-container" id="carousel-accessories"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
-                    <div><h3 class="text-lg">Tech Accessories</h3><p class="text-[9px] text-red-600">UPI Offer Available</p></div>
+                    <div><h3 class="text-lg">Tech Accessories</h3><p class="text-[10px] text-red-600">Keyboard • Mouse</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block" onclick="location.href='cctv.html'">
                 <div class="carousel-container" id="carousel-cctv"></div>
                 <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black font-black uppercase italic bg-black text-white">
-                    <div><h3 class="text-lg">Security CCTV</h3><p class="text-[9px] font-bold text-red-600">EMI & AMC Available</p></div>
-                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white tracking-widest">EXPLORE</span>
+                    <div><h3 class="text-lg">Security CCTV</h3><p class="text-[9px] font-bold text-red-600">CP PLUS • HIKVISION</p></div>
+                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white">EXPLORE</span>
                 </div>
             </div>
         </div>
@@ -179,9 +175,24 @@
 
     <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
-            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
-            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Cinema Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
+            <div><span class="footer-heading">Quick Links</span>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="footer-item">Home Store</a></li>
+                    <li><a href="laptops.html" class="footer-item">Laptops</a></li>
+                    <li><a href="desktops.html" class="footer-item">Desktops</a></li>
+                    <li><a href="accessories.html" class="footer-item">Accessories</a></li>
+                </ul>
+            </div>
+            <div><span class="footer-heading">Support</span>
+                <ul class="space-y-2">
+                    <li><a href="shipping-policy.html" class="footer-item">Shipping</a></li>
+                    <li><a href="legal.html" class="footer-item">Legal & Refund</a></li>
+                </ul>
+            </div>
+            <div><span class="footer-heading">Contact Us</span>
+                <p class="footer-item leading-relaxed mb-4">119/540 New Basant cinema building, Kanpur Nagar</p>
+                <p class="footer-item underline font-black tracking-widest">+91 9935529306</p>
+            </div>
             <div class="text-right flex space-x-6 justify-end items-center">
                 <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
                 <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
@@ -191,28 +202,19 @@
         <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
 
-    <div id="searchModal"><div class="modal-inner">
-        <button onclick="closeSearch()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
-        <h2 class="text-xl font-black uppercase italic mb-4">Search Inventory</h2>
-        <input type="text" id="mainSearch" onkeyup="liveSearch()" placeholder="Type brand or model..." class="w-full border-2 border-black p-3 font-bold uppercase text-xs">
-        <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div>
-    </div></div>
-
-    <div id="quoteModal"><div class="modal-inner">
-        <button onclick="closeQuote()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
-        <h2 class="text-xl font-black uppercase italic mb-6">Quick Inquiry</h2>
-        <input type="text" id="qName" placeholder="Your Name" class="w-full border-2 border-black p-3 mb-3 font-bold uppercase text-xs">
-        <button onclick="sendInquiry()" class="w-full bg-black text-white py-3 font-black uppercase italic text-xs hover:bg-red-600">Send WhatsApp</button>
-    </div></div>
+    <div id="searchModal" class="fixed inset-0 z-[6000] bg-black/90 hidden items-center justify-center p-4">
+        <div class="bg-white p-6 w-full max-w-md border-4 border-black relative">
+            <button onclick="closeSearch()" class="absolute -top-4 -right-4 bg-red-600 text-white w-10 h-10 font-black">X</button>
+            <input type="text" id="searchInput" onkeyup="liveSearch()" placeholder="Search Inventory..." class="w-full border-2 border-black p-3 uppercase font-black italic">
+            <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto space-y-2"></div>
+        </div>
+    </div>
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
-        function showEmiInfo() { const s = document.getElementById('emi-strip'); if(s) s.style.display='block'; }
         function openSearch() { document.getElementById('searchModal').style.display='flex'; }
         function closeSearch() { document.getElementById('searchModal').style.display='none'; }
-        function openQuote() { document.getElementById('quoteModal').style.display='flex'; }
-        function closeQuote() { document.getElementById('quoteModal').style.display='none'; }
-        function sendInquiry() { const n = document.getElementById('qName').value; window.open(`https://wa.me/919935529306?text=I am interested in hardware inquiry. Name: ${n}`, '_blank'); }
+        function openQuote() { window.open('https://wa.me/919935529306?text=Hi, I need a quote for hardware/service.', '_blank'); }
 
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
@@ -223,14 +225,17 @@
                 const csvText = await res.text();
                 fullData = csvToJSON(csvText);
                 setupCarousels();
-            } catch (e) { console.error("Sheet Error"); }
+            } catch (e) { console.error("Sheet Sync Failed"); }
         }
 
         function csvToJSON(csv) {
-            const lines = csv.split('\n'), result = [], headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            const lines = csv.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i]) continue;
-                const obj = {}, currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const obj = {};
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 headers.forEach((h, idx) => {
                     let v = currentline[idx] ? currentline[idx].trim().replace(/^"|"$/g, '') : '';
                     if(h === 'images') v = v.split(',').map(img => img.trim());
@@ -242,32 +247,40 @@
         }
 
         function setupCarousels() {
-            const categories = [
-                { id: 'carousel-laptop', f: i => i.category === 'laptop' && i.stock === 'in stock' },
-                { id: 'carousel-desktop', f: i => i.category === 'desktop' && i.stock === 'in stock' },
-                { id: 'carousel-new', f: i => i.condition === 'new' && i.stock === 'in stock' },
-                { id: 'carousel-printer', f: i => i.category === 'printer' && i.stock === 'in stock' },
-                { id: 'carousel-accessories', f: i => i.category === 'accessories' && i.stock === 'in stock' },
-                { id: 'carousel-cctv', f: i => i.category === 'cctv' && i.stock === 'in stock' }
+            const configs = [
+                { id: 'carousel-laptop', filter: i => i.category.toLowerCase() === 'laptop' },
+                { id: 'carousel-desktop', filter: i => i.category.toLowerCase() === 'desktop' },
+                { id: 'carousel-new', filter: i => i.condition.toLowerCase() === 'new' },
+                { id: 'carousel-printer', filter: i => i.category.toLowerCase() === 'printer' },
+                { id: 'carousel-accessories', filter: i => i.category.toLowerCase() === 'accessories' },
+                { id: 'carousel-cctv', filter: i => i.category.toLowerCase() === 'cctv' }
             ];
-            categories.forEach(cat => {
-                const items = fullData.filter(cat.f).slice(0, 5);
-                const container = document.getElementById(cat.id);
+
+            configs.forEach(conf => {
+                const items = fullData.filter(conf.filter).slice(0, 5);
+                const container = document.getElementById(conf.id);
                 if (container && items.length > 0) {
                     container.innerHTML = items.map((it, idx) => `<img src="${it.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}">`).join('');
-                    let cur = 0; const imgs = container.getElementsByClassName('carousel-img');
-                    if(imgs.length > 1) { setInterval(() => { if(imgs[cur]) imgs[cur].classList.remove('active'); cur = (cur + 1) % imgs.length; if(imgs[cur]) imgs[cur].classList.add('active'); }, 4000); }
+                    let cur = 0;
+                    const imgs = container.getElementsByClassName('carousel-img');
+                    if(imgs.length > 1) {
+                        setInterval(() => {
+                            imgs[cur].classList.remove('active');
+                            cur = (cur + 1) % imgs.length;
+                            imgs[cur].classList.add('active');
+                        }, 4000);
+                    }
                 }
             });
         }
 
         function liveSearch() {
-            const q = document.getElementById('mainSearch').value.toLowerCase();
-            const results = fullData.filter(i => i.model.toLowerCase().includes(q)).slice(0, 10);
-            document.getElementById('searchResults').innerHTML = results.map(i => `
-                <div onclick="location.href='product-details.html?id=${i.id}'" class="p-3 border-b border-gray-100 flex justify-between items-center cursor-pointer hover:bg-gray-50">
-                    <span class="text-[10px] font-black uppercase tracking-widest">${i.brand} ${i.model}</span>
-                    <span class="text-red-600 font-bold">₹${i.price}</span>
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const res = fullData.filter(i => i.model.toLowerCase().includes(q)).slice(0, 8);
+            document.getElementById('searchResults').innerHTML = res.map(i => `
+                <div onclick="location.href='product-details.html?id=${i.id}'" class="p-3 border-2 border-black flex justify-between items-center cursor-pointer hover:bg-gray-100 uppercase font-black text-[10px]">
+                    <span>${i.brand} ${i.model}</span>
+                    <span class="text-red-600">₹${i.price}</span>
                 </div>
             `).join('');
         }
