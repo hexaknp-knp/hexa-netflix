@@ -11,90 +11,71 @@
     
     <meta name="description" content="Shop best refurbished laptops, desktops & printers in Kanpur at Hexa Computronics. Get premium Dell, HP & Lenovo business series with 1-Year warranty & Easy EMI.">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Hexa Computronics",
-      "image": "https://hexacomputer.in/assets/newlogo.png",
-      "@id": "https://hexacomputer.in",
-      "url": "https://hexacomputer.in",
-      "telephone": "+919935529306",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "119/540 New Basant Cinema Building, Gumti No. 5",
-        "addressLocality": "Kanpur",
-        "postalCode": "208005",
-        "addressCountry": "IN"
-      }
-    }
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* BUBBLES FIXED CENTER RIGHT */
+        /* BUBBLES FIXED CENTER */
         .bubble-container { position: fixed; right: 25px; top: 50%; transform: translateY(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
-        .hexa-bubble { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000; transition: 0.3s ease; animation: float 4s ease-in-out infinite; background: #fff; }
+        .hexa-bubble { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000; transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff; }
         .bubble-2 { background: #ffcc00; } .bubble-3 { background: #0ea5e9; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         
-        /* MARQUEE FIX */
+        /* MARQUEE ANIMATION */
         .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; overflow: hidden; position: relative; }
         .marquee-content { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
+        /* Sidebar & Modals */
         #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; display: flex; flex-direction: column; }
         #sidebar.active { left: 0; }
-        .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: rgba(0,0,0,0.2); }
+        .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
+        .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
-        
-        #emi-strip { display: none; position: fixed; bottom: 0; width: 100%; background: #000; color: #fff; padding: 15px; z-index: 10000; border-top: 4px solid var(--red); text-align: center; }
-        
+
+        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 12px; transition: 0.3s; }
+        .nav-link-side:hover { color: var(--red); padding-left: 8px; }
+
+        /* Carousel */
         .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px #000; transition: 0.3s; cursor: pointer; }
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
         .carousel-img.active { opacity: 1; }
 
+        #searchModal, #quoteModal { display: none; position: fixed; inset: 0; z-index: 5001; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 20px; }
+        .modal-inner { background: #fff; width: 100%; max-width: 500px; border: 4px solid #000; padding: 30px; position: relative; }
+        
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; background-color: #000; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, #fff 5%, transparent 90%), linear-gradient(to right, rgba(255,255,255,0.6) 0%, transparent 100%); z-index: 1; }
-        
-        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
     </style>
 </head>
 <body>
 
     <div class="bubble-container">
-        <div onclick="location.href='services.html'" class="hexa-bubble bubble-1" aria-label="AMC Services"><i class="fas fa-tools text-red-600"></i><span>AMC & Repair</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2" aria-label="EMI Offers"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3" aria-label="Payment Modes"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
-    </div>
-
-    <div id="emi-strip">
-        <div class="flex justify-between items-center max-w-4xl mx-auto px-4">
-            <p class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white">💳 ALL CARDS, UPI & NETBANKING ACCEPTED. <span class="text-yellow-400">EMI AVAILABLE.</span></p>
-            <button onclick="document.getElementById('emi-strip').style.display='none'" class="text-xl font-black text-white" aria-label="Close Info">&times;</button>
-        </div>
+        <div onclick="location.href='services.html'" class="hexa-bubble bubble-1"><i class="fas fa-tools text-red-600"></i><span>AMC & Repair</span></div>
+        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
+        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
     </div>
 
     <div class="overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
     <aside id="sidebar">
-        <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black" aria-label="Close Navigation">&times;</button></div>
-        <div class="mb-12 text-center"><img src="assets/newlogo.png" alt="Hexa Computronics Logo" class="h-16 mx-auto mb-2" loading="lazy"></div>
-        <nav class="flex flex-col flex-grow">
-            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home mr-2"></i> Home</a>
-            <a href="new-store.html" class="nav-link-side" style="color: green;"><i class="fas fa-star mr-2"></i> New Arrival</a>
-            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop mr-2"></i> Laptops</a>
-            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop mr-2"></i> Desktops</a>
-            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt mr-2"></i> Security</a>
-            <a href="services.html" class="nav-link-side"><i class="fas fa-tools mr-2"></i> Services</a>
+        <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
+        <div class="mb-10 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2"></div>
+        <nav class="flex flex-col flex-grow overflow-y-auto">
+            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home w-5"></i> Home</a>
+            <a href="new-store.html" class="nav-link-side" style="color: green;"><i class="fas fa-star w-5"></i> New Arrival</a>
+            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop w-5"></i> Laptops</a>
+            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop w-5"></i> Desktops</a>
+            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt w-5"></i> Security</a>
+            <a href="services.html" class="nav-link-side"><i class="fas fa-tools w-5"></i> Services</a>
+            <a href="printers.html" class="nav-link-side"><i class="fas fa-print w-5"></i> Printers</a>
+            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard w-5"></i> Accessories</a>
         </nav>
+        <div class="sidebar-shadow-icons"><i class="fas fa-keyboard"></i><i class="fas fa-mouse"></i></div>
     </aside>
 
     <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
@@ -102,22 +83,22 @@
     <nav id="navbar">
         <div class="px-4 md:px-12 py-3 flex justify-between items-center">
             <div class="flex items-center gap-6">
-                <button class="menu-btn" onclick="toggleMenu()" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+                <button onclick="toggleMenu()" class="text-xl p-2"><i class="fas fa-bars"></i></button>
                 <a href="index.html" class="flex flex-col items-center">
-                    <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8" fetchpriority="high">
-                    <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic">Hexa Computronics</span>
+                    <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
+                    <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
                 </a>
             </div>
             <div class="flex items-center space-x-4">
-                <button onclick="window.open('https://wa.me/919935529306?text=I want to search for a product', '_blank')" aria-label="Search"><i class="fas fa-search text-xl"></i></button>
-                <button onclick="window.open('https://wa.me/919935529306', '_blank')" class="bg-black text-white text-[10px] px-4 py-2 rounded font-black italic uppercase">Quote</button>
+                <button onclick="openSearch()"><i class="fas fa-search text-xl"></i></button>
+                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase shadow-sm">Quote</button>
             </div>
         </div>
     </nav>
 
     <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200');">
         <div class="hero-vignette"></div>
-        <div class="relative z-10 max-w-2xl">
+        <div class="relative z-10 max-w-2xl hero-content">
             <h1 class="text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
             <p class="text-xs md:text-sm text-black font-black uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
         </div>
@@ -143,9 +124,9 @@
             </div>
             <div class="category-block" onclick="location.href='new-store.html'">
                 <div class="carousel-container" id="carousel-new"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic">
-                    <div><h3 class="text-lg text-green-600">Brand New Store</h3><p class="text-[8px] text-black">EMI, Cashback & UPI Offer</p></div>
-                    <i class="fas fa-arrow-right text-xl text-green-600"></i>
+                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-green-600">
+                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[8px] text-black">EMI, Cashback & UPI Offer</p></div>
+                    <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block" onclick="location.href='printers.html'">
@@ -166,12 +147,12 @@
                 <div class="carousel-container" id="carousel-cctv"></div>
                 <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black font-black uppercase italic bg-black text-white">
                     <div><h3 class="text-lg">Security CCTV</h3><p class="text-[9px] font-bold text-red-600">EMI & AMC Available</p></div>
-                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white">EXPLORE</span>
+                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white tracking-widest">EXPLORE</span>
                 </div>
             </div>
         </div>
 
-        <section class="mt-16 px-6 py-10 bg-zinc-50 border-2 border-black rounded-lg">
+        <section id="services-strip" class="mt-16 px-6 py-10 bg-zinc-50 border-2 border-black rounded-lg">
             <div class="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div class="text-center md:text-left">
                     <h2 class="text-2xl md:text-3xl font-black uppercase italic leading-none">Our Expert <span class="text-red-600">Services</span></h2>
@@ -196,28 +177,45 @@
         </section>
     </main>
 
-    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black">
+    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li></ul></div>
-            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal</a></li></ul></div>
-            <div><span class="footer-heading">Contact Us</span><p class="footer-item">119/540 New Basant cinema building, Kanpur Nagar<br>+91 9935529306</p></div>
+            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
+            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
+            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Cinema Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
             <div class="text-right flex space-x-6 justify-end items-center">
-                <a href="https://youtube.com/@hexacomptech" target="_blank" aria-label="YouTube" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
-                <a href="https://facebook.com/hexacomputronics" target="_blank" aria-label="Facebook" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
-                <a href="https://instagram.com/hcomputronics" target="_blank" aria-label="Instagram" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
+                <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
+                <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
             </div>
         </div>
-        <p class="text-center text-[9px] font-black mt-10 opacity-30 tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p>
+        <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
+
+    <div id="searchModal"><div class="modal-inner">
+        <button onclick="closeSearch()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
+        <h2 class="text-xl font-black uppercase italic mb-4">Search Inventory</h2>
+        <input type="text" id="mainSearch" onkeyup="liveSearch()" placeholder="Type brand or model..." class="w-full border-2 border-black p-3 font-bold uppercase text-xs">
+        <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div>
+    </div></div>
+
+    <div id="quoteModal"><div class="modal-inner">
+        <button onclick="closeQuote()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
+        <h2 class="text-xl font-black uppercase italic mb-6">Quick Inquiry</h2>
+        <input type="text" id="qName" placeholder="Your Name" class="w-full border-2 border-black p-3 mb-3 font-bold uppercase text-xs">
+        <button onclick="sendInquiry()" class="w-full bg-black text-white py-3 font-black uppercase italic text-xs hover:bg-red-600">Send WhatsApp</button>
+    </div></div>
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
-        function showEmiInfo() { const s = document.getElementById('emi-strip'); s.style.display='block'; setTimeout(() => s.style.display='none', 6000); }
+        function showEmiInfo() { const s = document.getElementById('emi-strip'); if(s) s.style.display='block'; }
+        function openSearch() { document.getElementById('searchModal').style.display='flex'; }
+        function closeSearch() { document.getElementById('searchModal').style.display='none'; }
+        function openQuote() { document.getElementById('quoteModal').style.display='flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display='none'; }
+        function sendInquiry() { const n = document.getElementById('qName').value; window.open(`https://wa.me/919935529306?text=I am interested in hardware inquiry. Name: ${n}`, '_blank'); }
 
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
-
-        window.addEventListener('load', () => { setTimeout(init, 300); });
 
         async function init() {
             try {
@@ -233,10 +231,10 @@
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i]) continue;
                 const obj = {}, currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                headers.forEach((header, index) => {
-                    let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
-                    if(header === 'images') val = val.split(',').map(img => img.trim());
-                    obj[header] = val;
+                headers.forEach((h, idx) => {
+                    let v = currentline[idx] ? currentline[idx].trim().replace(/^"|"$/g, '') : '';
+                    if(h === 'images') v = v.split(',').map(img => img.trim());
+                    obj[h] = v;
                 });
                 result.push(obj);
             }
@@ -245,25 +243,35 @@
 
         function setupCarousels() {
             const categories = [
-                { id: 'carousel-laptop', filter: i => i.category.toLowerCase() === 'laptop' && i.stock.toLowerCase() === 'in stock', alt: "Laptops" },
-                { id: 'carousel-desktop', filter: i => i.category.toLowerCase() === 'desktop' && i.stock.toLowerCase() === 'in stock', alt: "Desktops" },
-                { id: 'carousel-new', filter: i => i.condition.toLowerCase() === 'new' && i.stock.toLowerCase() === 'in stock', alt: "New Arrival" },
-                { id: 'carousel-printer', filter: i => i.category.toLowerCase() === 'printer' && i.stock.toLowerCase() === 'in stock', alt: "Printers" },
-                { id: 'carousel-accessories', filter: i => i.category.toLowerCase() === 'accessories' && i.stock.toLowerCase() === 'in stock', alt: "Accessories" },
-                { id: 'carousel-cctv', filter: i => i.category.toLowerCase() === 'cctv' && i.stock.toLowerCase() === 'in stock', alt: "Security CCTV" }
+                { id: 'carousel-laptop', f: i => i.category === 'laptop' && i.stock === 'in stock' },
+                { id: 'carousel-desktop', f: i => i.category === 'desktop' && i.stock === 'in stock' },
+                { id: 'carousel-new', f: i => i.condition === 'new' && i.stock === 'in stock' },
+                { id: 'carousel-printer', f: i => i.category === 'printer' && i.stock === 'in stock' },
+                { id: 'carousel-accessories', f: i => i.category === 'accessories' && i.stock === 'in stock' },
+                { id: 'carousel-cctv', f: i => i.category === 'cctv' && i.stock === 'in stock' }
             ];
             categories.forEach(cat => {
-                const items = fullData.filter(cat.filter).slice(0, 5);
+                const items = fullData.filter(cat.f).slice(0, 5);
                 const container = document.getElementById(cat.id);
-                if (items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="${cat.alt}" decoding="async">`).join('');
+                if (container && items.length > 0) {
+                    container.innerHTML = items.map((it, idx) => `<img src="${it.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}">`).join('');
                     let cur = 0; const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) { setInterval(() => { if(imgs[cur]) imgs[cur].classList.remove('active'); cur = (cur + 1) % imgs.length; if(imgs[cur]) imgs[cur].classList.add('active'); }, 4000); }
-                } else {
-                    container.innerHTML = `<div class="h-full flex items-center justify-center font-black uppercase text-gray-400 text-[10px]">Stock Syncing...</div>`;
                 }
             });
         }
+
+        function liveSearch() {
+            const q = document.getElementById('mainSearch').value.toLowerCase();
+            const results = fullData.filter(i => i.model.toLowerCase().includes(q)).slice(0, 10);
+            document.getElementById('searchResults').innerHTML = results.map(i => `
+                <div onclick="location.href='product-details.html?id=${i.id}'" class="p-3 border-b border-gray-100 flex justify-between items-center cursor-pointer hover:bg-gray-50">
+                    <span class="text-[10px] font-black uppercase tracking-widest">${i.brand} ${i.model}</span>
+                    <span class="text-red-600 font-bold">₹${i.price}</span>
+                </div>
+            `).join('');
+        }
+        window.onload = init;
     </script>
 </body>
 </html>
