@@ -92,6 +92,10 @@
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
         .footer-item:hover { color: var(--red); }
+
+        /* MODAL STYLES FOR SEARCH & QUOTE */
+        #searchModal, #quoteModal { display: none; position: fixed; inset: 0; z-index: 5000; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+        .modal-inner { background: #fff; border: 4px solid #000; padding: 25px; width: 100%; max-width: 450px; position: relative; }
     </style>
 </head>
 <body>
@@ -239,9 +243,39 @@
         <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
 
+    <div id="searchModal">
+        <div class="modal-inner">
+            <button onclick="closeSearch()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
+            <h2 class="text-xl font-black uppercase italic mb-4">Search Hardware</h2>
+            <input type="text" id="searchInput" onkeyup="liveSearch()" placeholder="Type brand or model..." class="w-full border-2 border-black p-3 uppercase font-bold text-sm">
+            <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <div id="quoteModal">
+        <div class="modal-inner">
+            <button onclick="closeQuote()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
+            <h2 class="text-xl font-black uppercase italic mb-4">Get Quick Quote</h2>
+            <p class="text-[10px] font-bold uppercase mb-4 text-gray-500">Enter your name to connect on WhatsApp</p>
+            <input type="text" id="custName" placeholder="Your Name" class="w-full border-2 border-black p-3 uppercase font-bold text-sm mb-4">
+            <button onclick="sendWA()" class="w-full bg-black text-white py-3 font-black uppercase italic hover:bg-red-600 transition">Contact Now</button>
+        </div>
+    </div>
+
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
         function showEmiInfo() { const s = document.getElementById('emi-strip'); s.style.display='block'; setTimeout(()=>s.style.display='none',8000); }
+        
+        function openSearch() { document.getElementById('searchModal').style.display='flex'; }
+        function closeSearch() { document.getElementById('searchModal').style.display='none'; }
+        function openQuote() { document.getElementById('quoteModal').style.display='flex'; }
+        function closeQuote() { document.getElementById('quoteModal').style.display='none'; }
+
+        function sendWA() {
+            const name = document.getElementById('custName').value;
+            if(!name) { alert("Please enter your name"); return; }
+            window.open(`https://wa.me/919935529306?text=Hi, I am ${name}. I am interested in hardware/service quote.`, '_blank');
+        }
 
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
@@ -291,6 +325,17 @@
                     if(imgs.length > 1) { setInterval(() => { if(imgs[current]) imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; if(imgs[current]) imgs[current].classList.add('active'); }, 4000); }
                 }
             });
+        }
+
+        function liveSearch() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const res = fullData.filter(i => i.model.toLowerCase().includes(q) || i.brand.toLowerCase().includes(q)).slice(0, 8);
+            document.getElementById('searchResults').innerHTML = res.map(i => `
+                <div onclick="location.href='product-details.html?id=${i.id}'" class="p-3 border-b-2 border-black flex justify-between items-center cursor-pointer hover:bg-gray-100 uppercase font-black text-[10px]">
+                    <span>${i.brand} ${i.model}</span>
+                    <span class="text-red-600 font-bold">₹${i.price}</span>
+                </div>
+            `).join('');
         }
     </script>
 </body>
