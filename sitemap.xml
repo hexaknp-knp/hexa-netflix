@@ -1,62 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hexacomputer.in/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <loc>https://hexacomputer.in/index.html</loc>
+    <lastmod>2026-05-12</lastmod>
     <priority>1.00</priority>
-  </url>
-  
-  <url>
-    <loc>https://hexacomputer.in/new-store.html</loc>
-    <lastmod>2026-05-09</lastmod>
-    <priority>0.95</priority>
   </url>
 
   <url>
     <loc>https://hexacomputer.in/laptops.html</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://hexacomputer.in/desktops.html</loc>
-    <lastmod>2026-05-09</lastmod>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://hexacomputer.in/printers.html</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://hexacomputer.in/accessories.html</loc>
-    <lastmod>2026-05-09</lastmod>
-    <priority>0.80</priority>
+    <loc>https://hexacomputer.in/cctv.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://hexacomputer.in/services.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-05-12</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://hexacomputer.in/printers.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://hexacomputer.in/accessories.html</loc>
+    <lastmod>2026-05-12</lastmod>
     <priority>0.75</priority>
   </url>
 
   <url>
-    <loc>https://hexacomputer.in/about.html</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://hexacomputer.in/contact.html</loc>
-    <lastmod>2026-05-09</lastmod>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://hexacomputer.in/legal.html</loc>
-    <lastmod>2026-05-09</lastmod>
-    <priority>0.50</priority>
+    <loc>https://hexacomputer.in/new-store.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <priority>0.80</priority>
   </url>
 </urlset>
