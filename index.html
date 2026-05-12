@@ -11,25 +11,6 @@
     
     <meta name="description" content="Shop best refurbished laptops, desktops & printers in Kanpur at Hexa Computronics. Get premium Dell, HP & Lenovo business series with 1-Year warranty & Easy EMI.">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Hexa Computronics",
-      "image": "https://hexacomputer.in/assets/newlogo.png",
-      "@id": "https://hexacomputer.in",
-      "url": "https://hexacomputer.in",
-      "telephone": "+919935529306",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "119/540 New Basant Cinema Building, Gumti No. 5",
-        "addressLocality": "Kanpur",
-        "postalCode": "208005",
-        "addressCountry": "IN"
-      }
-    }
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     
@@ -37,87 +18,62 @@
         :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
         body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* --- BUBBLES: ALWAYS FIXED IN CENTER RIGHT --- */
-        .bubble-container { 
-            position: fixed; 
-            right: 25px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            z-index: 9999; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            pointer-events: auto;
-        }
-        .hexa-bubble { 
-            width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000;
-            transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff;
-        }
-        .bubble-1 { background: #fff; animation-delay: 0s; }
-        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } 
-        .bubble-3 { background: #0ea5e9; animation-delay: 1s; } 
-        
-        .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 8px 8px 0px var(--red); }
-        .hexa-bubble i { font-size: 24px; margin-bottom: 4px; }
-        .hexa-bubble span { font-size: 8px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
-
+        /* --- BUBBLES FIXED --- */
+        .bubble-container { position: fixed; right: 25px; top: 50%; transform: translateY(-50%); z-index: 8000; display: flex; flex-direction: column; gap: 15px; pointer-events: auto; }
+        .hexa-bubble { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000; transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff; }
+        .bubble-1 { background: #fff; } .bubble-2 { background: #ffcc00; } .bubble-3 { background: #0ea5e9; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        #emi-strip { display: none; position: fixed; bottom: 0; width: 100%; background: #000; color: #fff; padding: 15px; z-index: 10000; border-top: 4px solid var(--red); text-align: center; }
-
-        /* Sidebar Logic */
-        #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
-        #sidebar.active { left: 0; }
-        .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
-        .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: transparent; }
-        .overlay.active { display: block; }
-        .menu-btn { cursor: pointer; font-size: 24px; color: #000; padding: 5px; }
-        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 12px; }
-
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; }
-        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         
-        .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
+        /* --- MARQUEE --- */
+        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; overflow: hidden; }
+        .marquee-content { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* --- SIDEBAR & OVERLAY --- */
+        #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; display: flex; flex-direction: column; }
+        #sidebar.active { left: 0; }
+        .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); }
+        .overlay.active { display: block; }
+        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
+
+        /* --- CAROUSEL --- */
         .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
         .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
         .carousel-img.active { opacity: 1; }
 
+        /* --- FOOTER --- */
+        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; text-decoration: none; }
+
+        /* --- MODAL OPTIMIZATION (Z-INDEX HIGHER THAN BUBBLES) --- */
+        #searchModal, #quoteModal { 
+            display: none; position: fixed; inset: 0; 
+            z-index: 99999; /* Higher than bubbles */
+            background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); 
+        }
+        .modal-inner { 
+            background: #fff; border: 4px solid #000; padding: 30px; 
+            width: 100%; max-width: 450px; position: relative; box-shadow: 10px 10px 0px var(--red);
+        }
+        .close-modal { position: absolute; top: -20px; right: -10px; background: #000; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; cursor: pointer; border: 2px solid #fff; }
+
         header.relative { height: 35vh; min-height: 250px; position: relative; display: flex; align-items: center; background-color: #000; overflow: hidden; }
         .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, rgba(255,255,255,1) 5%, transparent 90%), linear-gradient(to right, rgba(255,255,255,0.6) 0%, transparent 100%); z-index: 1; }
-        .hero-content { position: relative; z-index: 10; }
-        
-        .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .footer-item:hover { color: var(--red); }
-
-        /* MODAL STYLES FOR SEARCH & QUOTE */
-        #searchModal, #quoteModal { display: none; position: fixed; inset: 0; z-index: 5000; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
-        .modal-inner { background: #fff; border: 4px solid #000; padding: 25px; width: 100%; max-width: 450px; position: relative; }
     </style>
 </head>
 <body>
 
     <div class="bubble-container">
         <div onclick="location.href='services.html'" class="hexa-bubble bubble-1"><i class="fas fa-tools text-red-600"></i><span>AMC & Repair</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
-    </div>
-
-    <div id="emi-strip">
-        <div class="flex justify-between items-center max-w-4xl mx-auto px-4">
-            <p class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight text-white">💳 ALL CARDS, UPI & NETBANKING ACCEPTED. <span class="text-yellow-400">EMI AVAILABLE.</span></p>
-            <button onclick="document.getElementById('emi-strip').style.display='none'" class="text-xl font-black text-white">&times;</button>
-        </div>
+        <div onclick="openQuote()" class="hexa-bubble bubble-2"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
+        <div onclick="openQuote()" class="hexa-bubble bubble-3"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
     </div>
 
     <div class="overlay" id="nav-overlay" onclick="toggleMenu()"></div>
 
     <aside id="sidebar">
         <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
-        <div class="mb-12 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2" loading="lazy"></div>
+        <div class="mb-10 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2" loading="lazy"></div>
         <nav class="flex flex-col flex-grow">
             <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home"></i> Home</a>
             <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star"></i> New Arrival</a>
@@ -128,7 +84,6 @@
             <a href="printers.html" class="nav-link-side"><i class="fas fa-print"></i> Printers</a>
             <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard"></i> Accessories</a>
         </nav>
-        <div class="sidebar-shadow-icons"><i class="fas fa-keyboard"></i><i class="fas fa-mouse"></i></div>
     </aside>
 
     <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
@@ -151,7 +106,7 @@
 
     <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80');">
         <div class="hero-vignette"></div>
-        <div class="hero-content max-w-2xl">
+        <div class="hero-content relative z-10 max-w-2xl">
             <h1 class="text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
             <p class="text-xs md:text-sm text-black font-black uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
         </div>
@@ -163,21 +118,21 @@
             <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
                 <div class="carousel-container" id="carousel-laptop"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
+                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[9px] text-red-600">HP • DELL • LENOVO</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
                 <div class="carousel-container" id="carousel-desktop"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
+                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[9px] text-red-600">Towers • Mini PCs</p></div>
                     <i class="fas fa-arrow-right text-xl"></i>
                 </div>
             </div>
             <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
                 <div class="carousel-container" id="carousel-new"></div>
                 <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-green-600">
-                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[8px] text-black">EMI, Cashback & UPI Offer</p></div>
+                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[8px] text-black">Box Pack • Warranty</p></div>
                     <i class="fas fa-arrow-right text-xl text-green-600"></i>
                 </div>
             </div>
@@ -203,30 +158,6 @@
                 </div>
             </div>
         </div>
-
-        <section id="services-strip" class="mt-16 px-6 py-10 bg-zinc-50 border-2 border-black rounded-lg">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-                <div class="text-center md:text-left">
-                    <h2 class="text-2xl md:text-3xl font-black uppercase italic leading-none">Our Expert <span class="text-red-600">Services</span></h2>
-                    <p class="text-[10px] font-bold uppercase tracking-widest mt-2 text-gray-500">Kanpur's Trusted AMC & Installation Partner</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full md:w-auto">
-                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
-                        <i class="fas fa-tools text-red-600 group-hover:text-white mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">CCTV<br>Installation</p>
-                    </div>
-                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
-                        <i class="fas fa-network-wired text-red-600 group-hover:text-white mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">IT Networking<br>& AMC</p>
-                    </div>
-                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center flex flex-col justify-center col-span-2 md:col-span-1">
-                        <i class="fas fa-phone-alt text-red-600 group-hover:text-white mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">EPABX /<br>Intercom</p>
-                    </div>
-                </div>
-                <a href="services.html" class="bg-black text-white px-8 py-4 font-black uppercase italic text-xs hover:bg-red-600 transition shadow-lg">View All Services</a>
-            </div>
-        </section>
     </main>
 
     <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
@@ -245,8 +176,8 @@
 
     <div id="searchModal">
         <div class="modal-inner">
-            <button onclick="closeSearch()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
-            <h2 class="text-xl font-black uppercase italic mb-4">Search Hardware</h2>
+            <div class="close-modal" onclick="closeSearch()">&times;</div>
+            <h2 class="text-xl font-black uppercase italic mb-4">Search Inventory</h2>
             <input type="text" id="searchInput" onkeyup="liveSearch()" placeholder="Type brand or model..." class="w-full border-2 border-black p-3 uppercase font-bold text-sm">
             <div id="searchResults" class="mt-4 max-h-60 overflow-y-auto"></div>
         </div>
@@ -254,33 +185,23 @@
 
     <div id="quoteModal">
         <div class="modal-inner">
-            <button onclick="closeQuote()" class="absolute top-2 right-4 text-3xl font-black">&times;</button>
-            <h2 class="text-xl font-black uppercase italic mb-4">Get Quick Quote</h2>
-            <p class="text-[10px] font-bold uppercase mb-4 text-gray-500">Enter your name to connect on WhatsApp</p>
+            <div class="close-modal" onclick="closeQuote()">&times;</div>
+            <h2 class="text-xl font-black uppercase italic mb-4">Quick Quote</h2>
             <input type="text" id="custName" placeholder="Your Name" class="w-full border-2 border-black p-3 uppercase font-bold text-sm mb-4">
-            <button onclick="sendWA()" class="w-full bg-black text-white py-3 font-black uppercase italic hover:bg-red-600 transition">Contact Now</button>
+            <button onclick="sendWA()" class="w-full bg-black text-white py-4 font-black uppercase italic hover:bg-red-600 transition">Get Quote on WhatsApp</button>
         </div>
     </div>
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
-        function showEmiInfo() { const s = document.getElementById('emi-strip'); s.style.display='block'; setTimeout(()=>s.style.display='none',8000); }
-        
         function openSearch() { document.getElementById('searchModal').style.display='flex'; }
         function closeSearch() { document.getElementById('searchModal').style.display='none'; }
         function openQuote() { document.getElementById('quoteModal').style.display='flex'; }
         function closeQuote() { document.getElementById('quoteModal').style.display='none'; }
-
-        function sendWA() {
-            const name = document.getElementById('custName').value;
-            if(!name) { alert("Please enter your name"); return; }
-            window.open(`https://wa.me/919935529306?text=Hi, I am ${name}. I am interested in hardware/service quote.`, '_blank');
-        }
+        function sendWA() { const name = document.getElementById('custName').value; if(name) window.open(`https://wa.me/919935529306?text=Hi, I am ${name}. Need a quote.`, '_blank'); }
 
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
-
-        window.addEventListener('load', () => { setTimeout(init, 500); });
 
         async function init() {
             try {
@@ -319,7 +240,7 @@
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items && items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT Product" decoding="async">`).join('');
+                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" decoding="async">`).join('');
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
                     if(imgs.length > 1) { setInterval(() => { if(imgs[current]) imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; if(imgs[current]) imgs[current].classList.add('active'); }, 4000); }
@@ -337,6 +258,7 @@
                 </div>
             `).join('');
         }
+        window.onload = init;
     </script>
 </body>
 </html>
