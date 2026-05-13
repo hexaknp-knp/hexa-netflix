@@ -266,9 +266,7 @@
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
         function showEmiInfo() { const s = document.getElementById('emi-strip'); s.style.display='block'; setTimeout(()=>s.style.display='none',8000); }
-        
-        // Modal Logic Fixes
-        function openSearch() { document.getElementById('searchModal').style.display='flex'; document.getElementById('searchInput').focus(); }
+        function openSearch() { document.getElementById('searchModal').style.display='flex'; }
         function closeSearch() { document.getElementById('searchModal').style.display='none'; }
         function openQuote() { document.getElementById('quoteModal').style.display='flex'; }
         function closeQuote() { document.getElementById('quoteModal').style.display='none'; }
@@ -277,7 +275,6 @@
         let fullData = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
 
-        // Optimized Init
         async function init() {
             try {
                 const res = await fetch(sheetURL);
@@ -315,16 +312,10 @@
                 const items = fullData.filter(cat.filter).slice(0, 5);
                 const container = document.getElementById(cat.id);
                 if (items && items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT Product" decoding="async" loading="lazy">`).join('');
+                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT Product" decoding="async">`).join('');
                     let current = 0;
                     const imgs = container.getElementsByClassName('carousel-img');
-                    if(imgs.length > 1) { 
-                        setInterval(() => { 
-                            if(imgs[current]) imgs[current].classList.remove('active'); 
-                            current = (current + 1) % imgs.length; 
-                            if(imgs[current]) imgs[current].classList.add('active'); 
-                        }, 4000); 
-                    }
+                    if(imgs.length > 1) { setInterval(() => { if(imgs[current]) imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; if(imgs[current]) imgs[current].classList.add('active'); }, 4000); }
                 }
             });
         }
