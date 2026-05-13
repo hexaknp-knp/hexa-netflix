@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="canonical" href="https://hexacomputer.in/" />
-     <meta name="google-site-verification" content="sOR1l6wNSIt1iPl4JaddWPU3UA196RdzAPdKPteixh8" />
+    <meta name="google-site-verification" content="sOR1l6wNSIt1iPl4JaddWPU3UA196RdzAPdKPteixh8" />
     <title>Product Details | Hexa Computronics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -25,7 +25,6 @@
         
         .emi-text { color: var(--red); font-weight: 800; font-size: 13px; }
         
-        /* Footer Uniform Styles (Laptops.html Copy) */
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #333; font-size: 11px; font-weight: 600; text-transform: uppercase; }
 
@@ -49,7 +48,9 @@
         </div>
     </nav>
 
-    <main id="product-content" class="max-w-7xl mx-auto px-4 py-4 relative z-10"></main>
+    <main id="product-content" class="max-w-7xl mx-auto px-4 py-4 relative z-10">
+        <!-- Content will be injected by JavaScript -->
+    </main>
 
     <footer class="bg-gray-100 py-16 px-6 md:px-12 border-t-4 border-black text-gray-700 relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
@@ -91,86 +92,137 @@
     <script>
         let currentItem = null;
         let cart = JSON.parse(localStorage.getItem('hexaCart')) || [];
+        
+        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
+
+        function csvToJSON(csv) {
+            const lines = csv.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.trim());
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i]) continue;
+                const obj = {};
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                headers.forEach((header, index) => {
+                    let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
+                    if(header === 'images') val = val.split(',').map(img => img.trim());
+                    if(header === 'price') val = parseInt(val) || 0;
+                    obj[header] = val;
+                });
+                result.push(obj);
+            }
+            return result;
+        }
 
         async function load() {
             const id = new URLSearchParams(window.location.search).get('id');
-            const res = await fetch('data.json');
-            const data = await res.json();
-            currentItem = data.find(p => p.id === id);
-            if (!currentItem) return;
+            const contentArea = document.getElementById('product-content');
 
-            updateCartBadge();
-            const approxEMI = Math.round((currentItem.price * 1.15) / 12);
-
-            document.getElementById('product-content').innerHTML = `
-                <div class="grid lg:grid-cols-2 gap-4">
-                    <div class="space-y-3">
-                        <div id="main-display" class="media-box"><img src="${currentItem.images[0]}" class="w-full h-full object-contain p-4"></div>
-                        <div class="flex flex-wrap gap-2">${currentItem.images.map((img, idx) => `<img src="${img}" class="thumb ${idx===0?'active':''}" onclick="changeMedia('${img}', this)">`).join('')}</div>
-                        
-                        <div class="py-2">
-                            <p class="text-[11px] font-black uppercase tracking-tight text-black">
-                                <i class="fas fa-microchip text-red-600 mr-1"></i> ${currentItem.processor || ''} • ${currentItem.ram || ''} RAM • ${currentItem.ssd || 'Certified SSD'}
-                            </p>
-                            <p class="text-[9px] text-gray-500 font-bold uppercase mt-1 italic">Certified Business Class Hardware • 100% Verified Condition</p>
-                        </div>
-                    </div>
-
-                    <div class="buy-card">
-                        <h1 class="text-xl md:text-4xl font-black uppercase italic leading-none mb-2">${currentItem.model}</h1>
-                        <p class="price-tag text-4xl md:text-5xl font-black italic text-red-600 leading-none">₹${currentItem.price.toLocaleString()}</p>
-                        
-                        <div class="flex items-center gap-3 mt-3">
-                            <span class="emi-text italic">EMI Starts ₹${approxEMI.toLocaleString()}/mo*</span>
-                            <span class="text-[7px] text-gray-400 uppercase font-bold">*T&C Apply</span>
-                        </div>
-
-                        <div class="mt-4 flex items-center gap-3">
-                            <label class="font-black uppercase text-[10px]">Qty:</label>
-                            <div class="flex border-2 border-black rounded overflow-hidden">
-                                <button onclick="changeQty(-1)" class="px-3 py-1 bg-gray-100 font-black text-xs">-</button>
-                                <input type="number" id="item-qty" value="1" min="1" class="w-8 text-center font-black text-xs outline-none" readonly>
-                                <button onclick="changeQty(1)" class="px-3 py-1 bg-gray-100 font-black text-xs">+</button>
-                            </div>
-                        </div>
-
-                        <button onclick="addToCart()" class="btn-cart text-xs mt-4 shadow-lg hover:bg-red-600 transition-all">Add To Cart</button>
-                        
-                        <div class="border-t border-gray-200 mt-4 pt-3 text-center">
-                            <p class="text-[8px] font-black uppercase text-gray-500 mb-2">Secure Payments</p>
-                            <div class="flex justify-center gap-4 text-xl">
-                                <i class="fab fa-google-pay" style="color: #4285F4;"></i> 
-                                <i class="fab fa-cc-visa" style="color: #1A1F71;"></i> 
-                                <i class="fab fa-cc-mastercard" style="color: #EB001B;"></i> 
-                                <i class="fas fa-qrcode" style="color: #00b894;"></i>
-                            </div>
-                            <p class="text-[7px] font-bold uppercase mt-1 text-gray-400">UPI • Cards • Net Banking</p>
-                        </div>
-                    </div>
+            contentArea.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-24">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-4 border-red-600 mb-4"></div>
+                    <p class="text-[10px] font-black uppercase italic tracking-widest text-black">Loading Premium Deal...</p>
                 </div>`;
+
+            try {
+                const res = await fetch(sheetURL);
+                const csvText = await res.text();
+                const data = csvToJSON(csvText);
+                
+                currentItem = data.find(p => p.id === id);
+                
+                if (!currentItem) {
+                    contentArea.innerHTML = "<div class='text-center py-20 font-black uppercase italic'>Product Not Found</div>";
+                    return;
+                }
+
+                updateCartBadge();
+                const approxEMI = Math.round((currentItem.price * 1.15) / 12);
+
+                contentArea.innerHTML = `
+                    <div class="grid lg:grid-cols-2 gap-4">
+                        <div class="space-y-3">
+                            <div id="main-display" class="media-box">
+                                <img src="${currentItem.images[0]}" class="w-full h-full object-contain p-4">
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                ${currentItem.images.map((img, idx) => `
+                                    <img src="${img}" class="thumb ${idx===0?'active':''}" onclick="changeMedia('${img}', this)">
+                                `).join('')}
+                            </div>
+                            <div class="py-2">
+                                <p class="text-[11px] font-black uppercase tracking-tight text-black">
+                                    <i class="fas fa-microchip text-red-600 mr-1"></i> ${currentItem.processor || ''} • ${currentItem.ram || ''} RAM • ${currentItem.ssd || 'Certified SSD'}
+                                </p>
+                                <p class="text-[9px] text-gray-500 font-bold uppercase mt-1 italic">Certified Business Class Hardware • 100% Verified Condition</p>
+                            </div>
+                        </div>
+
+                        <div class="buy-card">
+                            <h1 class="text-xl md:text-4xl font-black uppercase italic leading-none mb-2">${currentItem.model}</h1>
+                            <p class="price-tag text-4xl md:text-5xl font-black italic text-red-600 leading-none">₹${currentItem.price.toLocaleString()}</p>
+                            
+                            <div class="flex items-center gap-3 mt-3">
+                                <span class="emi-text italic">EMI Starts ₹${approxEMI.toLocaleString()}/mo*</span>
+                                <span class="text-[7px] text-gray-400 uppercase font-bold">*T&C Apply</span>
+                            </div>
+
+                            <div class="mt-4 flex items-center gap-3">
+                                <label class="font-black uppercase text-[10px]">Qty:</label>
+                                <div class="flex border-2 border-black rounded overflow-hidden">
+                                    <button onclick="changeQty(-1)" class="px-3 py-1 bg-gray-100 font-black text-xs">-</button>
+                                    <input type="number" id="item-qty" value="1" min="1" class="w-8 text-center font-black text-xs outline-none" readonly>
+                                    <button onclick="changeQty(1)" class="px-3 py-1 bg-gray-100 font-black text-xs">+</button>
+                                </div>
+                            </div>
+
+                            <button onclick="addToCart()" class="btn-cart text-xs mt-4 shadow-lg hover:bg-red-600 transition-all">Add To Cart</button>
+                            
+                            <div class="border-t border-gray-200 mt-4 pt-3 text-center">
+                                <p class="text-[8px] font-black uppercase text-gray-500 mb-2">Secure Payments</p>
+                                <div class="flex justify-center gap-4 text-xl">
+                                    <i class="fab fa-google-pay" style="color: #4285F4;"></i> 
+                                    <i class="fab fa-cc-visa" style="color: #1A1F71;"></i> 
+                                    <i class="fab fa-cc-mastercard" style="color: #EB001B;"></i> 
+                                    <i class="fas fa-qrcode" style="color: #00b894;"></i>
+                                </div>
+                                <p class="text-[7px] font-bold uppercase mt-1 text-gray-400">UPI • Cards • Net Banking</p>
+                            </div>
+                        </div>
+                    </div>`;
+            } catch (e) {
+                console.error("Fetch Error:", e);
+                contentArea.innerHTML = "<div class='text-center py-20 font-black'>CONNECTION ERROR. PLEASE REFRESH.</div>";
+            }
         }
 
         function changeQty(v) {
             const i = document.getElementById('item-qty');
-            if (parseInt(i.value) + v >= 1) i.value = parseInt(i.value) + v;
+            if (i && (parseInt(i.value) + v >= 1)) i.value = parseInt(i.value) + v;
         }
 
         function addToCart() {
+            if(!currentItem) return;
             const qty = parseInt(document.getElementById('item-qty').value);
             const idx = cart.findIndex(p => p.id === currentItem.id);
             if(idx > -1) cart[idx].qty += qty;
             else cart.push({ id: currentItem.id, name: currentItem.model, price: currentItem.price, img: currentItem.images[0], qty: qty });
             localStorage.setItem('hexaCart', JSON.stringify(cart));
             updateCartBadge();
-            alert("Added to cart!");
+            alert("Success! Item added to your cart.");
         }
 
-        function updateCartBadge() { document.getElementById('cart-count').innerText = cart.reduce((s, i) => s + i.qty, 0); }
+        function updateCartBadge() { 
+            const badge = document.getElementById('cart-count');
+            if(badge) badge.innerText = cart.reduce((s, i) => s + i.qty, 0); 
+        }
+
         window.changeMedia = (src, el) => {
             document.getElementById('main-display').innerHTML = `<img src="${src}" class="w-full h-full object-contain p-4">`;
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
         };
+
         load();
     </script>
 </body>
