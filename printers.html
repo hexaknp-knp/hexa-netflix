@@ -18,33 +18,59 @@
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
         
-        /* BULLETPROOF FULL-WIDTH BANNER STYLING FOR LAPTOP/DESKTOP */
-        .printer-promo-container {
-            border: 3px solid #000; 
-            box-shadow: 6px 6px 0px #000; 
-            border-radius: 8px; 
-            overflow: hidden; 
-            background: #000; 
-            width: 100%; 
-            margin-bottom: 2rem;
-        }
-        
-        .printer-promo-img {
+        /* SLEEK ANIMATED PROMO BANNER FOR DESKTOP & MOBILE */
+        .printer-promo-wrapper {
             width: 100%;
-            height: auto; 
-            max-height: 450px;
-            object-fit: cover; /* Left-Right full edge-to-edge wrap block */
-            object-position: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #0f0f0f 0%, #2a2a2a 50%, #0f0f0f 100%);
+            border: 3px solid #000;
+            border-radius: 12px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,1);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Shine Motion Animation */
+        .printer-promo-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 30%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg);
+            animation: shine-sweep 4s infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes shine-sweep {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .promo-flyer-img {
+            width: auto;
+            height: 100%; 
+            max-height: 250px; /* Small professional size for desktop */
+            object-fit: contain; 
             display: block;
+            z-index: 5;
         }
 
         @media (max-width: 768px) {
-            .printer-promo-img {
-                object-fit: contain; /* Mobile par transparent borders automatically avoid crop */
-                background: #facd05; /* Image yellow base background color match */
+            .promo-flyer-img {
+                width: 100%;
+                max-height: none;
+                background: #facd05; /* Blends nicely on mobile */
             }
         }
 
+        /* Filter buttons optimization */
         .filter-btn {
             font-size: 9px;
             font-weight: 900;
@@ -59,24 +85,37 @@
             color: #fff;
         }
 
-        /* Dynamic Promo Badge Style on Product Cards */
+        /* DYNAMIC GIFT IMAGE BADGE */
         .promo-gift-badge {
             position: absolute;
-            top: 35px;
-            left: 8px;
-            background: #000;
-            color: #fff;
-            font-size: 7px;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 3px 6px;
-            border: 1px solid #fff;
+            top: 30px; /* Just below Easy EMI */
+            left: -6px; /* Pops out slightly for 3D look */
+            background: linear-gradient(135deg, #1a1a1a, #000000);
             border-radius: 4px;
             z-index: 20;
-            box-shadow: 2px 2px 0px #000;
+            box-shadow: 4px 4px 0px rgba(229, 9, 20, 0.9);
             display: flex;
             align-items: center;
-            gap: 4px;
+            padding: 4px 8px;
+            border: 1px solid #444;
+            transition: transform 0.3s;
+        }
+        .promo-gift-badge:hover {
+            transform: scale(1.05);
+        }
+        .gift-img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            margin-right: 6px;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+        }
+        .gift-text {
+            font-size: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: #ffcc00;
         }
     </style>
 </head>
@@ -113,11 +152,11 @@
             </div>
         </div>
 
-        <div class="printer-promo-container">
-            <img src="assets/canon-promo1.webp" alt="Canon Printer Promotional Offer" class="printer-promo-img">
+        <div class="printer-promo-wrapper" onclick="location.href='printers.html'">
+            <img src="assets/canon-promo1.webp" alt="Canon Printer Promotional Offer" class="promo-flyer-img">
         </div>
 
-        <div id="printer-container" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
+        <div id="printer-container" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 mt-4">
             </div>
     </main>
 
@@ -176,23 +215,35 @@
             return result;
         }
 
-        // FUNCTION TO DETECT PRODUCT SPECIFIC GIFT BADGE AUTOMATICALLY
+        // DYNAMIC GIFT IMAGE BADGE LOGIC
         function getGiftBadgeHTML(modelName) {
             const model = modelName.toUpperCase();
             
             // Camera Models
             if (model.includes("G570") || model.includes("G670")) {
-                return `<div class="promo-gift-badge"><i class="fas fa-camera text-yellow-400"></i> + Free Camera</div>`;
+                return `
+                <div class="promo-gift-badge">
+                    <img src="assets/free-camera.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3125/3125134.png'" alt="Camera" class="gift-img">
+                    <div class="gift-text">Free<br>Camera</div>
+                </div>`;
             }
             // Ink Bottle Models
             if (model.includes("G2012") || model.includes("G3012")) {
-                return `<div class="promo-gift-badge"><i class="fas fa-tint text-cyan-400"></i> + 2 Free Inks</div>`;
+                return `
+                <div class="promo-gift-badge">
+                    <img src="assets/free-ink.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1753/1753303.png'" alt="Ink" class="gift-img">
+                    <div class="gift-text">2 Free<br>Inks</div>
+                </div>`;
             }
             // Speaker Models
             if (model.includes("G3770") || model.includes("G3780") || model.includes("G4780") || model.includes("G2730") || model.includes("G3730") || model.includes("G4770")) {
-                return `<div class="promo-gift-badge"><i class="fas fa-volume-up text-emerald-400"></i> + Free Speaker</div>`;
+                return `
+                <div class="promo-gift-badge">
+                    <img src="assets/free-speaker.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/860/860348.png'" alt="Speaker" class="gift-img">
+                    <div class="gift-text">Free<br>Speaker</div>
+                </div>`;
             }
-            return ''; // No matching free offer rule
+            return ''; // Hide badge if no offer
         }
 
         function render(data) {
@@ -202,7 +253,6 @@
                 return;
             }
             container.innerHTML = data.map(item => {
-                // Get free gift dynamic icon badge
                 const giftBadge = getGiftBadgeHTML(item.model);
                 
                 return `
