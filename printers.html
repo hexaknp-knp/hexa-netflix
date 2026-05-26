@@ -18,59 +18,74 @@
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
         
-        /* SLEEK ANIMATED PROMO BANNER FOR DESKTOP & MOBILE */
-        .printer-promo-wrapper {
+        /* ULTRA SMOOTH PROFESSIONAL INFINITE SCROLL BANNER DESIGN */
+        .printer-promo-marquee-container {
             width: 100%;
-            margin-bottom: 2rem;
-            background: linear-gradient(90deg, #0f0f0f 0%, #2a2a2a 50%, #0f0f0f 100%);
+            margin-bottom: 2.5rem;
+            background: #09090b; /* Rich deep premium matte black */
             border: 3px solid #000;
-            border-radius: 12px;
-            box-shadow: 6px 6px 0px rgba(0,0,0,1);
+            border-radius: 14px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,1);
             overflow: hidden;
             position: relative;
             display: flex;
+        }
+
+        /* Continuous Horizontal Loop Animation Pipeline */
+        .promo-marquee-track {
+            display: flex;
+            width: calc(200%);
+            animation: infinite-left-right 28s linear infinite;
+        }
+
+        /* Pauses movement on user interaction for crisp readability */
+        .printer-promo-marquee-container:hover .promo-marquee-track {
+            animation-play-state: paused;
+        }
+
+        .promo-marquee-slide {
+            width: 50%;
+            display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
+            flex-shrink: 0;
+            padding: 10px 0;
         }
 
-        /* Shine Motion Animation */
-        .printer-promo-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 30%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-            transform: skewX(-25deg);
-            animation: shine-sweep 4s infinite;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        @keyframes shine-sweep {
-            0% { left: -100%; }
-            20% { left: 200%; }
-            100% { left: 200%; }
-        }
-
-        .promo-flyer-img {
+        .premium-flyer-render {
+            height: 240px;
             width: auto;
-            height: 100%; 
-            max-height: 250px; /* Small professional size for desktop */
-            object-fit: contain; 
+            object-fit: contain;
             display: block;
-            z-index: 5;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Gentle structural response shift on hover */
+        .premium-flyer-render:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes infinite-left-right {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
 
         @media (max-width: 768px) {
-            .promo-flyer-img {
+            .printer-promo-marquee-container {
+                box-shadow: 4px 4px 0px rgba(0,0,0,1);
+            }
+            .premium-flyer-render {
                 width: 100%;
-                max-height: none;
-                background: #facd05; /* Blends nicely on mobile */
+                height: auto;
+                max-height: 180px;
+            }
+            .promo-marquee-track {
+                animation: infinite-left-right 16s linear infinite; /* Faster loops on fluid screens */
             }
         }
 
-        /* Filter buttons optimization */
+        /* Filter elements layout configuration */
         .filter-btn {
             font-size: 9px;
             font-weight: 900;
@@ -85,37 +100,36 @@
             color: #fff;
         }
 
-        /* DYNAMIC GIFT IMAGE BADGE */
+        /* DYNAMIC PRODUCT BADGE SYSTEM CONFIGURATION */
         .promo-gift-badge {
             position: absolute;
-            top: 30px; /* Just below Easy EMI */
-            left: -6px; /* Pops out slightly for 3D look */
-            background: linear-gradient(135deg, #1a1a1a, #000000);
-            border-radius: 4px;
+            top: 32px;
+            left: -6px;
+            background: linear-gradient(135deg, #18181b, #000000);
+            border-radius: 6px;
             z-index: 20;
-            box-shadow: 4px 4px 0px rgba(229, 9, 20, 0.9);
+            box-shadow: 3px 3px 0px rgba(229, 9, 20, 1);
             display: flex;
             align-items: center;
             padding: 4px 8px;
-            border: 1px solid #444;
-            transition: transform 0.3s;
+            border: 1.5px solid #27272a;
+            transition: all 0.3s ease;
         }
-        .promo-gift-badge:hover {
-            transform: scale(1.05);
+        .printer-card:hover .promo-gift-badge {
+            transform: scale(1.06) rotate(-1deg);
         }
         .gift-img {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             object-fit: contain;
             margin-right: 6px;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
         }
         .gift-text {
             font-size: 8px;
-            font-weight: 900;
+            font-weight: 950;
             text-transform: uppercase;
             line-height: 1.1;
-            color: #ffcc00;
+            color: #fbbf24; /* High fidelity readability code format color */
         }
     </style>
 </head>
@@ -152,8 +166,18 @@
             </div>
         </div>
 
-        <div class="printer-promo-wrapper" onclick="location.href='printers.html'">
-            <img src="assets/canon-promo1.webp" alt="Canon Printer Promotional Offer" class="promo-flyer-img">
+        <div class="printer-promo-marquee-container" onclick="location.href='printers.html'">
+            <div class="promo-marquee-track">
+                
+                <div class="promo-marquee-slide">
+                    <img src="assets/canon-promo1.webp" alt="Canon Printer Bumper Offer Pack" class="premium-flyer-render">
+                </div>
+                
+                <div class="promo-marquee-slide">
+                    <img src="assets/canon-promo1.webp" alt="Canon Printer Bumper Offer Pack" class="premium-flyer-render">
+                </div>
+                
+            </div>
         </div>
 
         <div id="printer-container" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 mt-4">
@@ -215,35 +239,35 @@
             return result;
         }
 
-        // DYNAMIC GIFT IMAGE BADGE LOGIC
+        // MATCH PRINTER LOGIC TO ASSIGN ASSET IMAGE FOR INDIVIDUAL FREE GIFTS
         function getGiftBadgeHTML(modelName) {
             const model = modelName.toUpperCase();
             
-            // Camera Models
+            // Camera Models Matching
             if (model.includes("G570") || model.includes("G670")) {
                 return `
                 <div class="promo-gift-badge">
-                    <img src="assets/free-camera.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3125/3125134.png'" alt="Camera" class="gift-img">
+                    <img src="assets/free-camera.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3125/3125134.png'" alt="Camera Icon" class="gift-img">
                     <div class="gift-text">Free<br>Camera</div>
                 </div>`;
             }
-            // Ink Bottle Models
+            // Ink Tank Double Black Refill Gift Matching
             if (model.includes("G2012") || model.includes("G3012")) {
                 return `
                 <div class="promo-gift-badge">
-                    <img src="assets/free-ink.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1753/1753303.png'" alt="Ink" class="gift-img">
+                    <img src="assets/free-ink.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1753/1753303.png'" alt="Ink Bottles" class="gift-img">
                     <div class="gift-text">2 Free<br>Inks</div>
                 </div>`;
             }
-            // Speaker Models
+            // Blaupunkt Boombox Sound System Matching
             if (model.includes("G3770") || model.includes("G3780") || model.includes("G4780") || model.includes("G2730") || model.includes("G3730") || model.includes("G4770")) {
                 return `
                 <div class="promo-gift-badge">
-                    <img src="assets/free-speaker.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/860/860348.png'" alt="Speaker" class="gift-img">
+                    <img src="assets/free-speaker.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/860/860348.png'" alt="Speaker Box" class="gift-img">
                     <div class="gift-text">Free<br>Speaker</div>
                 </div>`;
             }
-            return ''; // Hide badge if no offer
+            return ''; // No badge if conditions mismatch
         }
 
         function render(data) {
