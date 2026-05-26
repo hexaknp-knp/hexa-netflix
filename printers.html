@@ -13,10 +13,47 @@
         :root { --red: #E50914; --bg: #ffffff; }
         body { background-color: var(--bg); font-family: 'Inter', sans-serif; overflow-x: hidden; }
         #navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
-        .printer-card { transition: 0.3s ease; border: 2px solid #000; }
+        .printer-card { transition: 0.3s ease; border: 2px solid #000; position: relative; }
         .printer-card:hover { transform: translateY(-5px); box-shadow: 8px 8px 0px rgba(0,0,0,1); }
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        
+        /* Promo Image Styling */
+        .printer-promo-container {
+            border: 3px solid #000; 
+            box-shadow: 6px 6px 0px #000; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            background: #fff; 
+            width: 100%; 
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .printer-promo-img {
+            width: 100%;
+            height: auto; 
+            max-height: 400px;
+            object-fit: contain; 
+            display: block;
+        }
+
+        /* Filter buttons optimization */
+        .filter-btn {
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            padding: 4px 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .filter-btn:hover {
+            background: #000;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -39,16 +76,21 @@
     </nav>
 
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
-            <h1 class="text-4xl md:text-6xl font-black italic uppercase border-l-8 border-black pl-4 tracking-tighter text-black">
+        
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <h1 class="text-4xl md:text-6xl font-black italic uppercase border-l-8 border-black pl-4 tracking-tighter text-black w-full md:w-auto">
                 Official <span class="text-red-600">Printers</span>
             </h1>
-            <div class="flex flex-wrap justify-center gap-2">
-                <button onclick="filterByBrand('all')" class="text-[10px] font-black uppercase border-2 border-black px-4 py-1.5 hover:bg-black hover:text-white transition">All</button>
-                <button onclick="filterByBrand('hp')" class="text-[10px] font-black uppercase border-2 border-black px-4 py-1.5 hover:bg-black hover:text-white transition">HP</button>
-                <button onclick="filterByBrand('epson')" class="text-[10px] font-black uppercase border-2 border-black px-4 py-1.5 hover:bg-black hover:text-white transition">Epson</button>
-                <button onclick="filterByBrand('canon')" class="text-[10px] font-black uppercase border-2 border-black px-4 py-1.5 hover:bg-black hover:text-white transition">Canon</button>
+            <div class="flex flex-wrap justify-start md:justify-end gap-2 w-full md:w-auto">
+                <button onclick="filterByBrand('all')" class="filter-btn">All</button>
+                <button onclick="filterByBrand('hp')" class="filter-btn">HP</button>
+                <button onclick="filterByBrand('epson')" class="filter-btn">Epson</button>
+                <button onclick="filterByBrand('canon')" class="filter-btn">Canon</button>
             </div>
+        </div>
+
+        <div class="printer-promo-container">
+            <img src="assets/canon-promo1.webp" alt="Canon Printer Promotional Offer" class="printer-promo-img">
         </div>
 
         <div id="printer-container" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
@@ -119,6 +161,10 @@
             }
             container.innerHTML = data.map(item => `
                 <div class="printer-card bg-white p-3 flex flex-col">
+                    <div class="absolute top-2 right-2 bg-yellow-400 text-black text-[7px] md:text-[8px] font-black uppercase px-2 py-1 rounded shadow-sm z-10 border border-black transform rotate-2">
+                        Easy EMI
+                    </div>
+                    
                     <div class="relative overflow-hidden aspect-square border-b border-zinc-100 mb-4" onclick="location.href='product-details.html?id=${item.id}'">
                         <img src="${item.images[0]}" alt="${item.model}" class="w-full h-full object-contain p-4 transition-transform duration-500 hover:scale-110 cursor-pointer">
                         <div class="absolute top-0 left-0 bg-black text-white text-[7px] px-2 py-1 font-black uppercase italic">${item.brand}</div>
