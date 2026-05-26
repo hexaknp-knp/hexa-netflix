@@ -3,337 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="canonical" href="https://hexacomputer.in/" />
-    <link class="todo-icon" rel="icon" type="image/png" href="assets/newlogo.png">
-    <link rel="apple-touch-icon" href="assets/newlogo.png">
-    <meta name="google-site-verification" content="sOR1l6wNSIt1iPl4JaddWPU3UA196RdzAPdKPteixh8" />
-    <title>Hexa Computronics | Best Refurbished Laptops & Desktops in Kanpur</title>
-    
-    <meta name="description" content="Shop best refurbished laptops, desktops & printers in Kanpur at Hexa Computronics. Get premium Dell, HP & Lenovo business series with 1-Year warranty & Easy EMI.">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Hexa Computronics",
-      "image": "https://hexacomputer.in/assets/newlogo.png",
-      "@id": "https://hexacomputer.in",
-      "url": "https://hexacomputer.in",
-      "telephone": "+919935529306",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "119/540 New Basant Cinema Building, Gumti No. 5",
-        "addressLocality": "Kanpur",
-        "postalCode": "208005",
-        "addressCountry": "IN"
-      }
-    }
-    </script>
+    <link rel="canonical" href="https://hexacomputer.in/printers.html" />
+    <title>Laser & Ink Tank Printers in Kanpur | HP, Epson, Canon - Hexa</title>
+    <meta name="description" content="Buy certified refurbished and brand new printers in Kanpur. Best deals on HP LaserJet, Epson Ink Tank and Canon printers at Hexa Computronics.">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --red: #E50914; --bg: #ffffff; --card-bg: #f9f9f9; --text-dark: #1a1a1a; }
-        body { background-color: var(--bg); color: var(--text-dark); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
-        
-        .bubble-container { 
-            position: fixed; 
-            right: 25px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            z-index: 9999; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            pointer-events: auto;
-        }
-        .hexa-bubble { 
-            width: 80px; height: 80px; border-radius: 50%; border: 3px solid #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; cursor: pointer; box-shadow: 6px 6px 0px #000;
-            transition: 0.3s ease; animation: float 3s ease-in-out infinite; background: #fff;
-        }
-        .bubble-1 { background: #fff; animation-delay: 0s; }
-        .bubble-2 { background: #ffcc00; animation-delay: 0.5s; } 
-        .bubble-3 { background: #0ea5e9; animation-delay: 1s; } 
-        
-        .hexa-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 8px 8px 0px var(--red); }
-        .hexa-bubble i { font-size: 24px; margin-bottom: 4px; }
-        .hexa-bubble span { font-size: 8px; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
-
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        #emi-strip { display: none; position: fixed; bottom: 0; width: 100%; background: #000; color: #fff; padding: 15px; z-index: 10000; border-top: 4px solid var(--red); text-align: center; }
-
-        #sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; z-index: 4000; transition: 0.4s ease-in-out; border-right: 3px solid #000; background: #fff; padding: 20px; box-shadow: 10px 0 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
-        #sidebar.active { left: 0; }
-        .sidebar-shadow-icons { position: absolute; bottom: 30px; right: 20px; font-size: 110px; color: rgba(0,0,0,0.08); z-index: -1; transform: rotate(-10deg); pointer-events: none; }
-        .overlay { position: fixed; inset: 0; z-index: 3500; display: none; background: rgba(0,0,0,0.3); }
-        .overlay.active { display: block; }
-        .menu-btn { cursor: pointer; font-size: 24px; color: #000; padding: 5px; }
-        .nav-link-side { color: #000; font-weight: 800; text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 12px; }
-
-        #navbar { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
-        .marquee-bar { background: linear-gradient(90deg, #831010, #E50914); color: white; padding: 10px 0; font-size: 11px; font-weight: 800; text-transform: uppercase; }
-        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; white-space: nowrap; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        
-        .category-block { border: 2px solid #000; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 6px 6px 0px rgba(0,0,0,1); transition: 0.3s; }
-        .carousel-container { position: relative; height: 180px; overflow: hidden; background: #f4f4f4; border-bottom: 1px solid #eee; }
-        .carousel-img { width: 100%; height: 100%; object-fit: contain; padding: 15px; position: absolute; transition: opacity 0.8s ease-in-out; opacity: 0; }
-        .carousel-img.active { opacity: 1; }
-
-        header.relative { position: relative; display: flex; align-items: center; background-color: #000; overflow: hidden; }
-        .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, rgba(255,255,255,1) 5%, transparent 90%), linear-gradient(to right, rgba(255,255,255,0.6) 0%, transparent 100%); z-index: 1; }
-        .hero-content { position: relative; z-index: 10; width: 100%; }
-        
+        :root { --red: #E50914; --bg: #ffffff; }
+        body { background-color: var(--bg); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        #navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid #000; }
+        .printer-card { transition: 0.3s ease; border: 2px solid #000; position: relative; }
+        .printer-card:hover { transform: translateY(-5px); box-shadow: 8px 8px 0px rgba(0,0,0,1); }
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .footer-item:hover { color: var(--red); }
-
-        #searchModal, #quoteModal { 
-            display: none; position: fixed; inset: 0; 
-            z-index: 100000; 
-            background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); 
-        }
-        .modal-box { background: #fff; border: 4px solid #000; padding: 25px; width: 100%; max-width: 450px; position: relative; }
-        .modal-close { position: absolute; top: -15px; right: -10px; background: #000; color: #fff; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: 900; cursor: pointer; border: 2px solid #fff; }
-
-        /* FIXED: Image Promo Container */
-        .image-promo-container { 
-            border: 3px solid #000; 
-            box-shadow: 6px 6px 0px #000; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            background: transparent; 
-            width: 100%; 
-            display: flex; 
+        
+        /* SLEEK ANIMATED PROMO BANNER FOR DESKTOP & MOBILE */
+        .printer-promo-wrapper {
+            width: 100%;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #0f0f0f 0%, #2a2a2a 50%, #0f0f0f 100%);
+            border: 3px solid #000;
+            border-radius: 12px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,1);
+            overflow: hidden;
+            position: relative;
+            display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
         }
-        
-        /* ADJUSTED: Size limit to stop huge scroll on desktop */
+
+        /* Shine Motion Animation */
+        .printer-promo-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 30%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg);
+            animation: shine-sweep 4s infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes shine-sweep {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
         .promo-flyer-img {
-            width: 100%;
-            height: auto; 
-            max-height: 320px; /* Reduced to bring products up */
+            width: auto;
+            height: 100%; 
+            max-height: 250px; /* Small professional size for desktop */
             object-fit: contain; 
             display: block;
+            z-index: 5;
         }
-        
-        /* Specific check for large desktop screens */
-        @media (min-width: 1024px) {
+
+        @media (max-width: 768px) {
             .promo-flyer-img {
-                max-height: 280px; /* Even smaller limit for wide screens */
+                width: 100%;
+                max-height: none;
+                background: #facd05; /* Blends nicely on mobile */
             }
+        }
+
+        /* Filter buttons optimization */
+        .filter-btn {
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            padding: 4px 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .filter-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* DYNAMIC GIFT IMAGE BADGE */
+        .promo-gift-badge {
+            position: absolute;
+            top: 30px; /* Just below Easy EMI */
+            left: -6px; /* Pops out slightly for 3D look */
+            background: linear-gradient(135deg, #1a1a1a, #000000);
+            border-radius: 4px;
+            z-index: 20;
+            box-shadow: 4px 4px 0px rgba(229, 9, 20, 0.9);
+            display: flex;
+            align-items: center;
+            padding: 4px 8px;
+            border: 1px solid #444;
+            transition: transform 0.3s;
+        }
+        .promo-gift-badge:hover {
+            transform: scale(1.05);
+        }
+        .gift-img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            margin-right: 6px;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+        }
+        .gift-text {
+            font-size: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: #ffcc00;
         }
     </style>
 </head>
 <body>
 
-    <div class="bubble-container">
-        <div onclick="location.href='services.html'" class="hexa-bubble bubble-1"><i class="fas fa-tools text-red-600"></i><span>AMC & Repair</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-2"><i class="fas fa-credit-card"></i><span>Easy EMI</span></div>
-        <div onclick="showEmiInfo()" class="hexa-bubble bubble-3"><i class="fas fa-wallet text-white"></i><span class="text-white">Pay Modes</span></div>
-    </div>
-
-    <div id="emi-strip">
-        <div class="flex justify-between items-center max-w-4xl mx-auto px-4">
-            <p class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight text-white">💳 ALL CARDS, UPI & NETBANKING ACCEPTED. <span class="text-yellow-400">EMI AVAILABLE.</span></p>
-            <button onclick="document.getElementById('emi-strip').style.display='none'" class="text-xl font-black text-white">&times;</button>
-        </div>
-    </div>
-
-    <div class="overlay" id="nav-overlay" onclick="toggleMenu()"></div>
-
-    <aside id="sidebar">
-        <div class="flex justify-end items-center mb-6"><button onclick="toggleMenu()" class="text-2xl font-black">&times;</button></div>
-        <div class="mb-12 text-center"><img src="assets/newlogo.png" alt="Hexa Logo" class="h-16 mx-auto mb-2" loading="lazy"></div>
-        <nav class="flex flex-col flex-grow">
-            <a href="index.html" class="nav-link-side" style="color:var(--red)"><i class="fas fa-home"></i> Home</a>
-            <a href="new-store.html" class="nav-link-side text-green-600"><i class="fas fa-star"></i> New Arrival</a>
-            <a href="laptops.html" class="nav-link-side"><i class="fas fa-laptop"></i> Laptops</a>
-            <a href="desktops.html" class="nav-link-side"><i class="fas fa-desktop"></i> Desktops</a>
-            <a href="cctv.html" class="nav-link-side"><i class="fas fa-shield-alt"></i> Security</a>
-            <a href="services.html" class="nav-link-side"><i class="fas fa-tools"></i> Services</a>
-            <a href="printers.html" class="nav-link-side"><i class="fas fa-print"></i> Printers</a>
-            <a href="accessories.html" class="nav-link-side"><i class="fas fa-keyboard"></i> Accessories</a>
-        </nav>
-        <div class="sidebar-shadow-icons"><i class="fas fa-keyboard"></i><i class="fas fa-mouse"></i></div>
-    </aside>
-
-    <div class="marquee-bar"><div class="marquee-content">⚡ SAME DAY DELIVERY IN KANPUR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💳 EASY EMI ON ALL BANK CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⭐ 100% CERTIFIED BUSINESS HARDWARE</div></div>
-
-    <nav id="navbar">
-        <div class="px-4 md:px-12 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-6">
-                <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-                <a href="index.html" class="flex flex-col items-center">
-                    <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
-                    <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic leading-none">Hexa Computronics</span>
-                </a>
+    <nav id="navbar" class="px-4 md:px-12 py-3">
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="flex flex-col items-center">
+                <img src="assets/newlogo.png" alt="Hexa Logo" class="h-8">
+                <span class="text-[10px] md:text-xs text-red-600 font-black tracking-widest uppercase italic">Hexa Computronics</span>
+            </a>
+            <div class="hidden lg:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-gray-500 hover:text-black">Home</a>
+                <a href="laptops.html" class="text-gray-500 hover:text-black">Laptops</a>
+                <a href="desktops.html" class="text-gray-500 hover:text-black">Desktops</a>
+                <a href="printers.html" class="text-red-600 border-b-2 border-red-600">Printers</a>
+                <a href="accessories.html" class="text-gray-500 hover:text-black">Accessories</a>
             </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="openSearch()"><i class="fas fa-search text-xl"></i></button>
-                <button onclick="openQuote()" class="bg-red-600 text-white text-[10px] px-4 py-2 rounded font-black italic uppercase shadow-sm">Quote</button>
-            </div>
+            <a href="index.html" class="bg-black text-white text-[9px] px-4 py-2 rounded font-black uppercase italic tracking-widest hover:bg-red-600">▶ Store</a>
         </div>
     </nav>
 
-    <header class="relative w-full bg-cover bg-center flex items-center px-6 md:px-12 py-6 lg:py-6" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80');">
-        <div class="hero-vignette"></div>
-        <div class="hero-content max-w-7xl mx-auto z-10 w-full">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
-                
-                <div class="text-left w-full lg:w-1/2">
-                    <h1 class="text-4xl md:text-6xl font-black mb-1 uppercase italic leading-none text-black">Premium <br><span class="text-red-600">Hardware</span></h1>
-                    <p class="text-xs md:text-sm text-black font-black uppercase italic tracking-widest">Kanpur's Professional Tech Mall</p>
-                </div>
-                
-                <div class="w-full lg:w-1/2 max-w-md lg:ml-auto">
-                    <div class="image-promo-container cursor-pointer" onclick="location.href='printers.html'">
-                        <img src="assets/canon-promo1.webp" alt="Canon Back to School Offer" class="promo-flyer-img">
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </header>
-
-    <main class="relative z-20 px-4 md:px-12 pb-16">
-        <div class="mt-6 mb-4 border-l-4 border-red-600 pl-3"><h2 class="text-xl font-black uppercase italic">Browse by Category</h2></div>
+    <main class="max-w-7xl mx-auto px-4 py-8">
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="category-block cursor-pointer" onclick="location.href='laptops.html'">
-                <div class="carousel-container" id="carousel-laptop"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Business Laptops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
-                    <i class="fas fa-arrow-right text-xl"></i>
-                </div>
-            </div>
-            <div class="category-block cursor-pointer" onclick="location.href='desktops.html'">
-                <div class="carousel-container" id="carousel-desktop"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Office Desktops</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
-                    <i class="fas fa-arrow-right text-xl"></i>
-                </div>
-            </div>
-            <div class="category-block cursor-pointer" onclick="location.href='new-store.html'">
-                <div class="carousel-container" id="carousel-new"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-green-600">
-                    <div><h3 class="text-lg">Brand New Store</h3><p class="text-[8px] text-black">EMI, Cashback & UPI Offer</p></div>
-                    <i class="fas fa-arrow-right text-xl text-green-600"></i>
-                </div>
-            </div>
-            <div class="category-block cursor-pointer" onclick="location.href='printers.html'">
-                <div class="carousel-container" id="carousel-printer"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Official Printers</h3><p class="text-[9px] text-red-600">Easy EMI Available</p></div>
-                    <i class="fas fa-arrow-right text-xl"></i>
-                </div>
-            </div>
-            <div class="category-block cursor-pointer" onclick="location.href='accessories.html'">
-                <div class="carousel-container" id="carousel-accessories"></div>
-                <div class="p-4 bg-white flex justify-between items-center font-black uppercase italic text-black">
-                    <div><h3 class="text-lg">Tech Accessories</h3><p class="text-[9px] text-red-600">UPI Offer Available</p></div>
-                    <i class="fas fa-arrow-right text-xl"></i>
-                </div>
-            </div>
-            <div class="category-block cursor-pointer" onclick="location.href='cctv.html'">
-                <div class="carousel-container" id="carousel-cctv"></div>
-                <div class="p-4 bg-white flex justify-between items-center border-t-4 border-black font-black uppercase italic bg-black text-white">
-                    <div><h3 class="text-lg">Security CCTV</h3><p class="text-[9px] font-bold text-red-600">EMI & AMC Available</p></div>
-                    <span class="bg-black text-white text-[9px] px-2 py-1 font-black border border-white tracking-widest">EXPLORE</span>
-                </div>
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <h1 class="text-4xl md:text-6xl font-black italic uppercase border-l-8 border-black pl-4 tracking-tighter text-black w-full md:w-auto">
+                Official <span class="text-red-600">Printers</span>
+            </h1>
+            <div class="flex flex-wrap justify-start md:justify-end gap-2 w-full md:w-auto">
+                <button onclick="filterByBrand('all')" class="filter-btn">All</button>
+                <button onclick="filterByBrand('hp')" class="filter-btn">HP</button>
+                <button onclick="filterByBrand('epson')" class="filter-btn">Epson</button>
+                <button onclick="filterByBrand('canon')" class="filter-btn">Canon</button>
             </div>
         </div>
 
-        <section id="services-strip" class="mt-16 px-6 py-10 bg-zinc-50 border-2 border-black rounded-lg">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-                <div class="text-center md:text-left">
-                    <h2 class="text-2xl md:text-3xl font-black uppercase italic leading-none">Our Expert <span class="text-red-600">Services</span></h2>
-                    <p class="text-[10px] font-bold uppercase tracking-widest mt-2 text-gray-500">Kanpur's Trusted AMC & Installation Partner</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full md:w-auto">
-                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
-                        <i class="fas fa-tools text-red-600 group-hover:text-white mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">CCTV<br>Installation</p>
-                    </div>
-                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center">
-                        <i class="fas fa-network-wired text-red-600 group-hover:text-white mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">IT Networking<br>& AMC</p>
-                    </div>
-                    <div onclick="location.href='services.html'" class="cursor-pointer border-2 border-black p-3 bg-white hover:bg-red-600 hover:text-white transition group text-center flex flex-col justify-center col-span-2 md:col-span-1">
-                        <i class="fas fa-phone-alt text-red-600 group-hover:text-white mb-2 block text-xl"></i>
-                        <p class="text-[9px] font-black uppercase leading-tight">EPABX /<br>Intercom</p>
-                    </div>
-                </div>
-                <a href="services.html" class="bg-black text-white px-8 py-4 font-black uppercase italic text-xs hover:bg-red-600 transition shadow-lg">View All Services</a>
+        <div class="printer-promo-wrapper" onclick="location.href='printers.html'">
+            <img src="assets/canon-promo1.webp" alt="Canon Printer Promotional Offer" class="promo-flyer-img">
+        </div>
+
+        <div id="printer-container" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 mt-4">
             </div>
-        </section>
     </main>
 
-    <footer class="bg-gray-100 py-12 px-6 md:px-12 border-t-4 border-black text-black relative z-10">
+    <section class="bg-zinc-50 py-12 px-6 border-t border-b border-zinc-200">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl font-black uppercase italic mb-4">Print Solutions for Every Business</h2>
+            <p class="text-sm font-medium text-zinc-600 leading-relaxed">Hexa Computronics Kanpur provides a wide range of LaserJet and Ink Tank printers. From heavy-duty office workhorses to compact home printers, we have it all. Visit our Gumti No. 5 store for the best price in Kanpur.</p>
+        </div>
+    </section>
+
+    <footer class="bg-white py-16 px-6 md:px-12 border-t-4 border-black text-black">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-7xl mx-auto text-left">
-            <div><span class="footer-heading">Quick Links</span><ul class="space-y-2"><li><a href="index.html" class="footer-item">Home Store</a></li><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="desktops.html" class="footer-item">Desktops</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
-            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="shipping-policy.html" class="footer-item">Shipping</a></li><li><a href="legal.html" class="footer-item">Legal & Refund</a></li></ul></div>
-            <div><span class="footer-heading">Contact Us</span><p class="footer-item leading-relaxed mb-4 text-[10px] text-black">119/540 New Basant Building, Kanpur Nagar</p><p class="footer-item underline text-black font-black uppercase tracking-widest">+91 9935529306</p></div>
-            <div class="text-right flex space-x-6 justify-end items-center">
-                <a href="https://youtube.com/@hexacomptech" target="_blank" style="color: #FF0000;"><i class="fab fa-youtube text-2xl"></i></a>
-                <a href="https://facebook.com/hexacomputronics" target="_blank" style="color: #1877F2;"><i class="fab fa-facebook text-2xl"></i></a>
-                <a href="https://instagram.com/hcomputronics" target="_blank" style="color: #E4405F;"><i class="fab fa-instagram text-2xl"></i></a>
+            <div><span class="footer-heading">Inventory</span><ul class="space-y-2"><li><a href="laptops.html" class="footer-item">Laptops</a></li><li><a href="printers.html" class="footer-item">Printers</a></li><li><a href="accessories.html" class="footer-item">Accessories</a></li></ul></div>
+            <div><span class="footer-heading">Support</span><ul class="space-y-2"><li><a href="#" class="footer-item">Service</a></li><li><a href="#" class="footer-item">Warranty</a></li></ul></div>
+            <div><span class="footer-heading">Kanpur Store</span><p class="footer-item text-[10px]">New Basant Building, Kanpur</p><p class="footer-item underline font-black">+91 9935529306</p></div>
+            <div class="text-right flex flex-col items-end">
+                <span class="footer-heading">Follow</span>
+                <div class="flex space-x-4 text-xl">
+                    <a href="https://youtube.com/@hexacomptech" target="_blank" style="color:#FF0000"><i class="fab fa-youtube"></i></a>
+                    <a href="https://instagram.com/hcomputronics" target="_blank" style="color:#E4405F;"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
-        <div class="mt-10 pt-6 border-t border-gray-300 text-center"><p class="text-[9px] font-black text-black uppercase italic tracking-[0.3em]">© 2026 HEXA COMPUTRONICS KANPUR | BY AAMIR</p></div>
     </footer>
 
-    <div id="searchModal">
-        <div class="modal-box">
-            <div class="modal-close" onclick="closeSearch()">&times;</div>
-            <h2 class="text-xl font-black uppercase italic mb-4">Search Inventory</h2>
-            <input type="text" id="searchInput" onkeyup="liveSearch()" placeholder="Search brand or model..." class="w-full border-2 border-black p-3 font-bold text-sm uppercase outline-none">
-            <div id="searchResults" class="mt-4 max-h-64 overflow-y-auto"></div>
-        </div>
-    </div>
-
-    <div id="quoteModal">
-        <div class="modal-box">
-            <div class="modal-close" onclick="closeQuote()">&times;</div>
-            <h2 class="text-xl font-black uppercase italic mb-4">Quick Quote</h2>
-            <input type="text" id="custName" placeholder="Your Name" class="w-full border-2 border-black p-3 font-bold text-sm uppercase mb-4 outline-none">
-            <button onclick="sendWA()" class="w-full bg-black text-white py-4 font-black uppercase italic hover:bg-red-600 transition">Get Quote on WhatsApp</button>
-        </div>
-    </div>
-
     <script>
-        function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('nav-overlay').classList.toggle('active'); }
-        function showEmiInfo() { const s = document.getElementById('emi-strip'); s.style.display='block'; setTimeout(()=>s.style.display='none',8000); }
-        function openSearch() { document.getElementById('searchModal').style.display='flex'; }
-        function closeSearch() { document.getElementById('searchModal').style.display='none'; }
-        function openQuote() { document.getElementById('quoteModal').style.display='flex'; }
-        function closeQuote() { document.getElementById('quoteModal').style.display='none'; }
-        function sendWA() { const n = document.getElementById('custName').value; if(n) window.open(`https://wa.me/919935529306?text=Hi, I am ${n}. Need a quote for hardware.`, '_blank'); }
-
-        let fullData = [];
+        let allPrinters = [];
         const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhJ6oW7vvPyPTyOfy4uN_ngU8DAPmLPQPSnzuYGIlars_FcIbZmUK9ah1O4mgJ1YgfZILaplezmbkz/pub?output=csv";
 
         async function init() {
             try {
                 const res = await fetch(sheetURL);
                 const csvText = await res.text();
-                fullData = csvToJSON(csvText);
-                setupCarousels();
-            } catch (e) { console.error("Data Fail"); }
+                const data = csvToJSON(csvText);
+                allPrinters = data.filter(i => i.category === "Printer" && i.stock === "In Stock");
+                render(allPrinters);
+            } catch (e) { console.error("Data fail"); }
         }
 
         function csvToJSON(csv) {
-            const lines = csv.split('\n'), result = [], headers = lines[0].split(',').map(h => h.trim());
+            const lines = csv.split('\n');
+            const result = [];
+            const headers = lines[0].split(',').map(h => h.trim());
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i]) continue;
-                const obj = {}, currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const obj = {};
+                const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 headers.forEach((header, index) => {
                     let val = currentline[index] ? currentline[index].trim().replace(/^"|"$/g, '') : '';
                     if(header === 'images') val = val.split(',').map(img => img.trim());
+                    if(header === 'price') val = parseInt(val) || 0;
                     obj[header] = val;
                 });
                 result.push(obj);
@@ -341,37 +215,84 @@
             return result;
         }
 
-        function setupCarousels() {
-            const categories = [
-                { id: 'carousel-laptop', filter: i => i.category === 'Laptop' && i.stock === 'In Stock' },
-                { id: 'carousel-desktop', filter: i => i.category === 'Desktop' && i.stock === 'In Stock' },
-                { id: 'carousel-new', filter: i => i.condition === 'New' && i.stock === 'In Stock' },
-                { id: 'carousel-printer', filter: i => i.category === 'Printer' && i.stock === 'In Stock' },
-                { id: 'carousel-accessories', filter: i => i.category === 'Accessories' && i.stock === 'In Stock' },
-                { id: 'carousel-cctv', filter: i => i.category === 'CCTV' && i.stock === 'In Stock' }
-            ];
-            categories.forEach(cat => {
-                const items = fullData.filter(cat.filter).slice(0, 5);
-                const container = document.getElementById(cat.id);
-                if (items && items.length > 0) {
-                    container.innerHTML = items.map((item, idx) => `<img src="${item.images[0]}" class="carousel-img ${idx === 0 ? 'active' : ''}" alt="Hexa IT Product" decoding="async">`).join('');
-                    let current = 0;
-                    const imgs = container.getElementsByClassName('carousel-img');
-                    if(imgs.length > 1) { setInterval(() => { if(imgs[current]) imgs[current].classList.remove('active'); current = (current + 1) % imgs.length; if(imgs[current]) imgs[current].classList.add('active'); }, 4000); }
-                }
-            });
+        // DYNAMIC GIFT IMAGE BADGE LOGIC
+        function getGiftBadgeHTML(modelName) {
+            const model = modelName.toUpperCase();
+            
+            // Camera Models
+            if (model.includes("G570") || model.includes("G670")) {
+                return `
+                <div class="promo-gift-badge">
+                    <img src="assets/free-camera.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3125/3125134.png'" alt="Camera" class="gift-img">
+                    <div class="gift-text">Free<br>Camera</div>
+                </div>`;
+            }
+            // Ink Bottle Models
+            if (model.includes("G2012") || model.includes("G3012")) {
+                return `
+                <div class="promo-gift-badge">
+                    <img src="assets/free-ink.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1753/1753303.png'" alt="Ink" class="gift-img">
+                    <div class="gift-text">2 Free<br>Inks</div>
+                </div>`;
+            }
+            // Speaker Models
+            if (model.includes("G3770") || model.includes("G3780") || model.includes("G4780") || model.includes("G2730") || model.includes("G3730") || model.includes("G4770")) {
+                return `
+                <div class="promo-gift-badge">
+                    <img src="assets/free-speaker.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/860/860348.png'" alt="Speaker" class="gift-img">
+                    <div class="gift-text">Free<br>Speaker</div>
+                </div>`;
+            }
+            return ''; // Hide badge if no offer
         }
 
-        function liveSearch() {
-            const q = document.getElementById('searchInput').value.toLowerCase();
-            const res = fullData.filter(i => i.model.toLowerCase().includes(q) || i.brand.toLowerCase().includes(q)).slice(0, 8);
-            document.getElementById('searchResults').innerHTML = res.map(i => `
-                <div onclick="location.href='product-details.html?id=${i.id}'" class="p-3 border-b-2 border-black flex justify-between items-center cursor-pointer hover:bg-gray-100 uppercase font-black text-[10px]">
-                    <span>${i.brand} ${i.model}</span>
-                    <span class="text-red-600 font-bold">₹${i.price}</span>
+        function render(data) {
+            const container = document.getElementById('printer-container');
+            if(data.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-20 font-black uppercase text-zinc-400 italic">No printers available in stock currently.</div>`;
+                return;
+            }
+            container.innerHTML = data.map(item => {
+                const giftBadge = getGiftBadgeHTML(item.model);
+                
+                return `
+                <div class="printer-card bg-white p-3 flex flex-col">
+                    <div class="absolute top-2 right-2 bg-yellow-400 text-black text-[7px] md:text-[8px] font-black uppercase px-2 py-1 rounded shadow-sm z-10 border border-black transform rotate-2">
+                        Easy EMI
+                    </div>
+                    
+                    ${giftBadge}
+                    
+                    <div class="relative overflow-hidden aspect-square border-b border-zinc-100 mb-4" onclick="location.href='product-details.html?id=${item.id}'">
+                        <img src="${item.images[0]}" alt="${item.model}" class="w-full h-full object-contain p-4 transition-transform duration-500 hover:scale-110 cursor-pointer">
+                        <div class="absolute top-0 left-0 bg-black text-white text-[7px] px-2 py-1 font-black uppercase italic">${item.brand}</div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-[11px] md:text-sm font-black uppercase italic text-black leading-tight mb-2 truncate">${item.model}</h3>
+                        <p class="text-[9px] font-bold text-red-600 uppercase mb-4">${item.processor || 'Laser/InkTank Printer'}</p>
+                    </div>
+                    <div class="mt-auto border-t pt-3 flex justify-between items-center">
+                        <div>
+                            <p class="text-[7px] font-black text-zinc-400 uppercase leading-none">Offer Price</p>
+                            <p class="text-sm md:text-xl font-black text-black italic">₹${item.price.toLocaleString()}</p>
+                        </div>
+                        <button onclick="location.href='product-details.html?id=${item.id}'" class="bg-black text-white text-[8px] px-3 py-2 font-black uppercase italic hover:bg-red-600 transition-colors">
+                            Details
+                        </button>
+                    </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
+
+        function filterByBrand(brand) {
+            if (brand === 'all') render(allPrinters);
+            else {
+                const filtered = allPrinters.filter(p => p.brand.toLowerCase() === brand.toLowerCase());
+                render(filtered);
+            }
+        }
+
         window.onload = init;
     </script>
 </body>
