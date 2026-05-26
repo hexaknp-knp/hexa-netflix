@@ -18,29 +18,33 @@
         .footer-heading { color: var(--red); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; display: block; }
         .footer-item { color: #000; font-size: 11px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
         
-        /* Promo Image Styling */
+        /* BULLETPROOF FULL-WIDTH BANNER STYLING FOR LAPTOP/DESKTOP */
         .printer-promo-container {
             border: 3px solid #000; 
             box-shadow: 6px 6px 0px #000; 
             border-radius: 8px; 
             overflow: hidden; 
-            background: #fff; 
+            background: #000; 
             width: 100%; 
-            display: flex; 
-            justify-content: center;
-            align-items: center;
             margin-bottom: 2rem;
         }
         
         .printer-promo-img {
             width: 100%;
             height: auto; 
-            max-height: 400px;
-            object-fit: contain; 
+            max-height: 450px;
+            object-fit: cover; /* Left-Right full edge-to-edge wrap block */
+            object-position: center;
             display: block;
         }
 
-        /* Filter buttons optimization */
+        @media (max-width: 768px) {
+            .printer-promo-img {
+                object-fit: contain; /* Mobile par transparent borders automatically avoid crop */
+                background: #facd05; /* Image yellow base background color match */
+            }
+        }
+
         .filter-btn {
             font-size: 9px;
             font-weight: 900;
@@ -53,6 +57,26 @@
         .filter-btn:hover {
             background: #000;
             color: #fff;
+        }
+
+        /* Dynamic Promo Badge Style on Product Cards */
+        .promo-gift-badge {
+            position: absolute;
+            top: 35px;
+            left: 8px;
+            background: #000;
+            color: #fff;
+            font-size: 7px;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 3px 6px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            z-index: 20;
+            box-shadow: 2px 2px 0px #000;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
     </style>
 </head>
@@ -128,7 +152,6 @@
                 const res = await fetch(sheetURL);
                 const csvText = await res.text();
                 const data = csvToJSON(csvText);
-                // Filter only Printers that are IN STOCK
                 allPrinters = data.filter(i => i.category === "Printer" && i.stock === "In Stock");
                 render(allPrinters);
             } catch (e) { console.error("Data fail"); }
@@ -153,17 +176,42 @@
             return result;
         }
 
+        // FUNCTION TO DETECT PRODUCT SPECIFIC GIFT BADGE AUTOMATICALLY
+        function getGiftBadgeHTML(modelName) {
+            const model = modelName.toUpperCase();
+            
+            // Camera Models
+            if (model.includes("G570") || model.includes("G670")) {
+                return `<div class="promo-gift-badge"><i class="fas fa-camera text-yellow-400"></i> + Free Camera</div>`;
+            }
+            // Ink Bottle Models
+            if (model.includes("G2012") || model.includes("G3012")) {
+                return `<div class="promo-gift-badge"><i class="fas fa-tint text-cyan-400"></i> + 2 Free Inks</div>`;
+            }
+            // Speaker Models
+            if (model.includes("G3770") || model.includes("G3780") || model.includes("G4780") || model.includes("G2730") || model.includes("G3730") || model.includes("G4770")) {
+                return `<div class="promo-gift-badge"><i class="fas fa-volume-up text-emerald-400"></i> + Free Speaker</div>`;
+            }
+            return ''; // No matching free offer rule
+        }
+
         function render(data) {
             const container = document.getElementById('printer-container');
             if(data.length === 0) {
                 container.innerHTML = `<div class="col-span-full text-center py-20 font-black uppercase text-zinc-400 italic">No printers available in stock currently.</div>`;
                 return;
             }
-            container.innerHTML = data.map(item => `
+            container.innerHTML = data.map(item => {
+                // Get free gift dynamic icon badge
+                const giftBadge = getGiftBadgeHTML(item.model);
+                
+                return `
                 <div class="printer-card bg-white p-3 flex flex-col">
                     <div class="absolute top-2 right-2 bg-yellow-400 text-black text-[7px] md:text-[8px] font-black uppercase px-2 py-1 rounded shadow-sm z-10 border border-black transform rotate-2">
                         Easy EMI
                     </div>
+                    
+                    ${giftBadge}
                     
                     <div class="relative overflow-hidden aspect-square border-b border-zinc-100 mb-4" onclick="location.href='product-details.html?id=${item.id}'">
                         <img src="${item.images[0]}" alt="${item.model}" class="w-full h-full object-contain p-4 transition-transform duration-500 hover:scale-110 cursor-pointer">
@@ -183,7 +231,8 @@
                         </button>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function filterByBrand(brand) {
